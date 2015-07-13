@@ -1,0 +1,9 @@
+Package: advanced-photo
+Version: 1.4.0
+Architecture: i386
+Installed-Size: 50
+Section: graphics
+Priority: optional
+maintainer: ARASHz4 <advancedphoto@arashz4.com>
+Homepage: http://advancedphoto.sourceforge.net/
+Description: Advanced Photo View & Rotate & Flip & Resize Photos

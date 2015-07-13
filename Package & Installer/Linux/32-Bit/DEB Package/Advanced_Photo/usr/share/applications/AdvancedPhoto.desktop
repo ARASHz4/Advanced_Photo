@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Advanced Photo
+GenericName=Photo Viewer
+Comment=Advanced Photo View & Rotate & Flip & Resize Photos
+Exec=AdvancedPhoto %f
+Icon=AdvancedPhoto.png
+NoDisplay=false
+Categories=Graphics;Viewer;
+MimeType=inode/directory;image/png;image/jpeg;image/bmp;image/tiff;image/webp;image/gif;image/jp2;image/dds;image/xpm;image/pnm;image/ppm;image/pgm;image/wbmp;image/xbm;image/pbm;image/ico;image/icns;
+StartupNotify=true
+Terminal=false

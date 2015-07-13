@@ -1,0 +1,10 @@
+#!/bin/sh
+
+export LD_LIBRARY_PATH=/opt/Advanced_Photo/lib
+export QT_PLUGIN_PATH=/opt/Advanced_Photo/plugins
+
+if [ $# -lt 1 ]; then
+  /opt/Advanced_Photo/Advanced\ Photo
+else
+  /opt/Advanced_Photo/Advanced\ Photo "$@"
+fi
