@@ -699,16 +699,13 @@ void PhotoWindow::SavePhoto()
 
         if(SaveAnswer == QMessageBox::Save)
         {
-            if((SaveFile.suffix() == "png" || SaveFile.suffix() == "PNG" || SaveFile.suffix() == "jpg"
-             || SaveFile.suffix() == "JPG" || SaveFile.suffix() == "jpeg" || SaveFile.suffix() == "JPEG"
-             || SaveFile.suffix() == "bmp" || SaveFile.suffix() == "BMP" || SaveFile.suffix() == "tif"
-             || SaveFile.suffix() == "tiff" || SaveFile.suffix() == "TIF" || SaveFile.suffix() == "TIFF"
-             || SaveFile.suffix() == "webp" || SaveFile.suffix() == "WEBP" || SaveFile.suffix() == "jp2"
-             || SaveFile.suffix() == "JP2" || SaveFile.suffix() == "dds" || SaveFile.suffix() == "DDS"
-             || SaveFile.suffix() == "ppm" || SaveFile.suffix() == "PPM" || SaveFile.suffix() == "xpm"
-             || SaveFile.suffix() == "XPM" || SaveFile.suffix() == "pgm" || SaveFile.suffix() == "PGM"
-             || SaveFile.suffix() == "xbm" || SaveFile.suffix() == "XBM" || SaveFile.suffix() == "pbm"
-             || SaveFile.suffix() == "PBM") && ssh == false)
+            if((SaveFile.suffix().toLower() == "png" || SaveFile.suffix().toLower() == "jpg"
+                || SaveFile.suffix().toLower() == "jpeg" || SaveFile.suffix().toLower() == "bmp"
+                || SaveFile.suffix().toLower() == "tif" || SaveFile.suffix().toLower() == "tiff"
+                || SaveFile.suffix().toLower() == "webp" || SaveFile.suffix().toLower() == "jp2"
+                || SaveFile.suffix().toLower() == "dds" || SaveFile.suffix().toLower() == "ppm"
+                || SaveFile.suffix().toLower() == "xpm" || SaveFile.suffix().toLower() == "pgm"
+                || SaveFile.suffix().toLower() == "xbm" || SaveFile.suffix().toLower() == "pbm") && ssh == false)
             {
                 PhotoSave=PhotoSave.fromImage(ui->Photo->pixmap()->toImage());
 
@@ -1068,16 +1065,13 @@ void PhotoWindow::on_actionSave_triggered()
     {
         QFileInfo SaveFile = PhotoAddress[ps];
 
-        if((SaveFile.suffix() == "png" || SaveFile.suffix() == "PNG" || SaveFile.suffix() == "jpg"
-         || SaveFile.suffix() == "JPG" || SaveFile.suffix() == "jpeg" || SaveFile.suffix() == "JPEG"
-         || SaveFile.suffix() == "bmp" || SaveFile.suffix() == "BMP" || SaveFile.suffix() == "tif"
-         || SaveFile.suffix() == "tiff" || SaveFile.suffix() == "TIF" || SaveFile.suffix() == "TIFF"
-         || SaveFile.suffix() == "webp" || SaveFile.suffix() == "WEBP" || SaveFile.suffix() == "jp2"
-         || SaveFile.suffix() == "JP2" || SaveFile.suffix() == "dds" || SaveFile.suffix() == "DDS"
-         || SaveFile.suffix() == "ppm" || SaveFile.suffix() == "PPM" || SaveFile.suffix() == "xpm"
-         || SaveFile.suffix() == "XPM" || SaveFile.suffix() == "pgm" || SaveFile.suffix() == "PGM"
-         || SaveFile.suffix() == "xbm" || SaveFile.suffix() == "XBM" || SaveFile.suffix() == "pbm"
-         || SaveFile.suffix() == "PBM") && ssh == false)
+        if((SaveFile.suffix().toLower() == "png" || SaveFile.suffix().toLower() == "jpg"
+         || SaveFile.suffix().toLower() == "jpeg" || SaveFile.suffix().toLower() == "bmp"
+         || SaveFile.suffix().toLower() == "tif" || SaveFile.suffix().toLower() == "tiff"
+         || SaveFile.suffix().toLower() == "webp" || SaveFile.suffix().toLower() == "jp2"
+         || SaveFile.suffix().toLower() == "dds" || SaveFile.suffix().toLower() == "ppm"
+         || SaveFile.suffix().toLower() == "xpm" || SaveFile.suffix().toLower() == "pgm"
+         || SaveFile.suffix().toLower() == "xbm" || SaveFile.suffix().toLower() == "pbm") && ssh == false)
         {
             PhotoSave=PhotoSave.fromImage(ui->Photo->pixmap()->toImage());
 

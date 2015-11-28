@@ -35,73 +35,71 @@ void photoinfo::showEvent(QShowEvent *)
         ui->SizePI->setText(QString::number(QFileInfo(PhotoAddress[ps]).size()/1024) + " KB");
     }
 
-    if(QFileInfo(PhotoAddress[ps]).suffix() == "png" || QFileInfo(PhotoAddress[ps]).suffix() == "PNG")
+    if(QFileInfo(PhotoAddress[ps]).suffix().toLower().toLower() == "png")
     {
         ui->TypePI->setText("Portable Network Graphics");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix() == "jpg" || QFileInfo(PhotoAddress[ps]).suffix() == "JPG" ||
-            QFileInfo(PhotoAddress[ps]).suffix() == "jpeg" || QFileInfo(PhotoAddress[ps]).suffix() == "JPEG")
+    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "jpg"|| QFileInfo(PhotoAddress[ps]).suffix().toLower() == "jpeg")
     {
         ui->TypePI->setText("JPEG Image");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix() == "bmp" || QFileInfo(PhotoAddress[ps]).suffix() == "BMP")
+    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "bmp")
     {
         ui->TypePI->setText("BMP file format");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix() == "tif" || QFileInfo(PhotoAddress[ps]).suffix() == "tiff" ||
-            QFileInfo(PhotoAddress[ps]).suffix() == "TIF" || QFileInfo(PhotoAddress[ps]).suffix() == "TIFF")
+    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "tif" || QFileInfo(PhotoAddress[ps]).suffix().toLower() == "tiff")
     {
         ui->TypePI->setText("Tagged Image File Format");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix() == "webp" || QFileInfo(PhotoAddress[ps]).suffix() == "WEBP")
+    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "webp")
     {
         ui->TypePI->setText("WebP");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix() == "gif" || QFileInfo(PhotoAddress[ps]).suffix() == "GIF")
+    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "gif")
     {
         ui->TypePI->setText("GIF Image");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix() == "jp2" || QFileInfo(PhotoAddress[ps]).suffix() == "JP2")
+    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "jp2")
     {
         ui->TypePI->setText("JPEG 2000");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix() == "dds" || QFileInfo(PhotoAddress[ps]).suffix() == "DDS")
+    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "dds")
     {
         ui->TypePI->setText("DirectDraw Surface");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix() == "ppm" || QFileInfo(PhotoAddress[ps]).suffix() == "PPM")
+    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "ppm")
     {
         ui->TypePI->setText("Portable Pixmap");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix() == "xpm" || QFileInfo(PhotoAddress[ps]).suffix() == "XPM")
+    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "xpm")
     {
         ui->TypePI->setText("X11 Pixmap");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix() == "pnm" || QFileInfo(PhotoAddress[ps]).suffix() == "PNM")
+    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "pnm")
     {
         ui->TypePI->setText("PNM Image");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix() == "ppm" || QFileInfo(PhotoAddress[ps]).suffix() == "PPM")
+    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "ppm")
     {
         ui->TypePI->setText("PNM Image");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix() == "pgm" || QFileInfo(PhotoAddress[ps]).suffix() == "PGM")
+    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "pgm")
     {
         ui->TypePI->setText("Pgm Image");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix() == "wbmp" || QFileInfo(PhotoAddress[ps]).suffix() == "WBMP")
+    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "wbmp")
     {
         ui->TypePI->setText("Wireless Bitmap");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix() == "xbm" || QFileInfo(PhotoAddress[ps]).suffix() == "XBM")
+    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "xbm")
     {
         ui->TypePI->setText("X11 Bitmap");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix() == "ico" || QFileInfo(PhotoAddress[ps]).suffix() == "ICO")
+    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "ico")
     {
         ui->TypePI->setText("Windows Icon format");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix() == "icns" || QFileInfo(PhotoAddress[ps]).suffix() == "ICNS")
+    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "icns")
     {
         ui->TypePI->setText("Apple Icon Image format");
     }
