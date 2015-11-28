@@ -5,9 +5,9 @@
 	<key>CFBundleName</key>
 	<string>Advanced Photo</string>
 	<key>CFBundleVersion</key>
-        <string>1.4.0</string>
+        <string>1.5.0</string>
 	<key>CFBundleShortVersionString</key>
-        <string>1.4</string>
+        <string>1.5</string>
 	<key>CFBundleIdentifier</key>
         <string>arashz4AdvancedPhoto</string>
 	<key>CFBundleDisplayName</key>
@@ -19,7 +19,7 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>10.6</string>
 	<key>CFBundleGetInfoString</key>
-        <string>Advanced Photo 1.4.0, © 2014 - 2015 ARASHz4 Zare</string>
+        <string>Advanced Photo 1.5.0, © 2014 - 2015 ARASHz4</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleSignature</key>

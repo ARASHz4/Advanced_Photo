@@ -16,9 +16,9 @@ public:
     explicit about(QWidget *parent = 0);
     ~about();
 
-    QTimer *hide = new QTimer();
+    QTimer hide;
 
-    QTimer *show = new QTimer();
+    QTimer show;
 
 private slots:
     void showEvent(QShowEvent *);

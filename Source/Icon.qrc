@@ -9,14 +9,13 @@
         <file>Icons/HomePage.png</file>
         <file>Icons/Next Photo.png</file>
         <file>Icons/Normal Screen.png</file>
-        <file>Icons/Open.png</file>
         <file>Icons/Option.png</file>
         <file>Icons/Photo Info.png</file>
         <file>Icons/Previous Photo.png</file>
         <file>Icons/Print.png</file>
         <file>Icons/Quit.png</file>
         <file>Icons/Resize.png</file>
-        <file>Icons/Rotate Laft.png</file>
+        <file>Icons/Rotate Left.png</file>
         <file>Icons/Rotate Right.png</file>
         <file>Icons/Save As.png</file>
         <file>Icons/Save.png</file>
@@ -27,5 +26,133 @@
         <file>Icons/Zoom Fit Window.png</file>
         <file>Icons/Zoom In.png</file>
         <file>Icons/Zoom Out.png</file>
+        <file>Icons/Screenshot.png</file>
+        <file>Icons/language.png</file>
+        <file>Icons/Close Photo.png</file>
+        <file>Icons/Open Photo.png</file>
+    </qresource>
+    <qresource prefix="/Screenshot">
+        <file>Icons/Screenshot/1.png</file>
+        <file>Icons/Screenshot/2.png</file>
+        <file>Icons/Screenshot/3.png</file>
+        <file>Icons/Screenshot/4.png</file>
+        <file>Icons/Screenshot/5.png</file>
+        <file>Icons/Screenshot/6.png</file>
+        <file>Icons/Screenshot/7.png</file>
+        <file>Icons/Screenshot/8.png</file>
+        <file>Icons/Screenshot/9.png</file>
+        <file>Icons/Screenshot/10.png</file>
+        <file>Icons/Screenshot/11.png</file>
+        <file>Icons/Screenshot/12.png</file>
+        <file>Icons/Screenshot/13.png</file>
+        <file>Icons/Screenshot/14.png</file>
+        <file>Icons/Screenshot/15.png</file>
+        <file>Icons/Screenshot/16.png</file>
+        <file>Icons/Screenshot/17.png</file>
+        <file>Icons/Screenshot/18.png</file>
+        <file>Icons/Screenshot/19.png</file>
+        <file>Icons/Screenshot/20.png</file>
+        <file>Icons/Screenshot/21.png</file>
+        <file>Icons/Screenshot/22.png</file>
+        <file>Icons/Screenshot/23.png</file>
+        <file>Icons/Screenshot/24.png</file>
+        <file>Icons/Screenshot/25.png</file>
+        <file>Icons/Screenshot/26.png</file>
+        <file>Icons/Screenshot/27.png</file>
+        <file>Icons/Screenshot/28.png</file>
+        <file>Icons/Screenshot/29.png</file>
+        <file>Icons/Screenshot/30.png</file>
+        <file>Icons/Screenshot/31.png</file>
+        <file>Icons/Screenshot/32.png</file>
+        <file>Icons/Screenshot/33.png</file>
+        <file>Icons/Screenshot/34.png</file>
+        <file>Icons/Screenshot/35.png</file>
+        <file>Icons/Screenshot/36.png</file>
+        <file>Icons/Screenshot/37.png</file>
+        <file>Icons/Screenshot/38.png</file>
+        <file>Icons/Screenshot/39.png</file>
+        <file>Icons/Screenshot/40.png</file>
+        <file>Icons/Screenshot/41.png</file>
+        <file>Icons/Screenshot/42.png</file>
+        <file>Icons/Screenshot/43.png</file>
+        <file>Icons/Screenshot/44.png</file>
+        <file>Icons/Screenshot/45.png</file>
+        <file>Icons/Screenshot/46.png</file>
+        <file>Icons/Screenshot/47.png</file>
+        <file>Icons/Screenshot/48.png</file>
+        <file>Icons/Screenshot/49.png</file>
+        <file>Icons/Screenshot/50.png</file>
+        <file>Icons/Screenshot/51.png</file>
+        <file>Icons/Screenshot/52.png</file>
+        <file>Icons/Screenshot/53.png</file>
+        <file>Icons/Screenshot/54.png</file>
+        <file>Icons/Screenshot/55.png</file>
+        <file>Icons/Screenshot/56.png</file>
+        <file>Icons/Screenshot/57.png</file>
+        <file>Icons/Screenshot/58.png</file>
+        <file>Icons/Screenshot/59.png</file>
+        <file>Icons/Screenshot/60.png</file>
+        <file>Icons/Screenshot/tray1.png</file>
+        <file>Icons/Screenshot/tray2.png</file>
+        <file>Icons/Screenshot/tray3.png</file>
+        <file>Icons/Screenshot/tray4.png</file>
+        <file>Icons/Screenshot/tray5.png</file>
+        <file>Icons/Screenshot/tray6.png</file>
+        <file>Icons/Screenshot/tray7.png</file>
+        <file>Icons/Screenshot/tray8.png</file>
+        <file>Icons/Screenshot/tray9.png</file>
+        <file>Icons/Screenshot/tray10.png</file>
+        <file>Icons/Screenshot/tray11.png</file>
+        <file>Icons/Screenshot/tray12.png</file>
+        <file>Icons/Screenshot/tray13.png</file>
+        <file>Icons/Screenshot/tray14.png</file>
+        <file>Icons/Screenshot/tray15.png</file>
+        <file>Icons/Screenshot/tray16.png</file>
+        <file>Icons/Screenshot/tray17.png</file>
+        <file>Icons/Screenshot/tray18.png</file>
+        <file>Icons/Screenshot/tray19.png</file>
+        <file>Icons/Screenshot/tray20.png</file>
+        <file>Icons/Screenshot/tray21.png</file>
+        <file>Icons/Screenshot/tray22.png</file>
+        <file>Icons/Screenshot/tray23.png</file>
+        <file>Icons/Screenshot/tray24.png</file>
+        <file>Icons/Screenshot/tray25.png</file>
+        <file>Icons/Screenshot/tray26.png</file>
+        <file>Icons/Screenshot/tray27.png</file>
+        <file>Icons/Screenshot/tray28.png</file>
+        <file>Icons/Screenshot/tray29.png</file>
+        <file>Icons/Screenshot/tray30.png</file>
+        <file>Icons/Screenshot/tray31.png</file>
+        <file>Icons/Screenshot/tray32.png</file>
+        <file>Icons/Screenshot/tray33.png</file>
+        <file>Icons/Screenshot/tray34.png</file>
+        <file>Icons/Screenshot/tray35.png</file>
+        <file>Icons/Screenshot/tray36.png</file>
+        <file>Icons/Screenshot/tray37.png</file>
+        <file>Icons/Screenshot/tray38.png</file>
+        <file>Icons/Screenshot/tray39.png</file>
+        <file>Icons/Screenshot/tray40.png</file>
+        <file>Icons/Screenshot/tray41.png</file>
+        <file>Icons/Screenshot/tray42.png</file>
+        <file>Icons/Screenshot/tray43.png</file>
+        <file>Icons/Screenshot/tray44.png</file>
+        <file>Icons/Screenshot/tray45.png</file>
+        <file>Icons/Screenshot/tray46.png</file>
+        <file>Icons/Screenshot/tray47.png</file>
+        <file>Icons/Screenshot/tray48.png</file>
+        <file>Icons/Screenshot/tray49.png</file>
+        <file>Icons/Screenshot/tray50.png</file>
+        <file>Icons/Screenshot/tray51.png</file>
+        <file>Icons/Screenshot/tray52.png</file>
+        <file>Icons/Screenshot/tray53.png</file>
+        <file>Icons/Screenshot/tray54.png</file>
+        <file>Icons/Screenshot/tray55.png</file>
+        <file>Icons/Screenshot/tray56.png</file>
+        <file>Icons/Screenshot/tray57.png</file>
+        <file>Icons/Screenshot/tray58.png</file>
+        <file>Icons/Screenshot/tray59.png</file>
+        <file>Icons/Screenshot/tray60.png</file>
+        <file>Icons/Screenshot/1d.png</file>
+        <file>Icons/Screenshot/tray1d.png</file>
     </qresource>
 </RCC>

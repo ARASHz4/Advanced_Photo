@@ -2,6 +2,7 @@
     <qresource prefix="/">
         <file>Language/English.qm</file>
         <file>Language/Persian.qm</file>
+        <file>Language/Spanish.qm</file>
         <file>Language/Traditional Chinese.qm</file>
     </qresource>
 </RCC>

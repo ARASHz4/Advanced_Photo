@@ -1,5 +1,6 @@
 #include "about.h"
 #include "ui_about.h"
+#include "advancedphoto.h"
 
 #include <QMouseEvent>
 #include <QPixmap>
@@ -21,14 +22,14 @@ about::~about()
 }
 void about::showEvent(QShowEvent *)
 {
-    ui->ApplicationNameLabel->setText(QApplication::applicationName());
-    ui->ApplicationVersionLabel->setText(QApplication::applicationVersion());
+    ui->ApplicationNameLabel->setText(AdvancedPhoto::applicationName());
+    ui->ApplicationVersionLabel->setText(AdvancedPhoto::applicationVersion());
 
     this->setWindowOpacity(0);
 
-    show->setInterval(5);
-    show->connect(show,SIGNAL(timeout()),this,SLOT(WindowShow()));
-    show->start();
+    show.setInterval(5);
+    show.connect(&show,SIGNAL(timeout()),this,SLOT(WindowShow()));
+    show.start();
 }
 
 void about::WindowShow()
@@ -37,15 +38,15 @@ void about::WindowShow()
 
     if(windowOpacity()==1.000000)
     {
-        show->stop();
+        show.stop();
     }
 }
 
 void about::on_OkButton_clicked()
 {
-    hide->setInterval(2);
-    hide->connect(hide,SIGNAL(timeout()),this,SLOT(WindowHide()));
-    hide->start();
+    hide.setInterval(2);
+    hide.connect(&hide,SIGNAL(timeout()),this,SLOT(WindowHide()));
+    hide.start();
 }
 
 void about::mouseDoubleClickEvent(QMouseEvent *)
@@ -55,7 +56,7 @@ void about::mouseDoubleClickEvent(QMouseEvent *)
         ui->aboutIcon->setText("<html><head/><body><p><br/></p><p><span style="""
                                " font-size:12pt;"">" + tr("Developer :") + "</span></p><p align="""
                                "center""><span style="" font-size:12pt;"">" + tr("Arash Zare") + " ("
-                               + QApplication::organizationName() + ")</span></p></body></html>");
+                               + AdvancedPhoto::organizationName() + ")</span></p></body></html>");
         ds=true;
     }
     else if (ds == true)
@@ -73,7 +74,7 @@ void about::WindowHide()
 
     if(windowOpacity()==0)
     {
-        hide->stop();
+        hide.stop();
         close();
     }
 }

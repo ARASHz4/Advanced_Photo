@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QTimer>
 #include <QFileInfo>
+#include <QSystemTrayIcon>
 
 namespace Ui {
 class PhotoWindow;
@@ -18,11 +19,16 @@ public:
     ~PhotoWindow();
 
     QPixmap PhotoSave,pi;
-    QTimer *Slideshow = new QTimer();
+    QTimer Slideshow;
+    QTimer ScreenshotTimer;
+    QTimer ScreenshotTime;
     QFileInfo fi;
+    QSystemTrayIcon *tray;
+
+public slots:
+    void OpenArguments(QStringList Arguments);
 
 private slots:
-
     void showEvent(QShowEvent *);
 
     void resizeEvent (QResizeEvent *);
@@ -33,8 +39,6 @@ private slots:
 
     void dropEvent(QDropEvent *event);
 
-    void on_actionOpen_triggered();
-
     void ActionEnabler();
 
     void PhotoSelecter();
@@ -43,15 +47,35 @@ private slots:
 
     void SavePhoto();
 
-    void on_actionZoomIN_triggered();
+    void Screenshot();
 
-    void on_actionZoom1_1_triggered();
+    void ScreenshotIcon();
 
-    void on_actionZoomOut_triggered();
+    void Close_Photo();
 
-    void on_actionFitWindow_triggered();
+    void Restore();
 
-    void on_actionRotateLaft_triggered();
+    void closeEvent (QCloseEvent *event);
+
+    void on_actionOpen_triggered();
+
+    void on_actionSave_triggered();
+
+    void on_actionSave_As_triggered();
+
+    void on_actionClose_Photo_triggered();
+
+    void on_actionOption_triggered();
+
+    void on_actionPrint_triggered();
+
+    void on_actionQuit_triggered();
+
+    void on_actionScreenshot_triggered();
+
+    void on_actionResize_triggered();
+
+    void on_actionRotateLeft_triggered();
 
     void on_actionRotateRight_triggered();
 
@@ -59,7 +83,17 @@ private slots:
 
     void on_actionFlip_Vertical_triggered();
 
-    void on_actionResize_triggered();
+    void on_actionHome_Page_triggered();
+
+    void on_actionAbout_triggered();
+
+    void on_actionZoomIN_triggered();
+
+    void on_actionZoom1_1_triggered();
+
+    void on_actionZoomOut_triggered();
+
+    void on_actionFitWindow_triggered();
 
     void on_actionPrevious_Photo_triggered();
 
@@ -70,22 +104,6 @@ private slots:
     void on_actionPhotoInfo_triggered();
 
     void on_actionFullscreen_triggered();
-
-    void on_actionOption_triggered();
-
-    void on_actionSave_triggered();
-
-    void on_actionSave_As_triggered();
-
-    void on_actionPrint_triggered();
-
-    void on_actionQuit_triggered();
-
-    void on_actionHome_Page_triggered();
-
-    void on_actionAbout_triggered();
-
-    void closeEvent (QCloseEvent *event);
 
 private:
     Ui::PhotoWindow *ui;

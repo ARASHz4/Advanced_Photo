@@ -1,13 +1,14 @@
 #include "option.h"
 #include "ui_option.h"
+#include "advancedphoto.h"
 
 #include <QSettings>
 #include <QTranslator>
 #include <QDesktopWidget>
 
 //Variables:
-int SlideshowSpeed;
-bool kar, sgf ,oap;
+int SlideshowSpeed, ScreenshotDelay;
+bool kar, sgf ,oap, sam;
 //
 
 option::option(QWidget *parent) :
@@ -20,9 +21,9 @@ option::option(QWidget *parent) :
 
     //Option Window Size & Post Setting
     {
-        QRect ScreenSize = QApplication::desktop()->screenGeometry();
+        QRect ScreenSize = AdvancedPhoto::desktop()->screenGeometry();
 
-        QSettings SettingsAP (QApplication::organizationName(), QApplication::applicationName());
+        QSettings SettingsAP (AdvancedPhoto::organizationName(), AdvancedPhoto::applicationName());
         SettingsAP.beginGroup("OptionWindowSizePos");
 
         if((SettingsAP.value("window_posx").toInt() != 0 && SettingsAP.value("window_posy").toInt() != 0) &&
@@ -43,9 +44,13 @@ option::option(QWidget *parent) :
         {
             ui->LanguageComboBox->setCurrentIndex(1);
         }
-        else if(SettingsAP.value("Language").toString() == "中國傳統")
+        else if(SettingsAP.value("Language").toString() == "Español")
         {
             ui->LanguageComboBox->setCurrentIndex(2);
+        }
+        else if(SettingsAP.value("Language").toString() == "中國傳統")
+        {
+            ui->LanguageComboBox->setCurrentIndex(3);
         }
         SettingsAP.endGroup();
     }
@@ -84,12 +89,27 @@ option::option(QWidget *parent) :
         {
             ui->slsFullscreen->setChecked(true);
         }
-
-        if(sgf==false)
+        else
         {
             ui->slsFullscreen->setChecked(false);
         }
     }
+
+    //Screenshot
+    {
+        ui->ScreenshotDelaySpinBox->setValue(ScreenshotDelay);
+
+        if(sam==true)
+        {
+            ui->ScreenshotAtuoMinimizeCheckBox->setChecked(true);
+        }
+        else
+        {
+            ui->ScreenshotAtuoMinimizeCheckBox->setChecked(false);
+        }
+    }
+
+    ui->listWidgetOption->setCurrentRow(0);
 }
 
 option::~option()
@@ -97,12 +117,88 @@ option::~option()
     delete ui; 
 }
 
+void option::on_listWidgetOption_currentRowChanged(int currentRow)
+{
+    if(currentRow == 0)
+    {
+        ui->OptionGroupBox->setTitle(tr("General"));
+
+        ui->KeepAspectRatioCheckBox->setVisible(true);
+        ui->LoadPhotosFolder->setVisible(true);
+
+        ui->LanguageLabel->setVisible(false);
+        ui->LanguageComboBox->setVisible(false);
+        ui->SppedLabel->setVisible(false);
+        ui->SlideshowSpeed->setVisible(false);
+        ui->SecLabel->setVisible(false);
+        ui->slsFullscreen->setVisible(false);
+        ui->ScreenshotDelay->setVisible(false);
+        ui->ScreenshotDelaySpinBox->setVisible(false);
+        ui->SecLabel_2->setVisible(false);
+        ui->ScreenshotAtuoMinimizeCheckBox->setVisible(false);
+    }
+    else if (currentRow == 1)
+    {
+        ui->OptionGroupBox->setTitle(tr("Language"));
+
+        ui->LanguageLabel->setVisible(true);
+        ui->LanguageComboBox->setVisible(true);
+
+        ui->KeepAspectRatioCheckBox->setVisible(false);
+        ui->LoadPhotosFolder->setVisible(false);
+        ui->SppedLabel->setVisible(false);
+        ui->SlideshowSpeed->setVisible(false);
+        ui->SecLabel->setVisible(false);
+        ui->slsFullscreen->setVisible(false);
+        ui->ScreenshotDelay->setVisible(false);
+        ui->ScreenshotDelaySpinBox->setVisible(false);
+        ui->SecLabel_2->setVisible(false);
+        ui->ScreenshotAtuoMinimizeCheckBox->setVisible(false);
+    }
+    else if (currentRow == 2)
+    {
+        ui->OptionGroupBox->setTitle(tr("Slideshow"));
+
+        ui->SppedLabel->setVisible(true);
+        ui->SlideshowSpeed->setVisible(true);
+        ui->SecLabel->setVisible(true);
+        ui->slsFullscreen->setVisible(true);
+
+        ui->KeepAspectRatioCheckBox->setVisible(false);
+        ui->LoadPhotosFolder->setVisible(false);
+        ui->LanguageLabel->setVisible(false);
+        ui->LanguageComboBox->setVisible(false);
+        ui->ScreenshotDelay->setVisible(false);
+        ui->ScreenshotDelaySpinBox->setVisible(false);
+        ui->SecLabel_2->setVisible(false);
+        ui->ScreenshotAtuoMinimizeCheckBox->setVisible(false);
+    }
+    else if (currentRow == 3)
+    {
+        ui->OptionGroupBox->setTitle(tr("Screenshot"));
+
+        ui->ScreenshotDelay->setVisible(true);
+        ui->ScreenshotDelaySpinBox->setVisible(true);
+        ui->SecLabel_2->setVisible(true);
+        ui->ScreenshotAtuoMinimizeCheckBox->setVisible(true);
+
+        ui->KeepAspectRatioCheckBox->setVisible(false);
+        ui->LoadPhotosFolder->setVisible(false);
+        ui->LanguageLabel->setVisible(false);
+        ui->LanguageComboBox->setVisible(false);
+        ui->SppedLabel->setVisible(false);
+        ui->SlideshowSpeed->setVisible(false);
+        ui->SecLabel->setVisible(false);
+        ui->slsFullscreen->setVisible(false);
+    }
+}
+
 void option::on_OkButton_clicked()
 {
-    QSettings SettingsAP (QApplication::organizationName(), QApplication::applicationName());
+    QSettings SettingsAP (AdvancedPhoto::organizationName(), AdvancedPhoto::applicationName());
     SettingsAP.beginGroup("Option");
 
-    //Keep Aspect Ratio
+    //General
     {
         if(ui->KeepAspectRatioCheckBox->isChecked() == true)
         {
@@ -115,10 +211,7 @@ void option::on_OkButton_clicked()
         }
 
         SettingsAP.setValue("KeepAspectRatio", kar);
-    }
 
-    //Load Photos Folder
-    {
         if(ui->LoadPhotosFolder->isChecked() == true)
         {
             oap=true;
@@ -139,17 +232,26 @@ void option::on_OkButton_clicked()
         if(ui->LanguageComboBox->currentText() == "English")
         {
             Language->load(":/Language/English.qm");
-            QApplication::installTranslator(Language);
+            AdvancedPhoto::installTranslator(Language);
+            AdvancedPhoto::setLayoutDirection(Qt::LeftToRight);
         }
         else if(ui->LanguageComboBox->currentText() == "پارسی")
         {
             Language->load(":/Language/Persian.qm");
-            QApplication::installTranslator(Language);
+            AdvancedPhoto::installTranslator(Language);
+            AdvancedPhoto::setLayoutDirection(Qt::RightToLeft);
+        }
+        else if(ui->LanguageComboBox->currentText() == "Español")
+        {
+            Language->load(":/Language/Spanish.qm");
+            AdvancedPhoto::installTranslator(Language);
+            AdvancedPhoto::setLayoutDirection(Qt::LeftToRight);
         }
         else if(ui->LanguageComboBox->currentText() == "中國傳統")
         {
             Language->load(":/Language/Traditional Chinese.qm");
-            QApplication::installTranslator(Language);
+            AdvancedPhoto::installTranslator(Language);
+            AdvancedPhoto::setLayoutDirection(Qt::LeftToRight);
         }
 
         SettingsAP.setValue("Language", ui->LanguageComboBox->currentText());
@@ -174,6 +276,25 @@ void option::on_OkButton_clicked()
         SettingsAP.setValue("SlideshowFullscreen", sgf);
     }
 
+    //Screenshot
+    {
+        ScreenshotDelay=ui->ScreenshotDelaySpinBox->value();
+
+        SettingsAP.setValue("ScreenshotDelay", ScreenshotDelay);
+
+        if(ui->ScreenshotAtuoMinimizeCheckBox->isChecked() == true)
+        {
+            sam=true;
+        }
+
+        if(ui->ScreenshotAtuoMinimizeCheckBox->isChecked() == false)
+        {
+            sam=false;
+        }
+
+        SettingsAP.setValue("ScreenshotAtuoMinimize", sam);
+    }
+
     SettingsAP.endGroup();
 
     close(); 
@@ -186,7 +307,7 @@ void option::on_CancelButton_clicked()
 
 void option::closeEvent (QCloseEvent *)
 {
-    QSettings SettingsAP (QApplication::organizationName(), QApplication::applicationName());
+    QSettings SettingsAP (AdvancedPhoto::organizationName(), AdvancedPhoto::applicationName());
 
     SettingsAP.beginGroup("OptionWindowSizePos");
 

@@ -16,6 +16,8 @@ public:
     ~option();
 
 private slots:
+    void on_listWidgetOption_currentRowChanged(int currentRow);
+
     void on_OkButton_clicked();
 
     void on_CancelButton_clicked();
