@@ -189,6 +189,18 @@ void PhotoWindow::showEvent(QShowEvent *)
         {
             ScreenshotDelay = 3;
         }
+
+        ScreenshotTimer.setInterval(ScreenshotDelay*1000);
+        ScreenshotTimer.connect(&ScreenshotTimer,SIGNAL(timeout()),this,SLOT(Screenshot()));
+
+        ScreenshotIconSec.setInterval(1000);
+        ScreenshotIconSec.connect(&ScreenshotIconSec,SIGNAL(timeout()),this,SLOT(ScreenshotIcon()));
+    }
+
+    //Load Other Photos Delay
+    {
+        LoadOtherPhotosDelay.setInterval(600);
+        LoadOtherPhotosDelay.connect(&LoadOtherPhotosDelay,SIGNAL(timeout()),this,SLOT(LoadOtherPhotos()));
     }
 }
 
@@ -219,9 +231,26 @@ void PhotoWindow::resizeEvent (QResizeEvent *)
 
 void PhotoWindow::OpenArguments(QStringList Arguments)
 {
-    PhotoAddress = PhotoAddress + Arguments;
+    if(Arguments.count()>0)
+    {
+        for(int i=0; i<Arguments.count(); i++)
+        {
+            PhotoAddress << Arguments[i];
+        }
+    }
 
-    if(oap == true && Arguments.count() <= 1)
+    LoadOtherPhotosDelay.start();
+
+    pe=true;
+
+    PhotoSelecter();
+    ActionEnabler();
+    ProcessingPhoto();
+}
+
+void PhotoWindow::LoadOtherPhotos()
+{
+    if(oap == true && PhotoAddress.count() <= 1)
     {
         QDir PhotoDir(QFileInfo(PhotoAddress[0]).path());
         QStringList PhotoFilter;
@@ -250,13 +279,13 @@ void PhotoWindow::OpenArguments(QStringList Arguments)
 
             ps=PhotoAddress.indexOf(PhotoAddressBak);
         }
+
+        PhotoSelecter();
+        ActionEnabler();
+        ProcessingPhoto();
     }
 
-    pe=true;
-
-    PhotoSelecter();
-    ActionEnabler();
-    ProcessingPhoto();
+    LoadOtherPhotosDelay.stop();
 }
 
 void PhotoWindow::on_actionToolBarMoved_triggered()
@@ -853,7 +882,7 @@ void PhotoWindow::ScreenshotIcon()
 {
     if (sam == true)
     {
-        qDebug()<<IconTrayNum;
+        qDebug()<<"TrayNum: "<<IconTrayNum;
 //        if (IconTrayNum == 1)
 //        {
 //            tray->setIcon(QIcon(":/Screenshot/Icons/Screenshot/tray1d.png"));
@@ -866,8 +895,10 @@ void PhotoWindow::ScreenshotIcon()
         }
         else
         {
+            qDebug()<<"stop";
+            ScreenshotIconSec.stop();
             IconTrayNum=0;
-            ScreenshotTime.stop();
+
         }
     }
     else
@@ -884,7 +915,7 @@ void PhotoWindow::ScreenshotIcon()
         }
         else
         {
-            ScreenshotTime.stop();
+            ScreenshotIconSec.stop();
         }
     }
 }
@@ -1637,9 +1668,8 @@ void PhotoWindow::on_actionScreenshot_triggered()
             {
                 IconTrayNum=ScreenshotDelay;
                 ScreenshotIcon();
-                ScreenshotTime.setInterval(1000);
-                ScreenshotTime.connect(&ScreenshotTime,SIGNAL(timeout()),this,SLOT(ScreenshotIcon()));
-                ScreenshotTime.start();
+
+                ScreenshotIconSec.start();
             }
             else
             {
@@ -1652,9 +1682,7 @@ void PhotoWindow::on_actionScreenshot_triggered()
             {
                 IconTrayNum=ScreenshotDelay;
                 ScreenshotIcon();
-                ScreenshotTime.setInterval(1000);
-                ScreenshotTime.connect(&ScreenshotTime,SIGNAL(timeout()),this,SLOT(ScreenshotIcon()));
-                ScreenshotTime.start();
+                ScreenshotIconSec.start();
             }
             else
             {
@@ -1664,8 +1692,6 @@ void PhotoWindow::on_actionScreenshot_triggered()
 
         if(ScreenshotDelay > 0)
         {
-            ScreenshotTimer.setInterval(ScreenshotDelay*1000);
-            ScreenshotTimer.connect(&ScreenshotTimer,SIGNAL(timeout()),this,SLOT(Screenshot()));
             ScreenshotTimer.start();
         }
         else

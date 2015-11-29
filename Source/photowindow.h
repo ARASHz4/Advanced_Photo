@@ -18,10 +18,8 @@ public:
     explicit PhotoWindow(QWidget *parent = 0);
     ~PhotoWindow();
 
-    QPixmap PhotoSave,pi;
-    QTimer Slideshow;
-    QTimer ScreenshotTimer;
-    QTimer ScreenshotTime;
+    QPixmap PhotoSave, pi;
+    QTimer Slideshow, ScreenshotTimer, ScreenshotIconSec, LoadOtherPhotosDelay;
     QFileInfo fi;
     QSystemTrayIcon *tray;
 
@@ -38,6 +36,8 @@ private slots:
     void dragEnterEvent(QDragEnterEvent *event);
 
     void dropEvent(QDropEvent *event);
+
+    void LoadOtherPhotos();
 
     void ActionEnabler();
 

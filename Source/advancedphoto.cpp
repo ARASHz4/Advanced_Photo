@@ -8,7 +8,7 @@
 
 #include <QDebug>
 
-AdvancedPhoto::AdvancedPhoto(int argc, char *argv[]) : QApplication(argc, argv)
+AdvancedPhoto::AdvancedPhoto(int &argc, char *argv[]) : QApplication(argc, argv)
 {
     args = AdvancedPhoto::arguments();
     args.removeAt(0);

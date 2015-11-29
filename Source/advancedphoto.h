@@ -11,7 +11,7 @@ class AdvancedPhoto : public QApplication
     Q_OBJECT
 
 public:
-    AdvancedPhoto(int argc, char *argv[]);
+    AdvancedPhoto(int &argc, char *argv[]);
 
     bool event(QEvent *event);
 
