@@ -52,9 +52,9 @@ option::option(QWidget *parent) :
         ui->OptionButtonBox->addButton(&RestoreDefaults, QDialogButtonBox::ResetRole);
     }
 
-    ui->listWidgetOption->setCurrentRow(0);
-
     LoadSettings();
+
+    ui->listWidgetOption->setCurrentRow(0);
 }
 
 option::~option()
@@ -341,6 +341,13 @@ void option::SaveSettings()
                 AdvancedPhoto::installTranslator(Translator);
 
                 Language = "Automatic Traditional Chinese";
+            }
+            else
+            {
+                Translator->load(":/Language/English.qm");
+                AdvancedPhoto::installTranslator(Translator);
+
+                Language = "Automatic English";
             }
 
             SettingsAP.setValue("Language", "Automatic");

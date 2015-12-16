@@ -36,8 +36,6 @@ bool AdvancedPhoto::event(QEvent *event)
 
 void AdvancedPhoto::StartApplication()
 {
-    qDebug()<<QLocale::system().language();
-
     bool debug = true/*false*/;
 
     if(debug == false)
@@ -330,6 +328,8 @@ void AdvancedPhoto::StartApplication()
 
             if(Language.contains("Automatic"))
             {
+                qDebug()<<QLocale::system().language();
+
                 if(QLocale::system().language() == QLocale::English)
                 {
                     Translator->load(":/Language/English.qm");
@@ -357,6 +357,13 @@ void AdvancedPhoto::StartApplication()
                     AdvancedPhoto::installTranslator(Translator);
 
                     Language = "Automatic Traditional Chinese";
+                }
+                else
+                {
+                    Translator->load(":/Language/English.qm");
+                    AdvancedPhoto::installTranslator(Translator);
+
+                    Language = "Automatic English";
                 }
 
                 SettingsAP.setValue("Language", "Automatic");
