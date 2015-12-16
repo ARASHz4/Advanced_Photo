@@ -1720,24 +1720,7 @@ void PhotoWindow::on_actionOption_triggered()
 
     ui->retranslateUi(this);
 
-    extern QString Language;
-
-    if(Language == "English")
-    {
-        ui->Photo->setPixmap(QPixmap(":/Icons/Drop EN.png"));
-    }
-    else if(Language == "Persian RL" || Language == "Persian LR")
-    {
-        ui->Photo->setPixmap(QPixmap(":/Icons/Drop PA.png"));
-    }
-    else if(Language == "Spanish")
-    {
-        ui->Photo->setPixmap(QPixmap(":/Icons/Drop SP.png"));
-    }
-    else if(Language == "Traditional Chinese")
-    {
-        ui->Photo->setPixmap(QPixmap(":/Icons/Drop CH.png"));
-    }
+    ActionEnabler();
 }
 
 void PhotoWindow::on_actionPrint_triggered()

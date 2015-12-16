@@ -176,11 +176,7 @@
     </spacer>
    </item>
    <item row="4" column="0">
-    <widget class="QDialogButtonBox" name="ResizeButtonBox">
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-     </property>
-    </widget>
+    <widget class="QDialogButtonBox" name="ResizeButtonBox"/>
    </item>
   </layout>
  </widget>

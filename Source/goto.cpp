@@ -19,17 +19,25 @@ GoTo::~GoTo()
 
 void GoTo::showEvent(QShowEvent *)
 {
+    Go.connect(&Go, SIGNAL(clicked()), this, SLOT(GoButton()));
+    Cancel.connect(&Cancel, SIGNAL(clicked()), this, SLOT(CancelButton()));
+    Go.setText(tr("Go"));
+    Cancel.setText(tr("Cancel"));
+
+    ui->GoToButtonBox->addButton(&Go, QDialogButtonBox::AcceptRole);
+    ui->GoToButtonBox->addButton(&Cancel, QDialogButtonBox::RejectRole);
+
     ui->GoToSpinBox->setMaximum(PhotoAddress.count());
     ui->GoToSpinBox->setValue(ps+1);
 }
 
-void GoTo::on_GoPushButton_clicked()
+void GoTo::GoButton()
 {
     ps=ui->GoToSpinBox->value()-1;
     close();
 }
 
-void GoTo::on_CancelPushButton_clicked()
+void GoTo::CancelButton()
 {
     close();
 }

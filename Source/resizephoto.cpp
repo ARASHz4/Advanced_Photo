@@ -36,6 +36,14 @@ resizephoto::resizephoto(QWidget *parent) :
         h=ui->Height->value();
         wvt=ui->Width->value();
         hvt=ui->Height->value();
+
+        OK.connect(&OK, SIGNAL(clicked()), this, SLOT(OKButton()));
+        Cancel.connect(&Cancel, SIGNAL(clicked()), this, SLOT(CancelButton()));
+        OK.setText(tr("OK"));
+        Cancel.setText(tr("Cancel"));
+
+        ui->ResizeButtonBox->addButton(&OK, QDialogButtonBox::AcceptRole);
+        ui->ResizeButtonBox->addButton(&Cancel, QDialogButtonBox::RejectRole);
     }
 }
 
@@ -142,7 +150,7 @@ void resizephoto::SetValue()
     hc=true;
 }
 
-void resizephoto::on_ResizeButtonBox_accepted()
+void resizephoto::OKButton()
 {
     RSWidth=ui->Width->value();
     RSHeight=ui->Height->value();
@@ -161,7 +169,7 @@ void resizephoto::on_ResizeButtonBox_accepted()
     close();
 }
 
-void resizephoto::on_ResizeButtonBox_rejected()
+void resizephoto::CancelButton()
 {
     resz=false;
     close();

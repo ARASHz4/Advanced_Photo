@@ -37,15 +37,14 @@ option::option(QWidget *parent) :
         }
         SettingsAP.endGroup();
 
-        OK.setText(tr("OK"));
-        Cancel.setText(tr("Cancel"));
-        Apply.setText(tr("Apply"));
-        RestoreDefaults.setText(tr("Restore Defaults"));
-
         OK.connect(&OK, SIGNAL(clicked()), this, SLOT(OKButton()));
         Cancel.connect(&Cancel, SIGNAL(clicked()), this, SLOT(CancelButton()));
         Apply.connect(&Apply, SIGNAL(clicked()), this, SLOT(ApplyButton()));
         RestoreDefaults.connect(&RestoreDefaults, SIGNAL(clicked()), this, SLOT(RestoreDefaultsButton()));
+        OK.setText(tr("OK"));
+        Cancel.setText(tr("Cancel"));
+        Apply.setText(tr("Apply"));
+        RestoreDefaults.setText(tr("Restore Defaults"));
 
         ui->OptionButtonBox->addButton(&OK, QDialogButtonBox::AcceptRole);
         ui->OptionButtonBox->addButton(&Cancel, QDialogButtonBox::RejectRole);
@@ -90,7 +89,7 @@ void option::on_listWidgetOption_currentRowChanged(int currentRow)
 
         ui->LanguageLabel->setVisible(true);
         ui->LanguageComboBox->setVisible(true);
-        if(ui->LanguageComboBox->currentIndex() == 1)
+        if(ui->LanguageComboBox->currentIndex() == 2)
         {
             ui->LanguageRightToLeftCheckBox->setVisible(true);
         }
@@ -152,7 +151,7 @@ void option::on_listWidgetOption_currentRowChanged(int currentRow)
 
 void option::on_LanguageComboBox_currentIndexChanged(int index)
 {
-    if(index == 1)
+    if(index == 2)
     {
         ui->LanguageRightToLeftCheckBox->setVisible(true);
         ui->LanguageRightToLeftCheckBox->setChecked(true);

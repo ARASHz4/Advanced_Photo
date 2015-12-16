@@ -2,6 +2,7 @@
 #define GOTO_H
 
 #include <QDialog>
+#include <QPushButton>
 
 namespace Ui {
 class GoTo;
@@ -15,15 +16,18 @@ public:
     explicit GoTo(QWidget *parent = 0);
     ~GoTo();
 
+private:
+    Ui::GoTo *ui;
+
+    QPushButton Go, Cancel;
+
 private slots:
     void showEvent(QShowEvent *);
 
-    void on_GoPushButton_clicked();
+    void GoButton();
 
-    void on_CancelPushButton_clicked();
+    void CancelButton();
 
-private:
-    Ui::GoTo *ui;
 };
 
 #endif // GOTO_H

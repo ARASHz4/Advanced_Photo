@@ -2,7 +2,7 @@
 #define RESIZEPHOTO_H
 
 #include <QDialog>
-#include <QAbstractButton>
+#include <QPushButton>
 
 namespace Ui {
 class resizephoto;
@@ -16,7 +16,12 @@ public:
     explicit resizephoto(QWidget *parent = 0);
     ~resizephoto();
 
+private:
+    Ui::resizephoto *ui;
+
+    int wvt,hvt;
     QPixmap pres;
+    QPushButton OK, Cancel;
 
 private slots:
     void on_Width_valueChanged();
@@ -25,14 +30,9 @@ private slots:
 
     void SetValue();
 
-    void on_ResizeButtonBox_accepted();
+    void OKButton();
 
-    void on_ResizeButtonBox_rejected();
-
-private:
-    Ui::resizephoto *ui;
-
-    int wvt,hvt;
+    void CancelButton();
 
 };
 

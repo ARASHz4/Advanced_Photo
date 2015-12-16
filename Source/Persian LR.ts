@@ -14,12 +14,12 @@
         <translation>: برو به</translation>
     </message>
     <message>
-        <location filename="goto.ui" line="91"/>
+        <location filename="goto.cpp" line="24"/>
         <source>Go</source>
         <translation>برو</translation>
     </message>
     <message>
-        <location filename="goto.ui" line="98"/>
+        <location filename="goto.cpp" line="25"/>
         <source>Cancel</source>
         <translation>بر هم زدن</translation>
     </message>
@@ -107,15 +107,15 @@
     </message>
     <message>
         <location filename="photowindow.ui" line="334"/>
-        <location filename="photowindow.cpp" line="2095"/>
+        <location filename="photowindow.cpp" line="2078"/>
         <source>Start Slideshow</source>
         <translation>آغاز نمایش اسلاید</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="346"/>
         <location filename="photowindow.ui" line="349"/>
-        <location filename="photowindow.cpp" line="2113"/>
-        <location filename="photowindow.cpp" line="2177"/>
+        <location filename="photowindow.cpp" line="2096"/>
+        <location filename="photowindow.cpp" line="2160"/>
         <source>Full Screen</source>
         <translation>همه ی برگه</translation>
     </message>
@@ -307,17 +307,17 @@
         <translation>باشه</translation>
     </message>
     <message>
-        <location filename="photowindow.cpp" line="1769"/>
+        <location filename="photowindow.cpp" line="1752"/>
         <source>Restore</source>
         <translation>بازگشت پنجره</translation>
     </message>
     <message>
-        <location filename="photowindow.cpp" line="1772"/>
+        <location filename="photowindow.cpp" line="1755"/>
         <source>Cancel Screenshot</source>
         <translation>بر هم زدن گرفتن نگاره از برگه</translation>
     </message>
     <message>
-        <location filename="photowindow.cpp" line="2163"/>
+        <location filename="photowindow.cpp" line="2146"/>
         <source>Exit Full Screen</source>
         <translation>بیرون رفتن از همه ی برگه</translation>
     </message>
@@ -373,49 +373,54 @@
         <translation>گزینه ها</translation>
     </message>
     <message>
-        <location filename="option.ui" line="301"/>
+        <location filename="option.ui" line="196"/>
+        <source>Automatic (System Language)</source>
+        <translation>(خودکار (زبان سامانه</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="306"/>
         <source>Screenshot delay :</source>
         <translation>: درنگ گرفتن نگاره از نمایشگر</translation>
     </message>
     <message>
-        <location filename="option.ui" line="358"/>
+        <location filename="option.ui" line="363"/>
         <source>Auto Minimize to tray</source>
         <translation>کوچک شدن خودکار</translation>
     </message>
     <message>
-        <location filename="option.ui" line="384"/>
+        <location filename="option.ui" line="389"/>
         <source>Right To Left</source>
         <translation>راست به چپ</translation>
     </message>
     <message>
-        <location filename="option.cpp" line="41"/>
+        <location filename="option.cpp" line="45"/>
         <source>Cancel</source>
         <translation>بر هم زدن</translation>
     </message>
     <message>
-        <location filename="option.cpp" line="42"/>
+        <location filename="option.cpp" line="46"/>
         <source>Apply</source>
         <translation>بکارگیری</translation>
     </message>
     <message>
-        <location filename="option.cpp" line="43"/>
+        <location filename="option.cpp" line="47"/>
         <source>Restore Defaults</source>
         <translation>بازگشت به پیش انگاره</translation>
     </message>
     <message>
-        <location filename="option.cpp" line="40"/>
+        <location filename="option.cpp" line="44"/>
         <source>OK</source>
         <translation>باشه</translation>
     </message>
     <message>
         <location filename="option.ui" line="55"/>
-        <location filename="option.cpp" line="148"/>
+        <location filename="option.cpp" line="69"/>
         <source>General</source>
         <translation>بنیادی</translation>
     </message>
     <message>
         <location filename="option.ui" line="97"/>
-        <location filename="option.cpp" line="212"/>
+        <location filename="option.cpp" line="133"/>
         <source>Screenshot</source>
         <translation>گرفتن نگاره</translation>
     </message>
@@ -431,7 +436,7 @@
     </message>
     <message>
         <location filename="option.ui" line="69"/>
-        <location filename="option.cpp" line="167"/>
+        <location filename="option.cpp" line="88"/>
         <source>Language</source>
         <translation> زبان </translation>
     </message>
@@ -442,18 +447,18 @@
     </message>
     <message>
         <location filename="option.ui" line="83"/>
-        <location filename="option.cpp" line="193"/>
+        <location filename="option.cpp" line="114"/>
         <source>Slideshow</source>
         <translation> نمایش اسلاید </translation>
     </message>
     <message>
-        <location filename="option.ui" line="242"/>
+        <location filename="option.ui" line="247"/>
         <source>Speed :</source>
         <translation>: شتاب </translation>
     </message>
     <message>
-        <location filename="option.ui" line="271"/>
-        <location filename="option.ui" line="330"/>
+        <location filename="option.ui" line="276"/>
+        <location filename="option.ui" line="335"/>
         <source>Sec</source>
         <translation>دم</translation>
     </message>
@@ -538,6 +543,16 @@
         <location filename="resizephoto.ui" line="127"/>
         <source>Height :</source>
         <translation>: درازا</translation>
+    </message>
+    <message>
+        <location filename="resizephoto.cpp" line="42"/>
+        <source>OK</source>
+        <translation>باشه</translation>
+    </message>
+    <message>
+        <location filename="resizephoto.cpp" line="43"/>
+        <source>Cancel</source>
+        <translation>بر هم زدن</translation>
     </message>
 </context>
 </TS>
