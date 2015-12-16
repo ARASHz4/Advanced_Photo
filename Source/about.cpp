@@ -4,22 +4,22 @@
 
 #include <QMouseEvent>
 #include <QPixmap>
-#include <QDebug>
 
-bool ds =false;
+bool ds = false;
 
 about::about(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::about)
 {
     ui->setupUi(this);
-    this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
 }
 
 about::~about()
 {
     delete ui;
 }
+
 void about::showEvent(QShowEvent *)
 {
     ui->ApplicationNameLabel->setText(AdvancedPhoto::applicationName());
@@ -49,6 +49,11 @@ void about::on_OkButton_clicked()
     hide.start();
 }
 
+void about::on_QtPushButton_clicked()
+{
+    AdvancedPhoto::aboutQt();
+}
+
 void about::mouseDoubleClickEvent(QMouseEvent *)
 {
     if(ds == false)
@@ -62,8 +67,7 @@ void about::mouseDoubleClickEvent(QMouseEvent *)
     else if (ds == true)
     {
         ui->aboutIcon->setText(NULL);
-        QPixmap ai(":/Icons/Big Icon.png");
-        ui->aboutIcon->setPixmap(ai);
+        ui->aboutIcon->setPixmap(QPixmap(":/Icons/Big Icon.png"));
         ds=false;
     }
 }

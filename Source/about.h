@@ -25,6 +25,8 @@ private slots:
 
     void on_OkButton_clicked();
 
+    void on_QtPushButton_clicked();
+
     void mouseDoubleClickEvent(QMouseEvent *);
 
     void WindowShow();

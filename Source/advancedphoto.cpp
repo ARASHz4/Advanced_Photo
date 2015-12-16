@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QFileOpenEvent>
 #include <QUrl>
+#include <QLocale>
 
 #include <QDebug>
 
@@ -14,6 +15,7 @@ AdvancedPhoto::AdvancedPhoto(int &argc, char *argv[]) : QApplication(argc, argv)
     args.removeAt(0);
 }
 
+#if defined(Q_OS_MAC)
 bool AdvancedPhoto::event(QEvent *event)
 {
     if (event->type() == QEvent::FileOpen)
@@ -30,9 +32,12 @@ bool AdvancedPhoto::event(QEvent *event)
 
     return QApplication::event(event);
 }
+#endif
 
-void AdvancedPhoto::StartApp()
+void AdvancedPhoto::StartApplication()
 {
+    qDebug()<<QLocale::system().language();
+
     bool debug = true/*false*/;
 
     if(debug == false)
@@ -258,16 +263,16 @@ void AdvancedPhoto::StartApp()
 
         if(!Message.isEmpty())
         {
-            QMessageBox *msg = new QMessageBox;
-            msg->setIcon(QMessageBox::Critical);
-            msg->setWindowTitle(AdvancedPhoto::applicationName() + " Error");
-            msg->setWindowIcon(QIcon(":/Icons/Small Icon.png"));
-            msg->setText("The application can't start because some files is missing from your computer.");
-            msg->setInformativeText("Try reinstalling the application to fix this problem.");
-            msg->setDetailedText("This files is missing :" + Message);
-            msg->setStandardButtons(QMessageBox::Ok);
-            msg->setDefaultButton(QMessageBox::Ok);
-            msg->exec();
+            QMessageBox msg;
+            msg.setIcon(QMessageBox::Critical);
+            msg.setWindowTitle(AdvancedPhoto::applicationName() + " Error");
+            msg.setWindowIcon(QIcon(":/Icons/Small Icon.png"));
+            msg.setText("The application can't start because some files is missing from your computer.");
+            msg.setInformativeText("Try reinstalling the application to fix this problem.");
+            msg.setDetailedText("This files is missing :" + Message);
+            msg.setStandardButtons(QMessageBox::Ok);
+            msg.setDefaultButton(QMessageBox::Ok);
+            msg.exec();
 
             exit(1);
         }
@@ -277,13 +282,14 @@ void AdvancedPhoto::StartApp()
     {
         extern bool kar, sgf, oap, sam;
         extern int SlideshowSpeed, ScreenshotDelay;
+        extern QString Language;
 
         QSettings SettingsAP (AdvancedPhoto::organizationName(), AdvancedPhoto::applicationName());
         SettingsAP.beginGroup("Option");
 
-        //Keep Aspect Ratio
+        //General
         {
-            if( (QString(SettingsAP.value("KeepAspectRatio").toString()).isEmpty())
+            if((QString(SettingsAP.value("KeepAspectRatio").toString()).isEmpty())
                     || (QString(SettingsAP.value("KeepAspectRatio").toString())!="true"
                         && QString(SettingsAP.value("KeepAspectRatio").toString())!="false"))
             {
@@ -291,11 +297,8 @@ void AdvancedPhoto::StartApp()
             }
 
             kar = SettingsAP.value("KeepAspectRatio").toBool();
-        }
 
-        //Load Photos Folder
-        {
-            if( (QString(SettingsAP.value("LoadPhotosFolder").toString()).isEmpty())
+            if((QString(SettingsAP.value("LoadPhotosFolder").toString()).isEmpty())
                     || (QString(SettingsAP.value("LoadPhotosFolder").toString())!="true"
                         && QString(SettingsAP.value("LoadPhotosFolder").toString())!="false"))
             {
@@ -307,39 +310,73 @@ void AdvancedPhoto::StartApp()
 
         //Language
         {
-            QTranslator *Language = new QTranslator;
-
-            if(SettingsAP.value("Language").toString() == "English")
+            if(!SettingsAP.value("Language").toString().isEmpty() &&
+                    (SettingsAP.value("Language").toString() == "Automatic"
+                     || SettingsAP.value("Language").toString() == "English"
+                     || SettingsAP.value("Language").toString() == "Persian RL"
+                     || SettingsAP.value("Language").toString() == "Persian LR"
+                     || SettingsAP.value("Language").toString() == "Spanish"
+                     || SettingsAP.value("Language").toString() == "Traditional Chinese"))
             {
-                Language->load(":/Language/English.qm");
-                AdvancedPhoto::installTranslator(Language);
-                AdvancedPhoto::setLayoutDirection(Qt::LeftToRight);
-            }
-            else if(SettingsAP.value("Language").toString() == "پارسی")
-            {
-                Language->load(":/Language/Persian.qm");
-                AdvancedPhoto::installTranslator(Language);
-                AdvancedPhoto::setLayoutDirection(Qt::RightToLeft);
-            }
-            else if(SettingsAP.value("Language").toString() == "Español")
-            {
-                Language->load(":/Language/Spanish.qm");
-                AdvancedPhoto::installTranslator(Language);
-                AdvancedPhoto::setLayoutDirection(Qt::LeftToRight);
-            }
-            else if(SettingsAP.value("Language").toString() == "中國傳統")
-            {
-                Language->load(":/Language/Traditional Chinese.qm");
-                AdvancedPhoto::installTranslator(Language);
-                AdvancedPhoto::setLayoutDirection(Qt::LeftToRight);
+                Language = SettingsAP.value("Language").toString();
             }
             else
             {
-                SettingsAP.setValue("Language", "English");
+                Language = "Automatic";
+                SettingsAP.setValue("Language", Language);
+            }
 
-                Language->load(":/Language/English.qm");
-                AdvancedPhoto::installTranslator(Language);
+            QTranslator *Translator = new QTranslator;
+
+            if(Language.contains("Automatic"))
+            {
+                if(QLocale::system().language() == QLocale::English)
+                {
+                    Translator->load(":/Language/English.qm");
+                    AdvancedPhoto::installTranslator(Translator);
+
+                    Language = "Automatic English";
+                }
+                else if(QLocale::system().language() == QLocale::Persian)
+                {
+                    Translator->load(":/Language/Persian RL.qm");
+                    AdvancedPhoto::installTranslator(Translator);
+
+                    Language = "Automatic Persian RL";
+                }
+                else if(QLocale::system().language() == QLocale::Spanish)
+                {
+                    Translator->load(":/Language/Spanish.qm");
+                    AdvancedPhoto::installTranslator(Translator);
+
+                    Language = "Automatic Spanish";
+                }
+                else if(QLocale::system().language() == QLocale::Chinese)
+                {
+                    Translator->load(":/Language/Traditional Chinese.qm");
+                    AdvancedPhoto::installTranslator(Translator);
+
+                    Language = "Automatic Traditional Chinese";
+                }
+
+                SettingsAP.setValue("Language", "Automatic");
+            }
+            else
+            {
+                Translator->load(":/Language/" + Language + ".qm");
+                AdvancedPhoto::installTranslator(Translator);
+
+                SettingsAP.setValue("Language", Language);
+            }
+
+            if(Language.contains("English") || Language.contains("Persian LR")
+            || Language.contains("Spanish") || Language.contains("Traditional Chinese"))
+            {
                 AdvancedPhoto::setLayoutDirection(Qt::LeftToRight);
+            }
+            else if(Language.contains("Persian RL"))
+            {
+                AdvancedPhoto::setLayoutDirection(Qt::RightToLeft);
             }
         }
 
@@ -368,7 +405,7 @@ void AdvancedPhoto::StartApp()
         {
             ScreenshotDelay = SettingsAP.value("ScreenshotDelay").toInt();
 
-            if(ScreenshotDelay < 0 || ScreenshotDelay > 60)
+            if(ScreenshotDelay <= 0 || ScreenshotDelay > 60)
             {
                 ScreenshotDelay = 3;
 
@@ -389,4 +426,12 @@ void AdvancedPhoto::StartApp()
     }
 
     photowindow.show();
+
+    #if !defined(Q_OS_MAC)
+    if(args.count() > 0)
+    {
+        photowindow.OpenArguments(args);
+        args.clear();
+    }
+    #endif
 }

@@ -2,23 +2,31 @@
     <qresource prefix="/">
         <file>Icons/About.png</file>
         <file>Icons/Big Icon.png</file>
-        <file>Icons/Drop.png</file>
+        <file>Icons/Close Photo.png</file>
+        <file>Icons/Drop CH.png</file>
+        <file>Icons/Drop EN.png</file>
+        <file>Icons/Drop PA.png</file>
+        <file>Icons/Drop SP.png</file>
         <file>Icons/Flip Horizontal.png</file>
         <file>Icons/Flip Vertical.png</file>
         <file>Icons/Full Screen.png</file>
         <file>Icons/HomePage.png</file>
+        <file>Icons/language.png</file>
         <file>Icons/Next Photo.png</file>
         <file>Icons/Normal Screen.png</file>
+        <file>Icons/Open Photo.png</file>
         <file>Icons/Option.png</file>
         <file>Icons/Photo Info.png</file>
         <file>Icons/Previous Photo.png</file>
         <file>Icons/Print.png</file>
+        <file>Icons/Qt.png</file>
         <file>Icons/Quit.png</file>
         <file>Icons/Resize.png</file>
         <file>Icons/Rotate Left.png</file>
         <file>Icons/Rotate Right.png</file>
         <file>Icons/Save As.png</file>
         <file>Icons/Save.png</file>
+        <file>Icons/Screenshot.png</file>
         <file>Icons/Slideshow Start.png</file>
         <file>Icons/Slideshow Stop.png</file>
         <file>Icons/Small Icon.png</file>
@@ -26,10 +34,7 @@
         <file>Icons/Zoom Fit Window.png</file>
         <file>Icons/Zoom In.png</file>
         <file>Icons/Zoom Out.png</file>
-        <file>Icons/Screenshot.png</file>
-        <file>Icons/language.png</file>
-        <file>Icons/Close Photo.png</file>
-        <file>Icons/Open Photo.png</file>
+        <file>Icons/Cancel Screenshot.png</file>
     </qresource>
     <qresource prefix="/Screenshot">
         <file>Icons/Screenshot/1.png</file>

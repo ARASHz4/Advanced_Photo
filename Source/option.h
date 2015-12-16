@@ -2,6 +2,7 @@
 #define OPTION_H
 
 #include <QDialog>
+#include <QPushButton>
 
 namespace Ui {
 class option;
@@ -15,17 +16,30 @@ public:
     explicit option(QWidget *parent = 0);
     ~option();
 
+private:
+    Ui::option *ui;
+
+    QPushButton OK, Cancel, Apply, RestoreDefaults;
+
 private slots:
     void on_listWidgetOption_currentRowChanged(int currentRow);
 
-    void on_OkButton_clicked();
+    void on_LanguageComboBox_currentIndexChanged(int index);
 
-    void on_CancelButton_clicked();
+    void LoadSettings();
+
+    void SaveSettings();
+
+    void OKButton();
+
+    void CancelButton();
+
+    void ApplyButton();
+
+    void RestoreDefaultsButton();
 
     void closeEvent (QCloseEvent *);
 
-private:
-    Ui::option *ui;
 };
 
 #endif // OPTION_H

@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     photowindow.cpp \
     resizephoto.cpp \
     photoinfo.cpp \
-    advancedphoto.cpp
+    advancedphoto.cpp \
+    goto.cpp
 
 HEADERS  += \
     option.h \
@@ -30,14 +31,16 @@ HEADERS  += \
     photowindow.h \
     resizephoto.h \
     photoinfo.h \
-    advancedphoto.h
+    advancedphoto.h \
+    goto.h
 
 FORMS    += \
     option.ui \
     about.ui \
     photowindow.ui \
     resizephoto.ui \
-    photoinfo.ui
+    photoinfo.ui \
+    goto.ui
 
 RESOURCES += \
     Icon.qrc \

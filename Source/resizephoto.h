@@ -2,6 +2,7 @@
 #define RESIZEPHOTO_H
 
 #include <QDialog>
+#include <QAbstractButton>
 
 namespace Ui {
 class resizephoto;
@@ -24,12 +25,15 @@ private slots:
 
     void SetValue();
 
-    void on_OkButton_clicked();
+    void on_ResizeButtonBox_accepted();
 
-    void on_CancelButton_clicked();
+    void on_ResizeButtonBox_rejected();
 
 private:
     Ui::resizephoto *ui;
+
+    int wvt,hvt;
+
 };
 
 #endif // RESIZEPHOTO_H

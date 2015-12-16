@@ -5,6 +5,7 @@
 #include "ui_photowindow.h"
 
 #include <QApplication>
+#include <QTranslator>
 
 class AdvancedPhoto : public QApplication
 {
@@ -13,15 +14,17 @@ class AdvancedPhoto : public QApplication
 public:
     AdvancedPhoto(int &argc, char *argv[]);
 
+#if defined(Q_OS_MAC)
     bool event(QEvent *event);
+#endif
 
-public slots:
-    void StartApp();
-
-private:
     PhotoWindow photowindow;
 
+private:
     QStringList args;
+
+public slots:
+    void StartApplication();
 };
 
 #endif // ADVANCEDPHOTO_H

@@ -18,13 +18,24 @@ public:
     explicit PhotoWindow(QWidget *parent = 0);
     ~PhotoWindow();
 
+private:
+    Ui::PhotoWindow *ui;
+
     QPixmap PhotoSave, pi;
-    QTimer Slideshow, ScreenshotTimer, ScreenshotIconSec, LoadOtherPhotosDelay;
+    QTimer Slideshow, ScreenshotTimer, ScreenshotIconSec;
+    #if defined(Q_OS_MAC)
+    QTimer LoadOtherPhotosDelay;
+    #endif
+
     QFileInfo fi;
     QSystemTrayIcon *tray;
 
-public slots:
-    void OpenArguments(QStringList Arguments);
+    QString ScreenshotFile;
+    QString PSize;
+    int pw,ph,ww,wh,j,mbh,tbh;
+    int pw2,ph2;
+    int SaveAnswer;
+    float zw,zh;
 
 private slots:
     void showEvent(QShowEvent *);
@@ -55,15 +66,21 @@ private slots:
 
     void Restore();
 
+    void CancelScreenshot();
+
     void closeEvent (QCloseEvent *event);
 
-    void on_actionOpen_triggered();
+    void on_actionOpen_Photo_triggered();
+
+    void on_actionClose_Photo_triggered();
+
+    void on_actionClose_All_Photos_triggered();
+
+    void on_actionGo_to_triggered();
 
     void on_actionSave_triggered();
 
     void on_actionSave_As_triggered();
-
-    void on_actionClose_Photo_triggered();
 
     void on_actionOption_triggered();
 
@@ -105,8 +122,8 @@ private slots:
 
     void on_actionFullscreen_triggered();
 
-private:
-    Ui::PhotoWindow *ui;
+public slots:
+    void OpenArguments(QStringList Arguments);
 };
 
 #endif // PHOTOWINDOW_H

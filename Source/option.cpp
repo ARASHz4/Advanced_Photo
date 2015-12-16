@@ -6,9 +6,12 @@
 #include <QTranslator>
 #include <QDesktopWidget>
 
+#include <QDebug>
+
 //Variables:
 int SlideshowSpeed, ScreenshotDelay;
 bool kar, sgf ,oap, sam;
+QString Language;
 //
 
 option::option(QWidget *parent) :
@@ -17,7 +20,7 @@ option::option(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
 
     //Option Window Size & Post Setting
     {
@@ -34,50 +37,186 @@ option::option(QWidget *parent) :
         }
         SettingsAP.endGroup();
 
-        SettingsAP.beginGroup("Option");
+        OK.setText(tr("OK"));
+        Cancel.setText(tr("Cancel"));
+        Apply.setText(tr("Apply"));
+        RestoreDefaults.setText(tr("Restore Defaults"));
 
-        if(SettingsAP.value("Language").toString() == "English")
-        {
-            ui->LanguageComboBox->setCurrentIndex(0);
-        }
-        else if(SettingsAP.value("Language").toString() == "پارسی")
-        {
-            ui->LanguageComboBox->setCurrentIndex(1);
-        }
-        else if(SettingsAP.value("Language").toString() == "Español")
-        {
-            ui->LanguageComboBox->setCurrentIndex(2);
-        }
-        else if(SettingsAP.value("Language").toString() == "中國傳統")
-        {
-            ui->LanguageComboBox->setCurrentIndex(3);
-        }
-        SettingsAP.endGroup();
+        OK.connect(&OK, SIGNAL(clicked()), this, SLOT(OKButton()));
+        Cancel.connect(&Cancel, SIGNAL(clicked()), this, SLOT(CancelButton()));
+        Apply.connect(&Apply, SIGNAL(clicked()), this, SLOT(ApplyButton()));
+        RestoreDefaults.connect(&RestoreDefaults, SIGNAL(clicked()), this, SLOT(RestoreDefaultsButton()));
+
+        ui->OptionButtonBox->addButton(&OK, QDialogButtonBox::AcceptRole);
+        ui->OptionButtonBox->addButton(&Cancel, QDialogButtonBox::RejectRole);
+        ui->OptionButtonBox->addButton(&Apply, QDialogButtonBox::ApplyRole);
+        ui->OptionButtonBox->addButton(&RestoreDefaults, QDialogButtonBox::ResetRole);
     }
 
-    //Keep Aspect Ratio Setting
+    ui->listWidgetOption->setCurrentRow(0);
+
+    LoadSettings();
+}
+
+option::~option()
+{
+    delete ui; 
+}
+
+void option::on_listWidgetOption_currentRowChanged(int currentRow)
+{
+    if(currentRow == 0)
+    {
+        ui->OptionGroupBox->setTitle(tr("General"));
+
+        ui->KeepAspectRatioCheckBox->setVisible(true);
+        ui->LoadPhotosFolder->setVisible(true);
+
+        ui->LanguageLabel->setVisible(false);
+        ui->LanguageComboBox->setVisible(false);
+        ui->LanguageRightToLeftCheckBox->setVisible(false);
+        ui->SppedLabel->setVisible(false);
+        ui->SlideshowSpeed->setVisible(false);
+        ui->SecLabel->setVisible(false);
+        ui->slsFullscreen->setVisible(false);
+        ui->ScreenshotDelay->setVisible(false);
+        ui->ScreenshotDelaySpinBox->setVisible(false);
+        ui->SecLabel_2->setVisible(false);
+        ui->ScreenshotAtuoMinimizeCheckBox->setVisible(false);
+    }
+    else if (currentRow == 1)
+    {
+        ui->OptionGroupBox->setTitle(tr("Language"));
+
+        ui->LanguageLabel->setVisible(true);
+        ui->LanguageComboBox->setVisible(true);
+        if(ui->LanguageComboBox->currentIndex() == 1)
+        {
+            ui->LanguageRightToLeftCheckBox->setVisible(true);
+        }
+        else
+        {
+            ui->LanguageRightToLeftCheckBox->setVisible(false);
+        }
+
+        ui->KeepAspectRatioCheckBox->setVisible(false);
+        ui->LoadPhotosFolder->setVisible(false);
+        ui->SppedLabel->setVisible(false);
+        ui->SlideshowSpeed->setVisible(false);
+        ui->SecLabel->setVisible(false);
+        ui->slsFullscreen->setVisible(false);
+        ui->ScreenshotDelay->setVisible(false);
+        ui->ScreenshotDelaySpinBox->setVisible(false);
+        ui->SecLabel_2->setVisible(false);
+        ui->ScreenshotAtuoMinimizeCheckBox->setVisible(false);
+    }
+    else if (currentRow == 2)
+    {
+        ui->OptionGroupBox->setTitle(tr("Slideshow"));
+
+        ui->SppedLabel->setVisible(true);
+        ui->SlideshowSpeed->setVisible(true);
+        ui->SecLabel->setVisible(true);
+        ui->slsFullscreen->setVisible(true);
+
+        ui->KeepAspectRatioCheckBox->setVisible(false);
+        ui->LoadPhotosFolder->setVisible(false);
+        ui->LanguageLabel->setVisible(false);
+        ui->LanguageComboBox->setVisible(false);
+        ui->LanguageRightToLeftCheckBox->setVisible(false);
+        ui->ScreenshotDelay->setVisible(false);
+        ui->ScreenshotDelaySpinBox->setVisible(false);
+        ui->SecLabel_2->setVisible(false);
+        ui->ScreenshotAtuoMinimizeCheckBox->setVisible(false);
+    }
+    else if (currentRow == 3)
+    {
+        ui->OptionGroupBox->setTitle(tr("Screenshot"));
+
+        ui->ScreenshotDelay->setVisible(true);
+        ui->ScreenshotDelaySpinBox->setVisible(true);
+        ui->SecLabel_2->setVisible(true);
+        ui->ScreenshotAtuoMinimizeCheckBox->setVisible(true);
+
+        ui->KeepAspectRatioCheckBox->setVisible(false);
+        ui->LoadPhotosFolder->setVisible(false);
+        ui->LanguageLabel->setVisible(false);
+        ui->LanguageComboBox->setVisible(false);
+        ui->LanguageRightToLeftCheckBox->setVisible(false);
+        ui->SppedLabel->setVisible(false);
+        ui->SlideshowSpeed->setVisible(false);
+        ui->SecLabel->setVisible(false);
+        ui->slsFullscreen->setVisible(false);
+    }
+}
+
+void option::on_LanguageComboBox_currentIndexChanged(int index)
+{
+    if(index == 1)
+    {
+        ui->LanguageRightToLeftCheckBox->setVisible(true);
+        ui->LanguageRightToLeftCheckBox->setChecked(true);
+    }
+    else
+    {
+        ui->LanguageRightToLeftCheckBox->setVisible(false);
+        ui->LanguageRightToLeftCheckBox->setChecked(false);
+    }
+}
+
+void option::LoadSettings()
+{
+    //General
     {
         if(kar==true)
         {
-           ui->KeepAspectRatioCheckBox->setChecked(true);
+            ui->KeepAspectRatioCheckBox->setChecked(true);
         }
-
-        if(kar==false)
+        else
         {
             ui->KeepAspectRatioCheckBox->setChecked(false);
         }
-    }
 
-    //Load Other Photos in Folder Setting
-    {
         if(oap==true)
         {
             ui->LoadPhotosFolder->setChecked(true);
         }
-
-        if(oap==false)
+        else
         {
             ui->LoadPhotosFolder->setChecked(false);
+        }
+    }
+
+    //Language
+    {
+        if(Language.contains("Automatic"))
+        {
+            ui->LanguageComboBox->setCurrentIndex(0);
+        }
+        else if(Language == "English")
+        {
+            ui->LanguageComboBox->setCurrentIndex(1);
+        }
+        else if(Language == "Persian RL" || Language == "Persian LR")
+        {
+            ui->LanguageComboBox->setCurrentIndex(2);
+
+            if (Language == "Persian RL")
+            {
+                ui->LanguageRightToLeftCheckBox->setChecked(true);
+            }
+            else if (Language == "Persian LR")
+            {
+                ui->LanguageRightToLeftCheckBox->setChecked(false);
+            }
+        }
+        else if(Language == "Spanish")
+        {
+            ui->LanguageComboBox->setCurrentIndex(3);
+        }
+        else if(Language == "Traditional Chinese")
+        {
+            ui->LanguageComboBox->setCurrentIndex(4);
         }
     }
 
@@ -108,92 +247,9 @@ option::option(QWidget *parent) :
             ui->ScreenshotAtuoMinimizeCheckBox->setChecked(false);
         }
     }
-
-    ui->listWidgetOption->setCurrentRow(0);
 }
 
-option::~option()
-{
-    delete ui; 
-}
-
-void option::on_listWidgetOption_currentRowChanged(int currentRow)
-{
-    if(currentRow == 0)
-    {
-        ui->OptionGroupBox->setTitle(tr("General"));
-
-        ui->KeepAspectRatioCheckBox->setVisible(true);
-        ui->LoadPhotosFolder->setVisible(true);
-
-        ui->LanguageLabel->setVisible(false);
-        ui->LanguageComboBox->setVisible(false);
-        ui->SppedLabel->setVisible(false);
-        ui->SlideshowSpeed->setVisible(false);
-        ui->SecLabel->setVisible(false);
-        ui->slsFullscreen->setVisible(false);
-        ui->ScreenshotDelay->setVisible(false);
-        ui->ScreenshotDelaySpinBox->setVisible(false);
-        ui->SecLabel_2->setVisible(false);
-        ui->ScreenshotAtuoMinimizeCheckBox->setVisible(false);
-    }
-    else if (currentRow == 1)
-    {
-        ui->OptionGroupBox->setTitle(tr("Language"));
-
-        ui->LanguageLabel->setVisible(true);
-        ui->LanguageComboBox->setVisible(true);
-
-        ui->KeepAspectRatioCheckBox->setVisible(false);
-        ui->LoadPhotosFolder->setVisible(false);
-        ui->SppedLabel->setVisible(false);
-        ui->SlideshowSpeed->setVisible(false);
-        ui->SecLabel->setVisible(false);
-        ui->slsFullscreen->setVisible(false);
-        ui->ScreenshotDelay->setVisible(false);
-        ui->ScreenshotDelaySpinBox->setVisible(false);
-        ui->SecLabel_2->setVisible(false);
-        ui->ScreenshotAtuoMinimizeCheckBox->setVisible(false);
-    }
-    else if (currentRow == 2)
-    {
-        ui->OptionGroupBox->setTitle(tr("Slideshow"));
-
-        ui->SppedLabel->setVisible(true);
-        ui->SlideshowSpeed->setVisible(true);
-        ui->SecLabel->setVisible(true);
-        ui->slsFullscreen->setVisible(true);
-
-        ui->KeepAspectRatioCheckBox->setVisible(false);
-        ui->LoadPhotosFolder->setVisible(false);
-        ui->LanguageLabel->setVisible(false);
-        ui->LanguageComboBox->setVisible(false);
-        ui->ScreenshotDelay->setVisible(false);
-        ui->ScreenshotDelaySpinBox->setVisible(false);
-        ui->SecLabel_2->setVisible(false);
-        ui->ScreenshotAtuoMinimizeCheckBox->setVisible(false);
-    }
-    else if (currentRow == 3)
-    {
-        ui->OptionGroupBox->setTitle(tr("Screenshot"));
-
-        ui->ScreenshotDelay->setVisible(true);
-        ui->ScreenshotDelaySpinBox->setVisible(true);
-        ui->SecLabel_2->setVisible(true);
-        ui->ScreenshotAtuoMinimizeCheckBox->setVisible(true);
-
-        ui->KeepAspectRatioCheckBox->setVisible(false);
-        ui->LoadPhotosFolder->setVisible(false);
-        ui->LanguageLabel->setVisible(false);
-        ui->LanguageComboBox->setVisible(false);
-        ui->SppedLabel->setVisible(false);
-        ui->SlideshowSpeed->setVisible(false);
-        ui->SecLabel->setVisible(false);
-        ui->slsFullscreen->setVisible(false);
-    }
-}
-
-void option::on_OkButton_clicked()
+void option::SaveSettings()
 {
     QSettings SettingsAP (AdvancedPhoto::organizationName(), AdvancedPhoto::applicationName());
     SettingsAP.beginGroup("Option");
@@ -227,34 +283,86 @@ void option::on_OkButton_clicked()
 
     //Language
     {
-        QTranslator *Language = new QTranslator;
-
-        if(ui->LanguageComboBox->currentText() == "English")
+        if(ui->LanguageComboBox->currentIndex() == 0)
         {
-            Language->load(":/Language/English.qm");
-            AdvancedPhoto::installTranslator(Language);
+            Language = "Automatic";
+        }
+        else if(ui->LanguageComboBox->currentIndex() == 1)
+        {
+            Language = "English";
+        }
+        else if(ui->LanguageComboBox->currentIndex() == 2)
+        {
+            if(ui->LanguageRightToLeftCheckBox->isChecked())
+            {
+                Language = "Persian RL";
+            }
+            else
+            {
+                Language = "Persian LR";
+            }
+        }
+        else if(ui->LanguageComboBox->currentIndex() == 3)
+        {
+            Language = "Spanish";
+        }
+        else if(ui->LanguageComboBox->currentIndex() == 4)
+        {
+            Language = "Traditional Chinese";
+        }
+
+        QTranslator *Translator = new QTranslator;
+
+        if(Language.contains("Automatic"))
+        {
+            if(QLocale::system().language() == QLocale::English)
+            {
+                Translator->load(":/Language/English.qm");
+                AdvancedPhoto::installTranslator(Translator);
+
+                Language = "Automatic English";
+            }
+            else if(QLocale::system().language() == QLocale::Persian)
+            {
+                Translator->load(":/Language/Persian RL.qm");
+                AdvancedPhoto::installTranslator(Translator);
+
+                Language = "Automatic Persian RL";
+            }
+            else if(QLocale::system().language() == QLocale::Spanish)
+            {
+                Translator->load(":/Language/Spanish.qm");
+                AdvancedPhoto::installTranslator(Translator);
+
+                Language = "Automatic Spanish";
+            }
+            else if(QLocale::system().language() == QLocale::Chinese)
+            {
+                Translator->load(":/Language/Traditional Chinese.qm");
+                AdvancedPhoto::installTranslator(Translator);
+
+                Language = "Automatic Traditional Chinese";
+            }
+
+            SettingsAP.setValue("Language", "Automatic");
+        }
+        else
+        {
+            Translator->load(":/Language/" + Language + ".qm");
+            AdvancedPhoto::installTranslator(Translator);
+
+            SettingsAP.setValue("Language", Language);
+        }
+
+        if(Language.contains("English") || Language.contains("Persian LR")
+        || Language.contains("Spanish") || Language.contains("Traditional Chinese"))
+        {
             AdvancedPhoto::setLayoutDirection(Qt::LeftToRight);
         }
-        else if(ui->LanguageComboBox->currentText() == "پارسی")
+        else if(Language.contains("Persian RL"))
         {
-            Language->load(":/Language/Persian.qm");
-            AdvancedPhoto::installTranslator(Language);
             AdvancedPhoto::setLayoutDirection(Qt::RightToLeft);
         }
-        else if(ui->LanguageComboBox->currentText() == "Español")
-        {
-            Language->load(":/Language/Spanish.qm");
-            AdvancedPhoto::installTranslator(Language);
-            AdvancedPhoto::setLayoutDirection(Qt::LeftToRight);
-        }
-        else if(ui->LanguageComboBox->currentText() == "中國傳統")
-        {
-            Language->load(":/Language/Traditional Chinese.qm");
-            AdvancedPhoto::installTranslator(Language);
-            AdvancedPhoto::setLayoutDirection(Qt::LeftToRight);
-        }
-
-        SettingsAP.setValue("Language", ui->LanguageComboBox->currentText());
     }
 
     //Slideshow
@@ -296,13 +404,36 @@ void option::on_OkButton_clicked()
     }
 
     SettingsAP.endGroup();
-
-    close(); 
 }
 
-void option::on_CancelButton_clicked()
+void option::OKButton()
+{
+    SaveSettings();
+
+    close();
+}
+
+void option::CancelButton()
 {
     close();
+}
+
+void option::ApplyButton()
+{
+    SaveSettings();
+}
+
+void option::RestoreDefaultsButton()
+{
+    kar = true;
+    oap = true;
+    Language = "Automatic";
+    SlideshowSpeed = 2;
+    sgf = false;
+    ScreenshotDelay = 3;
+    sam = true;
+
+    LoadSettings();
 }
 
 void option::closeEvent (QCloseEvent *)

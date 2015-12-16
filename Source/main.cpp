@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     APApplication.setApplicationVersion("1.5.0 Bata");
     APApplication.setOrganizationDomain("http://advancedphoto.sourceforge.net");
 
-    APApplication.StartApp();
+    APApplication.StartApplication();
 
     return APApplication.exec();
 }

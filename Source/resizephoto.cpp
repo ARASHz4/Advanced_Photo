@@ -4,22 +4,22 @@
 #include <QStringList>
 #include <QPixmap>
 
-int RSWidth=0,RSHeight=0;
-bool resz=false;
+#include <QDebug>
+
 extern int ps;
 extern QStringList PhotoAddress;
+int RSWidth=0,RSHeight=0;
+bool rekar=false, resz=false;
 int w=0,h=0;
 int tw=0,th=0;
-int wvt,hvt;
-bool wc=true, hc=true, rekar=false;
+bool wc=true, hc=true;
 
 resizephoto::resizephoto(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::resizephoto)
 {
     ui->setupUi(this);
-
-    this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
 
     //Photo Size
     {
@@ -142,7 +142,7 @@ void resizephoto::SetValue()
     hc=true;
 }
 
-void resizephoto::on_OkButton_clicked()
+void resizephoto::on_ResizeButtonBox_accepted()
 {
     RSWidth=ui->Width->value();
     RSHeight=ui->Height->value();
@@ -161,7 +161,7 @@ void resizephoto::on_OkButton_clicked()
     close();
 }
 
-void resizephoto::on_CancelButton_clicked()
+void resizephoto::on_ResizeButtonBox_rejected()
 {
     resz=false;
     close();

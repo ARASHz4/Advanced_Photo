@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="es">
+<TS version="2.1" language="fa">
 <context>
     <name>GoTo</name>
     <message>
         <location filename="goto.ui" line="26"/>
         <source>Go to</source>
-        <translation type="unfinished"></translation>
+        <translation>برو به</translation>
     </message>
     <message>
         <location filename="goto.ui" line="34"/>
         <source>Go to :</source>
-        <translation type="unfinished"></translation>
+        <translation>: برو به</translation>
     </message>
     <message>
         <location filename="goto.ui" line="91"/>
         <source>Go</source>
-        <translation type="unfinished"></translation>
+        <translation>برو</translation>
     </message>
     <message>
         <location filename="goto.ui" line="98"/>
         <source>Cancel</source>
-        <translation>Cancelar</translation>
+        <translation>بر هم زدن</translation>
     </message>
 </context>
 <context>
@@ -29,87 +29,87 @@
     <message>
         <location filename="photowindow.ui" line="82"/>
         <source>File</source>
-        <translation>Archivo</translation>
+        <translation>پرونده</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="100"/>
         <source>Help</source>
-        <translation>Ayuda</translation>
+        <translation>یاری</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="107"/>
         <source>Photo</source>
-        <translation>Foto</translation>
+        <translation>نگاره</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="111"/>
         <source>Rotate</source>
-        <translation>Girar</translation>
+        <translation>چرخش</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="118"/>
         <source>Flip</source>
-        <translation>Voltear</translation>
+        <translation>وارانه</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="190"/>
         <source>Quit</source>
-        <translation>Dejar</translation>
+        <translation>برون رفت</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="202"/>
         <source>About</source>
-        <translation>Acerca de</translation>
+        <translation>درباره نرم افزار</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="214"/>
         <source>Option</source>
-        <translation>Opción</translation>
+        <translation>گزینه ها</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="226"/>
         <location filename="photowindow.ui" line="229"/>
         <source>Zoom IN</source>
-        <translation>Acercar</translation>
+        <translation>بزرگ نمایی</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="244"/>
         <location filename="photowindow.ui" line="247"/>
         <source>Zoom Out</source>
-        <translation>Disminuir el zoom</translation>
+        <translation>کوچک بینی</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="259"/>
         <location filename="photowindow.ui" line="262"/>
         <source>1:1</source>
-        <translation>1:1</translation>
+        <translation>۱:۱</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="277"/>
         <location filename="photowindow.ui" line="280"/>
         <source>Fit Window</source>
-        <translation>Fit ventana</translation>
+        <translation>چسبیده به پنجره</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="301"/>
         <source>Next Photo</source>
-        <translation>Siguiente Foto</translation>
+        <translation>نگاره ی پسین</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="316"/>
         <source>Previous Photo</source>
-        <translation>Foto Anterior</translation>
+        <translation>نگاره ی پیشین</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="331"/>
         <source>Slideshow</source>
-        <translation>Diapositivas</translation>
+        <translation>نمایش اسلاید</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="334"/>
         <location filename="photowindow.cpp" line="2095"/>
         <source>Start Slideshow</source>
-        <translation>Empezar la presentación de diapositivas</translation>
+        <translation>آغاز نمایش اسلاید</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="346"/>
@@ -117,90 +117,90 @@
         <location filename="photowindow.cpp" line="2113"/>
         <location filename="photowindow.cpp" line="2177"/>
         <source>Full Screen</source>
-        <translation>Pantalla completa</translation>
+        <translation>همه ی برگه</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="364"/>
         <location filename="photowindow.ui" line="367"/>
         <source>Rotate Right</source>
-        <translation>Gira a la derecha</translation>
+        <translation>چرخش به سوی راست</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="379"/>
         <location filename="photowindow.ui" line="382"/>
         <source>Rotate Left</source>
-        <translation>Girar a la izquierda</translation>
+        <translation>چرخش به سوی چپ</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="394"/>
         <location filename="photowindow.ui" line="397"/>
         <location filename="photowindow.cpp" line="767"/>
         <source>Save</source>
-        <translation>Guardar</translation>
+        <translation>نوشتن</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="415"/>
         <location filename="photowindow.ui" line="418"/>
         <source>Save As</source>
-        <translation>Guardar como</translation>
+        <translation>نوشتن به</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="430"/>
         <source>Resize</source>
-        <translation>Redimensionar</translation>
+        <translation>دگرگون کردن اندازه</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="442"/>
         <source>Flip Horizontal</source>
-        <translation>Voltear Horizontal</translation>
+        <translation>وارانه کردن ترازی</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="454"/>
         <source>Flip Vertical</source>
-        <translation>Voltear Vertical</translation>
+        <translation>وارانه کردن ستونی</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="466"/>
         <source>Print...</source>
-        <translation>Impresión...</translation>
+        <translation>چاپ ...</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="492"/>
         <location filename="photowindow.ui" line="495"/>
         <source>Home Page</source>
-        <translation>Página de inicio</translation>
+        <translation>تارنمای خانگی</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="507"/>
         <location filename="photowindow.ui" line="510"/>
         <source>Photo Info</source>
-        <translation>Información de la fotografía</translation>
+        <translation>داده های نگاره</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="522"/>
         <source>Screenshot</source>
-        <translation>Captura de pantalla</translation>
+        <translation>گرفتن نگاره از نمایشگر</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="534"/>
         <source>Close Photo</source>
-        <translation>Cerrar Photo</translation>
+        <translation>بستن نگاره</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="542"/>
         <source>Go to</source>
-        <translation type="unfinished"></translation>
+        <translation>برو به</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="550"/>
         <source>Close All Photos</source>
-        <translation type="unfinished"></translation>
+        <translation>بستن همه نگاره ها</translation>
     </message>
     <message>
         <location filename="photowindow.ui" line="178"/>
         <location filename="photowindow.cpp" line="1045"/>
         <source>Open Photo</source>
-        <translation>Abrir las fotos</translation>
+        <translation>باز کردن نگاره</translation>
     </message>
     <message>
         <location filename="photowindow.cpp" line="631"/>
@@ -208,7 +208,7 @@
         <location filename="photowindow.cpp" line="684"/>
         <location filename="photowindow.cpp" line="705"/>
         <source> Zoom</source>
-        <translation> Ampliar</translation>
+        <translation> بزرگنمایی</translation>
     </message>
     <message>
         <location filename="photowindow.cpp" line="634"/>
@@ -217,37 +217,37 @@
         <location filename="photowindow.cpp" line="708"/>
         <location filename="photowindow.cpp" line="719"/>
         <source> of </source>
-        <translation> de </translation>
+        <translation> از </translation>
     </message>
     <message>
         <location filename="photowindow.cpp" line="718"/>
         <source> is Incorrect data !</source>
-        <translation> son datos incorrectos!</translation>
+        <translation>داده ی نادرست هست !</translation>
     </message>
     <message>
         <location filename="photowindow.cpp" line="762"/>
         <source>Save Changes</source>
-        <translation>Guardar Cambios</translation>
+        <translation>نوشتن دگرگونی ها</translation>
     </message>
     <message>
         <location filename="photowindow.cpp" line="763"/>
         <source>The Photo has been edited.</source>
-        <translation>La foto ha sido editada.</translation>
+        <translation>این نگاره ویرایش شده است.</translation>
     </message>
     <message>
         <location filename="photowindow.cpp" line="764"/>
         <source>Do you want to save your changes?</source>
-        <translation>Qué desea guardar los cambios?</translation>
+        <translation>آیا می خواهید دگرگونی ها را بنویسید؟</translation>
     </message>
     <message>
         <location filename="photowindow.cpp" line="768"/>
         <source>Discard</source>
-        <translation>Deseche</translation>
+        <translation>ننویس</translation>
     </message>
     <message>
         <location filename="photowindow.cpp" line="769"/>
         <source>Cancel</source>
-        <translation>Cancelar</translation>
+        <translation>بر هم زدن</translation>
     </message>
     <message>
         <location filename="photowindow.cpp" line="794"/>
@@ -266,7 +266,7 @@
         <location filename="photowindow.cpp" line="1634"/>
         <location filename="photowindow.cpp" line="1664"/>
         <source>Error</source>
-        <translation>Error</translation>
+        <translation>نادرستی</translation>
     </message>
     <message>
         <location filename="photowindow.cpp" line="795"/>
@@ -285,7 +285,7 @@
         <location filename="photowindow.cpp" line="1635"/>
         <location filename="photowindow.cpp" line="1665"/>
         <source>Can&apos;t Write File</source>
-        <translation>No se puede escribir archivo</translation>
+        <translation>نمی توان پرونده را نوشت</translation>
     </message>
     <message>
         <location filename="photowindow.cpp" line="797"/>
@@ -304,27 +304,27 @@
         <location filename="photowindow.cpp" line="1637"/>
         <location filename="photowindow.cpp" line="1667"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>باشه</translation>
     </message>
     <message>
         <location filename="photowindow.cpp" line="1769"/>
         <source>Restore</source>
-        <translation type="unfinished"></translation>
+        <translation>بازگشت پنجره</translation>
     </message>
     <message>
         <location filename="photowindow.cpp" line="1772"/>
         <source>Cancel Screenshot</source>
-        <translation type="unfinished"></translation>
+        <translation>بر هم زدن گرفتن نگاره از برگه</translation>
     </message>
     <message>
         <location filename="photowindow.cpp" line="2163"/>
         <source>Exit Full Screen</source>
-        <translation>Salir de pantalla completa</translation>
+        <translation>بیرون رفتن از همه ی برگه</translation>
     </message>
     <message>
         <location filename="photowindow.cpp" line="1291"/>
         <source>Save As Photo</source>
-        <translation>Guardar como fotos</translation>
+        <translation>نوشتن نگاره به</translation>
     </message>
 </context>
 <context>
@@ -332,38 +332,37 @@
     <message>
         <location filename="about.ui" line="26"/>
         <source>About Advanced Photo</source>
-        <translatorcomment>Acerca de Advanced Photo</translatorcomment>
-        <translation></translation>
+        <translation>درباره Advanced Photo</translation>
     </message>
     <message>
         <location filename="about.ui" line="207"/>
         <source>Version </source>
-        <translation>Version </translation>
+        <translation> ویرایش </translation>
     </message>
     <message>
         <location filename="about.ui" line="287"/>
         <source>Copyright 2014 - 2016 ARASHz4</source>
-        <translation>Derechos de Autor 2014 - 2016 ARASHz4</translation>
+        <translation>درای پخش ۲۰۱۴-۲۰۱۵ ARASHz4 </translation>
     </message>
     <message>
         <location filename="about.ui" line="332"/>
         <source>About Qt</source>
-        <translation>Acerca Qt</translation>
+        <translation>درباره کیوت</translation>
     </message>
     <message>
         <location filename="about.ui" line="371"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>باشه</translation>
     </message>
     <message>
         <location filename="about.cpp" line="62"/>
         <source>Developer :</source>
-        <translation>Desarrollador :</translation>
+        <translation>: گسترش دهنده</translation>
     </message>
     <message>
         <location filename="about.cpp" line="63"/>
         <source>Arash Zare</source>
-        <translation>Arash Zare</translation>
+        <translation>آرش زارع</translation>
     </message>
 </context>
 <context>
@@ -371,97 +370,97 @@
     <message>
         <location filename="option.ui" line="20"/>
         <source>Option</source>
-        <translation>Opción</translation>
+        <translation>گزینه ها</translation>
     </message>
     <message>
         <location filename="option.ui" line="301"/>
         <source>Screenshot delay :</source>
-        <translation>Captura de pantalla retrasar :</translation>
+        <translation>: درنگ گرفتن نگاره از نمایشگر</translation>
     </message>
     <message>
         <location filename="option.ui" line="358"/>
         <source>Auto Minimize to tray</source>
-        <translation>Auto Minimizar a la bandeja</translation>
+        <translation>کوچک شدن خودکار</translation>
     </message>
     <message>
         <location filename="option.ui" line="384"/>
         <source>Right To Left</source>
-        <translation type="unfinished"></translation>
+        <translation>راست به چپ</translation>
     </message>
     <message>
         <location filename="option.cpp" line="41"/>
         <source>Cancel</source>
-        <translation>Cancelar</translation>
+        <translation>بر هم زدن</translation>
     </message>
     <message>
         <location filename="option.cpp" line="42"/>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>بکارگیری</translation>
     </message>
     <message>
         <location filename="option.cpp" line="43"/>
         <source>Restore Defaults</source>
-        <translation type="unfinished"></translation>
+        <translation>بازگشت به پیش انگاره</translation>
     </message>
     <message>
         <location filename="option.cpp" line="40"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>باشه</translation>
     </message>
     <message>
         <location filename="option.ui" line="55"/>
         <location filename="option.cpp" line="148"/>
         <source>General</source>
-        <translation>General</translation>
+        <translation>بنیادی</translation>
     </message>
     <message>
         <location filename="option.ui" line="97"/>
         <location filename="option.cpp" line="212"/>
         <source>Screenshot</source>
-        <translation>Captura de pantalla</translation>
+        <translation>گرفتن نگاره</translation>
     </message>
     <message>
         <location filename="option.ui" line="132"/>
         <source>Keep Aspect Ratio</source>
-        <translation>Mantener la relación de aspecto</translation>
+        <translation>نگه داشتن گوشه</translation>
     </message>
     <message>
         <location filename="option.ui" line="151"/>
         <source>Load Other Photos in Folder</source>
-        <translation>Cargar Otras Fotos en carpeta</translation>
+        <translation>بازگزاری دیگر نگاره ها در پوشه</translation>
     </message>
     <message>
         <location filename="option.ui" line="69"/>
         <location filename="option.cpp" line="167"/>
         <source>Language</source>
-        <translation>Idioma</translation>
+        <translation> زبان </translation>
     </message>
     <message>
         <location filename="option.ui" line="182"/>
         <source>Language :</source>
-        <translation>Idioma :</translation>
+        <translation>: زبان </translation>
     </message>
     <message>
         <location filename="option.ui" line="83"/>
         <location filename="option.cpp" line="193"/>
         <source>Slideshow</source>
-        <translation>Diapositivas</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="167"/>
-        <source>Go to Full Screen Mode</source>
-        <translation>Ir a modo de pantalla completa</translation>
+        <translation> نمایش اسلاید </translation>
     </message>
     <message>
         <location filename="option.ui" line="242"/>
         <source>Speed :</source>
-        <translation>Velocidad :</translation>
+        <translation>: شتاب </translation>
     </message>
     <message>
         <location filename="option.ui" line="271"/>
         <location filename="option.ui" line="330"/>
         <source>Sec</source>
-        <translation>Segundos</translation>
+        <translation>دم</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="167"/>
+        <source>Go to Full Screen Mode</source>
+        <translation>رفتن به همه ی برگه</translation>
     </message>
 </context>
 <context>
@@ -469,47 +468,47 @@
     <message>
         <location filename="photoinfo.ui" line="26"/>
         <source>Photo Info</source>
-        <translation>Información de la fotografía</translation>
+        <translation>داده های نگاره</translation>
     </message>
     <message>
         <location filename="photoinfo.ui" line="61"/>
         <source>Name :</source>
-        <translation>Nombre :</translation>
+        <translation>: نام</translation>
     </message>
     <message>
         <location filename="photoinfo.ui" line="109"/>
         <source>Directory :</source>
-        <translation>Directorio :</translation>
+        <translation>: جای</translation>
     </message>
     <message>
         <location filename="photoinfo.ui" line="157"/>
         <source>Size :</source>
-        <translation>Tamaño :</translation>
+        <translation>: اندازه</translation>
     </message>
     <message>
         <location filename="photoinfo.ui" line="205"/>
         <source>Type :</source>
-        <translation>Escribe :</translation>
+        <translation>: گونه</translation>
     </message>
     <message>
         <location filename="photoinfo.ui" line="253"/>
         <source>Width :</source>
-        <translation>Ancho :</translation>
+        <translation>: پهنا</translation>
     </message>
     <message>
         <location filename="photoinfo.ui" line="301"/>
         <source>Height :</source>
-        <translation>Altura :</translation>
+        <translation>: درازا</translation>
     </message>
     <message>
         <location filename="photoinfo.ui" line="349"/>
         <source>Data Created :</source>
-        <translation>Datos Creado :</translation>
+        <translation>: هنگامه ساخته شدن</translation>
     </message>
     <message>
         <location filename="photoinfo.ui" line="410"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>باشه</translation>
     </message>
 </context>
 <context>
@@ -517,28 +516,28 @@
     <message>
         <location filename="resizephoto.ui" line="26"/>
         <source>Resize</source>
-        <translation>Redimensionar</translation>
+        <translation>دگرگون کردن اندازه</translation>
     </message>
     <message>
         <location filename="resizephoto.ui" line="42"/>
         <source>Keep Aspect Ratio</source>
-        <translation>Mantener la relación de aspecto</translation>
+        <translation>نگه داشتن گوشه</translation>
     </message>
     <message>
         <location filename="resizephoto.ui" line="69"/>
         <source>Width :</source>
-        <translation>Ancho :</translation>
+        <translation>: پهنا</translation>
     </message>
     <message>
         <location filename="resizephoto.ui" line="98"/>
         <location filename="resizephoto.ui" line="156"/>
         <source>Pixel</source>
-        <translation>Pixel</translation>
+        <translation>پیکسل </translation>
     </message>
     <message>
         <location filename="resizephoto.ui" line="127"/>
         <source>Height :</source>
-        <translation>Altura :</translation>
+        <translation>: درازا</translation>
     </message>
 </context>
 </TS>

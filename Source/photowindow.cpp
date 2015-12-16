@@ -4,26 +4,19 @@
 #include "option.h"
 #include "resizephoto.h"
 #include "photoinfo.h"
+#include "goto.h"
 #include "about.h"
 
-#include <QPixmap>
-#include <QImage>
 #include <QScreen>
 #include <QSettings>
-#include <QTranslator>
-#include <QDir>
-#include <QFileInfo>
 #include <QFileDialog>
 #include <QPrinter>
 #include <QPrintDialog>
 #include <QPainter>
-#include <QUrl>
-#include <QIcon>
 #include <QMouseEvent>
 #include <QMimeData>
 #include <QMessageBox>
 #include <QDesktopWidget>
-#include <QMenu>
 #include <QDesktopServices>
 #include <QUuid>
 
@@ -31,20 +24,15 @@
 
 //Variables:
 QStringList PhotoAddress;
-QString ScreenshotFile;
-QString PSize;
+int ps=0;
 extern int SlideshowSpeed, ScreenshotDelay;
 extern int RSWidth;
 extern int RSHeight;
 extern bool kar, sgf, oap, resz, rekar, sam;
 bool zoom=false, sls=false, pe=false, sph=false, ssh=false ,iif=false , wasMax=false;
-int ps=0, pst=0, psb=0;
-int pw,ph,ww,wh,j,mbh,tbh;
-int pw2,ph2;
+int pst=0, psb=0;
 int pwz=0,phz=0;
-int SaveAnswer;
 int rd=0, zoomp=0;
-float zw,zh;
 int IconTrayNum=0;
 //
 
@@ -54,35 +42,6 @@ PhotoWindow::PhotoWindow(QWidget *parent) :
     ui(new Ui::PhotoWindow)
 {
     ui->setupUi(this);
-
-    //ToolBar & Action Setting
-    {
-        ui->toolBar->setContextMenuPolicy(Qt::PreventContextMenu);
-
-        if(PhotoAddress.count() <= 1)
-        {
-            ui->actionNext_Photo->setEnabled(false);
-            ui->actionPrevious_Photo->setEnabled(false);
-            ui->actionSlideshow->setEnabled(false);
-        }
-        if(pe == false)
-        {
-            ui->actionSave->setEnabled(false);
-            ui->actionSave_As->setEnabled(false);
-            ui->actionClose_Photo->setEnabled(false);
-            ui->actionPrint->setEnabled(false);
-            ui->actionResize->setEnabled(false);
-            ui->actionRotateLeft->setEnabled(false);
-            ui->actionRotateRight->setEnabled(false);
-            ui->actionFlip_Horizontal->setEnabled(false);
-            ui->actionFlip_Vertical->setEnabled(false);
-            ui->actionZoomIN->setEnabled(false);
-            ui->actionZoom1_1->setEnabled(false);
-            ui->actionZoomOut->setEnabled(false);
-            ui->actionFitWindow->setEnabled(false);
-            ui->actionPhotoInfo->setEnabled(false);
-        }
-    }
 }
 
 PhotoWindow::~PhotoWindow()
@@ -92,6 +51,10 @@ PhotoWindow::~PhotoWindow()
 
 void PhotoWindow::showEvent(QShowEvent *)
 {
+    ui->retranslateUi(this);
+
+    ActionEnabler();
+
     //Photo Window Size & Post Setting
     {
         QRect ScreenSize = AdvancedPhoto::desktop()->screenGeometry();
@@ -104,6 +67,29 @@ void PhotoWindow::showEvent(QShowEvent *)
         {
             this->setGeometry(SettingsAP.value("window_posx").toInt(), SettingsAP.value("window_posy").toInt(),
                               SettingsAP.value("window_sizew").toInt(), SettingsAP.value("window_sizeh").toInt());
+        }
+
+        if(SettingsAP.value("toolBarArea").toInt() == Qt::TopToolBarArea)
+        {
+            addToolBar(Qt::TopToolBarArea, ui->toolBar);
+        }
+        else if(SettingsAP.value("toolBarArea").toInt() == Qt::RightToolBarArea)
+        {
+            addToolBar(Qt::RightToolBarArea, ui->toolBar);
+        }
+        else if(SettingsAP.value("toolBarArea").toInt() == Qt::LeftToolBarArea)
+        {
+            addToolBar(Qt::LeftToolBarArea, ui->toolBar);
+        }
+        else if(SettingsAP.value("toolBarArea").toInt() == Qt::BottomToolBarArea)
+        {
+            addToolBar(Qt::BottomToolBarArea, ui->toolBar);
+        }
+        else
+        {
+            SettingsAP.setValue("toolBarArea", Qt::TopToolBarArea);
+
+            addToolBar(Qt::TopToolBarArea, ui->toolBar);
         }
 
         if( (QString(SettingsAP.value("window_max").toString()).isEmpty())
@@ -199,8 +185,10 @@ void PhotoWindow::showEvent(QShowEvent *)
 
     //Load Other Photos Delay
     {
+        #if defined(Q_OS_MAC)
         LoadOtherPhotosDelay.setInterval(600);
         LoadOtherPhotosDelay.connect(&LoadOtherPhotosDelay,SIGNAL(timeout()),this,SLOT(LoadOtherPhotos()));
+        #endif
     }
 }
 
@@ -235,17 +223,26 @@ void PhotoWindow::OpenArguments(QStringList Arguments)
     {
         for(int i=0; i<Arguments.count(); i++)
         {
-            PhotoAddress << Arguments[i];
+            if(QFileInfo(Arguments[i]).isFile())
+            {
+               PhotoAddress << Arguments[i];
+            }
         }
     }
 
-    LoadOtherPhotosDelay.start();
+    if(PhotoAddress.count()>0)
+    {
+        #if defined(Q_OS_MAC)
+        LoadOtherPhotosDelay.start();
+        #else
+        LoadOtherPhotos();
+        #endif
 
-    pe=true;
-
-    PhotoSelecter();
-    ActionEnabler();
-    ProcessingPhoto();
+        pe=true;
+        PhotoSelecter();
+        ActionEnabler();
+        ProcessingPhoto();
+    }
 }
 
 void PhotoWindow::LoadOtherPhotos()
@@ -276,16 +273,17 @@ void PhotoWindow::LoadOtherPhotos()
             {
                 PhotoAddress << Photos[i].absoluteFilePath();
             }
-
             ps=PhotoAddress.indexOf(PhotoAddressBak);
         }
-
-        PhotoSelecter();
-        ActionEnabler();
-        ProcessingPhoto();
     }
 
+    #if defined(Q_OS_MAC)
     LoadOtherPhotosDelay.stop();
+
+    PhotoSelecter();
+    ActionEnabler();
+    ProcessingPhoto();
+    #endif
 }
 
 void PhotoWindow::on_actionToolBarMoved_triggered()
@@ -301,8 +299,8 @@ void PhotoWindow::on_actionToolBarMoved_triggered()
 
         if(pe == false || iif == true)
         {
-            ui->Photo->setGeometry (10, 10, ( this->geometry().width() - 20 ),
-                                   ( this->geometry().height() - (mbh + tbh + ui->statusBar->height() + 20) ) );
+            ui->Photo->setGeometry (10, 10, (this->geometry().width()-20),
+                                   (this->geometry().height()-(mbh+tbh+ui->statusBar->height()+20)));
         }
     }
     else
@@ -311,8 +309,8 @@ void PhotoWindow::on_actionToolBarMoved_triggered()
 
         if(pe == false || iif == true)
         {
-            ui->Photo->setGeometry (10, 10, ( this->geometry().width() - (20 + tbh) ),
-                                   ( this->geometry().height() - (mbh + ui->statusBar->height() + 20) ) );
+            ui->Photo->setGeometry (10, 10, (this->geometry().width()-(20 + tbh)),
+                                   (this->geometry().height()-(mbh+ui->statusBar->height()+20)));
         }
     }
 }
@@ -350,6 +348,7 @@ void PhotoWindow::ActionEnabler()
         ui->actionSave->setEnabled(true);
         ui->actionSave_As->setEnabled(true);
         ui->actionClose_Photo->setEnabled(true);
+        ui->actionClose_All_Photos->setEnabled(true);
         ui->actionPrint->setEnabled(true);
         ui->actionResize->setEnabled(true);
         ui->actionScreenshot->setEnabled(true);
@@ -364,13 +363,15 @@ void PhotoWindow::ActionEnabler()
         if(PhotoAddress.count() > 1)
         {
             ui->actionSlideshow->setEnabled(true);
+            ui->actionGo_to->setEnabled(true);
         }
         else
         {
             ui->actionSlideshow->setEnabled(false);
+            ui->actionGo_to->setEnabled(false);
         }
 
-        if(ps >= (PhotoAddress.count()-1) )
+        if(ps >= (PhotoAddress.count()-1))
         {
             ui->actionNext_Photo->setEnabled(false);
         }
@@ -404,20 +405,46 @@ void PhotoWindow::ActionEnabler()
     else
     {
         ui->Photo->setScaledContents(false);
-        ui->Photo->setPixmap(QPixmap(":/Icons/Drop.png"));
-        ui->statusBar->showMessage("");
+
+        extern QString Language;
+
+        if(Language.contains("English"))
+        {
+            ui->Photo->setPixmap(QPixmap(":/Icons/Drop EN.png"));
+        }
+        else if(Language.contains("Persian"))
+        {
+            ui->Photo->setPixmap(QPixmap(":/Icons/Drop PA.png"));
+        }
+        else if(Language.contains("Spanish"))
+        {
+            ui->Photo->setPixmap(QPixmap(":/Icons/Drop SP.png"));
+        }
+        else if(Language.contains("Traditional Chinese"))
+        {
+            ui->Photo->setPixmap(QPixmap(":/Icons/Drop CH.png"));
+        }
+
+        ui->statusBar->showMessage(NULL);
+
+        ui->actionSave->setEnabled(false);
+        ui->actionSave_As->setEnabled(false);
+        ui->actionClose_Photo->setEnabled(false);
+        ui->actionClose_All_Photos->setEnabled(false);
+        ui->actionPrint->setEnabled(false);
+        ui->actionGo_to->setEnabled(false);
+        ui->actionResize->setEnabled(false);
         ui->actionZoomIN->setEnabled(false);
         ui->actionZoom1_1->setEnabled(false);
         ui->actionZoomOut->setEnabled(false);
+        ui->actionNext_Photo->setEnabled(false);
+        ui->actionPrevious_Photo->setEnabled(false);
+        ui->actionSlideshow->setEnabled(false);
         ui->actionFitWindow->setEnabled(false);
         ui->actionRotateLeft->setEnabled(false);
         ui->actionRotateRight->setEnabled(false);
         ui->actionFlip_Horizontal->setEnabled(false);
         ui->actionFlip_Vertical->setEnabled(false);
-        ui->actionSave->setEnabled(false);
-        ui->actionSave_As->setEnabled(false);
-        ui->actionResize->setEnabled(false);
-        ui->actionPrint->setEnabled(false);
         ui->actionPhotoInfo->setEnabled(false);
     }
 
@@ -497,14 +524,30 @@ void PhotoWindow::ProcessingPhoto()
             psb=ps;
             ps=pst;
 
-            SavePhoto();
-
-            if(SaveAnswer == QMessageBox::Save || SaveAnswer == QMessageBox::Discard)
+            if(ssh==false)
             {
-                ps=psb;
+                qDebug()<<"ssh=false";
 
-                ui->Photo->setPixmap(PhotoAddress[ps]);
-                pi=(PhotoAddress[ps]);
+                SavePhoto();
+
+                if(SaveAnswer == QMessageBox::Save || SaveAnswer == QMessageBox::Discard)
+                {
+                        ps=psb;
+
+                        ui->Photo->setPixmap(PhotoAddress[ps]);
+                        pi=(PhotoAddress[ps]);
+
+                }
+            }
+            else
+            {
+                qDebug()<<"ssh=true";
+
+                Close_Photo();
+
+                ActionEnabler();
+                QFile::remove(ScreenshotFile);
+                ssh=false;
             }
         }
     }
@@ -766,18 +809,6 @@ void PhotoWindow::SavePhoto()
         }
         else if (SaveAnswer == QMessageBox::Discard)
         {
-            qDebug()<<"0";
-            if(ssh==true)
-            {
-                qDebug()<<"1";
-                Close_Photo();
-                qDebug()<<"2";
-
-                ActionEnabler();
-                QFile::remove(ScreenshotFile);
-                ssh=false;
-            }
-
             sph=false;
             ui->actionSave->setEnabled(false);
         }
@@ -828,36 +859,6 @@ void PhotoWindow::Screenshot()
 
     if(!PhotoAddress.isEmpty())
     {
-        //Clean
-        {
-            pw=0;
-            ph=0;
-            ww=0;
-            wh=0;
-            j=0;
-            zw=0;
-            zh=0;
-            pwz=0;
-            phz=0;
-            pw2=0;
-            ph2=0;
-            zoom=false;
-            ps=0;
-            sph=false;
-            ui->actionSave->setEnabled(false);
-            if(sls==true)
-            {
-                Slideshow.stop();
-                sls=false;
-
-                ui->actionSlideshow->setIcon(QIcon(":/Icons/Slideshow Start.png"));
-                ui->actionFlip_Horizontal->setEnabled(true);
-                ui->actionFlip_Vertical->setEnabled(true);
-                ui->actionResize->setEnabled(true);
-                ui->actionRotateLeft->setEnabled(true);
-                ui->actionRotateRight->setEnabled(true);
-            }
-        }
 
         PhotoSave=PhotoSave.fromImage(SaveScreenshot.toImage());
 
@@ -883,6 +884,7 @@ void PhotoWindow::ScreenshotIcon()
     if (sam == true)
     {
         qDebug()<<"TrayNum: "<<IconTrayNum;
+
 //        if (IconTrayNum == 1)
 //        {
 //            tray->setIcon(QIcon(":/Screenshot/Icons/Screenshot/tray1d.png"));
@@ -895,72 +897,105 @@ void PhotoWindow::ScreenshotIcon()
         }
         else
         {
-            qDebug()<<"stop";
             ScreenshotIconSec.stop();
             IconTrayNum=0;
-
         }
     }
     else
     {
-        if(IconTrayNum > 1)
+//        if (IconTrayNum == 1)
+//        {
+//            ui->Photo->setPixmap(QPixmap(":/Screenshot/Icons/Screenshot/1d.png"));
+//            IconTrayNum--;
+//        }
+        if(IconTrayNum > 0)
         {
             ui->Photo->setPixmap(QPixmap(":/Screenshot/Icons/Screenshot/" + QString::number(IconTrayNum) + ".png"));
             IconTrayNum--;
         }
-        else if (IconTrayNum == 1)
-        {
-            ui->Photo->setPixmap(QPixmap(":/Screenshot/Icons/Screenshot/1d.png"));
-            IconTrayNum--;
-        }
+
         else
         {
             ScreenshotIconSec.stop();
+            IconTrayNum=0;
         }
     }
 }
 
 void PhotoWindow::Close_Photo()
 {
+    qDebug()<<"ps:"<<ps;
+    qDebug()<<"count:"<<PhotoAddress.count();
+
     if(PhotoAddress.count() > 0)
     {
         PhotoAddress.removeAt(ps);
 
-        qDebug()<<ps;
-
-        if(ps > 0)
+        if(PhotoAddress.count() > 0)
         {
-            qDebug()<<"y";
-            ps--;
+            if(ps > 0)
+            {
+                ps--;
+            }
 
             PhotoSelecter();
             ActionEnabler();
             ProcessingPhoto();
         }
-        else if (ps == 0)
+        else
         {
-            if (PhotoAddress.count() > 0)
+            pe=false;
+            ActionEnabler();
+
+            //Clean
             {
-                PhotoSelecter();
-                ActionEnabler();
-                ProcessingPhoto();
-            }
-            else if(PhotoAddress.count() == 0)
-            {
-                pe=false;
-                ActionEnabler();
+                pw=0;
+                ph=0;
+                ww=0;
+                wh=0;
+                j=0;
+                zw=0;
+                zh=0;
+                pwz=0;
+                phz=0;
+                pw2=0;
+                ph2=0;
+                zoom=false;
+                ps=0;
+                sph=false;
+                ui->actionSave->setEnabled(false);
+                if(sls==true)
+                {
+                    Slideshow.stop();
+                    sls=false;
+
+                    ui->actionSlideshow->setIcon(QIcon(":/Icons/Slideshow Start.png"));
+                    ui->actionFlip_Horizontal->setEnabled(true);
+                    ui->actionFlip_Vertical->setEnabled(true);
+                    ui->actionResize->setEnabled(true);
+                    ui->actionRotateLeft->setEnabled(true);
+                    ui->actionRotateRight->setEnabled(true);
+                }
             }
         }
-    }
-    else if (PhotoAddress.count() == 0)
-    {
-        pe=false;
-        ActionEnabler();
     }
 }
 
 void PhotoWindow::Restore()
 {
+    tray->hide();
+    sam=false;
+    show();
+}
+
+void PhotoWindow::CancelScreenshot()
+{
+    ScreenshotTimer.stop();
+    ScreenshotIconSec.stop();
+    IconTrayNum=0;
+
+    ssh = false;
+
     tray->hide();
     show();
 }
@@ -983,20 +1018,21 @@ void PhotoWindow::closeEvent (QCloseEvent *event)
 
     if(!isMaximized() && !isFullScreen())
     {
-        SettingsAP.setValue("window_posx", this->geometry().x() );
-        SettingsAP.setValue("window_posy", this->geometry().y() );
+        SettingsAP.setValue("window_posx", this->geometry().x());
+        SettingsAP.setValue("window_posy", this->geometry().y());
 
-        SettingsAP.setValue("window_sizew", this->geometry().width() );
-        SettingsAP.setValue("window_sizeh", this->geometry().height() );
+        SettingsAP.setValue("window_sizew", this->geometry().width());
+        SettingsAP.setValue("window_sizeh", this->geometry().height());
     }
 
     SettingsAP.setValue("window_max", isMaximized());
     SettingsAP.setValue("window_fuls", isFullScreen());
+    SettingsAP.setValue("toolBarArea", toolBarArea(ui->toolBar));
 
     SettingsAP.endGroup();
 }
 
-void PhotoWindow::on_actionOpen_triggered()
+void PhotoWindow::on_actionOpen_Photo_triggered()
 {
     QFileDialog OpenPhoto(this);
     OpenPhoto.setFileMode(QFileDialog::ExistingFiles);
@@ -1038,7 +1074,7 @@ void PhotoWindow::on_actionOpen_triggered()
 
     if (OpenPhoto.exec())
     {
-        PhotoAddress = OpenPhoto.selectedFiles();
+        PhotoAddress = PhotoAddress + OpenPhoto.selectedFiles();
 
         //Seve Directory
         {
@@ -1064,7 +1100,6 @@ void PhotoWindow::on_actionOpen_triggered()
                 pw2=0;
                 ph2=0;
                 zoom=false;
-                ps=0;
                 sph=false;
                 ui->actionSave->setEnabled(false);
                 if(sls==true)
@@ -1087,6 +1122,91 @@ void PhotoWindow::on_actionOpen_triggered()
             ActionEnabler();
             ProcessingPhoto();
         }
+    }
+}
+
+void PhotoWindow::on_actionClose_Photo_triggered()
+{
+    if(pe == true)
+    {
+        if(sph==false && ssh==false)
+        {
+            Close_Photo();
+        }
+        else
+        {
+            SavePhoto();
+
+            if(SaveAnswer == QMessageBox::Save || SaveAnswer == QMessageBox::Discard)
+            {
+                ActionEnabler();
+                Close_Photo();
+
+                if(ssh==true)
+                {
+                    QFile::remove(ScreenshotFile);
+                    ssh=false;
+                }
+            }
+            else
+            {
+                ActionEnabler();
+            }
+        }
+    }
+}
+
+void PhotoWindow::on_actionClose_All_Photos_triggered()
+{
+    if(PhotoAddress.count() > 0)
+    {
+        pe=false;
+        ActionEnabler();
+
+        //Clean
+        {
+            PhotoAddress.clear();
+            pw=0;
+            ph=0;
+            ww=0;
+            wh=0;
+            j=0;
+            zw=0;
+            zh=0;
+            pwz=0;
+            phz=0;
+            pw2=0;
+            ph2=0;
+            zoom=false;
+            ps=0;
+            sph=false;
+            ui->actionSave->setEnabled(false);
+            if(sls==true)
+            {
+                Slideshow.stop();
+                sls=false;
+
+                ui->actionSlideshow->setIcon(QIcon(":/Icons/Slideshow Start.png"));
+                ui->actionFlip_Horizontal->setEnabled(true);
+                ui->actionFlip_Vertical->setEnabled(true);
+                ui->actionResize->setEnabled(true);
+                ui->actionRotateLeft->setEnabled(true);
+                ui->actionRotateRight->setEnabled(true);
+            }
+        }
+    }
+}
+
+void PhotoWindow::on_actionGo_to_triggered()
+{
+    if(PhotoAddress.count()>1)
+    {
+        GoTo GTD(this);
+        GTD.exec();
+
+        PhotoSelecter();
+        ActionEnabler();
+        ProcessingPhoto();
     }
 }
 
@@ -1558,38 +1678,13 @@ void PhotoWindow::on_actionSave_As_triggered()
     }
 }
 
-void PhotoWindow::on_actionClose_Photo_triggered()
-{
-    if(pe == true)
-    {
-        if(sph==false)
-        {
-            Close_Photo();
-        }
-        else
-        {
-            SavePhoto();
-
-            if(SaveAnswer == QMessageBox::Save || SaveAnswer == QMessageBox::Discard)
-            {
-                ActionEnabler();
-                Close_Photo();
-            }
-            else
-            {
-                ActionEnabler();
-            }
-        }
-    }
-}
-
 void PhotoWindow::on_actionOption_triggered()
 {
     bool kart=kar;
     int SlideshowSpeedt=SlideshowSpeed;
 
-    QDialog *OD = new option(this);
-    OD->exec();
+    option OD(this);
+    OD.exec();
 
     if(pe==true && (kart != kar || SlideshowSpeedt != SlideshowSpeed))
     {
@@ -1613,8 +1708,7 @@ void PhotoWindow::on_actionOption_triggered()
         {
             ui->actionZoom1_1->setEnabled(true);
         }
-
-        if(kar==false)
+        else
         {
             ui->actionZoom1_1->setEnabled(false);
         }
@@ -1623,7 +1717,27 @@ void PhotoWindow::on_actionOption_triggered()
 
         ProcessingPhoto();
     }
+
     ui->retranslateUi(this);
+
+    extern QString Language;
+
+    if(Language == "English")
+    {
+        ui->Photo->setPixmap(QPixmap(":/Icons/Drop EN.png"));
+    }
+    else if(Language == "Persian RL" || Language == "Persian LR")
+    {
+        ui->Photo->setPixmap(QPixmap(":/Icons/Drop PA.png"));
+    }
+    else if(Language == "Spanish")
+    {
+        ui->Photo->setPixmap(QPixmap(":/Icons/Drop SP.png"));
+    }
+    else if(Language == "Traditional Chinese")
+    {
+        ui->Photo->setPixmap(QPixmap(":/Icons/Drop CH.png"));
+    }
 }
 
 void PhotoWindow::on_actionPrint_triggered()
@@ -1652,11 +1766,15 @@ void PhotoWindow::on_actionScreenshot_triggered()
     {
         if (sam == true)
         {
-            QAction *RestoreAction = new QAction(QIcon(""), "Restore", this);
-            connect(RestoreAction, SIGNAL(triggered()), this, SLOT(Restore()));
+            QAction *RestoreAction = new QAction(QIcon(""), tr("Restore"), this);
+            RestoreAction->connect(RestoreAction, SIGNAL(triggered()), this, SLOT(Restore()));
+
+            QAction *CancelAction = new QAction(QIcon(":/Icons/Cancel Screenshot.png"), tr("Cancel Screenshot"), this);
+            CancelAction->connect(CancelAction, SIGNAL(triggered()), this, SLOT(CancelScreenshot()));
 
             QMenu *TrayMenu = new QMenu(this);
             TrayMenu->addAction(RestoreAction);
+            TrayMenu->addAction(CancelAction);
 
             tray = new QSystemTrayIcon(this);
             tray->setContextMenu(TrayMenu);
@@ -1701,12 +1819,23 @@ void PhotoWindow::on_actionScreenshot_triggered()
     }
     else
     {
+        ScreenshotTimer.stop();
+
         SavePhoto();
 
         if(SaveAnswer == QMessageBox::Save || SaveAnswer == QMessageBox::Discard)
         {
+            if(ssh==true)
+            {
+                Close_Photo();
+
+                QFile::remove(ScreenshotFile);
+                ssh=false;
+                ActionEnabler();
+            }
+
             ActionEnabler();
-            ScreenshotTimer.stop();
+
             on_actionScreenshot_triggered();
         }
         else
@@ -1723,16 +1852,16 @@ void PhotoWindow::on_actionHome_Page_triggered()
 
 void PhotoWindow::on_actionAbout_triggered()
 {
-    QDialog *AD = new about(this);
-    AD->exec();
+    about AD(this);
+    AD.exec();
 }
 
 void PhotoWindow::on_actionResize_triggered()
 {
     if(pe==true)
     {
-        QDialog *RPD = new resizephoto(this);
-        RPD->exec();
+        resizephoto RPD(this);
+        RPD.exec();
 
         if(resz==true)
         {
@@ -2010,8 +2139,8 @@ void PhotoWindow::on_actionPhotoInfo_triggered()
 {
     if(pe == true)
     {
-        QDialog *PID = new photoinfo(this);
-        PID->exec();
+        photoinfo PID(this);
+        PID.exec();
     }
 }
 
