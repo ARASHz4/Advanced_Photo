@@ -45,17 +45,11 @@
       <height>391</height>
      </rect>
     </property>
-    <property name="contextMenuPolicy">
-     <enum>Qt::DefaultContextMenu</enum>
-    </property>
     <property name="acceptDrops">
      <bool>true</bool>
     </property>
-    <property name="textFormat">
-     <enum>Qt::AutoText</enum>
-    </property>
     <property name="pixmap">
-     <pixmap resource="Icon.qrc">:/Icons/Drop.png</pixmap>
+     <pixmap resource="Icon.qrc">:/Icons/Drop EN.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>false</bool>
@@ -231,9 +225,6 @@
    <property name="shortcut">
     <string notr="true">+</string>
    </property>
-   <property name="shortcutContext">
-    <enum>Qt::WindowShortcut</enum>
-   </property>
   </action>
   <action name="actionZoomOut">
    <property name="icon">
@@ -282,15 +273,6 @@
    <property name="shortcut">
     <string notr="true"/>
    </property>
-   <property name="autoRepeat">
-    <bool>true</bool>
-   </property>
-   <property name="visible">
-    <bool>true</bool>
-   </property>
-   <property name="iconVisibleInMenu">
-    <bool>true</bool>
-   </property>
   </action>
   <action name="actionNext_Photo">
    <property name="icon">
@@ -317,9 +299,6 @@
    </property>
    <property name="shortcut">
     <string notr="true">Left</string>
-   </property>
-   <property name="shortcutContext">
-    <enum>Qt::WindowShortcut</enum>
    </property>
   </action>
   <action name="actionSlideshow">
@@ -398,9 +377,6 @@
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+S</string>
-   </property>
-   <property name="visible">
-    <bool>true</bool>
    </property>
   </action>
   <action name="actionSave_As">
@@ -548,6 +524,9 @@
   <action name="actionClose_All_Photos">
    <property name="text">
     <string>Close All Photos</string>
+   </property>
+   <property name="shortcut">
+    <string notr="true">Ctrl+Shift+W</string>
    </property>
   </action>
  </widget>

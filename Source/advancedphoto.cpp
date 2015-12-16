@@ -1,13 +1,9 @@
 #include "advancedphoto.h"
 
+#include <QFileOpenEvent>
 #include <QSettings>
 #include <QTranslator>
 #include <QMessageBox>
-#include <QFileOpenEvent>
-#include <QUrl>
-#include <QLocale>
-
-#include <QDebug>
 
 AdvancedPhoto::AdvancedPhoto(int &argc, char *argv[]) : QApplication(argc, argv)
 {
@@ -328,8 +324,6 @@ void AdvancedPhoto::StartApplication()
 
             if(Language.contains("Automatic"))
             {
-                qDebug()<<QLocale::system().language();
-
                 if(QLocale::system().language() == QLocale::English)
                 {
                     Translator->load(":/Language/English.qm");

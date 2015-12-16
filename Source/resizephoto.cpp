@@ -41,6 +41,7 @@ resizephoto::resizephoto(QWidget *parent) :
         Cancel.connect(&Cancel, SIGNAL(clicked()), this, SLOT(CancelButton()));
         OK.setText(tr("OK"));
         Cancel.setText(tr("Cancel"));
+        OK.setDefault(true);
 
         ui->ResizeButtonBox->addButton(&OK, QDialogButtonBox::AcceptRole);
         ui->ResizeButtonBox->addButton(&Cancel, QDialogButtonBox::RejectRole);

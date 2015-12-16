@@ -23,6 +23,7 @@ void GoTo::showEvent(QShowEvent *)
     Cancel.connect(&Cancel, SIGNAL(clicked()), this, SLOT(CancelButton()));
     Go.setText(tr("Go"));
     Cancel.setText(tr("Cancel"));
+    Go.setDefault(true);
 
     ui->GoToButtonBox->addButton(&Go, QDialogButtonBox::AcceptRole);
     ui->GoToButtonBox->addButton(&Cancel, QDialogButtonBox::RejectRole);

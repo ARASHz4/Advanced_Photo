@@ -45,6 +45,7 @@ option::option(QWidget *parent) :
         Cancel.setText(tr("Cancel"));
         Apply.setText(tr("Apply"));
         RestoreDefaults.setText(tr("Restore Defaults"));
+        OK.setDefault(true);
 
         ui->OptionButtonBox->addButton(&OK, QDialogButtonBox::AcceptRole);
         ui->OptionButtonBox->addButton(&Cancel, QDialogButtonBox::RejectRole);
@@ -427,6 +428,12 @@ void option::CancelButton()
 void option::ApplyButton()
 {
     SaveSettings();
+
+    ui->retranslateUi(this);
+    OK.setText(tr("OK"));
+    Cancel.setText(tr("Cancel"));
+    Apply.setText(tr("Apply"));
+    RestoreDefaults.setText(tr("Restore Defaults"));
 }
 
 void option::RestoreDefaultsButton()
