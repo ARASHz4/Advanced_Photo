@@ -4,15 +4,10 @@
 #include <QStringList>
 #include <QPixmap>
 
-#include <QDebug>
-
-extern int ps;
-extern QStringList PhotoAddress;
-int RSWidth=0,RSHeight=0;
-bool rekar=false, resz=false;
-int w=0,h=0;
-int tw=0,th=0;
-bool wc=true, hc=true;
+//Variables:
+int RSWidth=0, RSHeight=0, w=0, h=0, tw=0, th=0;
+bool rekar=false, resz=false, wc=true, hc=true;
+//
 
 resizephoto::resizephoto(QWidget *parent) :
     QDialog(parent),
@@ -23,6 +18,9 @@ resizephoto::resizephoto(QWidget *parent) :
 
     //Photo Size
     {
+        extern QStringList PhotoAddress;
+        extern int ps;
+
         QPixmap PSize(PhotoAddress[ps]);
 
         wc=false;
@@ -57,6 +55,9 @@ void resizephoto::on_Width_valueChanged()
 {
     if(ui->KeepAspectRatio->isChecked()==true && wc==true)
     {
+        extern QStringList PhotoAddress;
+        extern int ps;
+
         QImage Resize(PhotoAddress[ps]);
 
         if(ui->Width->value()>wvt)
@@ -101,6 +102,9 @@ void resizephoto::on_Height_valueChanged()
 {
     if(ui->KeepAspectRatio->isChecked()==true && hc==true)
     {
+        extern QStringList PhotoAddress;
+        extern int ps;
+
         QImage Resize(PhotoAddress[ps]);
 
         if(ui->Height->value()>hvt)

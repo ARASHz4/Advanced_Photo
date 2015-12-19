@@ -25,10 +25,6 @@
 //Variables:
 QStringList PhotoAddress;
 int ps=0;
-extern int SlideshowSpeed, ScreenshotDelay;
-extern int RSWidth;
-extern int RSHeight;
-extern bool kar, sgf, oap, resz, rekar, sam;
 bool zoom=false, sls=false, pe=false, sph=false, ssh=false ,iif=false , wasMax=false;
 int pst=0, psb=0;
 int pwz=0,phz=0;
@@ -51,6 +47,8 @@ PhotoWindow::~PhotoWindow()
 
 void PhotoWindow::showEvent(QShowEvent *)
 {
+    extern int SlideshowSpeed, ScreenshotDelay;
+
     Retranslate();
     ActionEnabler();
 
@@ -275,6 +273,8 @@ void PhotoWindow::OpenArguments(QStringList Arguments)
 
 void PhotoWindow::LoadOtherPhotos()
 {
+    extern bool oap;
+
     if(oap == true && PhotoAddress.count() <= 1)
     {
         QDir PhotoDir(QFileInfo(PhotoAddress[0]).path());
@@ -546,6 +546,8 @@ void PhotoWindow::PhotoSelecter()
 
 void PhotoWindow::ProcessingPhoto()
 {
+    extern bool kar;
+
     if(sph==true)
     {
         ui->Photo->setPixmap(PhotoSave);
@@ -853,6 +855,8 @@ void PhotoWindow::SavePhoto()
 
 void PhotoWindow::Screenshot()
 {
+    extern bool sam;
+
     ScreenshotTimer.stop();
 
     QScreen *Shot = QGuiApplication::primaryScreen();
@@ -913,6 +917,8 @@ void PhotoWindow::Screenshot()
 
 void PhotoWindow::ScreenshotIcon()
 {
+    extern bool sam;
+
     if (sam == true)
     {
         qDebug()<<"TrayNum: "<<IconTrayNum;
@@ -1015,6 +1021,8 @@ void PhotoWindow::Close_Photo()
 
 void PhotoWindow::Restore()
 {
+    extern bool sam;
+
     tray->hide();
     sam=false;
     show();
@@ -1712,6 +1720,9 @@ void PhotoWindow::on_actionSave_As_triggered()
 
 void PhotoWindow::on_actionOption_triggered()
 {
+    extern int SlideshowSpeed;
+    extern bool kar;
+
     bool kart=kar;
     int SlideshowSpeedt=SlideshowSpeed;
 
@@ -1776,6 +1787,9 @@ void PhotoWindow::on_actionQuit_triggered()
 
 void PhotoWindow::on_actionScreenshot_triggered()
 {
+    extern int ScreenshotDelay;
+    extern bool sam;
+
     if(ssh==false)
     {
         if (sam == true)
@@ -1872,6 +1886,9 @@ void PhotoWindow::on_actionAbout_triggered()
 
 void PhotoWindow::on_actionResize_triggered()
 {
+    extern int RSWidth, RSHeight;
+    extern bool resz, rekar;
+
     if(pe==true)
     {
         resizephoto RPD(this);
@@ -2011,6 +2028,8 @@ void PhotoWindow::on_actionZoomIN_triggered()
 
 void PhotoWindow::on_actionZoom1_1_triggered()
 {
+    extern bool kar;
+
     if(pe==true && kar==true)
     {
         zoom=true;
@@ -2070,6 +2089,8 @@ void PhotoWindow::on_actionPrevious_Photo_triggered()
 
 void PhotoWindow::on_actionSlideshow_triggered()
 {
+    extern bool sgf;
+
     if(sls==false && pe==true && PhotoAddress.count() > 1)
     {
         Slideshow.start();

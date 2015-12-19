@@ -1,9 +1,6 @@
 #include "goto.h"
 #include "ui_goto.h"
 
-extern QStringList PhotoAddress;
-extern int ps;
-
 GoTo::GoTo(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::GoTo)
@@ -19,6 +16,9 @@ GoTo::~GoTo()
 
 void GoTo::showEvent(QShowEvent *)
 {
+    extern QStringList PhotoAddress;
+    extern int ps;
+
     Go.connect(&Go, SIGNAL(clicked()), this, SLOT(GoButton()));
     Cancel.connect(&Cancel, SIGNAL(clicked()), this, SLOT(CancelButton()));
     Go.setText(tr("Go"));
@@ -34,6 +34,8 @@ void GoTo::showEvent(QShowEvent *)
 
 void GoTo::GoButton()
 {
+    extern int ps;
+
     ps=ui->GoToSpinBox->value()-1;
     close();
 }

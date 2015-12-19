@@ -23,7 +23,30 @@ about::~about()
 void about::showEvent(QShowEvent *)
 {
     ui->ApplicationNameLabel->setText(AdvancedPhoto::applicationName());
-    ui->ApplicationVersionLabel->setText(AdvancedPhoto::applicationVersion());
+
+    extern int Language;
+
+    if(Language == QLocale::Persian)
+    {
+        QString Version = AdvancedPhoto::applicationVersion();
+        Version.replace("0", "۰");
+        Version.replace("1", "۱");
+        Version.replace("2", "۲");
+        Version.replace("3", "۳");
+        Version.replace("4", "۴");
+        Version.replace("5", "۵");
+        Version.replace("6", "۶");
+        Version.replace("7", "۷");
+        Version.replace("8", "۸");
+        Version.replace("9", "۹");
+        Version.replace(".", "٫");
+
+        ui->ApplicationVersionLabel->setText(Version);
+    }
+    else
+    {
+        ui->ApplicationVersionLabel->setText(AdvancedPhoto::applicationVersion());
+    }
 
     this->setWindowOpacity(0);
 

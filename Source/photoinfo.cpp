@@ -1,11 +1,11 @@
 #include "photoinfo.h"
 #include "ui_photoinfo.h"
+#include "advancedphoto.h"
 
 #include <QFileInfo>
 #include <QDateTime>
 
-extern QStringList PhotoAddress;
-extern int ps;
+#include <QDebug>
 
 photoinfo::photoinfo(QWidget *parent) :
     QDialog(parent),
@@ -22,6 +22,9 @@ photoinfo::~photoinfo()
 
 void photoinfo::showEvent(QShowEvent *)
 {
+    extern QStringList PhotoAddress;
+    extern int ps;
+
     ui->NamePI->setText(QFileInfo(PhotoAddress[ps]).fileName());
     ui->DirectoryPI->setText(QFileInfo(PhotoAddress[ps]).path());
 
@@ -117,6 +120,25 @@ void photoinfo::showEvent(QShowEvent *)
     ui->WidthPI->setNum(QPixmap(PhotoAddress[ps]).width());
     ui->HeightPI->setNum(QPixmap(PhotoAddress[ps]).height());
     ui->DataCreatedPI->setText(QFileInfo(PhotoAddress[ps]).created().date().toString());
+
+    if(AdvancedPhoto::layoutDirection() == Qt::LeftToRight)
+    {
+        ui->NamePI->setAlignment(Qt::AlignLeft);
+        ui->DirectoryPI->setAlignment(Qt::AlignLeft);
+        ui->SizePI->setAlignment(Qt::AlignLeft);
+        ui->TypePI->setAlignment(Qt::AlignLeft);
+        ui->WidthPI->setAlignment(Qt::AlignLeft);
+        ui->HeightPI->setAlignment(Qt::AlignLeft);
+    }
+    else
+    {
+        ui->NamePI->setAlignment(Qt::AlignRight);
+        ui->DirectoryPI->setAlignment(Qt::AlignRight);
+        ui->SizePI->setAlignment(Qt::AlignRight);
+        ui->TypePI->setAlignment(Qt::AlignRight);
+        ui->WidthPI->setAlignment(Qt::AlignRight);
+        ui->HeightPI->setAlignment(Qt::AlignRight);
+    }
 }
 
 void photoinfo::on_OkButton_clicked()

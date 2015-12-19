@@ -6,13 +6,9 @@
 #include <QTranslator>
 #include <QDesktopWidget>
 
-#include <QDebug>
-
 //Variables:
-int SlideshowSpeed, ScreenshotDelay;
-bool kar, sgf, oap, sam;
-int Language;
-bool AutomaticLanguage;
+int SlideshowSpeed, ScreenshotDelay, Language;
+bool kar, sgf, oap, sam, AutomaticLanguage;
 //
 
 option::option(QWidget *parent) :
@@ -55,10 +51,10 @@ option::option(QWidget *parent) :
         ui->OptionButtonBox->addButton(&RestoreDefaults, QDialogButtonBox::ResetRole);
     }
 
-    LoadSettings();
-
     ui->listWidgetOption->setCurrentRow(0);
     ui->LanguageComboBox->insertSeparator(1);
+
+    LoadSettings();
 }
 
 option::~option()
