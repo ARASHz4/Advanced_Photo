@@ -342,7 +342,7 @@
     <message>
         <location filename="about.ui" line="287"/>
         <source>Copyright 2014 - 2016 ARASHz4</source>
-        <translation>درای پخش ۲۰۱۴-۲۰۱۵ ARASHz4 </translation>
+        <translation>درای پخش ۲۰۱۴-۲۰۱۶ ARASHz4 </translation>
     </message>
     <message>
         <location filename="about.ui" line="332"/>
