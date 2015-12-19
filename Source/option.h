@@ -24,8 +24,6 @@ private:
 private slots:
     void on_listWidgetOption_currentRowChanged(int currentRow);
 
-    void on_LanguageComboBox_currentIndexChanged(int index);
-
     void LoadSettings();
 
     void SaveSettings();

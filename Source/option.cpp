@@ -10,8 +10,9 @@
 
 //Variables:
 int SlideshowSpeed, ScreenshotDelay;
-bool kar, sgf ,oap, sam;
-QString Language;
+bool kar, sgf, oap, sam;
+int Language;
+bool AutomaticLanguage;
 //
 
 option::option(QWidget *parent) :
@@ -30,7 +31,8 @@ option::option(QWidget *parent) :
         SettingsAP.beginGroup("OptionWindowSizePos");
 
         if((SettingsAP.value("window_posx").toInt() != 0 && SettingsAP.value("window_posy").toInt() != 0) &&
-           (SettingsAP.value("window_sizew").toInt() <= ScreenSize.width()+10 && SettingsAP.value("window_sizeh").toInt() <= ScreenSize.height()+10))
+           (SettingsAP.value("window_sizew").toInt() <= ScreenSize.width()+10
+            && SettingsAP.value("window_sizeh").toInt() <= ScreenSize.height()+10))
         {
             this->setGeometry(SettingsAP.value("window_posx").toInt(), SettingsAP.value("window_posy").toInt(),
                               SettingsAP.value("window_sizew").toInt(), SettingsAP.value("window_sizeh").toInt());
@@ -56,6 +58,7 @@ option::option(QWidget *parent) :
     LoadSettings();
 
     ui->listWidgetOption->setCurrentRow(0);
+    ui->LanguageComboBox->insertSeparator(1);
 }
 
 option::~option()
@@ -74,7 +77,6 @@ void option::on_listWidgetOption_currentRowChanged(int currentRow)
 
         ui->LanguageLabel->setVisible(false);
         ui->LanguageComboBox->setVisible(false);
-        ui->LanguageRightToLeftCheckBox->setVisible(false);
         ui->SppedLabel->setVisible(false);
         ui->SlideshowSpeed->setVisible(false);
         ui->SecLabel->setVisible(false);
@@ -90,14 +92,6 @@ void option::on_listWidgetOption_currentRowChanged(int currentRow)
 
         ui->LanguageLabel->setVisible(true);
         ui->LanguageComboBox->setVisible(true);
-        if(ui->LanguageComboBox->currentIndex() == 2)
-        {
-            ui->LanguageRightToLeftCheckBox->setVisible(true);
-        }
-        else
-        {
-            ui->LanguageRightToLeftCheckBox->setVisible(false);
-        }
 
         ui->KeepAspectRatioCheckBox->setVisible(false);
         ui->LoadPhotosFolder->setVisible(false);
@@ -123,7 +117,6 @@ void option::on_listWidgetOption_currentRowChanged(int currentRow)
         ui->LoadPhotosFolder->setVisible(false);
         ui->LanguageLabel->setVisible(false);
         ui->LanguageComboBox->setVisible(false);
-        ui->LanguageRightToLeftCheckBox->setVisible(false);
         ui->ScreenshotDelay->setVisible(false);
         ui->ScreenshotDelaySpinBox->setVisible(false);
         ui->SecLabel_2->setVisible(false);
@@ -142,25 +135,10 @@ void option::on_listWidgetOption_currentRowChanged(int currentRow)
         ui->LoadPhotosFolder->setVisible(false);
         ui->LanguageLabel->setVisible(false);
         ui->LanguageComboBox->setVisible(false);
-        ui->LanguageRightToLeftCheckBox->setVisible(false);
         ui->SppedLabel->setVisible(false);
         ui->SlideshowSpeed->setVisible(false);
         ui->SecLabel->setVisible(false);
         ui->slsFullscreen->setVisible(false);
-    }
-}
-
-void option::on_LanguageComboBox_currentIndexChanged(int index)
-{
-    if(index == 2)
-    {
-        ui->LanguageRightToLeftCheckBox->setVisible(true);
-        ui->LanguageRightToLeftCheckBox->setChecked(true);
-    }
-    else
-    {
-        ui->LanguageRightToLeftCheckBox->setVisible(false);
-        ui->LanguageRightToLeftCheckBox->setChecked(false);
     }
 }
 
@@ -189,34 +167,28 @@ void option::LoadSettings()
 
     //Language
     {
-        if(Language.contains("Automatic"))
+        if(AutomaticLanguage == true)
         {
             ui->LanguageComboBox->setCurrentIndex(0);
         }
-        else if(Language == "English")
+        else
         {
-            ui->LanguageComboBox->setCurrentIndex(1);
-        }
-        else if(Language == "Persian RL" || Language == "Persian LR")
-        {
-            ui->LanguageComboBox->setCurrentIndex(2);
-
-            if (Language == "Persian RL")
+            if(Language == QLocale::English)
             {
-                ui->LanguageRightToLeftCheckBox->setChecked(true);
+                ui->LanguageComboBox->setCurrentIndex(2);
             }
-            else if (Language == "Persian LR")
+            else if(Language == QLocale::Persian)
             {
-                ui->LanguageRightToLeftCheckBox->setChecked(false);
+                ui->LanguageComboBox->setCurrentIndex(3);
             }
-        }
-        else if(Language == "Spanish")
-        {
-            ui->LanguageComboBox->setCurrentIndex(3);
-        }
-        else if(Language == "Traditional Chinese")
-        {
-            ui->LanguageComboBox->setCurrentIndex(4);
+            else if(Language == QLocale::Spanish)
+            {
+                ui->LanguageComboBox->setCurrentIndex(4);
+            }
+            else if(Language == QLocale::Chinese)
+            {
+                ui->LanguageComboBox->setCurrentIndex(5);
+            }
         }
     }
 
@@ -285,88 +257,100 @@ void option::SaveSettings()
     {
         if(ui->LanguageComboBox->currentIndex() == 0)
         {
-            Language = "Automatic";
-        }
-        else if(ui->LanguageComboBox->currentIndex() == 1)
-        {
-            Language = "English";
+            Language = 0;
         }
         else if(ui->LanguageComboBox->currentIndex() == 2)
         {
-            if(ui->LanguageRightToLeftCheckBox->isChecked())
-            {
-                Language = "Persian RL";
-            }
-            else
-            {
-                Language = "Persian LR";
-            }
+            Language = QLocale::English;
         }
         else if(ui->LanguageComboBox->currentIndex() == 3)
         {
-            Language = "Spanish";
+            Language = QLocale::Persian;
         }
         else if(ui->LanguageComboBox->currentIndex() == 4)
         {
-            Language = "Traditional Chinese";
+            Language = QLocale::Spanish;
+        }
+        else if(ui->LanguageComboBox->currentIndex() == 5)
+        {
+            Language = QLocale::Chinese;
         }
 
         QTranslator *Translator = new QTranslator;
 
-        if(Language.contains("Automatic"))
+        if(Language == 0)
         {
             if(QLocale::system().language() == QLocale::English)
             {
                 Translator->load(":/Language/English.qm");
                 AdvancedPhoto::installTranslator(Translator);
 
-                Language = "Automatic English";
+                Language = QLocale::English;
             }
             else if(QLocale::system().language() == QLocale::Persian)
             {
-                Translator->load(":/Language/Persian RL.qm");
+                Translator->load(":/Language/Persian.qm");
                 AdvancedPhoto::installTranslator(Translator);
 
-                Language = "Automatic Persian RL";
+                Language = QLocale::Persian;
             }
             else if(QLocale::system().language() == QLocale::Spanish)
             {
                 Translator->load(":/Language/Spanish.qm");
                 AdvancedPhoto::installTranslator(Translator);
 
-                Language = "Automatic Spanish";
+                Language = QLocale::Spanish;
             }
             else if(QLocale::system().language() == QLocale::Chinese)
             {
                 Translator->load(":/Language/Traditional Chinese.qm");
                 AdvancedPhoto::installTranslator(Translator);
 
-                Language = "Automatic Traditional Chinese";
+                Language = QLocale::Chinese;
             }
             else
             {
                 Translator->load(":/Language/English.qm");
                 AdvancedPhoto::installTranslator(Translator);
 
-                Language = "Automatic English";
+                Language = QLocale::English;
             }
 
-            SettingsAP.setValue("Language", "Automatic");
+            AutomaticLanguage = true;
+            SettingsAP.setValue("Language", 0);
         }
         else
         {
-            Translator->load(":/Language/" + Language + ".qm");
-            AdvancedPhoto::installTranslator(Translator);
+            if(Language == QLocale::English)
+            {
+                Translator->load(":/Language/English.qm");
+                AdvancedPhoto::installTranslator(Translator);
+            }
+            else if(Language == QLocale::Persian)
+            {
+                Translator->load(":/Language/Persian.qm");
+                AdvancedPhoto::installTranslator(Translator);
+            }
+            else if(Language == QLocale::Spanish)
+            {
+                Translator->load(":/Language/Spanish.qm");
+                AdvancedPhoto::installTranslator(Translator);
+            }
+            else if(Language == QLocale::Chinese)
+            {
+                Translator->load(":/Language/Traditional Chinese.qm");
+                AdvancedPhoto::installTranslator(Translator);
+            }
 
+            AutomaticLanguage = false;
             SettingsAP.setValue("Language", Language);
         }
 
-        if(Language.contains("English") || Language.contains("Persian LR")
-        || Language.contains("Spanish") || Language.contains("Traditional Chinese"))
+        if(Language == QLocale::English || Language == QLocale::Spanish || Language == QLocale::Chinese)
         {
             AdvancedPhoto::setLayoutDirection(Qt::LeftToRight);
         }
-        else if(Language.contains("Persian RL"))
+        else if(Language == QLocale::Persian)
         {
             AdvancedPhoto::setLayoutDirection(Qt::RightToLeft);
         }
@@ -440,7 +424,8 @@ void option::RestoreDefaultsButton()
 {
     kar = true;
     oap = true;
-    Language = "Automatic";
+    AutomaticLanguage = true;
+    Language = 0;
     SlideshowSpeed = 2;
     sgf = false;
     ScreenshotDelay = 3;

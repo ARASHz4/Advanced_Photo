@@ -276,7 +276,8 @@ void AdvancedPhoto::StartApplication()
     {
         extern bool kar, sgf, oap, sam;
         extern int SlideshowSpeed, ScreenshotDelay;
-        extern QString Language;
+        extern int Language;
+        extern bool AutomaticLanguage;
 
         QSettings SettingsAP (AdvancedPhoto::organizationName(), AdvancedPhoto::applicationName());
         SettingsAP.beginGroup("Option");
@@ -305,77 +306,93 @@ void AdvancedPhoto::StartApplication()
         //Language
         {
             if(!SettingsAP.value("Language").toString().isEmpty() &&
-                    (SettingsAP.value("Language").toString() == "Automatic"
-                     || SettingsAP.value("Language").toString() == "English"
-                     || SettingsAP.value("Language").toString() == "Persian RL"
-                     || SettingsAP.value("Language").toString() == "Persian LR"
-                     || SettingsAP.value("Language").toString() == "Spanish"
-                     || SettingsAP.value("Language").toString() == "Traditional Chinese"))
+                    (SettingsAP.value("Language").toInt() == 0
+                     || SettingsAP.value("Language").toInt() == QLocale::English
+                     || SettingsAP.value("Language").toInt() == QLocale::Persian
+                     || SettingsAP.value("Language").toInt() == QLocale::Spanish
+                     || SettingsAP.value("Language").toInt() == QLocale::Chinese))
             {
-                Language = SettingsAP.value("Language").toString();
+                Language = SettingsAP.value("Language").toInt();
             }
             else
             {
-                Language = "Automatic";
+                Language = 0;
                 SettingsAP.setValue("Language", Language);
             }
 
             QTranslator *Translator = new QTranslator;
 
-            if(Language.contains("Automatic"))
+            if(Language == 0)
             {
                 if(QLocale::system().language() == QLocale::English)
                 {
                     Translator->load(":/Language/English.qm");
                     AdvancedPhoto::installTranslator(Translator);
 
-                    Language = "Automatic English";
+                    Language = QLocale::English;
                 }
                 else if(QLocale::system().language() == QLocale::Persian)
                 {
-                    Translator->load(":/Language/Persian RL.qm");
+                    Translator->load(":/Language/Persian.qm");
                     AdvancedPhoto::installTranslator(Translator);
 
-                    Language = "Automatic Persian RL";
+                    Language = QLocale::Persian;
                 }
                 else if(QLocale::system().language() == QLocale::Spanish)
                 {
                     Translator->load(":/Language/Spanish.qm");
                     AdvancedPhoto::installTranslator(Translator);
 
-                    Language = "Automatic Spanish";
+                    Language = QLocale::Spanish;
                 }
                 else if(QLocale::system().language() == QLocale::Chinese)
                 {
                     Translator->load(":/Language/Traditional Chinese.qm");
                     AdvancedPhoto::installTranslator(Translator);
 
-                    Language = "Automatic Traditional Chinese";
+                    Language = QLocale::Chinese;
                 }
                 else
                 {
                     Translator->load(":/Language/English.qm");
                     AdvancedPhoto::installTranslator(Translator);
 
-                    Language = "Automatic English";
+                    Language = QLocale::English;
                 }
 
-                SettingsAP.setValue("Language", "Automatic");
+                AutomaticLanguage = true;
             }
             else
             {
-                Translator->load(":/Language/" + Language + ".qm");
-                AdvancedPhoto::installTranslator(Translator);
+                if(Language == QLocale::English)
+                {
+                    Translator->load(":/Language/English.qm");
+                    AdvancedPhoto::installTranslator(Translator);
+                }
+                else if(Language == QLocale::Persian)
+                {
+                    Translator->load(":/Language/Persian.qm");
+                    AdvancedPhoto::installTranslator(Translator);
+                }
+                else if(Language == QLocale::Spanish)
+                {
+                    Translator->load(":/Language/Spanish.qm");
+                    AdvancedPhoto::installTranslator(Translator);
+                }
+                else if(Language == QLocale::Chinese)
+                {
+                    Translator->load(":/Language/Traditional Chinese.qm");
+                    AdvancedPhoto::installTranslator(Translator);
+                }
 
-                SettingsAP.setValue("Language", Language);
+                AutomaticLanguage = false;
             }
 
-            if(Language.contains("English") || Language.contains("Persian LR")
-            || Language.contains("Spanish") || Language.contains("Traditional Chinese"))
+            if(Language == QLocale::English || Language == QLocale::Spanish || Language == QLocale::Chinese)
             {
                 AdvancedPhoto::setLayoutDirection(Qt::LeftToRight);
             }
-            else if(Language.contains("Persian RL"))
+            else if(Language == QLocale::Persian)
             {
                 AdvancedPhoto::setLayoutDirection(Qt::RightToLeft);
             }

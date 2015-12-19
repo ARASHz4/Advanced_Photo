@@ -134,23 +134,6 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionOpen_Photo"/>
-   <addaction name="separator"/>
-   <addaction name="actionZoomIN"/>
-   <addaction name="actionZoom1_1"/>
-   <addaction name="actionZoomOut"/>
-   <addaction name="actionFitWindow"/>
-   <addaction name="separator"/>
-   <addaction name="actionRotateLeft"/>
-   <addaction name="actionRotateRight"/>
-   <addaction name="separator"/>
-   <addaction name="actionPrevious_Photo"/>
-   <addaction name="actionSlideshow"/>
-   <addaction name="actionNext_Photo"/>
-   <addaction name="separator"/>
-   <addaction name="actionPhotoInfo"/>
-   <addaction name="separator"/>
-   <addaction name="actionFullscreen"/>
   </widget>
   <widget class="QStatusBar" name="statusBar">
    <property name="statusTip">

@@ -40,7 +40,9 @@ private:
 private slots:
     void showEvent(QShowEvent *);
 
-    void resizeEvent (QResizeEvent *);
+    void Retranslate();
+
+    void resizeEvent(QResizeEvent *);
 
     void on_actionToolBarMoved_triggered();
 

@@ -51,8 +51,7 @@ PhotoWindow::~PhotoWindow()
 
 void PhotoWindow::showEvent(QShowEvent *)
 {
-    ui->retranslateUi(this);
-
+    Retranslate();
     ActionEnabler();
 
     //Photo Window Size & Post Setting
@@ -92,7 +91,7 @@ void PhotoWindow::showEvent(QShowEvent *)
             addToolBar(Qt::TopToolBarArea, ui->toolBar);
         }
 
-        if( (QString(SettingsAP.value("window_max").toString()).isEmpty())
+        if((QString(SettingsAP.value("window_max").toString()).isEmpty())
              || (QString(SettingsAP.value("window_max").toString())!="true"
              && QString(SettingsAP.value("window_max").toString())!="false"))
         {
@@ -104,7 +103,7 @@ void PhotoWindow::showEvent(QShowEvent *)
             showMaximized();
         }
 
-        if( (QString(SettingsAP.value("window_fuls").toString()).isEmpty())
+        if((QString(SettingsAP.value("window_fuls").toString()).isEmpty())
              || (QString(SettingsAP.value("window_fuls").toString())!="true"
              && QString(SettingsAP.value("window_fuls").toString())!="false"))
         {
@@ -192,7 +191,36 @@ void PhotoWindow::showEvent(QShowEvent *)
     }
 }
 
-void PhotoWindow::resizeEvent (QResizeEvent *)
+void PhotoWindow::Retranslate()
+{
+    ui->retranslateUi(this);
+
+    QList<QAction *> ActionList;
+
+    if (AdvancedPhoto::layoutDirection() == Qt::LeftToRight)
+    {
+        ActionList << ui->actionOpen_Photo << ui->toolBar->addSeparator() << ui->actionZoomIN
+                   << ui->actionZoom1_1 << ui->actionZoomOut << ui->actionFitWindow
+                   << ui->toolBar->addSeparator() << ui->actionRotateLeft << ui->actionRotateRight
+                   << ui->toolBar->addSeparator() << ui->actionPrevious_Photo << ui->actionSlideshow
+                   << ui->actionNext_Photo << ui->toolBar->addSeparator() << ui->actionPhotoInfo
+                   << ui->toolBar->addSeparator() << ui->actionFullscreen;
+    }
+    else
+    {
+        ActionList << ui->actionOpen_Photo << ui->toolBar->addSeparator() << ui->actionZoomIN
+                   << ui->actionZoom1_1 << ui->actionZoomOut << ui->actionFitWindow
+                   << ui->toolBar->addSeparator() << ui->actionRotateRight << ui->actionRotateLeft
+                   << ui->toolBar->addSeparator() << ui->actionNext_Photo << ui->actionSlideshow
+                   << ui->actionPrevious_Photo << ui->toolBar->addSeparator() << ui->actionPhotoInfo
+                   << ui->toolBar->addSeparator() << ui->actionFullscreen;
+    }
+
+    ui->toolBar->clear();
+    ui->toolBar->addActions(ActionList);
+}
+
+void PhotoWindow::resizeEvent(QResizeEvent *)
 {
     if(pe == true)
     {
@@ -406,23 +434,27 @@ void PhotoWindow::ActionEnabler()
     {
         ui->Photo->setScaledContents(false);
 
-        extern QString Language;
+        extern int Language;
 
-        if(Language.contains("English"))
+        if(Language == QLocale::English)
         {
             ui->Photo->setPixmap(QPixmap(":/Icons/Drop EN.png"));
         }
-        else if(Language.contains("Persian"))
+        else if (Language == QLocale::Persian)
         {
             ui->Photo->setPixmap(QPixmap(":/Icons/Drop PA.png"));
         }
-        else if(Language.contains("Spanish"))
+        else if (Language == QLocale::Spanish)
         {
             ui->Photo->setPixmap(QPixmap(":/Icons/Drop SP.png"));
         }
-        else if(Language.contains("Traditional Chinese"))
+        else if (Language == QLocale::Chinese)
         {
             ui->Photo->setPixmap(QPixmap(":/Icons/Drop CH.png"));
+        }
+        else
+        {
+            ui->Photo->setPixmap(QPixmap(":/Icons/Drop EN.png"));
         }
 
         ui->statusBar->showMessage(NULL);
@@ -1718,8 +1750,7 @@ void PhotoWindow::on_actionOption_triggered()
         ProcessingPhoto();
     }
 
-    ui->retranslateUi(this);
-
+    Retranslate();
     ActionEnabler();
 }
 
