@@ -1,12 +1,13 @@
 #include "resizephoto.h"
 #include "ui_resizephoto.h"
+#include "photowindow.h"
 
 #include <QStringList>
 #include <QPixmap>
 
 //Variables:
-int RSWidth=0, RSHeight=0, w=0, h=0, tw=0, th=0;
-bool rekar=false, resz=false, wc=true, hc=true;
+int resizephoto::rsWidth=0, resizephoto::rsHeight=0;
+bool resizephoto::rekar=false, resizephoto::resz=false;
 //
 
 resizephoto::resizephoto(QWidget *parent) :
@@ -18,10 +19,7 @@ resizephoto::resizephoto(QWidget *parent) :
 
     //Photo Size
     {
-        extern QStringList PhotoAddress;
-        extern int ps;
-
-        QPixmap PSize(PhotoAddress[ps]);
+        QPixmap PSize(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]);
 
         wc=false;
         hc=false;
@@ -51,14 +49,65 @@ resizephoto::~resizephoto()
     delete ui;
 }
 
+void resizephoto::setRsWidth(int value)
+{
+    rsWidth = value;
+}
+
+int resizephoto::RsWidth()
+{
+    return rsWidth;
+}
+
+void resizephoto::setRsHeight(int value)
+{
+    rsHeight = value;
+}
+
+int resizephoto::RsHeight()
+{
+    return rsHeight;
+}
+
+void resizephoto::setRekar(bool value)
+{
+    rekar = value;
+}
+
+bool resizephoto::Rekar()
+{
+    return rekar;
+}
+
+void resizephoto::setResz(bool value)
+{
+    resz = value;
+}
+
+bool resizephoto::Resz()
+{
+    return resz;
+}
+
+void resizephoto::show()
+{
+    rsWidth=0;
+    rsHeight=0;
+    w=0;
+    h=0;
+    tw=0;
+    th=0;
+    rekar=false;
+    resz=false;
+    wc=true;
+    hc=true;
+}
+
 void resizephoto::on_Width_valueChanged()
 {
     if(ui->KeepAspectRatio->isChecked()==true && wc==true)
     {
-        extern QStringList PhotoAddress;
-        extern int ps;
-
-        QImage Resize(PhotoAddress[ps]);
+        QImage Resize(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]);
 
         if(ui->Width->value()>wvt)
         {
@@ -102,10 +151,7 @@ void resizephoto::on_Height_valueChanged()
 {
     if(ui->KeepAspectRatio->isChecked()==true && hc==true)
     {
-        extern QStringList PhotoAddress;
-        extern int ps;
-
-        QImage Resize(PhotoAddress[ps]);
+        QImage Resize(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]);
 
         if(ui->Height->value()>hvt)
         {
@@ -157,8 +203,8 @@ void resizephoto::SetValue()
 
 void resizephoto::OKButton()
 {
-    RSWidth=ui->Width->value();
-    RSHeight=ui->Height->value();
+    rsWidth=ui->Width->value();
+    rsHeight=ui->Height->value();
 
     resz=true;
 

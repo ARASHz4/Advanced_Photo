@@ -6,6 +6,7 @@
 #include "photoinfo.h"
 #include "goto.h"
 #include "about.h"
+#include "slsettings.h"
 
 #include <QScreen>
 #include <QSettings>
@@ -23,13 +24,8 @@
 #include <QDebug>
 
 //Variables:
-QStringList PhotoAddress;
-int ps=0;
-bool zoom=false, sls=false, pe=false, sph=false, ssh=false ,iif=false , wasMax=false;
-int pst=0, psb=0;
-int pwz=0,phz=0;
-int rd=0, zoomp=0;
-int IconTrayNum=0;
+QStringList PhotoWindow::photoAddress;
+int PhotoWindow::ps=0;
 //
 
 PhotoWindow::PhotoWindow(QWidget *parent) :
@@ -45,9 +41,42 @@ PhotoWindow::~PhotoWindow()
     delete ui;
 }
 
+void PhotoWindow::setPhotoAddress(const QStringList &value)
+{
+    photoAddress = value;
+}
+
+QStringList PhotoWindow::PhotoAddress()
+{
+    return photoAddress;
+}
+
+void PhotoWindow::setPs(int value)
+{
+    ps = value;
+}
+
+int PhotoWindow::Ps()
+{
+    return ps;
+}
+
 void PhotoWindow::showEvent(QShowEvent *)
 {
-    extern int SlideshowSpeed, ScreenshotDelay;
+    zoom=false;
+    sls=false;
+    pe=false;
+    sph=false;
+    ssh=false;
+    iif=false;
+    wasMax=false;
+    pst=0;
+    psb=0;
+    pwz=0;
+    phz=0;
+    rd=0;
+    zoomp=0;
+    IconTrayNum=0;
 
     Retranslate();
     ActionEnabler();
@@ -157,23 +186,23 @@ void PhotoWindow::showEvent(QShowEvent *)
 
     //Slideshow Timer
     {
-        if(SlideshowSpeed <= 0 || SlideshowSpeed > 99)
+        if(SLSettings::SlideshowSpeed() <= 0 || SLSettings::SlideshowSpeed() > 99)
         {
-            SlideshowSpeed = 2;
+            SLSettings::setSlideshowSpeed(2);
         }
 
-        Slideshow.setInterval(SlideshowSpeed*1000);
+        Slideshow.setInterval(SLSettings::SlideshowSpeed()*1000);
         Slideshow.connect(&Slideshow,SIGNAL(timeout()),this,SLOT(on_actionNext_Photo_triggered()));
     }
 
     //Screenshot Delay
     {
-        if(ScreenshotDelay < 0 || ScreenshotDelay > 60)
+        if(SLSettings::ScreenshotDelay() < 0 || SLSettings::ScreenshotDelay() > 60)
         {
-            ScreenshotDelay = 3;
+            SLSettings::setScreenshotDelay(3);
         }
 
-        ScreenshotTimer.setInterval(ScreenshotDelay*1000);
+        ScreenshotTimer.setInterval(SLSettings::ScreenshotDelay()*1000);
         ScreenshotTimer.connect(&ScreenshotTimer,SIGNAL(timeout()),this,SLOT(Screenshot()));
 
         ScreenshotIconSec.setInterval(1000);
@@ -251,12 +280,12 @@ void PhotoWindow::OpenArguments(QStringList Arguments)
         {
             if(QFileInfo(Arguments[i]).isFile())
             {
-               PhotoAddress << Arguments[i];
+               photoAddress << Arguments[i];
             }
         }
     }
 
-    if(PhotoAddress.count()>0)
+    if(photoAddress.count()>0)
     {
         #if defined(Q_OS_MAC)
         LoadOtherPhotosDelay.start();
@@ -273,11 +302,9 @@ void PhotoWindow::OpenArguments(QStringList Arguments)
 
 void PhotoWindow::LoadOtherPhotos()
 {
-    extern bool oap;
-
-    if(oap == true && PhotoAddress.count() <= 1)
+    if(SLSettings::Oap() == true && photoAddress.count() <= 1)
     {
-        QDir PhotoDir(QFileInfo(PhotoAddress[0]).path());
+        QDir PhotoDir(QFileInfo(photoAddress[0]).path());
         QStringList PhotoFilter;
         PhotoFilter<<"*.png" << "*.jpg" << "*.bmp" << "*.tif" << "*.webp" << "*.gif"
                    << "*.jp2" << "*.dds" << "*.xpm" << "*.pnm" << "*.ppm" << "*.pgm"
@@ -289,19 +316,19 @@ void PhotoWindow::LoadOtherPhotos()
 
         if(!Photos.isEmpty())
         {
-            QString PhotoAddressBak=PhotoAddress[0];
+            QString PhotoAddressBak=photoAddress[0];
 
             #if defined(Q_OS_WIN)
                 PhotoAddressBak.replace("\\" , "/");
             #endif
 
-            PhotoAddress.clear();
+            photoAddress.clear();
 
             for(int i=0; i<Photos.count(); i++)
             {
-                PhotoAddress << Photos[i].absoluteFilePath();
+                photoAddress << Photos[i].absoluteFilePath();
             }
-            ps=PhotoAddress.indexOf(PhotoAddressBak);
+            ps=photoAddress.indexOf(PhotoAddressBak);
         }
     }
 
@@ -355,10 +382,10 @@ void PhotoWindow::dropEvent(QDropEvent *event)
 {
     foreach (const QUrl &purl, event->mimeData()->urls())
     {
-        PhotoAddress << purl.toLocalFile();
+        photoAddress << purl.toLocalFile();
     }
 
-    if(!PhotoAddress.isEmpty())
+    if(!photoAddress.isEmpty())
     {
         pe=true;
 
@@ -388,7 +415,7 @@ void PhotoWindow::ActionEnabler()
         ui->actionFlip_Vertical->setEnabled(true);
         ui->actionPhotoInfo->setEnabled(true);
 
-        if(PhotoAddress.count() > 1)
+        if(photoAddress.count() > 1)
         {
             ui->actionSlideshow->setEnabled(true);
             ui->actionGo_to->setEnabled(true);
@@ -399,7 +426,7 @@ void PhotoWindow::ActionEnabler()
             ui->actionGo_to->setEnabled(false);
         }
 
-        if(ps >= (PhotoAddress.count()-1))
+        if(ps >= (photoAddress.count()-1))
         {
             ui->actionNext_Photo->setEnabled(false);
         }
@@ -434,21 +461,19 @@ void PhotoWindow::ActionEnabler()
     {
         ui->Photo->setScaledContents(false);
 
-        extern int Language;
-
-        if(Language == QLocale::English)
+        if(SLSettings::Language() == QLocale::English)
         {
             ui->Photo->setPixmap(QPixmap(":/Icons/Drop EN.png"));
         }
-        else if (Language == QLocale::Persian)
+        else if (SLSettings::Language() == QLocale::Persian)
         {
             ui->Photo->setPixmap(QPixmap(":/Icons/Drop PA.png"));
         }
-        else if (Language == QLocale::Spanish)
+        else if (SLSettings::Language() == QLocale::Spanish)
         {
             ui->Photo->setPixmap(QPixmap(":/Icons/Drop SP.png"));
         }
-        else if (Language == QLocale::Chinese)
+        else if (SLSettings::Language() == QLocale::Chinese)
         {
             ui->Photo->setPixmap(QPixmap(":/Icons/Drop CH.png"));
         }
@@ -497,7 +522,7 @@ void PhotoWindow::ActionEnabler()
         ui->actionPrint->setEnabled(false);
         ui->actionPhotoInfo->setEnabled(false);
 
-        if(ps >= (PhotoAddress.count()-1) )
+        if(ps >= (photoAddress.count()-1) )
         {
             ui->actionNext_Photo->setEnabled(false);
         }
@@ -506,7 +531,7 @@ void PhotoWindow::ActionEnabler()
             ui->actionNext_Photo->setEnabled(true);
         }
 
-        if(PhotoAddress.count() > 1)
+        if(photoAddress.count() > 1)
         {
             ui->actionSlideshow->setEnabled(true);
         }
@@ -529,10 +554,10 @@ void PhotoWindow::ActionEnabler()
 
 void PhotoWindow::PhotoSelecter()
 {
-    ui->Photo->setPixmap(PhotoAddress[ps]);
+    ui->Photo->setPixmap(photoAddress[ps]);
 
-    pi=PhotoAddress[ps];
-    fi=PhotoAddress[ps];
+    pi=photoAddress[ps];
+    fi=photoAddress[ps];
 
     if (fi.size()<1024)
     {
@@ -546,8 +571,6 @@ void PhotoWindow::PhotoSelecter()
 
 void PhotoWindow::ProcessingPhoto()
 {
-    extern bool kar;
-
     if(sph==true)
     {
         ui->Photo->setPixmap(PhotoSave);
@@ -568,8 +591,8 @@ void PhotoWindow::ProcessingPhoto()
                 {
                         ps=psb;
 
-                        ui->Photo->setPixmap(PhotoAddress[ps]);
-                        pi=(PhotoAddress[ps]);
+                        ui->Photo->setPixmap(photoAddress[ps]);
+                        pi=(photoAddress[ps]);
 
                 }
             }
@@ -601,7 +624,7 @@ void PhotoWindow::ProcessingPhoto()
             wh = ( (this->geometry().height() ) - (mbh + ui->statusBar->height() + 20));
         }
 
-        if(kar==true)
+        if(SLSettings::Kar()==true)
         {
             pw=ui->Photo->pixmap()->width();
             ph=ui->Photo->pixmap()->height();
@@ -663,9 +686,9 @@ void PhotoWindow::ProcessingPhoto()
                 }
 
                 ui->statusBar->showMessage("| " + QString::number(zoomp) + "%" + tr(" Zoom") + " | "
-                                           + QFileInfo(PhotoAddress[ps]).fileName() + " | " +  QString::number(pi.width())
+                                           + QFileInfo(photoAddress[ps]).fileName() + " | " +  QString::number(pi.width())
                                            + "x" + QString::number(pi.height()) + " | " + PSize + " | "
-                                           + QString::number(ps+1) + tr(" of ") + QString::number(PhotoAddress.count()) + " |", 0);
+                                           + QString::number(ps+1) + tr(" of ") + QString::number(photoAddress.count()) + " |", 0);
             }
             else
             {
@@ -684,9 +707,9 @@ void PhotoWindow::ProcessingPhoto()
                 }
 
                 ui->statusBar->showMessage("| " + QString::number(zoomp) + "%" + tr(" Zoom") + " | "
-                                           + QFileInfo(PhotoAddress[ps]).fileName() + " | " +  QString::number(pi.width())
+                                           + QFileInfo(photoAddress[ps]).fileName() + " | " +  QString::number(pi.width())
                                            + "x" + QString::number(pi.height()) + " | " + PSize + " | "
-                                           + QString::number(ps+1) + tr(" of ") + QString::number(PhotoAddress.count()) + " |", 0);
+                                           + QString::number(ps+1) + tr(" of ") + QString::number(photoAddress.count()) + " |", 0);
             }
         }
         else
@@ -716,9 +739,9 @@ void PhotoWindow::ProcessingPhoto()
                 }
 
                 ui->statusBar->showMessage("| " + QString::number(zoomp) + "%" + tr(" Zoom") + " | "
-                                           + QFileInfo(PhotoAddress[ps]).fileName() + " | " +  QString::number(pi.width())
+                                           + QFileInfo(photoAddress[ps]).fileName() + " | " +  QString::number(pi.width())
                                            + "x" + QString::number(pi.height()) + " | " + PSize + " | "
-                                           + QString::number(ps+1) + tr(" of ") + QString::number(PhotoAddress.count()) + " |", 0);
+                                           + QString::number(ps+1) + tr(" of ") + QString::number(photoAddress.count()) + " |", 0);
             }
             else
             {
@@ -737,9 +760,9 @@ void PhotoWindow::ProcessingPhoto()
                 }
 
                 ui->statusBar->showMessage("| " + QString::number(zoomp) + "%" + tr(" Zoom") + " | "
-                                           + QFileInfo(PhotoAddress[ps]).fileName() + " | " +  QString::number(pi.width())
+                                           + QFileInfo(photoAddress[ps]).fileName() + " | " +  QString::number(pi.width())
                                            + "x" + QString::number(pi.height()) + " | " + PSize + " | "
-                                           + QString::number(ps+1) + tr(" of ") + QString::number(PhotoAddress.count()) + " |", 0);
+                                           + QString::number(ps+1) + tr(" of ") + QString::number(photoAddress.count()) + " |", 0);
             }
         }
 
@@ -749,8 +772,8 @@ void PhotoWindow::ProcessingPhoto()
     {
         iif=true;
 
-        ui->statusBar->showMessage("| " + PhotoAddress[ps] + tr(" is Incorrect data !") + " | " + PSize + " | "
-                                   + QString::number(ps+1) + tr(" of ") + QString::number(PhotoAddress.count()) + " |", 0);
+        ui->statusBar->showMessage("| " + photoAddress[ps] + tr(" is Incorrect data !") + " | " + PSize + " | "
+                                   + QString::number(ps+1) + tr(" of ") + QString::number(photoAddress.count()) + " |", 0);
 
         ui->Photo->setScaledContents(false);
         ui->Photo->setPixmap(QPixmap(":/Icons/Drop.png"));
@@ -790,7 +813,7 @@ void PhotoWindow::SavePhoto()
 {
     if(pe==true && sph==true && iif==false)
     {
-        QFileInfo SaveFile = PhotoAddress[ps];
+        QFileInfo SaveFile = photoAddress[ps];
 
         QMessageBox SaveMsg(this);
         SaveMsg.setWindowTitle(tr("Save Changes"));
@@ -815,9 +838,9 @@ void PhotoWindow::SavePhoto()
             {
                 PhotoSave=PhotoSave.fromImage(ui->Photo->pixmap()->toImage());
 
-                if(QFile(PhotoAddress[ps]).open(QIODevice::ReadWrite))
+                if(QFile(photoAddress[ps]).open(QIODevice::ReadWrite))
                 {
-                    PhotoSave.save(PhotoAddress[ps]);
+                    PhotoSave.save(photoAddress[ps]);
                     sph=false;
                     ui->actionSave->setEnabled(false);
                 }
@@ -855,8 +878,6 @@ void PhotoWindow::SavePhoto()
 
 void PhotoWindow::Screenshot()
 {
-    extern bool sam;
-
     ScreenshotTimer.stop();
 
     QScreen *Shot = QGuiApplication::primaryScreen();
@@ -891,9 +912,9 @@ void PhotoWindow::Screenshot()
         msg.exec();
     }
 
-    PhotoAddress << ScreenshotFile;
+    photoAddress << ScreenshotFile;
 
-    if(!PhotoAddress.isEmpty())
+    if(!photoAddress.isEmpty())
     {
 
         PhotoSave=PhotoSave.fromImage(SaveScreenshot.toImage());
@@ -902,14 +923,14 @@ void PhotoWindow::Screenshot()
 
         ssh=true;
         pe=true;
-        ps=PhotoAddress.count()-1;
+        ps=photoAddress.count()-1;
         PhotoSelecter();
         ActionEnabler();
         ProcessingPhoto();
         sph=true;
     }
 
-    if(sam == true)
+    if(SLSettings::Sam() == true)
     {
         Restore();
     }
@@ -917,9 +938,7 @@ void PhotoWindow::Screenshot()
 
 void PhotoWindow::ScreenshotIcon()
 {
-    extern bool sam;
-
-    if (sam == true)
+    if (SLSettings::Sam() == true)
     {
         qDebug()<<"TrayNum: "<<IconTrayNum;
 
@@ -963,13 +982,13 @@ void PhotoWindow::ScreenshotIcon()
 void PhotoWindow::Close_Photo()
 {
     qDebug()<<"ps:"<<ps;
-    qDebug()<<"count:"<<PhotoAddress.count();
+    qDebug()<<"count:"<<photoAddress.count();
 
-    if(PhotoAddress.count() > 0)
+    if(photoAddress.count() > 0)
     {
-        PhotoAddress.removeAt(ps);
+        photoAddress.removeAt(ps);
 
-        if(PhotoAddress.count() > 0)
+        if(photoAddress.count() > 0)
         {
             if(ps > 0)
             {
@@ -1021,10 +1040,8 @@ void PhotoWindow::Close_Photo()
 
 void PhotoWindow::Restore()
 {
-    extern bool sam;
-
     tray->hide();
-    sam=false;
+    SLSettings::setSam(false);
     show();
 }
 
@@ -1114,7 +1131,7 @@ void PhotoWindow::on_actionOpen_Photo_triggered()
 
     if (OpenPhoto.exec())
     {
-        PhotoAddress = PhotoAddress + OpenPhoto.selectedFiles();
+        photoAddress = photoAddress + OpenPhoto.selectedFiles();
 
         //Seve Directory
         {
@@ -1124,7 +1141,7 @@ void PhotoWindow::on_actionOpen_Photo_triggered()
             SettingsAP.endGroup();
         }
 
-        if(!PhotoAddress.isEmpty())
+        if(!photoAddress.isEmpty())
         {
             //Clean
             {
@@ -1198,14 +1215,14 @@ void PhotoWindow::on_actionClose_Photo_triggered()
 
 void PhotoWindow::on_actionClose_All_Photos_triggered()
 {
-    if(PhotoAddress.count() > 0)
+    if(photoAddress.count() > 0)
     {
         pe=false;
         ActionEnabler();
 
         //Clean
         {
-            PhotoAddress.clear();
+            photoAddress.clear();
             pw=0;
             ph=0;
             ww=0;
@@ -1239,7 +1256,7 @@ void PhotoWindow::on_actionClose_All_Photos_triggered()
 
 void PhotoWindow::on_actionGo_to_triggered()
 {
-    if(PhotoAddress.count()>1)
+    if(photoAddress.count()>1)
     {
         GoTo GTD(this);
         GTD.exec();
@@ -1254,7 +1271,7 @@ void PhotoWindow::on_actionSave_triggered()
 {
     if(pe==true && iif==false)
     {
-        QFileInfo SaveFile = PhotoAddress[ps];
+        QFileInfo SaveFile = photoAddress[ps];
 
         if((SaveFile.suffix().toLower() == "png" || SaveFile.suffix().toLower() == "jpg"
          || SaveFile.suffix().toLower() == "jpeg" || SaveFile.suffix().toLower() == "bmp"
@@ -1266,9 +1283,9 @@ void PhotoWindow::on_actionSave_triggered()
         {
             PhotoSave=PhotoSave.fromImage(ui->Photo->pixmap()->toImage());
 
-            if(QFile(PhotoAddress[ps]).open(QIODevice::ReadWrite))
+            if(QFile(photoAddress[ps]).open(QIODevice::ReadWrite))
             {
-                PhotoSave.save(PhotoAddress[ps]);
+                PhotoSave.save(photoAddress[ps]);
 
                 sph=false;
                 ui->actionSave->setEnabled(false);
@@ -1296,7 +1313,7 @@ void PhotoWindow::on_actionSave_As_triggered()
 {
     if(pe==true && iif==false)
     {
-        QFileInfo PhotoName = PhotoAddress[ps];
+        QFileInfo PhotoName = photoAddress[ps];
         QString Directory;
 
         //Load Directory
@@ -1363,7 +1380,7 @@ void PhotoWindow::on_actionSave_As_triggered()
                     SavePNG.save(SaveAddress,"png");
 
                     sph=false;
-                    PhotoAddress[ps]=SaveAddress;
+                    photoAddress[ps]=SaveAddress;
                     PhotoSelecter();
                     ProcessingPhoto();
                 }
@@ -1393,7 +1410,7 @@ void PhotoWindow::on_actionSave_As_triggered()
                     SaveJPG.save(SaveAddress,"jpg");
 
                     sph=false;
-                    PhotoAddress[ps]=SaveAddress;
+                    photoAddress[ps]=SaveAddress;
                     PhotoSelecter();
                     ProcessingPhoto();
                 }
@@ -1423,7 +1440,7 @@ void PhotoWindow::on_actionSave_As_triggered()
                     SaveBMP.save(SaveAddress,"bmp");
 
                     sph=false;
-                    PhotoAddress[ps]=SaveAddress;
+                    photoAddress[ps]=SaveAddress;
                     PhotoSelecter();
                     ProcessingPhoto();
                 }
@@ -1453,7 +1470,7 @@ void PhotoWindow::on_actionSave_As_triggered()
                     SaveTIF.save(SaveAddress,"tif");
 
                     sph=false;
-                    PhotoAddress[ps]=SaveAddress;
+                    photoAddress[ps]=SaveAddress;
                     PhotoSelecter();
                     ProcessingPhoto();
                 }
@@ -1483,7 +1500,7 @@ void PhotoWindow::on_actionSave_As_triggered()
                     SaveWEBP.save(SaveAddress,"webp");
 
                     sph=false;
-                    PhotoAddress[ps]=SaveAddress;
+                    photoAddress[ps]=SaveAddress;
                     PhotoSelecter();
                     ProcessingPhoto();
                 }
@@ -1513,7 +1530,7 @@ void PhotoWindow::on_actionSave_As_triggered()
                     SaveJP2.save(SaveAddress,"jp2");
 
                     sph=false;
-                    PhotoAddress[ps]=SaveAddress;
+                    photoAddress[ps]=SaveAddress;
                     PhotoSelecter();
                     ProcessingPhoto();
                 }
@@ -1543,7 +1560,7 @@ void PhotoWindow::on_actionSave_As_triggered()
                     SaveDDS.save(SaveAddress,"dds");
 
                     sph=false;
-                    PhotoAddress[ps]=SaveAddress;
+                    photoAddress[ps]=SaveAddress;
                     PhotoSelecter();
                     ProcessingPhoto();
                 }
@@ -1573,7 +1590,7 @@ void PhotoWindow::on_actionSave_As_triggered()
                     SavePPM.save(SaveAddress,"ppm");
 
                     sph=false;
-                    PhotoAddress[ps]=SaveAddress;
+                    photoAddress[ps]=SaveAddress;
                     PhotoSelecter();
                     ProcessingPhoto();
                 }
@@ -1603,7 +1620,7 @@ void PhotoWindow::on_actionSave_As_triggered()
                     SaveXPM.save(SaveAddress,"xpm");
 
                     sph=false;
-                    PhotoAddress[ps]=SaveAddress;
+                    photoAddress[ps]=SaveAddress;
                     PhotoSelecter();
                     ProcessingPhoto();
                 }
@@ -1633,7 +1650,7 @@ void PhotoWindow::on_actionSave_As_triggered()
                     SavePGM.save(SaveAddress,"pgm");
 
                     sph=false;
-                    PhotoAddress[ps]=SaveAddress;
+                    photoAddress[ps]=SaveAddress;
                     PhotoSelecter();
                     ProcessingPhoto();
                 }
@@ -1663,7 +1680,7 @@ void PhotoWindow::on_actionSave_As_triggered()
                     SaveXBM.save(SaveAddress,"xbm");
 
                     sph=false;
-                    PhotoAddress[ps]=SaveAddress;
+                    photoAddress[ps]=SaveAddress;
                     PhotoSelecter();
                     ProcessingPhoto();
                 }
@@ -1693,7 +1710,7 @@ void PhotoWindow::on_actionSave_As_triggered()
                     SavePBM.save(SaveAddress,"pbm");
 
                     sph=false;
-                    PhotoAddress[ps]=SaveAddress;
+                    photoAddress[ps]=SaveAddress;
                     PhotoSelecter();
                     ProcessingPhoto();
                 }
@@ -1720,16 +1737,13 @@ void PhotoWindow::on_actionSave_As_triggered()
 
 void PhotoWindow::on_actionOption_triggered()
 {
-    extern int SlideshowSpeed;
-    extern bool kar;
-
-    bool kart=kar;
-    int SlideshowSpeedt=SlideshowSpeed;
+    bool kart=SLSettings::Kar();
+    int slideshowSpeedt=SLSettings::SlideshowSpeed();
 
     option OD(this);
     OD.exec();
 
-    if(pe==true && (kart != kar || SlideshowSpeedt != SlideshowSpeed))
+    if(pe==true && (kart != SLSettings::Kar() || slideshowSpeedt != SLSettings::SlideshowSpeed()))
     {
         //Clean
         {
@@ -1747,7 +1761,7 @@ void PhotoWindow::on_actionOption_triggered()
             zoom=false;
         }
 
-        if(kar==true)
+        if(SLSettings::Kar()==true)
         {
             ui->actionZoom1_1->setEnabled(true);
         }
@@ -1756,7 +1770,7 @@ void PhotoWindow::on_actionOption_triggered()
             ui->actionZoom1_1->setEnabled(false);
         }
 
-        Slideshow.setInterval(SlideshowSpeed*1000);
+        Slideshow.setInterval(SLSettings::SlideshowSpeed()*1000);
 
         ProcessingPhoto();
     }
@@ -1787,12 +1801,9 @@ void PhotoWindow::on_actionQuit_triggered()
 
 void PhotoWindow::on_actionScreenshot_triggered()
 {
-    extern int ScreenshotDelay;
-    extern bool sam;
-
     if(ssh==false)
     {
-        if (sam == true)
+        if (SLSettings::Sam() == true)
         {
             QAction *RestoreAction = new QAction(QIcon(""), tr("Restore"), this);
             RestoreAction->connect(RestoreAction, SIGNAL(triggered()), this, SLOT(Restore()));
@@ -1810,9 +1821,9 @@ void PhotoWindow::on_actionScreenshot_triggered()
 
             this->hide();
 
-            if(ScreenshotDelay > 0)
+            if(SLSettings::ScreenshotDelay() > 0)
             {
-                IconTrayNum=ScreenshotDelay;
+                IconTrayNum=SLSettings::ScreenshotDelay();
                 ScreenshotIcon();
 
                 ScreenshotIconSec.start();
@@ -1824,9 +1835,9 @@ void PhotoWindow::on_actionScreenshot_triggered()
         }
         else
         {
-            if(ScreenshotDelay > 0)
+            if(SLSettings::ScreenshotDelay() > 0)
             {
-                IconTrayNum=ScreenshotDelay;
+                IconTrayNum=SLSettings::ScreenshotDelay();
                 ScreenshotIcon();
                 ScreenshotIconSec.start();
             }
@@ -1836,7 +1847,7 @@ void PhotoWindow::on_actionScreenshot_triggered()
             }
         }
 
-        if(ScreenshotDelay > 0)
+        if(SLSettings::ScreenshotDelay() > 0)
         {
             ScreenshotTimer.start();
         }
@@ -1886,45 +1897,46 @@ void PhotoWindow::on_actionAbout_triggered()
 
 void PhotoWindow::on_actionResize_triggered()
 {
-    extern int RSWidth, RSHeight;
-    extern bool resz, rekar;
-
     if(pe==true)
     {
         resizephoto RPD(this);
         RPD.exec();
 
-        if(resz==true)
+        if(resizephoto::Resz()==true)
         {
             QImage Resize(ui->Photo->pixmap()->toImage());
 
             if(rd==90 || rd==270 || rd==-90 || rd==-270)
             {
-                if(rekar==true)
+                if(resizephoto::Rekar()==true)
                 {
-                    PhotoSave=PhotoSave.fromImage(Resize.scaled(RSHeight,RSWidth,Qt::KeepAspectRatio,Qt::SmoothTransformation));
+                    PhotoSave=PhotoSave.fromImage(Resize.scaled(resizephoto::RsHeight(), resizephoto::RsWidth(),
+                                                                Qt::KeepAspectRatio, Qt::SmoothTransformation));
                 }
                 else
                 {
-                    PhotoSave=PhotoSave.fromImage(Resize.scaled(RSHeight,RSWidth,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
+                    PhotoSave=PhotoSave.fromImage(Resize.scaled(resizephoto::RsHeight(), resizephoto::RsWidth(),
+                                                                Qt::IgnoreAspectRatio, Qt::SmoothTransformation));
                 }
             }
             else
             {
-                if(rekar==true)
+                if(resizephoto::Rekar()==true)
                 {
-                    PhotoSave=PhotoSave.fromImage(Resize.scaled(RSWidth,RSHeight,Qt::KeepAspectRatio,Qt::SmoothTransformation));
+                    PhotoSave=PhotoSave.fromImage(Resize.scaled(resizephoto::RsWidth(), resizephoto::RsHeight(),
+                                                                Qt::KeepAspectRatio, Qt::SmoothTransformation));
                 }
                 else
                 {
-                    PhotoSave=PhotoSave.fromImage(Resize.scaled(RSWidth,RSHeight,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
+                    PhotoSave=PhotoSave.fromImage(Resize.scaled(resizephoto::RsWidth(), resizephoto::RsHeight(),
+                                                                Qt::IgnoreAspectRatio, Qt::SmoothTransformation));
                 }
             }
 
-            resz=false;
+            resizephoto::setResz(false);
 
-            RSWidth=0;
-            RSWidth=0;
+            resizephoto::setRsWidth(0);
+            resizephoto::setRsHeight(0);
 
             sph=true;
             ui->actionSave->setEnabled(true);
@@ -2028,9 +2040,7 @@ void PhotoWindow::on_actionZoomIN_triggered()
 
 void PhotoWindow::on_actionZoom1_1_triggered()
 {
-    extern bool kar;
-
-    if(pe==true && kar==true)
+    if(pe==true && SLSettings::Kar()==true)
     {
         zoom=true;
 
@@ -2075,7 +2085,7 @@ void PhotoWindow::on_actionFitWindow_triggered()
 
 void PhotoWindow::on_actionPrevious_Photo_triggered()
 {
-    if(pe==true && PhotoAddress.count() > 1 && ps > 0)
+    if(pe==true && photoAddress.count() > 1 && ps > 0)
     {
         ps--;
 
@@ -2089,9 +2099,7 @@ void PhotoWindow::on_actionPrevious_Photo_triggered()
 
 void PhotoWindow::on_actionSlideshow_triggered()
 {
-    extern bool sgf;
-
-    if(sls==false && pe==true && PhotoAddress.count() > 1)
+    if(sls==false && pe==true && photoAddress.count() > 1)
     {
         Slideshow.start();
         sls=true;
@@ -2101,7 +2109,7 @@ void PhotoWindow::on_actionSlideshow_triggered()
 
         ActionEnabler();
 
-        if(sgf==true)
+        if(SLSettings::Sgf()==true)
         {
             if(!isFullScreen())
             {
@@ -2131,7 +2139,7 @@ void PhotoWindow::on_actionSlideshow_triggered()
 
         ActionEnabler();
 
-        if(sgf==true)
+        if(SLSettings::Sgf()==true)
         {
             if(isFullScreen())
             {
@@ -2153,12 +2161,12 @@ void PhotoWindow::on_actionSlideshow_triggered()
 
 void PhotoWindow::on_actionNext_Photo_triggered()
 {
-    if(sls == true && ps == (PhotoAddress.count()-1))
+    if(sls == true && ps == (photoAddress.count()-1))
     {
         ps=-1;
     }
 
-    if(pe==true && PhotoAddress.count() > 1 && ps <= (PhotoAddress.count()-1) )
+    if(pe==true && photoAddress.count() > 1 && ps <= (photoAddress.count()-1) )
     {
         ps++;
 

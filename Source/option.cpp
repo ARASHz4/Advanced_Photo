@@ -1,15 +1,10 @@
 #include "option.h"
 #include "ui_option.h"
 #include "advancedphoto.h"
+#include "slsettings.h"
 
-#include <QSettings>
 #include <QTranslator>
 #include <QDesktopWidget>
-
-//Variables:
-int SlideshowSpeed, ScreenshotDelay, Language;
-bool kar, sgf, oap, sam, AutomaticLanguage;
-//
 
 option::option(QWidget *parent) :
     QDialog(parent),
@@ -54,7 +49,7 @@ option::option(QWidget *parent) :
     ui->listWidgetOption->setCurrentRow(0);
     ui->LanguageComboBox->insertSeparator(1);
 
-    LoadSettings();
+    Load();
 }
 
 option::~option()
@@ -74,11 +69,11 @@ void option::on_listWidgetOption_currentRowChanged(int currentRow)
         ui->LanguageLabel->setVisible(false);
         ui->LanguageComboBox->setVisible(false);
         ui->SppedLabel->setVisible(false);
-        ui->SlideshowSpeed->setVisible(false);
+        ui->slideshowSpeed->setVisible(false);
         ui->SecLabel->setVisible(false);
         ui->slsFullscreen->setVisible(false);
-        ui->ScreenshotDelay->setVisible(false);
-        ui->ScreenshotDelaySpinBox->setVisible(false);
+        ui->screenshotDelay->setVisible(false);
+        ui->screenshotDelaySpinBox->setVisible(false);
         ui->SecLabel_2->setVisible(false);
         ui->ScreenshotAtuoMinimizeCheckBox->setVisible(false);
     }
@@ -92,11 +87,11 @@ void option::on_listWidgetOption_currentRowChanged(int currentRow)
         ui->KeepAspectRatioCheckBox->setVisible(false);
         ui->LoadPhotosFolder->setVisible(false);
         ui->SppedLabel->setVisible(false);
-        ui->SlideshowSpeed->setVisible(false);
+        ui->slideshowSpeed->setVisible(false);
         ui->SecLabel->setVisible(false);
         ui->slsFullscreen->setVisible(false);
-        ui->ScreenshotDelay->setVisible(false);
-        ui->ScreenshotDelaySpinBox->setVisible(false);
+        ui->screenshotDelay->setVisible(false);
+        ui->screenshotDelaySpinBox->setVisible(false);
         ui->SecLabel_2->setVisible(false);
         ui->ScreenshotAtuoMinimizeCheckBox->setVisible(false);
     }
@@ -105,7 +100,7 @@ void option::on_listWidgetOption_currentRowChanged(int currentRow)
         ui->OptionGroupBox->setTitle(tr("Slideshow"));
 
         ui->SppedLabel->setVisible(true);
-        ui->SlideshowSpeed->setVisible(true);
+        ui->slideshowSpeed->setVisible(true);
         ui->SecLabel->setVisible(true);
         ui->slsFullscreen->setVisible(true);
 
@@ -113,8 +108,8 @@ void option::on_listWidgetOption_currentRowChanged(int currentRow)
         ui->LoadPhotosFolder->setVisible(false);
         ui->LanguageLabel->setVisible(false);
         ui->LanguageComboBox->setVisible(false);
-        ui->ScreenshotDelay->setVisible(false);
-        ui->ScreenshotDelaySpinBox->setVisible(false);
+        ui->screenshotDelay->setVisible(false);
+        ui->screenshotDelaySpinBox->setVisible(false);
         ui->SecLabel_2->setVisible(false);
         ui->ScreenshotAtuoMinimizeCheckBox->setVisible(false);
     }
@@ -122,8 +117,8 @@ void option::on_listWidgetOption_currentRowChanged(int currentRow)
     {
         ui->OptionGroupBox->setTitle(tr("Screenshot"));
 
-        ui->ScreenshotDelay->setVisible(true);
-        ui->ScreenshotDelaySpinBox->setVisible(true);
+        ui->screenshotDelay->setVisible(true);
+        ui->screenshotDelaySpinBox->setVisible(true);
         ui->SecLabel_2->setVisible(true);
         ui->ScreenshotAtuoMinimizeCheckBox->setVisible(true);
 
@@ -132,17 +127,17 @@ void option::on_listWidgetOption_currentRowChanged(int currentRow)
         ui->LanguageLabel->setVisible(false);
         ui->LanguageComboBox->setVisible(false);
         ui->SppedLabel->setVisible(false);
-        ui->SlideshowSpeed->setVisible(false);
+        ui->slideshowSpeed->setVisible(false);
         ui->SecLabel->setVisible(false);
         ui->slsFullscreen->setVisible(false);
     }
 }
 
-void option::LoadSettings()
+void option::Load()
 {
     //General
     {
-        if(kar==true)
+        if(SLSettings::Kar() == true)
         {
             ui->KeepAspectRatioCheckBox->setChecked(true);
         }
@@ -151,7 +146,7 @@ void option::LoadSettings()
             ui->KeepAspectRatioCheckBox->setChecked(false);
         }
 
-        if(oap==true)
+        if(SLSettings::Oap()==true)
         {
             ui->LoadPhotosFolder->setChecked(true);
         }
@@ -163,25 +158,25 @@ void option::LoadSettings()
 
     //Language
     {
-        if(AutomaticLanguage == true)
+        if(SLSettings::AutomaticLanguage() == true)
         {
             ui->LanguageComboBox->setCurrentIndex(0);
         }
         else
         {
-            if(Language == QLocale::English)
+            if(SLSettings::Language() == QLocale::English)
             {
                 ui->LanguageComboBox->setCurrentIndex(2);
             }
-            else if(Language == QLocale::Persian)
+            else if(SLSettings::Language() == QLocale::Persian)
             {
                 ui->LanguageComboBox->setCurrentIndex(3);
             }
-            else if(Language == QLocale::Spanish)
+            else if(SLSettings::Language() == QLocale::Spanish)
             {
                 ui->LanguageComboBox->setCurrentIndex(4);
             }
-            else if(Language == QLocale::Chinese)
+            else if(SLSettings::Language() == QLocale::Chinese)
             {
                 ui->LanguageComboBox->setCurrentIndex(5);
             }
@@ -190,9 +185,9 @@ void option::LoadSettings()
 
     //Slideshow Setting
     {
-        ui->SlideshowSpeed->setValue(SlideshowSpeed);
+        ui->slideshowSpeed->setValue(SLSettings::SlideshowSpeed());
 
-        if(sgf==true)
+        if(SLSettings::Sgf()==true)
         {
             ui->slsFullscreen->setChecked(true);
         }
@@ -204,9 +199,9 @@ void option::LoadSettings()
 
     //Screenshot
     {
-        ui->ScreenshotDelaySpinBox->setValue(ScreenshotDelay);
+        ui->screenshotDelaySpinBox->setValue(SLSettings::ScreenshotDelay());
 
-        if(sam==true)
+        if(SLSettings::Sam()==true)
         {
             ui->ScreenshotAtuoMinimizeCheckBox->setChecked(true);
         }
@@ -217,136 +212,127 @@ void option::LoadSettings()
     }
 }
 
-void option::SaveSettings()
+void option::Save()
 {
-    QSettings SettingsAP (AdvancedPhoto::organizationName(), AdvancedPhoto::applicationName());
-    SettingsAP.beginGroup("Option");
-
     //General
     {
         if(ui->KeepAspectRatioCheckBox->isChecked() == true)
         {
-            kar=true;
+            SLSettings::setKar(true);
         }
 
         if(ui->KeepAspectRatioCheckBox->isChecked() == false)
         {
-            kar=false;
+            SLSettings::setKar(false);
         }
-
-        SettingsAP.setValue("KeepAspectRatio", kar);
 
         if(ui->LoadPhotosFolder->isChecked() == true)
         {
-            oap=true;
+            SLSettings::setOap(true);
         }
 
         if(ui->LoadPhotosFolder->isChecked() == false)
         {
-            oap=false;
+            SLSettings::setOap(false);
         }
-
-        SettingsAP.setValue("LoadPhotosFolder", oap);
     }
 
     //Language
     {
         if(ui->LanguageComboBox->currentIndex() == 0)
         {
-            Language = 0;
+            SLSettings::setLanguage(0);
         }
         else if(ui->LanguageComboBox->currentIndex() == 2)
         {
-            Language = QLocale::English;
+            SLSettings::setLanguage(QLocale::English);
         }
         else if(ui->LanguageComboBox->currentIndex() == 3)
         {
-            Language = QLocale::Persian;
+            SLSettings::setLanguage(QLocale::Persian);
         }
         else if(ui->LanguageComboBox->currentIndex() == 4)
         {
-            Language = QLocale::Spanish;
+            SLSettings::setLanguage(QLocale::Spanish);
         }
         else if(ui->LanguageComboBox->currentIndex() == 5)
         {
-            Language = QLocale::Chinese;
+            SLSettings::setLanguage(QLocale::Chinese);
         }
 
         QTranslator *Translator = new QTranslator;
 
-        if(Language == 0)
+        if(SLSettings::Language() == 0)
         {
             if(QLocale::system().language() == QLocale::English)
             {
                 Translator->load(":/Language/English.qm");
                 AdvancedPhoto::installTranslator(Translator);
 
-                Language = QLocale::English;
+                SLSettings::setLanguage(QLocale::English);
             }
             else if(QLocale::system().language() == QLocale::Persian)
             {
                 Translator->load(":/Language/Persian.qm");
                 AdvancedPhoto::installTranslator(Translator);
 
-                Language = QLocale::Persian;
+                SLSettings::setLanguage(QLocale::Persian);
             }
             else if(QLocale::system().language() == QLocale::Spanish)
             {
                 Translator->load(":/Language/Spanish.qm");
                 AdvancedPhoto::installTranslator(Translator);
 
-                Language = QLocale::Spanish;
+                SLSettings::setLanguage(QLocale::Spanish);
             }
             else if(QLocale::system().language() == QLocale::Chinese)
             {
                 Translator->load(":/Language/Traditional Chinese.qm");
                 AdvancedPhoto::installTranslator(Translator);
 
-                Language = QLocale::Chinese;
+                SLSettings::setLanguage(QLocale::Chinese);
             }
             else
             {
                 Translator->load(":/Language/English.qm");
                 AdvancedPhoto::installTranslator(Translator);
 
-                Language = QLocale::English;
+                SLSettings::setLanguage(QLocale::English);
             }
 
-            AutomaticLanguage = true;
-            SettingsAP.setValue("Language", 0);
+            SLSettings::setAutomaticLanguage(true);
         }
         else
         {
-            if(Language == QLocale::English)
+            if(SLSettings::Language() == QLocale::English)
             {
                 Translator->load(":/Language/English.qm");
                 AdvancedPhoto::installTranslator(Translator);
             }
-            else if(Language == QLocale::Persian)
+            else if(SLSettings::Language() == QLocale::Persian)
             {
                 Translator->load(":/Language/Persian.qm");
                 AdvancedPhoto::installTranslator(Translator);
             }
-            else if(Language == QLocale::Spanish)
+            else if(SLSettings::Language() == QLocale::Spanish)
             {
                 Translator->load(":/Language/Spanish.qm");
                 AdvancedPhoto::installTranslator(Translator);
             }
-            else if(Language == QLocale::Chinese)
+            else if(SLSettings::Language() == QLocale::Chinese)
             {
                 Translator->load(":/Language/Traditional Chinese.qm");
                 AdvancedPhoto::installTranslator(Translator);
             }
 
-            AutomaticLanguage = false;
-            SettingsAP.setValue("Language", Language);
+            SLSettings::setAutomaticLanguage(false);
         }
 
-        if(Language == QLocale::English || Language == QLocale::Spanish || Language == QLocale::Chinese)
+        if(SLSettings::Language() == QLocale::English || SLSettings::Language() == QLocale::Spanish || SLSettings::Language() == QLocale::Chinese)
         {
             AdvancedPhoto::setLayoutDirection(Qt::LeftToRight);
         }
-        else if(Language == QLocale::Persian)
+        else if(SLSettings::Language() == QLocale::Persian)
         {
             AdvancedPhoto::setLayoutDirection(Qt::RightToLeft);
         }
@@ -354,49 +340,41 @@ void option::SaveSettings()
 
     //Slideshow
     {
-        SlideshowSpeed=ui->SlideshowSpeed->value();
-
-        SettingsAP.setValue("SlideshowSpeed",SlideshowSpeed);
+        SLSettings::setSlideshowSpeed(ui->slideshowSpeed->value());
 
         if(ui->slsFullscreen->isChecked() == true)
         {
-            sgf=true;
+            SLSettings::setSgf(true);
         }
 
         if(ui->slsFullscreen->isChecked() == false)
         {
-            sgf=false;
+            SLSettings::setSgf(false);
         }
-
-        SettingsAP.setValue("SlideshowFullscreen", sgf);
     }
 
     //Screenshot
     {
-        ScreenshotDelay=ui->ScreenshotDelaySpinBox->value();
-
-        SettingsAP.setValue("ScreenshotDelay", ScreenshotDelay);
+        SLSettings::setScreenshotDelay(ui->screenshotDelaySpinBox->value());
 
         if(ui->ScreenshotAtuoMinimizeCheckBox->isChecked() == true)
         {
-            sam=true;
+            SLSettings::setSam(true);
         }
 
         if(ui->ScreenshotAtuoMinimizeCheckBox->isChecked() == false)
         {
-            sam=false;
+            SLSettings::setSam(false);
         }
-
-        SettingsAP.setValue("ScreenshotAtuoMinimize", sam);
     }
 
-    SettingsAP.endGroup();
+    SLSettings Ssettings;
+    Ssettings.SaveSettings();
 }
 
 void option::OKButton()
 {
-    SaveSettings();
-
+    Save();
     close();
 }
 
@@ -407,7 +385,7 @@ void option::CancelButton()
 
 void option::ApplyButton()
 {
-    SaveSettings();
+    Save();
 
     ui->retranslateUi(this);
     OK.setText(tr("OK"));
@@ -418,16 +396,16 @@ void option::ApplyButton()
 
 void option::RestoreDefaultsButton()
 {
-    kar = true;
-    oap = true;
-    AutomaticLanguage = true;
-    Language = 0;
-    SlideshowSpeed = 2;
-    sgf = false;
-    ScreenshotDelay = 3;
-    sam = true;
+    SLSettings::setKar(true);
+    SLSettings::setOap(true);
+    SLSettings::setAutomaticLanguage(true);
+    SLSettings::setLanguage(0);
+    SLSettings::setSlideshowSpeed(2);
+    SLSettings::setSgf(false);
+    SLSettings::setScreenshotDelay(3);
+    SLSettings::setSam(true);
 
-    LoadSettings();
+    Load();
 }
 
 void option::closeEvent (QCloseEvent *)

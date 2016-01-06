@@ -1,11 +1,10 @@
 #include "photoinfo.h"
 #include "ui_photoinfo.h"
 #include "advancedphoto.h"
+#include "photowindow.h"
 
 #include <QFileInfo>
 #include <QDateTime>
-
-#include <QDebug>
 
 photoinfo::photoinfo(QWidget *parent) :
     QDialog(parent),
@@ -22,94 +21,91 @@ photoinfo::~photoinfo()
 
 void photoinfo::showEvent(QShowEvent *)
 {
-    extern QStringList PhotoAddress;
-    extern int ps;
+    ui->NamePI->setText(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).fileName());
+    ui->DirectoryPI->setText(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).path());
 
-    ui->NamePI->setText(QFileInfo(PhotoAddress[ps]).fileName());
-    ui->DirectoryPI->setText(QFileInfo(PhotoAddress[ps]).path());
-
-    if (QFileInfo(PhotoAddress[ps]).size()<1024)
+    if (QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).size()<1024)
     {
-        ui->SizePI->setText(QString::number(QFileInfo(PhotoAddress[ps]).size()) + " Byte");
+        ui->SizePI->setText(QString::number(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).size()) + " Byte");
     }
-    else if(QFileInfo(PhotoAddress[ps]).size()>=1024)
+    else if(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).size()>=1024)
     {
-        ui->SizePI->setText(QString::number(QFileInfo(PhotoAddress[ps]).size()/1024) + " KB");
+        ui->SizePI->setText(QString::number(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).size()/1024) + " KB");
     }
 
-    if(QFileInfo(PhotoAddress[ps]).suffix().toLower().toLower() == "png")
+    if(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix().toLower().toLower() == "png")
     {
         ui->TypePI->setText("Portable Network Graphics");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "jpg"|| QFileInfo(PhotoAddress[ps]).suffix().toLower() == "jpeg")
+    else if(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix().toLower() == "jpg"|| QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix().toLower() == "jpeg")
     {
         ui->TypePI->setText("JPEG Image");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "bmp")
+    else if(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix().toLower() == "bmp")
     {
         ui->TypePI->setText("BMP file format");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "tif" || QFileInfo(PhotoAddress[ps]).suffix().toLower() == "tiff")
+    else if(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix().toLower() == "tif" || QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix().toLower() == "tiff")
     {
         ui->TypePI->setText("Tagged Image File Format");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "webp")
+    else if(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix().toLower() == "webp")
     {
         ui->TypePI->setText("WebP");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "gif")
+    else if(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix().toLower() == "gif")
     {
         ui->TypePI->setText("GIF Image");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "jp2")
+    else if(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix().toLower() == "jp2")
     {
         ui->TypePI->setText("JPEG 2000");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "dds")
+    else if(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix().toLower() == "dds")
     {
         ui->TypePI->setText("DirectDraw Surface");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "ppm")
+    else if(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix().toLower() == "ppm")
     {
         ui->TypePI->setText("Portable Pixmap");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "xpm")
+    else if(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix().toLower() == "xpm")
     {
         ui->TypePI->setText("X11 Pixmap");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "pnm")
+    else if(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix().toLower() == "pnm")
     {
         ui->TypePI->setText("PNM Image");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "ppm")
+    else if(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix().toLower() == "ppm")
     {
         ui->TypePI->setText("PNM Image");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "pgm")
+    else if(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix().toLower() == "pgm")
     {
         ui->TypePI->setText("Pgm Image");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "wbmp")
+    else if(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix().toLower() == "wbmp")
     {
         ui->TypePI->setText("Wireless Bitmap");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "xbm")
+    else if(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix().toLower() == "xbm")
     {
         ui->TypePI->setText("X11 Bitmap");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "ico")
+    else if(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix().toLower() == "ico")
     {
         ui->TypePI->setText("Windows Icon format");
     }
-    else if(QFileInfo(PhotoAddress[ps]).suffix().toLower() == "icns")
+    else if(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix().toLower() == "icns")
     {
         ui->TypePI->setText("Apple Icon Image format");
     }
     else
     {
-        if(!QFileInfo(PhotoAddress[ps]).suffix().isEmpty())
+        if(!QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix().isEmpty())
         {
-            ui->TypePI->setText(QFileInfo(PhotoAddress[ps]).suffix()+" File");
+            ui->TypePI->setText(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix()+" File");
         }
         else
         {
@@ -117,9 +113,9 @@ void photoinfo::showEvent(QShowEvent *)
         }
     }
 
-    ui->WidthPI->setNum(QPixmap(PhotoAddress[ps]).width());
-    ui->HeightPI->setNum(QPixmap(PhotoAddress[ps]).height());
-    ui->DataCreatedPI->setText(QFileInfo(PhotoAddress[ps]).created().date().toString());
+    ui->WidthPI->setNum(QPixmap(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).width());
+    ui->HeightPI->setNum(QPixmap(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).height());
+    ui->DataCreatedPI->setText(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).created().date().toString());
 
     if(AdvancedPhoto::layoutDirection() == Qt::LeftToRight)
     {

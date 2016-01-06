@@ -24,9 +24,9 @@ private:
 private slots:
     void on_listWidgetOption_currentRowChanged(int currentRow);
 
-    void LoadSettings();
+    void Load();
 
-    void SaveSettings();
+    void Save();
 
     void OKButton();
 

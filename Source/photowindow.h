@@ -18,6 +18,12 @@ public:
     explicit PhotoWindow(QWidget *parent = 0);
     ~PhotoWindow();
 
+    static void setPhotoAddress(const QStringList &value);
+    static QStringList PhotoAddress();
+
+    static void setPs(int value);
+    static int Ps();
+
 private:
     Ui::PhotoWindow *ui;
 
@@ -27,15 +33,16 @@ private:
     QTimer LoadOtherPhotosDelay;
     #endif
 
+    static QStringList photoAddress;
+    static int ps;
+
     QFileInfo fi;
     QSystemTrayIcon *tray;
 
-    QString ScreenshotFile;
-    QString PSize;
-    int pw,ph,ww,wh,j,mbh,tbh;
-    int pw2,ph2;
-    int SaveAnswer;
-    float zw,zh;
+    QString ScreenshotFile, PSize;
+    int pw, ph, ww, wh, j, mbh, tbh, pw2, ph2, SaveAnswer, pst, psb, pwz, phz, rd, zoomp, IconTrayNum;
+    float zw, zh;
+    bool zoom, sls, pe, sph, ssh, iif, wasMax;
 
 private slots:
     void showEvent(QShowEvent *);

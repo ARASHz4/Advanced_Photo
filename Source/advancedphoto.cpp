@@ -1,4 +1,5 @@
 #include "advancedphoto.h"
+#include "slsettings.h"
 
 #include <QFileOpenEvent>
 #include <QSettings>
@@ -32,7 +33,7 @@ bool AdvancedPhoto::event(QEvent *event)
 
 void AdvancedPhoto::StartApplication()
 {
-    bool debug = true/*false*/;
+    bool debug = true/*true false*/;
 
     if(debug == false)
     {
@@ -268,180 +269,12 @@ void AdvancedPhoto::StartApplication()
             msg.setDefaultButton(QMessageBox::Ok);
             msg.exec();
 
-            exit(1);
+            AdvancedPhoto::quit();
         }
     }
 
-    //Load Option
-    {
-        extern bool kar, sgf, oap, sam;
-        extern int SlideshowSpeed, ScreenshotDelay;
-        extern int Language;
-        extern bool AutomaticLanguage;
-
-        QSettings SettingsAP (AdvancedPhoto::organizationName(), AdvancedPhoto::applicationName());
-        SettingsAP.beginGroup("Option");
-
-        //General
-        {
-            if((QString(SettingsAP.value("KeepAspectRatio").toString()).isEmpty())
-                    || (QString(SettingsAP.value("KeepAspectRatio").toString())!="true"
-                        && QString(SettingsAP.value("KeepAspectRatio").toString())!="false"))
-            {
-                SettingsAP.setValue("KeepAspectRatio", "true");
-            }
-
-            kar = SettingsAP.value("KeepAspectRatio").toBool();
-
-            if((QString(SettingsAP.value("LoadPhotosFolder").toString()).isEmpty())
-                    || (QString(SettingsAP.value("LoadPhotosFolder").toString())!="true"
-                        && QString(SettingsAP.value("LoadPhotosFolder").toString())!="false"))
-            {
-                SettingsAP.setValue("LoadPhotosFolder", "true");
-            }
-
-            oap = SettingsAP.value("LoadPhotosFolder").toBool();
-        }
-
-        //Language
-        {
-            if(!SettingsAP.value("Language").toString().isEmpty() &&
-                    (SettingsAP.value("Language").toInt() == 0
-                     || SettingsAP.value("Language").toInt() == QLocale::English
-                     || SettingsAP.value("Language").toInt() == QLocale::Persian
-                     || SettingsAP.value("Language").toInt() == QLocale::Spanish
-                     || SettingsAP.value("Language").toInt() == QLocale::Chinese))
-            {
-                Language = SettingsAP.value("Language").toInt();
-            }
-            else
-            {
-                Language = 0;
-                SettingsAP.setValue("Language", Language);
-            }
-
-            QTranslator *Translator = new QTranslator;
-
-            if(Language == 0)
-            {
-                if(QLocale::system().language() == QLocale::English)
-                {
-                    Translator->load(":/Language/English.qm");
-                    AdvancedPhoto::installTranslator(Translator);
-
-                    Language = QLocale::English;
-                }
-                else if(QLocale::system().language() == QLocale::Persian)
-                {
-                    Translator->load(":/Language/Persian.qm");
-                    AdvancedPhoto::installTranslator(Translator);
-
-                    Language = QLocale::Persian;
-                }
-                else if(QLocale::system().language() == QLocale::Spanish)
-                {
-                    Translator->load(":/Language/Spanish.qm");
-                    AdvancedPhoto::installTranslator(Translator);
-
-                    Language = QLocale::Spanish;
-                }
-                else if(QLocale::system().language() == QLocale::Chinese)
-                {
-                    Translator->load(":/Language/Traditional Chinese.qm");
-                    AdvancedPhoto::installTranslator(Translator);
-
-                    Language = QLocale::Chinese;
-                }
-                else
-                {
-                    Translator->load(":/Language/English.qm");
-                    AdvancedPhoto::installTranslator(Translator);
-
-                    Language = QLocale::English;
-                }
-
-                AutomaticLanguage = true;
-            }
-            else
-            {
-                if(Language == QLocale::English)
-                {
-                    Translator->load(":/Language/English.qm");
-                    AdvancedPhoto::installTranslator(Translator);
-                }
-                else if(Language == QLocale::Persian)
-                {
-                    Translator->load(":/Language/Persian.qm");
-                    AdvancedPhoto::installTranslator(Translator);
-                }
-                else if(Language == QLocale::Spanish)
-                {
-                    Translator->load(":/Language/Spanish.qm");
-                    AdvancedPhoto::installTranslator(Translator);
-                }
-                else if(Language == QLocale::Chinese)
-                {
-                    Translator->load(":/Language/Traditional Chinese.qm");
-                    AdvancedPhoto::installTranslator(Translator);
-                }
-
-                AutomaticLanguage = false;
-            }
-
-            if(Language == QLocale::English || Language == QLocale::Spanish || Language == QLocale::Chinese)
-            {
-                AdvancedPhoto::setLayoutDirection(Qt::LeftToRight);
-            }
-            else if(Language == QLocale::Persian)
-            {
-                AdvancedPhoto::setLayoutDirection(Qt::RightToLeft);
-            }
-        }
-
-        //Slideshow
-        {
-            SlideshowSpeed = SettingsAP.value("SlideshowSpeed").toInt();
-
-            if(SlideshowSpeed <= 0 || SlideshowSpeed > 99)
-            {
-                SlideshowSpeed = 2;
-
-                SettingsAP.setValue("SlideshowSpeed",SlideshowSpeed);
-            }
-
-            if((QString(SettingsAP.value("SlideshowFullscreen").toString()).isEmpty())
-                    || (QString(SettingsAP.value("SlideshowFullscreen").toString())!="true"
-                        && QString(SettingsAP.value("SlideshowFullscreen").toString())!="false"))
-            {
-                SettingsAP.setValue("SlideshowFullscreen", "false");
-            }
-
-            sgf = SettingsAP.value("SlideshowFullscreen").toBool();
-        }
-
-        //Screenshot
-        {
-            ScreenshotDelay = SettingsAP.value("ScreenshotDelay").toInt();
-
-            if(ScreenshotDelay <= 0 || ScreenshotDelay > 60)
-            {
-                ScreenshotDelay = 3;
-
-                SettingsAP.setValue("ScreenshotDelay",ScreenshotDelay);
-            }
-
-            if((QString(SettingsAP.value("ScreenshotAtuoMinimize").toString()).isEmpty())
-                    || (QString(SettingsAP.value("ScreenshotAtuoMinimize").toString())!="true"
-                        && QString(SettingsAP.value("ScreenshotAtuoMinimize").toString())!="false"))
-            {
-                SettingsAP.setValue("ScreenshotAtuoMinimize", "true");
-            }
-
-            sam = SettingsAP.value("ScreenshotAtuoMinimize").toBool();
-        }
-
-        SettingsAP.endGroup();
-    }
+    SLSettings Lsettings;
+    Lsettings.LoadSettings();
 
     photowindow.show();
 

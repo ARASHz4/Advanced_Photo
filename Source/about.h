@@ -16,10 +16,6 @@ public:
     explicit about(QWidget *parent = 0);
     ~about();
 
-    QTimer hide;
-
-    QTimer show;
-
 private slots:
     void showEvent(QShowEvent *);
 
@@ -35,6 +31,11 @@ private slots:
 
 private:
     Ui::about *ui;
+
+    bool ds;
+
+    QTimer hide;
+    QTimer show;
 };
 
 #endif // ABOUT_H

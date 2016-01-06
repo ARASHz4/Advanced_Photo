@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     resizephoto.cpp \
     photoinfo.cpp \
     advancedphoto.cpp \
-    goto.cpp
+    goto.cpp \
+    slsettings.cpp
 
 HEADERS  += \
     option.h \
@@ -32,7 +33,8 @@ HEADERS  += \
     resizephoto.h \
     photoinfo.h \
     advancedphoto.h \
-    goto.h
+    goto.h \
+    slsettings.h
 
 FORMS    += \
     option.ui \

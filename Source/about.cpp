@@ -1,11 +1,14 @@
 #include "about.h"
 #include "ui_about.h"
 #include "advancedphoto.h"
+#include "slsettings.h"
 
 #include <QMouseEvent>
 #include <QPixmap>
 
-bool ds = false;
+#include <QDebug>
+
+
 
 about::about(QWidget *parent) :
     QDialog(parent),
@@ -13,6 +16,8 @@ about::about(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+
+
 }
 
 about::~about()
@@ -24,9 +29,7 @@ void about::showEvent(QShowEvent *)
 {
     ui->ApplicationNameLabel->setText(AdvancedPhoto::applicationName());
 
-    extern int Language;
-
-    if(Language == QLocale::Persian)
+    if(SLSettings::Language() == QLocale::Persian)
     {
         QString Version = AdvancedPhoto::applicationVersion();
         Version.replace("0", "۰");
@@ -47,6 +50,8 @@ void about::showEvent(QShowEvent *)
     {
         ui->ApplicationVersionLabel->setText(AdvancedPhoto::applicationVersion());
     }
+
+    ds = false;
 
     this->setWindowOpacity(0);
 

@@ -249,7 +249,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QSpinBox" name="SlideshowSpeed">
+         <widget class="QSpinBox" name="slideshowSpeed">
           <property name="font">
            <font>
             <weight>50</weight>
@@ -308,7 +308,7 @@
       <item row="5" column="0">
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <widget class="QLabel" name="ScreenshotDelay">
+         <widget class="QLabel" name="screenshotDelay">
           <property name="font">
            <font>
             <weight>50</weight>
@@ -321,7 +321,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QSpinBox" name="ScreenshotDelaySpinBox">
+         <widget class="QSpinBox" name="screenshotDelaySpinBox">
           <property name="font">
            <font>
             <weight>50</weight>
@@ -393,9 +393,9 @@
   <tabstop>KeepAspectRatioCheckBox</tabstop>
   <tabstop>LoadPhotosFolder</tabstop>
   <tabstop>LanguageComboBox</tabstop>
-  <tabstop>SlideshowSpeed</tabstop>
+  <tabstop>slideshowSpeed</tabstop>
   <tabstop>slsFullscreen</tabstop>
-  <tabstop>ScreenshotDelaySpinBox</tabstop>
+  <tabstop>screenshotDelaySpinBox</tabstop>
   <tabstop>ScreenshotAtuoMinimizeCheckBox</tabstop>
  </tabstops>
  <resources>
