@@ -5,10 +5,8 @@
 #include <QStringList>
 #include <QPixmap>
 
-//Variables:
 int resizephoto::rsWidth=0, resizephoto::rsHeight=0;
 bool resizephoto::rekar=false, resizephoto::resz=false;
-//
 
 resizephoto::resizephoto(QWidget *parent) :
     QDialog(parent),
@@ -89,7 +87,7 @@ bool resizephoto::Resz()
     return resz;
 }
 
-void resizephoto::show()
+void resizephoto::showEvent(QShowEvent *)
 {
     rsWidth=0;
     rsHeight=0;

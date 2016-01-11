@@ -35,6 +35,9 @@
         <file>Icons/Zoom In.png</file>
         <file>Icons/Zoom Out.png</file>
         <file>Icons/Cancel Screenshot.png</file>
+        <file>Icons/Go to.png</file>
+        <file>Icons/Close All Photos.png</file>
+        <file>Icons/Restore.png</file>
     </qresource>
     <qresource prefix="/Screenshot">
         <file>Icons/Screenshot/1.png</file>

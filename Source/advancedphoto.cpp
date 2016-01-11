@@ -2,8 +2,6 @@
 #include "slsettings.h"
 
 #include <QFileOpenEvent>
-#include <QSettings>
-#include <QTranslator>
 #include <QMessageBox>
 
 AdvancedPhoto::AdvancedPhoto(int &argc, char *argv[]) : QApplication(argc, argv)

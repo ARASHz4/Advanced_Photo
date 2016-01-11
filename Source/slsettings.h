@@ -3,8 +3,6 @@
 
 #include "advancedphoto.h"
 
-#include <QSettings>
-
 class SLSettings
 {
 public:
@@ -46,13 +44,13 @@ public:
 
     void SaveSettings();
 
-    void LoadPhotoWindow();
+    static std::tuple<int, int, int, int, int, bool, bool> LoadPhotoWindow();
 
-    void SavePhotoWindow();
+    static void SavePhotoWindow(int x, int y, int w, int h, int toolBarArea, bool window_max, bool window_fuls);
 
-    static int LoadOptionWindow();
+    static std::tuple<int, int, int, int> LoadOptionWindow();
 
-    void SaveOptionWindow();
+    static void SaveOptionWindow(int x, int y, int w, int h);
 
 private:
     static bool kar, sgf, oap, sam, automaticLanguage;

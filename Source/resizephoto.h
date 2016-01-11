@@ -40,7 +40,7 @@ private:
     QPushButton OK, Cancel;
 
 private slots:
-    void show();
+    void showEvent(QShowEvent *);
 
     void on_Width_valueChanged();
 

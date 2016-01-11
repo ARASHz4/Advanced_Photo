@@ -42,7 +42,7 @@
       <x>10</x>
       <y>10</y>
       <width>591</width>
-      <height>391</height>
+      <height>421</height>
      </rect>
     </property>
     <property name="acceptDrops">
@@ -115,10 +115,12 @@
      <addaction name="actionFlip_Vertical"/>
     </widget>
     <addaction name="actionScreenshot"/>
+    <addaction name="separator"/>
     <addaction name="actionResize"/>
     <addaction name="menuRotate"/>
     <addaction name="menuFlip"/>
     <addaction name="separator"/>
+    <addaction name="actionPhotoInfo"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuPhoto"/>
@@ -497,6 +499,10 @@
    </property>
   </action>
   <action name="actionGo_to">
+   <property name="icon">
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/Go to.png</normaloff>:/Icons/Go to.png</iconset>
+   </property>
    <property name="text">
     <string>Go to</string>
    </property>
@@ -505,6 +511,10 @@
    </property>
   </action>
   <action name="actionClose_All_Photos">
+   <property name="icon">
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/Close All Photos.png</normaloff>:/Icons/Close All Photos.png</iconset>
+   </property>
    <property name="text">
     <string>Close All Photos</string>
    </property>

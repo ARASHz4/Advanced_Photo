@@ -9,24 +9,19 @@
 #include "slsettings.h"
 
 #include <QScreen>
-#include <QSettings>
 #include <QFileDialog>
 #include <QPrinter>
 #include <QPrintDialog>
 #include <QPainter>
+#include <QSettings>
 #include <QMouseEvent>
 #include <QMimeData>
 #include <QMessageBox>
-#include <QDesktopWidget>
 #include <QDesktopServices>
 #include <QUuid>
 
-#include <QDebug>
-
-//Variables:
 QStringList PhotoWindow::photoAddress;
 int PhotoWindow::ps=0;
-//
 
 PhotoWindow::PhotoWindow(QWidget *parent) :
 
@@ -83,66 +78,26 @@ void PhotoWindow::showEvent(QShowEvent *)
 
     //Photo Window Size & Post Setting
     {
-        QRect ScreenSize = AdvancedPhoto::desktop()->screenGeometry();
+        int x, y, w, h, toolBarArea;
+        bool window_max, window_fuls;
+        std::tie(x, y, w, h, toolBarArea, window_max, window_fuls) = SLSettings::LoadPhotoWindow();
 
-        QSettings SettingsAP (AdvancedPhoto::organizationName(), AdvancedPhoto::applicationName());
-        SettingsAP.beginGroup("PhotoWindowSizePos");
-
-        if((SettingsAP.value("window_posx").toInt() != 0 && SettingsAP.value("window_posy").toInt() != 0) &&
-           (SettingsAP.value("window_sizew").toInt() <= ScreenSize.width()+10 && SettingsAP.value("window_sizeh").toInt() <= ScreenSize.height()+10))
+        if(x != 0 || y != 0 || w != 0 || h != 0)
         {
-            this->setGeometry(SettingsAP.value("window_posx").toInt(), SettingsAP.value("window_posy").toInt(),
-                              SettingsAP.value("window_sizew").toInt(), SettingsAP.value("window_sizeh").toInt());
+            this->setGeometry(x, y, w, h);
         }
 
-        if(SettingsAP.value("toolBarArea").toInt() == Qt::TopToolBarArea)
-        {
-            addToolBar(Qt::TopToolBarArea, ui->toolBar);
-        }
-        else if(SettingsAP.value("toolBarArea").toInt() == Qt::RightToolBarArea)
-        {
-            addToolBar(Qt::RightToolBarArea, ui->toolBar);
-        }
-        else if(SettingsAP.value("toolBarArea").toInt() == Qt::LeftToolBarArea)
-        {
-            addToolBar(Qt::LeftToolBarArea, ui->toolBar);
-        }
-        else if(SettingsAP.value("toolBarArea").toInt() == Qt::BottomToolBarArea)
-        {
-            addToolBar(Qt::BottomToolBarArea, ui->toolBar);
-        }
-        else
-        {
-            SettingsAP.setValue("toolBarArea", Qt::TopToolBarArea);
+        addToolBar(Qt::ToolBarArea(toolBarArea), ui->toolBar);
 
-            addToolBar(Qt::TopToolBarArea, ui->toolBar);
-        }
-
-        if((QString(SettingsAP.value("window_max").toString()).isEmpty())
-             || (QString(SettingsAP.value("window_max").toString())!="true"
-             && QString(SettingsAP.value("window_max").toString())!="false"))
-        {
-            SettingsAP.setValue("window_max", "false");
-        }
-
-        if(SettingsAP.value("window_max").toBool() == true)
+        if(window_max)
         {
             showMaximized();
         }
 
-        if((QString(SettingsAP.value("window_fuls").toString()).isEmpty())
-             || (QString(SettingsAP.value("window_fuls").toString())!="true"
-             && QString(SettingsAP.value("window_fuls").toString())!="false"))
-        {
-            SettingsAP.setValue("window_fuls", "false");
-        }
-
-        if(SettingsAP.value("window_fuls").toBool() == true)
+        if(window_fuls)
         {
             showFullScreen();
         }
-
-        SettingsAP.endGroup();
     }
 
     //MenuBar & ToolBar Height
@@ -583,8 +538,6 @@ void PhotoWindow::ProcessingPhoto()
 
             if(ssh==false)
             {
-                qDebug()<<"ssh=false";
-
                 SavePhoto();
 
                 if(SaveAnswer == QMessageBox::Save || SaveAnswer == QMessageBox::Discard)
@@ -598,8 +551,6 @@ void PhotoWindow::ProcessingPhoto()
             }
             else
             {
-                qDebug()<<"ssh=true";
-
                 Close_Photo();
 
                 ActionEnabler();
@@ -940,8 +891,6 @@ void PhotoWindow::ScreenshotIcon()
 {
     if (SLSettings::Sam() == true)
     {
-        qDebug()<<"TrayNum: "<<IconTrayNum;
-
 //        if (IconTrayNum == 1)
 //        {
 //            tray->setIcon(QIcon(":/Screenshot/Icons/Screenshot/tray1d.png"));
@@ -981,9 +930,6 @@ void PhotoWindow::ScreenshotIcon()
 
 void PhotoWindow::Close_Photo()
 {
-    qDebug()<<"ps:"<<ps;
-    qDebug()<<"count:"<<photoAddress.count();
-
     if(photoAddress.count() > 0)
     {
         photoAddress.removeAt(ps);
@@ -1069,24 +1015,8 @@ void PhotoWindow::closeEvent (QCloseEvent *event)
         }
     }
 
-    QSettings SettingsAP (AdvancedPhoto::organizationName(), AdvancedPhoto::applicationName());
-
-    SettingsAP.beginGroup("PhotoWindowSizePos");
-
-    if(!isMaximized() && !isFullScreen())
-    {
-        SettingsAP.setValue("window_posx", this->geometry().x());
-        SettingsAP.setValue("window_posy", this->geometry().y());
-
-        SettingsAP.setValue("window_sizew", this->geometry().width());
-        SettingsAP.setValue("window_sizeh", this->geometry().height());
-    }
-
-    SettingsAP.setValue("window_max", isMaximized());
-    SettingsAP.setValue("window_fuls", isFullScreen());
-    SettingsAP.setValue("toolBarArea", toolBarArea(ui->toolBar));
-
-    SettingsAP.endGroup();
+    SLSettings::SavePhotoWindow(this->geometry().x(), this->geometry().y(), this->geometry().width(),
+                                this->geometry().height(), toolBarArea(ui->toolBar), isMaximized(), isFullScreen());
 }
 
 void PhotoWindow::on_actionOpen_Photo_triggered()
@@ -1362,7 +1292,7 @@ void PhotoWindow::on_actionSave_As_triggered()
             {
                 QSettings SettingsAP (AdvancedPhoto::organizationName(), AdvancedPhoto::applicationName());
                 SettingsAP.beginGroup("Directory");
-                SettingsAP.setValue("Directory", SaveFile.path() );
+                SettingsAP.setValue("Directory", SaveFile.path());
                 SettingsAP.endGroup();
             }
 
@@ -1805,7 +1735,7 @@ void PhotoWindow::on_actionScreenshot_triggered()
     {
         if (SLSettings::Sam() == true)
         {
-            QAction *RestoreAction = new QAction(QIcon(""), tr("Restore"), this);
+            QAction *RestoreAction = new QAction(QIcon(":/Icons/Restore.png"), tr("Restore"), this);
             RestoreAction->connect(RestoreAction, SIGNAL(triggered()), this, SLOT(Restore()));
 
             QAction *CancelAction = new QAction(QIcon(":/Icons/Cancel Screenshot.png"), tr("Cancel Screenshot"), this);

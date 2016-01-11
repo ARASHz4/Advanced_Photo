@@ -6,18 +6,12 @@
 #include <QMouseEvent>
 #include <QPixmap>
 
-#include <QDebug>
-
-
-
 about::about(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::about)
 {
     ui->setupUi(this);
     setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
-
-
 }
 
 about::~about()

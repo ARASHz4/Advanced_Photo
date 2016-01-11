@@ -22,6 +22,8 @@ private:
     QPushButton OK, Cancel, Apply, RestoreDefaults;
 
 private slots:
+    void showEvent(QShowEvent *);
+
     void on_listWidgetOption_currentRowChanged(int currentRow);
 
     void Load();

@@ -3,9 +3,6 @@
 #include "advancedphoto.h"
 #include "slsettings.h"
 
-#include <QTranslator>
-#include <QDesktopWidget>
-
 option::option(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::option)
@@ -13,48 +10,42 @@ option::option(QWidget *parent) :
     ui->setupUi(this);
 
     setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
-
-    //Option Window Size & Post Setting
-    {
-        QRect ScreenSize = AdvancedPhoto::desktop()->screenGeometry();
-
-        QSettings SettingsAP (AdvancedPhoto::organizationName(), AdvancedPhoto::applicationName());
-        SettingsAP.beginGroup("OptionWindowSizePos");
-
-        if((SettingsAP.value("window_posx").toInt() != 0 && SettingsAP.value("window_posy").toInt() != 0) &&
-           (SettingsAP.value("window_sizew").toInt() <= ScreenSize.width()+10
-            && SettingsAP.value("window_sizeh").toInt() <= ScreenSize.height()+10))
-        {
-            this->setGeometry(SettingsAP.value("window_posx").toInt(), SettingsAP.value("window_posy").toInt(),
-                              SettingsAP.value("window_sizew").toInt(), SettingsAP.value("window_sizeh").toInt());
-        }
-        SettingsAP.endGroup();
-
-        OK.connect(&OK, SIGNAL(clicked()), this, SLOT(OKButton()));
-        Cancel.connect(&Cancel, SIGNAL(clicked()), this, SLOT(CancelButton()));
-        Apply.connect(&Apply, SIGNAL(clicked()), this, SLOT(ApplyButton()));
-        RestoreDefaults.connect(&RestoreDefaults, SIGNAL(clicked()), this, SLOT(RestoreDefaultsButton()));
-        OK.setText(tr("OK"));
-        Cancel.setText(tr("Cancel"));
-        Apply.setText(tr("Apply"));
-        RestoreDefaults.setText(tr("Restore Defaults"));
-        OK.setDefault(true);
-
-        ui->OptionButtonBox->addButton(&OK, QDialogButtonBox::AcceptRole);
-        ui->OptionButtonBox->addButton(&Cancel, QDialogButtonBox::RejectRole);
-        ui->OptionButtonBox->addButton(&Apply, QDialogButtonBox::ApplyRole);
-        ui->OptionButtonBox->addButton(&RestoreDefaults, QDialogButtonBox::ResetRole);
-    }
-
-    ui->listWidgetOption->setCurrentRow(0);
-    ui->LanguageComboBox->insertSeparator(1);
-
-    Load();
 }
 
 option::~option()
 {
     delete ui; 
+}
+
+void option::showEvent(QShowEvent *)
+{
+    int x, y, w, h;
+    std::tie(x, y, w, h) = SLSettings::LoadOptionWindow();
+
+    if(x != 0 || y != 0 || w != 0 || h != 0)
+    {
+        this->setGeometry(x, y, w, h);
+    }
+
+    OK.connect(&OK, SIGNAL(clicked()), this, SLOT(OKButton()));
+    Cancel.connect(&Cancel, SIGNAL(clicked()), this, SLOT(CancelButton()));
+    Apply.connect(&Apply, SIGNAL(clicked()), this, SLOT(ApplyButton()));
+    RestoreDefaults.connect(&RestoreDefaults, SIGNAL(clicked()), this, SLOT(RestoreDefaultsButton()));
+    OK.setText(tr("OK"));
+    Cancel.setText(tr("Cancel"));
+    Apply.setText(tr("Apply"));
+    RestoreDefaults.setText(tr("Restore Defaults"));
+    OK.setDefault(true);
+
+    ui->OptionButtonBox->addButton(&OK, QDialogButtonBox::AcceptRole);
+    ui->OptionButtonBox->addButton(&Cancel, QDialogButtonBox::RejectRole);
+    ui->OptionButtonBox->addButton(&Apply, QDialogButtonBox::ApplyRole);
+    ui->OptionButtonBox->addButton(&RestoreDefaults, QDialogButtonBox::ResetRole);
+
+    ui->listWidgetOption->setCurrentRow(0);
+    ui->LanguageComboBox->insertSeparator(1);
+
+    Load();
 }
 
 void option::on_listWidgetOption_currentRowChanged(int currentRow)
@@ -410,15 +401,5 @@ void option::RestoreDefaultsButton()
 
 void option::closeEvent (QCloseEvent *)
 {
-    QSettings SettingsAP (AdvancedPhoto::organizationName(), AdvancedPhoto::applicationName());
-
-    SettingsAP.beginGroup("OptionWindowSizePos");
-
-    SettingsAP.setValue("window_sizew", this->geometry().width());
-    SettingsAP.setValue("window_sizeh", this->geometry().height());
-
-    SettingsAP.setValue("window_posx", this->geometry().x());
-    SettingsAP.setValue("window_posy", this->geometry().y());
-
-    SettingsAP.endGroup();
+    SLSettings::SaveOptionWindow(this->geometry().x(), this->geometry().y(), this->geometry().width(), this->geometry().height());
 }

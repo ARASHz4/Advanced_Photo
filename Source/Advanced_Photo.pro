@@ -11,6 +11,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = "Advanced Photo"
 TEMPLATE = app
 
+CONFIG += c++11
+
 win32: RC_FILE = Windows/APWinRes.rc
 
 mac: QMAKE_INFO_PLIST = Mac/APInfo.plist

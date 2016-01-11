@@ -4,14 +4,10 @@
 #include <QSettings>
 #include <QDesktopWidget>
 
-#include <QDebug>
-
-//Variables:
 bool SLSettings::kar, SLSettings::sgf, SLSettings::oap, SLSettings::sam;
 int SLSettings::slideshowSpeed, SLSettings::screenshotDelay;
 int SLSettings::language;
 bool SLSettings::automaticLanguage;
-//
 
 SLSettings::SLSettings()
 {
@@ -293,17 +289,74 @@ void SLSettings::SaveSettings()
     SettingsAP.endGroup();
 }
 
-void SLSettings::LoadPhotoWindow()
+std::tuple<int, int, int, int, int, bool, bool> SLSettings::LoadPhotoWindow()
 {
+    QRect ScreenSize = AdvancedPhoto::desktop()->screenGeometry();
 
+    QSettings SettingsAP (AdvancedPhoto::organizationName(), AdvancedPhoto::applicationName());
+    SettingsAP.beginGroup("PhotoWindowSizePos");
+
+    if(SettingsAP.value("toolBarArea").toInt() != Qt::TopToolBarArea && SettingsAP.value("toolBarArea").toInt() != Qt::RightToolBarArea
+    && SettingsAP.value("toolBarArea").toInt() != Qt::LeftToolBarArea && SettingsAP.value("toolBarArea").toInt() != Qt::BottomToolBarArea)
+    {
+        SettingsAP.setValue("toolBarArea", Qt::TopToolBarArea);
+    }
+
+    if((QString(SettingsAP.value("window_max").toString()).isEmpty())
+         || (QString(SettingsAP.value("window_max").toString())!="true"
+         && QString(SettingsAP.value("window_max").toString())!="false"))
+    {
+        SettingsAP.setValue("window_max", "false");
+    }
+
+    if((QString(SettingsAP.value("window_fuls").toString()).isEmpty())
+         || (QString(SettingsAP.value("window_fuls").toString())!="true"
+         && QString(SettingsAP.value("window_fuls").toString())!="false"))
+    {
+        SettingsAP.setValue("window_fuls", "false");
+    }
+
+    if((SettingsAP.value("window_posx").toInt() != 0 && SettingsAP.value("window_posy").toInt() != 0) &&
+       (SettingsAP.value("window_sizew").toInt() <= ScreenSize.width() && SettingsAP.value("window_sizeh").toInt() <= ScreenSize.height()))
+    {
+        return std::make_tuple(SettingsAP.value("window_posx").toInt(), SettingsAP.value("window_posy").toInt(),
+                               SettingsAP.value("window_sizew").toInt(), SettingsAP.value("window_sizeh").toInt(),
+                               SettingsAP.value("toolBarArea").toInt(), SettingsAP.value("window_max").toBool(),
+                               SettingsAP.value("window_fuls").toBool());
+    }
+    else
+    {
+        return std::make_tuple(0, 0, 0, 0, SettingsAP.value("toolBarArea").toInt(),
+                               SettingsAP.value("window_max").toBool(), SettingsAP.value("window_fuls").toBool());
+    }
+
+    SettingsAP.endGroup();
 }
 
-void SLSettings::SavePhotoWindow()
+void SLSettings::SavePhotoWindow(int x, int y, int w, int h, int toolBarArea, bool window_max, bool window_fuls)
 {
+    QSettings SettingsAP (AdvancedPhoto::organizationName(), AdvancedPhoto::applicationName());
 
+    SettingsAP.beginGroup("PhotoWindowSizePos");
+
+    if(window_max == false && window_fuls == false)
+    {
+        SettingsAP.setValue("window_posx", x);
+        SettingsAP.setValue("window_posy", y);
+
+        SettingsAP.setValue("window_sizew", w);
+        SettingsAP.setValue("window_sizeh", h);
+    }
+
+    SettingsAP.setValue("toolBarArea", toolBarArea);
+
+    SettingsAP.setValue("window_max", window_max);
+    SettingsAP.setValue("window_fuls", window_fuls);
+
+    SettingsAP.endGroup();
 }
 
-int SLSettings::LoadOptionWindow()
+std::tuple<int, int, int, int> SLSettings::LoadOptionWindow()
 {
     QRect ScreenSize = AdvancedPhoto::desktop()->screenGeometry();
 
@@ -311,18 +364,29 @@ int SLSettings::LoadOptionWindow()
     SettingsAP.beginGroup("OptionWindowSizePos");
 
     if((SettingsAP.value("window_posx").toInt() != 0 && SettingsAP.value("window_posy").toInt() != 0) &&
-       (SettingsAP.value("window_sizew").toInt() <= ScreenSize.width()+10
-        && SettingsAP.value("window_sizeh").toInt() <= ScreenSize.height()+10))
+       (SettingsAP.value("window_sizew").toInt() <= ScreenSize.width() && SettingsAP.value("window_sizeh").toInt() <= ScreenSize.height()))
     {
-        return SettingsAP.value("window_posx").toInt();
-        return SettingsAP.value("window_posy").toInt();
-        return SettingsAP.value("window_sizew").toInt();
-        return SettingsAP.value("window_sizeh").toInt();
+        return std::make_tuple(SettingsAP.value("window_posx").toInt(), SettingsAP.value("window_posy").toInt(),
+                               SettingsAP.value("window_sizew").toInt(), SettingsAP.value("window_sizeh").toInt());
+    }
+    else
+    {
+        return std::make_tuple(0, 0, 0, 0);
     }
     SettingsAP.endGroup();
 }
 
-void SLSettings::SaveOptionWindow()
+void SLSettings::SaveOptionWindow(int x, int y, int w, int h)
 {
+    QSettings SettingsAP (AdvancedPhoto::organizationName(), AdvancedPhoto::applicationName());
 
+    SettingsAP.beginGroup("OptionWindowSizePos");
+
+    SettingsAP.setValue("window_posx", x);
+    SettingsAP.setValue("window_posy", y);
+
+    SettingsAP.setValue("window_sizew", w);
+    SettingsAP.setValue("window_sizeh", h);
+
+    SettingsAP.endGroup();
 }

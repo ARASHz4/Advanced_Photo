@@ -25,6 +25,10 @@
   <property name="windowTitle">
    <string>Go to</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="Icon.qrc">
+    <normaloff>:/Icons/Go to.png</normaloff>:/Icons/Go to.png</iconset>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
@@ -75,6 +79,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="Icon.qrc"/>
+ </resources>
  <connections/>
 </ui>
