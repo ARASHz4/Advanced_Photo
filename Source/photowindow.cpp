@@ -121,20 +121,20 @@ void PhotoWindow::showEvent(QShowEvent *)
             ProcessingPhoto();
         }
 
-        if(ui->toolBar->height() < ui->toolBar->width())
+        if(toolBarArea(ui->toolBar) == Qt::TopToolBarArea || toolBarArea(ui->toolBar) == Qt::BottomToolBarArea)
         {
             if(pe == false || iif == true)
             {
-                ui->Photo->setGeometry (10, 10, ( this->geometry().width() - 20 ),
-                                       ( this->geometry().height() - (mbh + tbh + ui->statusBar->height() + 20) ) );
+                ui->Photo->setGeometry (10, 10, (this->geometry().width() - 20),
+                                       (this->geometry().height() - (mbh + tbh + ui->statusBar->height() + 20)));
             }
         }
         else
         {
             if(pe == false || iif == true)
             {
-                ui->Photo->setGeometry (10, 10, ( this->geometry().width() - (20 + tbh) ),
-                                       ( this->geometry().height() - (mbh + ui->statusBar->height() + 20) ) );
+                ui->Photo->setGeometry (10, 10, (this->geometry().width() - (20 + tbh)),
+                                       (this->geometry().height() - (mbh + ui->statusBar->height() + 20)));
             }
         }
     }
@@ -303,14 +303,14 @@ void PhotoWindow::on_actionToolBarMoved_triggered()
         ProcessingPhoto();
     }
 
-    if(ui->toolBar->height() < ui->toolBar->width())
+    if(toolBarArea(ui->toolBar) == Qt::TopToolBarArea || toolBarArea(ui->toolBar) == Qt::BottomToolBarArea)
     {
         tbh = ui->toolBar->height();
 
         if(pe == false || iif == true)
         {
             ui->Photo->setGeometry (10, 10, (this->geometry().width()-20),
-                                   (this->geometry().height()-(mbh+tbh+ui->statusBar->height()+20)));
+                                   (this->geometry().height() - (mbh+tbh+ui->statusBar->height()+20)));
         }
     }
     else
@@ -564,15 +564,15 @@ void PhotoWindow::ProcessingPhoto()
     {
         iif=false;
 
-        if(ui->toolBar->height() < ui->toolBar->width())
+        if(toolBarArea(ui->toolBar) == Qt::TopToolBarArea || toolBarArea(ui->toolBar) == Qt::BottomToolBarArea)
         {
             ww = this->geometry().width()-20;
-            wh = ( (this->geometry().height() ) - (mbh + tbh + ui->statusBar->height() + 20));
+            wh = ((this->geometry().height()) - (mbh + tbh + ui->statusBar->height() + 20));
         }
         else
         {
             ww = this->geometry().width()- (20 + tbh);
-            wh = ( (this->geometry().height() ) - (mbh + ui->statusBar->height() + 20));
+            wh = ((this->geometry().height()) - (mbh + ui->statusBar->height() + 20));
         }
 
         if(SLSettings::Kar()==true)
@@ -729,15 +729,15 @@ void PhotoWindow::ProcessingPhoto()
         ui->Photo->setScaledContents(false);
         ui->Photo->setPixmap(QPixmap(":/Icons/Drop.png"));
 
-        if(ui->toolBar->height() < ui->toolBar->width())
+        if(toolBarArea(ui->toolBar) == Qt::TopToolBarArea || toolBarArea(ui->toolBar) == Qt::BottomToolBarArea)
         {
-            ui->Photo->setGeometry (10, 10, ( this->geometry().width() - 20 ),
-                                    ( this->geometry().height() - (mbh + tbh + ui->statusBar->height() + 20) ) );
+            ui->Photo->setGeometry (10, 10, (this->geometry().width() - 20),
+                                    (this->geometry().height() - (mbh + tbh + ui->statusBar->height() + 20)));
         }
         else
         {
-            ui->Photo->setGeometry (10, 10, ( this->geometry().width() - (20 + tbh) ),
-                                    ( this->geometry().height() - (mbh + ui->statusBar->height() + 20) ) );
+            ui->Photo->setGeometry (10, 10, (this->geometry().width() - (20 + tbh)),
+                                    (this->geometry().height() - (mbh + ui->statusBar->height() + 20)));
         }
 
         //Clean

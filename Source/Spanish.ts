@@ -9,17 +9,17 @@
         <translation>Ir a</translation>
     </message>
     <message>
-        <location filename="goto.ui" line="34"/>
+        <location filename="goto.ui" line="38"/>
         <source>Go to :</source>
         <translation>Ir a :</translation>
     </message>
     <message>
-        <location filename="goto.cpp" line="24"/>
+        <location filename="goto.cpp" line="22"/>
         <source>Go</source>
         <translation>Ir</translation>
     </message>
     <message>
-        <location filename="goto.cpp" line="25"/>
+        <location filename="goto.cpp" line="23"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
@@ -52,277 +52,277 @@
         <translation>Voltear</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="167"/>
+        <location filename="photowindow.ui" line="169"/>
         <source>Quit</source>
         <translation>Dejar</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="179"/>
+        <location filename="photowindow.ui" line="181"/>
         <source>About</source>
         <translation>Acerca de</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="191"/>
+        <location filename="photowindow.ui" line="193"/>
         <source>Option</source>
         <translation>Opción</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="203"/>
-        <location filename="photowindow.ui" line="206"/>
+        <location filename="photowindow.ui" line="205"/>
+        <location filename="photowindow.ui" line="208"/>
         <source>Zoom IN</source>
         <translation>Acercar</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="218"/>
-        <location filename="photowindow.ui" line="221"/>
+        <location filename="photowindow.ui" line="220"/>
+        <location filename="photowindow.ui" line="223"/>
         <source>Zoom Out</source>
         <translation>Disminuir el zoom</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="233"/>
-        <location filename="photowindow.ui" line="236"/>
+        <location filename="photowindow.ui" line="235"/>
+        <location filename="photowindow.ui" line="238"/>
         <source>1:1</source>
         <translation>1:1</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="251"/>
-        <location filename="photowindow.ui" line="254"/>
+        <location filename="photowindow.ui" line="253"/>
+        <location filename="photowindow.ui" line="256"/>
         <source>Fit Window</source>
         <translation>Fit ventana</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="266"/>
+        <location filename="photowindow.ui" line="268"/>
         <source>Next Photo</source>
         <translation>Siguiente Foto</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="281"/>
+        <location filename="photowindow.ui" line="283"/>
         <source>Previous Photo</source>
         <translation>Foto Anterior</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="293"/>
+        <location filename="photowindow.ui" line="295"/>
         <source>Slideshow</source>
         <translation>Diapositivas</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="296"/>
-        <location filename="photowindow.cpp" line="2109"/>
+        <location filename="photowindow.ui" line="298"/>
+        <location filename="photowindow.cpp" line="2070"/>
         <source>Start Slideshow</source>
         <translation>Empezar la presentación de diapositivas</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="308"/>
-        <location filename="photowindow.ui" line="311"/>
-        <location filename="photowindow.cpp" line="2127"/>
-        <location filename="photowindow.cpp" line="2191"/>
+        <location filename="photowindow.ui" line="310"/>
+        <location filename="photowindow.ui" line="313"/>
+        <location filename="photowindow.cpp" line="2088"/>
+        <location filename="photowindow.cpp" line="2152"/>
         <source>Full Screen</source>
         <translation>Pantalla completa</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="326"/>
-        <location filename="photowindow.ui" line="329"/>
+        <location filename="photowindow.ui" line="328"/>
+        <location filename="photowindow.ui" line="331"/>
         <source>Rotate Right</source>
         <translation>Gira a la derecha</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="341"/>
-        <location filename="photowindow.ui" line="344"/>
+        <location filename="photowindow.ui" line="343"/>
+        <location filename="photowindow.ui" line="346"/>
         <source>Rotate Left</source>
         <translation>Girar a la izquierda</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="356"/>
-        <location filename="photowindow.ui" line="359"/>
-        <location filename="photowindow.cpp" line="799"/>
+        <location filename="photowindow.ui" line="358"/>
+        <location filename="photowindow.ui" line="361"/>
+        <location filename="photowindow.cpp" line="777"/>
         <source>Save</source>
         <translation>Guardar</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="374"/>
-        <location filename="photowindow.ui" line="377"/>
+        <location filename="photowindow.ui" line="376"/>
+        <location filename="photowindow.ui" line="379"/>
         <source>Save As</source>
         <translation>Guardar como</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="389"/>
+        <location filename="photowindow.ui" line="391"/>
         <source>Resize</source>
         <translation>Redimensionar</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="401"/>
+        <location filename="photowindow.ui" line="403"/>
         <source>Flip Horizontal</source>
         <translation>Voltear Horizontal</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="413"/>
+        <location filename="photowindow.ui" line="415"/>
         <source>Flip Vertical</source>
         <translation>Voltear Vertical</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="425"/>
+        <location filename="photowindow.ui" line="427"/>
         <source>Print...</source>
         <translation>Impresión...</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="451"/>
-        <location filename="photowindow.ui" line="454"/>
+        <location filename="photowindow.ui" line="453"/>
+        <location filename="photowindow.ui" line="456"/>
         <source>Home Page</source>
         <translation>Página de inicio</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="466"/>
-        <location filename="photowindow.ui" line="469"/>
+        <location filename="photowindow.ui" line="468"/>
+        <location filename="photowindow.ui" line="471"/>
         <source>Photo Info</source>
         <translation>Información de la fotografía</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="481"/>
+        <location filename="photowindow.ui" line="483"/>
         <source>Screenshot</source>
         <translation>Captura de pantalla</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="493"/>
+        <location filename="photowindow.ui" line="495"/>
         <source>Close Photo</source>
         <translation>Cerrar Photo</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="501"/>
+        <location filename="photowindow.ui" line="507"/>
         <source>Go to</source>
         <translation>Ir a</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="509"/>
+        <location filename="photowindow.ui" line="519"/>
         <source>Close All Photos</source>
         <translation>Cierre todas las fotos</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="155"/>
-        <location filename="photowindow.cpp" line="1077"/>
+        <location filename="photowindow.ui" line="157"/>
+        <location filename="photowindow.cpp" line="1034"/>
         <source>Open Photo</source>
         <translation>Abrir las fotos</translation>
     </message>
     <message>
-        <location filename="photowindow.cpp" line="663"/>
-        <location filename="photowindow.cpp" line="684"/>
-        <location filename="photowindow.cpp" line="716"/>
-        <location filename="photowindow.cpp" line="737"/>
+        <location filename="photowindow.cpp" line="641"/>
+        <location filename="photowindow.cpp" line="662"/>
+        <location filename="photowindow.cpp" line="694"/>
+        <location filename="photowindow.cpp" line="715"/>
         <source> Zoom</source>
         <translation> Ampliar</translation>
     </message>
     <message>
-        <location filename="photowindow.cpp" line="666"/>
-        <location filename="photowindow.cpp" line="687"/>
-        <location filename="photowindow.cpp" line="719"/>
-        <location filename="photowindow.cpp" line="740"/>
-        <location filename="photowindow.cpp" line="751"/>
+        <location filename="photowindow.cpp" line="644"/>
+        <location filename="photowindow.cpp" line="665"/>
+        <location filename="photowindow.cpp" line="697"/>
+        <location filename="photowindow.cpp" line="718"/>
+        <location filename="photowindow.cpp" line="729"/>
         <source> of </source>
         <translation> de </translation>
     </message>
     <message>
-        <location filename="photowindow.cpp" line="750"/>
+        <location filename="photowindow.cpp" line="728"/>
         <source> is Incorrect data !</source>
         <translation> son datos incorrectos!</translation>
     </message>
     <message>
-        <location filename="photowindow.cpp" line="794"/>
+        <location filename="photowindow.cpp" line="772"/>
         <source>Save Changes</source>
         <translation>Guardar Cambios</translation>
     </message>
     <message>
-        <location filename="photowindow.cpp" line="795"/>
+        <location filename="photowindow.cpp" line="773"/>
         <source>The Photo has been edited.</source>
         <translation>La foto ha sido editada.</translation>
     </message>
     <message>
-        <location filename="photowindow.cpp" line="796"/>
+        <location filename="photowindow.cpp" line="774"/>
         <source>Do you want to save your changes?</source>
         <translation>Qué desea guardar los cambios?</translation>
     </message>
     <message>
-        <location filename="photowindow.cpp" line="800"/>
+        <location filename="photowindow.cpp" line="778"/>
         <source>Discard</source>
         <translation>Deseche</translation>
     </message>
     <message>
-        <location filename="photowindow.cpp" line="801"/>
+        <location filename="photowindow.cpp" line="779"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="photowindow.cpp" line="826"/>
-        <location filename="photowindow.cpp" line="883"/>
-        <location filename="photowindow.cpp" line="1272"/>
-        <location filename="photowindow.cpp" line="1366"/>
-        <location filename="photowindow.cpp" line="1396"/>
-        <location filename="photowindow.cpp" line="1426"/>
-        <location filename="photowindow.cpp" line="1456"/>
-        <location filename="photowindow.cpp" line="1486"/>
-        <location filename="photowindow.cpp" line="1516"/>
-        <location filename="photowindow.cpp" line="1546"/>
-        <location filename="photowindow.cpp" line="1576"/>
-        <location filename="photowindow.cpp" line="1606"/>
-        <location filename="photowindow.cpp" line="1636"/>
-        <location filename="photowindow.cpp" line="1666"/>
-        <location filename="photowindow.cpp" line="1696"/>
+        <location filename="photowindow.cpp" line="804"/>
+        <location filename="photowindow.cpp" line="861"/>
+        <location filename="photowindow.cpp" line="1229"/>
+        <location filename="photowindow.cpp" line="1323"/>
+        <location filename="photowindow.cpp" line="1353"/>
+        <location filename="photowindow.cpp" line="1383"/>
+        <location filename="photowindow.cpp" line="1413"/>
+        <location filename="photowindow.cpp" line="1443"/>
+        <location filename="photowindow.cpp" line="1473"/>
+        <location filename="photowindow.cpp" line="1503"/>
+        <location filename="photowindow.cpp" line="1533"/>
+        <location filename="photowindow.cpp" line="1563"/>
+        <location filename="photowindow.cpp" line="1593"/>
+        <location filename="photowindow.cpp" line="1623"/>
+        <location filename="photowindow.cpp" line="1653"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="photowindow.cpp" line="827"/>
-        <location filename="photowindow.cpp" line="884"/>
-        <location filename="photowindow.cpp" line="1273"/>
-        <location filename="photowindow.cpp" line="1367"/>
-        <location filename="photowindow.cpp" line="1397"/>
-        <location filename="photowindow.cpp" line="1427"/>
-        <location filename="photowindow.cpp" line="1457"/>
-        <location filename="photowindow.cpp" line="1487"/>
-        <location filename="photowindow.cpp" line="1517"/>
-        <location filename="photowindow.cpp" line="1547"/>
-        <location filename="photowindow.cpp" line="1577"/>
-        <location filename="photowindow.cpp" line="1607"/>
-        <location filename="photowindow.cpp" line="1637"/>
-        <location filename="photowindow.cpp" line="1667"/>
-        <location filename="photowindow.cpp" line="1697"/>
+        <location filename="photowindow.cpp" line="805"/>
+        <location filename="photowindow.cpp" line="862"/>
+        <location filename="photowindow.cpp" line="1230"/>
+        <location filename="photowindow.cpp" line="1324"/>
+        <location filename="photowindow.cpp" line="1354"/>
+        <location filename="photowindow.cpp" line="1384"/>
+        <location filename="photowindow.cpp" line="1414"/>
+        <location filename="photowindow.cpp" line="1444"/>
+        <location filename="photowindow.cpp" line="1474"/>
+        <location filename="photowindow.cpp" line="1504"/>
+        <location filename="photowindow.cpp" line="1534"/>
+        <location filename="photowindow.cpp" line="1564"/>
+        <location filename="photowindow.cpp" line="1594"/>
+        <location filename="photowindow.cpp" line="1624"/>
+        <location filename="photowindow.cpp" line="1654"/>
         <source>Can&apos;t Write File</source>
         <translation>No se puede escribir archivo</translation>
     </message>
     <message>
-        <location filename="photowindow.cpp" line="829"/>
-        <location filename="photowindow.cpp" line="886"/>
-        <location filename="photowindow.cpp" line="1275"/>
-        <location filename="photowindow.cpp" line="1369"/>
-        <location filename="photowindow.cpp" line="1399"/>
-        <location filename="photowindow.cpp" line="1429"/>
-        <location filename="photowindow.cpp" line="1459"/>
-        <location filename="photowindow.cpp" line="1489"/>
-        <location filename="photowindow.cpp" line="1519"/>
-        <location filename="photowindow.cpp" line="1549"/>
-        <location filename="photowindow.cpp" line="1579"/>
-        <location filename="photowindow.cpp" line="1609"/>
-        <location filename="photowindow.cpp" line="1639"/>
-        <location filename="photowindow.cpp" line="1669"/>
-        <location filename="photowindow.cpp" line="1699"/>
+        <location filename="photowindow.cpp" line="807"/>
+        <location filename="photowindow.cpp" line="864"/>
+        <location filename="photowindow.cpp" line="1232"/>
+        <location filename="photowindow.cpp" line="1326"/>
+        <location filename="photowindow.cpp" line="1356"/>
+        <location filename="photowindow.cpp" line="1386"/>
+        <location filename="photowindow.cpp" line="1416"/>
+        <location filename="photowindow.cpp" line="1446"/>
+        <location filename="photowindow.cpp" line="1476"/>
+        <location filename="photowindow.cpp" line="1506"/>
+        <location filename="photowindow.cpp" line="1536"/>
+        <location filename="photowindow.cpp" line="1566"/>
+        <location filename="photowindow.cpp" line="1596"/>
+        <location filename="photowindow.cpp" line="1626"/>
+        <location filename="photowindow.cpp" line="1656"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="photowindow.cpp" line="1783"/>
+        <location filename="photowindow.cpp" line="1740"/>
         <source>Restore</source>
         <translation>Restaurar</translation>
     </message>
     <message>
-        <location filename="photowindow.cpp" line="1786"/>
+        <location filename="photowindow.cpp" line="1743"/>
         <source>Cancel Screenshot</source>
         <translation>Cancelar Captura de pantalla</translation>
     </message>
     <message>
-        <location filename="photowindow.cpp" line="2177"/>
+        <location filename="photowindow.cpp" line="2138"/>
         <source>Exit Full Screen</source>
         <translation>Salir de pantalla completa</translation>
     </message>
     <message>
-        <location filename="photowindow.cpp" line="1323"/>
+        <location filename="photowindow.cpp" line="1280"/>
         <source>Save As Photo</source>
         <translation>Guardar como fotos</translation>
     </message>
@@ -356,12 +356,12 @@
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="about.cpp" line="62"/>
+        <location filename="about.cpp" line="84"/>
         <source>Developer :</source>
         <translation>Desarrollador :</translation>
     </message>
     <message>
-        <location filename="about.cpp" line="63"/>
+        <location filename="about.cpp" line="85"/>
         <source>Arash Zare</source>
         <translation>Arash Zare</translation>
     </message>
@@ -379,6 +379,26 @@
         <translation>Automático (Idioma del sistema)</translation>
     </message>
     <message>
+        <location filename="option.ui" line="201"/>
+        <source>English</source>
+        <translation>Inglés - English</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="206"/>
+        <source>پارسی</source>
+        <translation>Persa - پارسی</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="211"/>
+        <source>Español</source>
+        <translation>Español</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="216"/>
+        <source>繁體中文</source>
+        <translation>Chino tradicional - 繁體中文</translation>
+    </message>
+    <message>
         <location filename="option.ui" line="319"/>
         <source>Screenshot delay :</source>
         <translation>Captura de pantalla retrasar :</translation>
@@ -389,40 +409,40 @@
         <translation>Auto Minimizar a la bandeja</translation>
     </message>
     <message>
-        <location filename="option.cpp" line="47"/>
-        <location filename="option.cpp" line="418"/>
+        <location filename="option.cpp" line="35"/>
+        <location filename="option.cpp" line="383"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="option.cpp" line="48"/>
-        <location filename="option.cpp" line="419"/>
+        <location filename="option.cpp" line="36"/>
+        <location filename="option.cpp" line="384"/>
         <source>Apply</source>
         <translation>Aplicar</translation>
     </message>
     <message>
-        <location filename="option.cpp" line="49"/>
-        <location filename="option.cpp" line="420"/>
+        <location filename="option.cpp" line="37"/>
+        <location filename="option.cpp" line="385"/>
         <source>Restore Defaults</source>
         <translation>Restaurar predeterminados</translation>
     </message>
     <message>
-        <location filename="option.cpp" line="46"/>
-        <location filename="option.cpp" line="417"/>
+        <location filename="option.cpp" line="34"/>
+        <location filename="option.cpp" line="382"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
         <location filename="option.ui" line="55"/>
-        <location filename="option.cpp" line="73"/>
+        <location filename="option.cpp" line="55"/>
         <source>General</source>
         <translation>General</translation>
     </message>
     <message>
         <location filename="option.ui" line="97"/>
-        <location filename="option.cpp" line="127"/>
+        <location filename="option.cpp" line="109"/>
         <source>Screenshot</source>
-        <translation>Captura de pantalla</translation>
+        <translation>Captura</translation>
     </message>
     <message>
         <location filename="option.ui" line="148"/>
@@ -436,7 +456,7 @@
     </message>
     <message>
         <location filename="option.ui" line="69"/>
-        <location filename="option.cpp" line="91"/>
+        <location filename="option.cpp" line="73"/>
         <source>Language</source>
         <translation>Idioma</translation>
     </message>
@@ -447,7 +467,7 @@
     </message>
     <message>
         <location filename="option.ui" line="83"/>
-        <location filename="option.cpp" line="109"/>
+        <location filename="option.cpp" line="91"/>
         <source>Slideshow</source>
         <translation>Diapositivas</translation>
     </message>
@@ -481,37 +501,37 @@
         <translation>Nombre :</translation>
     </message>
     <message>
-        <location filename="photoinfo.ui" line="109"/>
+        <location filename="photoinfo.ui" line="106"/>
         <source>Directory :</source>
         <translation>Directorio :</translation>
     </message>
     <message>
-        <location filename="photoinfo.ui" line="157"/>
+        <location filename="photoinfo.ui" line="151"/>
         <source>Size :</source>
         <translation>Tamaño :</translation>
     </message>
     <message>
-        <location filename="photoinfo.ui" line="205"/>
+        <location filename="photoinfo.ui" line="196"/>
         <source>Type :</source>
         <translation>Escribe :</translation>
     </message>
     <message>
-        <location filename="photoinfo.ui" line="253"/>
+        <location filename="photoinfo.ui" line="241"/>
         <source>Width :</source>
         <translation>Ancho :</translation>
     </message>
     <message>
-        <location filename="photoinfo.ui" line="301"/>
+        <location filename="photoinfo.ui" line="286"/>
         <source>Height :</source>
         <translation>Altura :</translation>
     </message>
     <message>
-        <location filename="photoinfo.ui" line="349"/>
+        <location filename="photoinfo.ui" line="331"/>
         <source>Data Created :</source>
         <translation>Datos Creado :</translation>
     </message>
     <message>
-        <location filename="photoinfo.ui" line="410"/>
+        <location filename="photoinfo.ui" line="389"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -545,12 +565,12 @@
         <translation>Altura :</translation>
     </message>
     <message>
-        <location filename="resizephoto.cpp" line="42"/>
+        <location filename="resizephoto.cpp" line="36"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="resizephoto.cpp" line="43"/>
+        <location filename="resizephoto.cpp" line="37"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>

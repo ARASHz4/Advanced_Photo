@@ -378,11 +378,17 @@ void option::ApplyButton()
 {
     Save();
 
+    int cl = ui->LanguageComboBox->currentIndex();
+
     ui->retranslateUi(this);
     OK.setText(tr("OK"));
     Cancel.setText(tr("Cancel"));
     Apply.setText(tr("Apply"));
     RestoreDefaults.setText(tr("Restore Defaults"));
+    ui->OptionGroupBox->setTitle(tr("Language"));
+
+    ui->LanguageComboBox->insertSeparator(1);
+    ui->LanguageComboBox->setCurrentIndex(cl);
 }
 
 void option::RestoreDefaultsButton()
