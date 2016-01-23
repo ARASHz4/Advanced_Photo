@@ -4,27 +4,27 @@
 <context>
     <name>About</name>
     <message>
-        <location filename="about.ui" line="26"/>
+        <location filename="about.ui" line="20"/>
         <source>About Advanced Photo</source>
         <translation>關於 Advanced Photo</translation>
     </message>
     <message>
-        <location filename="about.ui" line="207"/>
+        <location filename="about.ui" line="201"/>
         <source>Version </source>
         <translation>版本 </translation>
     </message>
     <message>
-        <location filename="about.ui" line="287"/>
+        <location filename="about.ui" line="281"/>
         <source>Copyright 2014 - 2016 ARASHz4</source>
         <translation>原著作權 2014 - 2016 ARASHz4</translation>
     </message>
     <message>
-        <location filename="about.ui" line="332"/>
+        <location filename="about.ui" line="326"/>
         <source>About Qt</source>
         <translation>關於 Qt</translation>
     </message>
     <message>
-        <location filename="about.ui" line="371"/>
+        <location filename="about.ui" line="365"/>
         <source>OK</source>
         <translation>是</translation>
     </message>
@@ -246,167 +246,176 @@
         <translation>說明</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="101"/>
+        <location filename="photowindow.ui" line="108"/>
         <source>Photo</source>
         <translation>照片</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="105"/>
+        <location filename="photowindow.ui" line="112"/>
         <source>Rotate</source>
         <translation>旋轉</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="112"/>
+        <location filename="photowindow.ui" line="119"/>
         <source>Flip</source>
         <translation>翻轉</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="169"/>
+        <location filename="photowindow.ui" line="176"/>
         <source>Quit</source>
         <translation>離開</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="181"/>
+        <location filename="photowindow.ui" line="188"/>
         <source>About</source>
         <translation>關於</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="193"/>
+        <location filename="photowindow.ui" line="200"/>
         <source>Option</source>
         <translation>選項</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="205"/>
-        <location filename="photowindow.ui" line="208"/>
+        <location filename="photowindow.ui" line="212"/>
+        <location filename="photowindow.ui" line="215"/>
         <source>Zoom IN</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="220"/>
-        <location filename="photowindow.ui" line="223"/>
+        <location filename="photowindow.ui" line="227"/>
+        <location filename="photowindow.ui" line="230"/>
         <source>Zoom Out</source>
         <translation>縮小</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="235"/>
-        <location filename="photowindow.ui" line="238"/>
+        <location filename="photowindow.ui" line="242"/>
+        <location filename="photowindow.ui" line="245"/>
         <source>1:1</source>
         <translation>1:1</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="253"/>
-        <location filename="photowindow.ui" line="256"/>
+        <location filename="photowindow.ui" line="260"/>
+        <location filename="photowindow.ui" line="263"/>
         <source>Fit Window</source>
         <translation>縮放至適中</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="268"/>
+        <location filename="photowindow.ui" line="275"/>
         <source>Next Photo</source>
         <translation>下一張照片</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="283"/>
+        <location filename="photowindow.ui" line="290"/>
         <source>Previous Photo</source>
         <translation>前一張照片</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="295"/>
+        <location filename="photowindow.ui" line="302"/>
         <source>Slideshow</source>
         <translation>幻燈片</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="298"/>
-        <location filename="photowindow.cpp" line="2070"/>
+        <location filename="photowindow.ui" line="305"/>
+        <location filename="photowindow.cpp" line="2079"/>
         <source>Start Slideshow</source>
         <translation>開始幻燈片</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="310"/>
-        <location filename="photowindow.ui" line="313"/>
-        <location filename="photowindow.cpp" line="2088"/>
-        <location filename="photowindow.cpp" line="2152"/>
+        <location filename="photowindow.ui" line="317"/>
+        <location filename="photowindow.ui" line="320"/>
+        <location filename="photowindow.cpp" line="2097"/>
+        <location filename="photowindow.cpp" line="2161"/>
         <source>Full Screen</source>
         <translation>全螢幕</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="328"/>
-        <location filename="photowindow.ui" line="331"/>
+        <location filename="photowindow.ui" line="335"/>
+        <location filename="photowindow.ui" line="338"/>
         <source>Rotate Right</source>
         <translation>向右旋轉</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="343"/>
-        <location filename="photowindow.ui" line="346"/>
+        <location filename="photowindow.ui" line="350"/>
+        <location filename="photowindow.ui" line="353"/>
         <source>Rotate Left</source>
         <translation>向左旋轉</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="358"/>
-        <location filename="photowindow.ui" line="361"/>
+        <location filename="photowindow.ui" line="365"/>
+        <location filename="photowindow.ui" line="368"/>
         <location filename="photowindow.cpp" line="777"/>
         <source>Save</source>
         <translation>儲存</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="376"/>
-        <location filename="photowindow.ui" line="379"/>
+        <location filename="photowindow.ui" line="383"/>
+        <location filename="photowindow.ui" line="386"/>
         <source>Save As</source>
         <translation>另存新檔</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="391"/>
+        <location filename="photowindow.ui" line="398"/>
         <source>Resize</source>
         <translation>調整大小</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="403"/>
+        <location filename="photowindow.ui" line="410"/>
         <source>Flip Horizontal</source>
         <translation>水平翻轉</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="415"/>
+        <location filename="photowindow.ui" line="422"/>
         <source>Flip Vertical</source>
         <translation>垂直翻轉</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="427"/>
+        <location filename="photowindow.ui" line="434"/>
         <source>Print...</source>
         <translation>列印...</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="453"/>
-        <location filename="photowindow.ui" line="456"/>
+        <location filename="photowindow.ui" line="523"/>
+        <source>GitHub</source>
+        <translation>GitHub</translation>
+    </message>
+    <message>
+        <location filename="photowindow.ui" line="532"/>
+        <source>SourceForge</source>
+        <translation>SourceForge</translation>
+    </message>
+    <message>
+        <location filename="photowindow.ui" line="98"/>
         <source>Home Page</source>
         <translation>首頁</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="468"/>
-        <location filename="photowindow.ui" line="471"/>
+        <location filename="photowindow.ui" line="460"/>
+        <location filename="photowindow.ui" line="463"/>
         <source>Photo Info</source>
         <translation>照片資訊</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="483"/>
+        <location filename="photowindow.ui" line="475"/>
         <source>Screenshot</source>
         <translation>截圖</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="495"/>
+        <location filename="photowindow.ui" line="487"/>
         <source>Close Photo</source>
         <translation>親密照</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="507"/>
+        <location filename="photowindow.ui" line="499"/>
         <source>Go to</source>
         <translation>轉到</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="519"/>
+        <location filename="photowindow.ui" line="511"/>
         <source>Close All Photos</source>
         <translation>關閉所有圖片</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="157"/>
+        <location filename="photowindow.ui" line="164"/>
         <location filename="photowindow.cpp" line="1034"/>
         <source>Open Photo</source>
         <translation>打開照片</translation>
@@ -516,17 +525,17 @@
         <translation>是</translation>
     </message>
     <message>
-        <location filename="photowindow.cpp" line="1740"/>
+        <location filename="photowindow.cpp" line="1742"/>
         <source>Restore</source>
         <translation>恢復</translation>
     </message>
     <message>
-        <location filename="photowindow.cpp" line="1743"/>
+        <location filename="photowindow.cpp" line="1745"/>
         <source>Cancel Screenshot</source>
         <translation>取消截圖</translation>
     </message>
     <message>
-        <location filename="photowindow.cpp" line="2138"/>
+        <location filename="photowindow.cpp" line="2147"/>
         <source>Exit Full Screen</source>
         <translation>結束全螢幕</translation>
     </message>

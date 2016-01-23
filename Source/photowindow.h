@@ -107,7 +107,9 @@ private slots:
 
     void on_actionFlip_Vertical_triggered();
 
-    void on_actionHome_Page_triggered();
+    void on_actionGitHub_triggered();
+
+    void on_actionSourceForge_triggered();
 
     void on_actionAbout_triggered();
 

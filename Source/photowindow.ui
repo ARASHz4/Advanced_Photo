@@ -93,7 +93,14 @@
     <property name="title">
      <string>Help</string>
     </property>
-    <addaction name="actionHome_Page"/>
+    <widget class="QMenu" name="menuHome_Page">
+     <property name="title">
+      <string>Home Page</string>
+     </property>
+     <addaction name="actionGitHub"/>
+     <addaction name="actionSourceForge"/>
+    </widget>
+    <addaction name="menuHome_Page"/>
     <addaction name="actionAbout"/>
    </widget>
    <widget class="QMenu" name="menuPhoto">
@@ -444,21 +451,6 @@
     <string notr="true"/>
    </property>
   </action>
-  <action name="actionHome_Page">
-   <property name="icon">
-    <iconset resource="Icon.qrc">
-     <normaloff>:/Icons/HomePage.png</normaloff>:/Icons/HomePage.png</iconset>
-   </property>
-   <property name="text">
-    <string>Home Page</string>
-   </property>
-   <property name="toolTip">
-    <string>Home Page</string>
-   </property>
-   <property name="shortcut">
-    <string notr="true">Ctrl+H</string>
-   </property>
-  </action>
   <action name="actionPhotoInfo">
    <property name="icon">
     <iconset resource="Icon.qrc">
@@ -520,6 +512,24 @@
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+Shift+W</string>
+   </property>
+  </action>
+  <action name="actionGitHub">
+   <property name="icon">
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/GitHub.png</normaloff>:/Icons/GitHub.png</iconset>
+   </property>
+   <property name="text">
+    <string>GitHub</string>
+   </property>
+  </action>
+  <action name="actionSourceForge">
+   <property name="icon">
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/SourceForge.png</normaloff>:/Icons/SourceForge.png</iconset>
+   </property>
+   <property name="text">
+    <string>SourceForge</string>
    </property>
   </action>
  </widget>

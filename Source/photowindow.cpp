@@ -1820,9 +1820,14 @@ void PhotoWindow::on_actionScreenshot_triggered()
     }
 }
 
-void PhotoWindow::on_actionHome_Page_triggered()
+void PhotoWindow::on_actionGitHub_triggered()
 {
-    QDesktopServices::openUrl(QUrl(AdvancedPhoto::organizationDomain()));
+    QDesktopServices::openUrl(QUrl("http://arashz4.github.io/Advanced_Photo/"));
+}
+
+void PhotoWindow::on_actionSourceForge_triggered()
+{
+    QDesktopServices::openUrl(QUrl("http://advancedphoto.sourceforge.net"));
 }
 
 void PhotoWindow::on_actionAbout_triggered()
@@ -2156,3 +2161,4 @@ void PhotoWindow::on_actionFullscreen_triggered()
         ui->actionFullscreen->setToolTip(tr("Full Screen"));
     }
 }
+
