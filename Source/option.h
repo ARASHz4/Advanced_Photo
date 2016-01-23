@@ -5,24 +5,24 @@
 #include <QPushButton>
 
 namespace Ui {
-class option;
+class Option;
 }
 
-class option : public QDialog
+class Option : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit option(QWidget *parent = 0);
-    ~option();
+    explicit Option(QWidget *parent = 0);
+    ~Option();
 
 private:
-    Ui::option *ui;
+    Ui::Option *ui;
 
     QPushButton OK, Cancel, Apply, RestoreDefaults;
 
 private slots:
-    void showEvent(QShowEvent *);
+    void Start();
 
     void on_listWidgetOption_currentRowChanged(int currentRow);
 

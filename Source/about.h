@@ -5,19 +5,19 @@
 #include <QTimer>
 
 namespace Ui {
-class about;
+class About;
 }
 
-class about : public QDialog
+class About : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit about(QWidget *parent = 0);
-    ~about();
+    explicit About(QWidget *parent = 0);
+    ~About();
 
 private slots:
-    void showEvent(QShowEvent *);
+    void Start();
 
     void on_OkButton_clicked();
 
@@ -30,7 +30,7 @@ private slots:
     void WindowHide();
 
 private:
-    Ui::about *ui;
+    Ui::About *ui;
 
     bool ds;
 

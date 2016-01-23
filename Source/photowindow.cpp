@@ -56,7 +56,7 @@ int PhotoWindow::Ps()
     return ps;
 }
 
-void PhotoWindow::showEvent(QShowEvent *)
+void PhotoWindow::Start()
 {
     zoom=false;
     sls=false;
@@ -171,6 +171,8 @@ void PhotoWindow::showEvent(QShowEvent *)
         LoadOtherPhotosDelay.connect(&LoadOtherPhotosDelay,SIGNAL(timeout()),this,SLOT(LoadOtherPhotos()));
         #endif
     }
+
+    show();
 }
 
 void PhotoWindow::Retranslate()
@@ -889,7 +891,7 @@ void PhotoWindow::Screenshot()
 
 void PhotoWindow::ScreenshotIcon()
 {
-    if (SLSettings::Sam() == true)
+    if (samt == true)
     {
 //        if (IconTrayNum == 1)
 //        {
@@ -987,7 +989,7 @@ void PhotoWindow::Close_Photo()
 void PhotoWindow::Restore()
 {
     tray->hide();
-    SLSettings::setSam(false);
+    samt = false;
     show();
 }
 
@@ -1670,7 +1672,7 @@ void PhotoWindow::on_actionOption_triggered()
     bool kart=SLSettings::Kar();
     int slideshowSpeedt=SLSettings::SlideshowSpeed();
 
-    option OD(this);
+    Option OD(this);
     OD.exec();
 
     if(pe==true && (kart != SLSettings::Kar() || slideshowSpeedt != SLSettings::SlideshowSpeed()))
@@ -1735,6 +1737,8 @@ void PhotoWindow::on_actionScreenshot_triggered()
     {
         if (SLSettings::Sam() == true)
         {
+            samt = true;
+
             QAction *RestoreAction = new QAction(QIcon(":/Icons/Restore.png"), tr("Restore"), this);
             RestoreAction->connect(RestoreAction, SIGNAL(triggered()), this, SLOT(Restore()));
 
@@ -1765,6 +1769,8 @@ void PhotoWindow::on_actionScreenshot_triggered()
         }
         else
         {
+            samt = false;
+
             if(SLSettings::ScreenshotDelay() > 0)
             {
                 IconTrayNum=SLSettings::ScreenshotDelay();
@@ -1821,7 +1827,7 @@ void PhotoWindow::on_actionHome_Page_triggered()
 
 void PhotoWindow::on_actionAbout_triggered()
 {
-    about AD(this);
+    About AD(this);
     AD.exec();
 }
 
@@ -1829,44 +1835,44 @@ void PhotoWindow::on_actionResize_triggered()
 {
     if(pe==true)
     {
-        resizephoto RPD(this);
+        ResizePhoto RPD(this);
         RPD.exec();
 
-        if(resizephoto::Resz()==true)
+        if(ResizePhoto::Resz()==true)
         {
             QImage Resize(ui->Photo->pixmap()->toImage());
 
             if(rd==90 || rd==270 || rd==-90 || rd==-270)
             {
-                if(resizephoto::Rekar()==true)
+                if(ResizePhoto::Rekar()==true)
                 {
-                    PhotoSave=PhotoSave.fromImage(Resize.scaled(resizephoto::RsHeight(), resizephoto::RsWidth(),
+                    PhotoSave=PhotoSave.fromImage(Resize.scaled(ResizePhoto::RsHeight(), ResizePhoto::RsWidth(),
                                                                 Qt::KeepAspectRatio, Qt::SmoothTransformation));
                 }
                 else
                 {
-                    PhotoSave=PhotoSave.fromImage(Resize.scaled(resizephoto::RsHeight(), resizephoto::RsWidth(),
+                    PhotoSave=PhotoSave.fromImage(Resize.scaled(ResizePhoto::RsHeight(), ResizePhoto::RsWidth(),
                                                                 Qt::IgnoreAspectRatio, Qt::SmoothTransformation));
                 }
             }
             else
             {
-                if(resizephoto::Rekar()==true)
+                if(ResizePhoto::Rekar()==true)
                 {
-                    PhotoSave=PhotoSave.fromImage(Resize.scaled(resizephoto::RsWidth(), resizephoto::RsHeight(),
+                    PhotoSave=PhotoSave.fromImage(Resize.scaled(ResizePhoto::RsWidth(), ResizePhoto::RsHeight(),
                                                                 Qt::KeepAspectRatio, Qt::SmoothTransformation));
                 }
                 else
                 {
-                    PhotoSave=PhotoSave.fromImage(Resize.scaled(resizephoto::RsWidth(), resizephoto::RsHeight(),
+                    PhotoSave=PhotoSave.fromImage(Resize.scaled(ResizePhoto::RsWidth(), ResizePhoto::RsHeight(),
                                                                 Qt::IgnoreAspectRatio, Qt::SmoothTransformation));
                 }
             }
 
-            resizephoto::setResz(false);
+            ResizePhoto::setResz(false);
 
-            resizephoto::setRsWidth(0);
-            resizephoto::setRsHeight(0);
+            ResizePhoto::setRsWidth(0);
+            ResizePhoto::setRsHeight(0);
 
             sph=true;
             ui->actionSave->setEnabled(true);
@@ -2112,7 +2118,7 @@ void PhotoWindow::on_actionPhotoInfo_triggered()
 {
     if(pe == true)
     {
-        photoinfo PID(this);
+        PhotoInfo PID(this);
         PID.exec();
     }
 }

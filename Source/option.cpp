@@ -3,21 +3,22 @@
 #include "advancedphoto.h"
 #include "slsettings.h"
 
-option::option(QWidget *parent) :
+Option::Option(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::option)
+    ui(new Ui::Option)
 {
     ui->setupUi(this);
-
     setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+
+    Start();
 }
 
-option::~option()
+Option::~Option()
 {
     delete ui; 
 }
 
-void option::showEvent(QShowEvent *)
+void Option::Start()
 {
     int x, y, w, h;
     std::tie(x, y, w, h) = SLSettings::LoadOptionWindow();
@@ -48,7 +49,7 @@ void option::showEvent(QShowEvent *)
     Load();
 }
 
-void option::on_listWidgetOption_currentRowChanged(int currentRow)
+void Option::on_listWidgetOption_currentRowChanged(int currentRow)
 {
     if(currentRow == 0)
     {
@@ -124,7 +125,7 @@ void option::on_listWidgetOption_currentRowChanged(int currentRow)
     }
 }
 
-void option::Load()
+void Option::Load()
 {
     //General
     {
@@ -203,7 +204,7 @@ void option::Load()
     }
 }
 
-void option::Save()
+void Option::Save()
 {
     //General
     {
@@ -359,22 +360,21 @@ void option::Save()
         }
     }
 
-    SLSettings Ssettings;
-    Ssettings.SaveSettings();
+    SLSettings::SaveSettings();
 }
 
-void option::OKButton()
+void Option::OKButton()
 {
     Save();
     close();
 }
 
-void option::CancelButton()
+void Option::CancelButton()
 {
     close();
 }
 
-void option::ApplyButton()
+void Option::ApplyButton()
 {
     Save();
 
@@ -391,7 +391,7 @@ void option::ApplyButton()
     ui->LanguageComboBox->setCurrentIndex(cl);
 }
 
-void option::RestoreDefaultsButton()
+void Option::RestoreDefaultsButton()
 {
     SLSettings::setKar(true);
     SLSettings::setOap(true);
@@ -405,7 +405,7 @@ void option::RestoreDefaultsButton()
     Load();
 }
 
-void option::closeEvent (QCloseEvent *)
+void Option::closeEvent (QCloseEvent *)
 {
     SLSettings::SaveOptionWindow(this->geometry().x(), this->geometry().y(), this->geometry().width(), this->geometry().height());
 }

@@ -40,9 +40,9 @@ public:
 
     static bool AutomaticLanguage();
 
-    void LoadSettings();
+    static void LoadSettings();
 
-    void SaveSettings();
+    static void SaveSettings();
 
     static std::tuple<int, int, int, int, int, bool, bool> LoadPhotoWindow();
 

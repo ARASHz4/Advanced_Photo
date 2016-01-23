@@ -2,6 +2,44 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_TW">
 <context>
+    <name>About</name>
+    <message>
+        <location filename="about.ui" line="26"/>
+        <source>About Advanced Photo</source>
+        <translation>關於 Advanced Photo</translation>
+    </message>
+    <message>
+        <location filename="about.ui" line="207"/>
+        <source>Version </source>
+        <translation>版本 </translation>
+    </message>
+    <message>
+        <location filename="about.ui" line="287"/>
+        <source>Copyright 2014 - 2016 ARASHz4</source>
+        <translation>原著作權 2014 - 2016 ARASHz4</translation>
+    </message>
+    <message>
+        <location filename="about.ui" line="332"/>
+        <source>About Qt</source>
+        <translation>關於 Qt</translation>
+    </message>
+    <message>
+        <location filename="about.ui" line="371"/>
+        <source>OK</source>
+        <translation>是</translation>
+    </message>
+    <message>
+        <location filename="about.cpp" line="86"/>
+        <source>Developer :</source>
+        <translation>開發者：</translation>
+    </message>
+    <message>
+        <location filename="about.cpp" line="87"/>
+        <source>Arash Zare</source>
+        <translation>Arash Zare</translation>
+    </message>
+</context>
+<context>
     <name>GoTo</name>
     <message>
         <location filename="goto.ui" line="26"/>
@@ -14,14 +52,185 @@
         <translation>轉到：</translation>
     </message>
     <message>
-        <location filename="goto.cpp" line="22"/>
+        <location filename="goto.cpp" line="24"/>
         <source>Go</source>
         <translation>走</translation>
     </message>
     <message>
-        <location filename="goto.cpp" line="23"/>
+        <location filename="goto.cpp" line="25"/>
         <source>Cancel</source>
         <translation>取消</translation>
+    </message>
+</context>
+<context>
+    <name>Option</name>
+    <message>
+        <location filename="option.ui" line="20"/>
+        <source>Option</source>
+        <translation>選項</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="55"/>
+        <location filename="option.cpp" line="56"/>
+        <source>General</source>
+        <translation>一般</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="69"/>
+        <location filename="option.cpp" line="74"/>
+        <location filename="option.cpp" line="388"/>
+        <source>Language</source>
+        <translation>語言</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="83"/>
+        <location filename="option.cpp" line="92"/>
+        <source>Slideshow</source>
+        <translation>幻燈片</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="97"/>
+        <location filename="option.cpp" line="110"/>
+        <source>Screenshot</source>
+        <translation>截圖</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="132"/>
+        <source>Load Other Photos in Folder</source>
+        <translation>從資料夾內載入其他照片</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="148"/>
+        <source>Keep Aspect Ratio</source>
+        <translation>保持長寬比</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="167"/>
+        <source>Go to Full Screen Mode</source>
+        <translation>進入全螢幕模式</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="182"/>
+        <source>Language :</source>
+        <translation>語言：</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="196"/>
+        <source>Automatic (System Language)</source>
+        <translation>自動（系統語言）</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="201"/>
+        <source>English</source>
+        <translation>英語 - English</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="206"/>
+        <source>پارسی</source>
+        <translation>波斯語 - پارسی</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="211"/>
+        <source>Español</source>
+        <translation>西班牙語 - Español</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="216"/>
+        <source>繁體中文</source>
+        <translation>繁體中文</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="247"/>
+        <source>Speed :</source>
+        <translation>速度：</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="276"/>
+        <location filename="option.ui" line="348"/>
+        <source>Sec</source>
+        <translation>秒</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="319"/>
+        <source>Screenshot delay :</source>
+        <translation>截圖延遲：</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="376"/>
+        <source>Auto Minimize to tray</source>
+        <translation>自動最小化到托盤</translation>
+    </message>
+    <message>
+        <location filename="option.cpp" line="35"/>
+        <location filename="option.cpp" line="384"/>
+        <source>OK</source>
+        <translation>是</translation>
+    </message>
+    <message>
+        <location filename="option.cpp" line="36"/>
+        <location filename="option.cpp" line="385"/>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+    <message>
+        <location filename="option.cpp" line="37"/>
+        <location filename="option.cpp" line="386"/>
+        <source>Apply</source>
+        <translation>敷</translation>
+    </message>
+    <message>
+        <location filename="option.cpp" line="38"/>
+        <location filename="option.cpp" line="387"/>
+        <source>Restore Defaults</source>
+        <translation>恢復默認值</translation>
+    </message>
+</context>
+<context>
+    <name>PhotoInfo</name>
+    <message>
+        <location filename="photoinfo.ui" line="26"/>
+        <source>Photo Info</source>
+        <translation>照片資訊</translation>
+    </message>
+    <message>
+        <location filename="photoinfo.ui" line="61"/>
+        <source>Name :</source>
+        <translation>名稱：</translation>
+    </message>
+    <message>
+        <location filename="photoinfo.ui" line="106"/>
+        <source>Directory :</source>
+        <translation>目錄：</translation>
+    </message>
+    <message>
+        <location filename="photoinfo.ui" line="151"/>
+        <source>Size :</source>
+        <translation>大小：</translation>
+    </message>
+    <message>
+        <location filename="photoinfo.ui" line="196"/>
+        <source>Type :</source>
+        <translation>類型：</translation>
+    </message>
+    <message>
+        <location filename="photoinfo.ui" line="241"/>
+        <source>Width :</source>
+        <translation>寬度：</translation>
+    </message>
+    <message>
+        <location filename="photoinfo.ui" line="286"/>
+        <source>Height :</source>
+        <translation>高度：</translation>
+    </message>
+    <message>
+        <location filename="photoinfo.ui" line="331"/>
+        <source>Data Created :</source>
+        <translation>建立資訊：</translation>
+    </message>
+    <message>
+        <location filename="photoinfo.ui" line="389"/>
+        <source>OK</source>
+        <translation>是</translation>
     </message>
 </context>
 <context>
@@ -328,215 +537,7 @@
     </message>
 </context>
 <context>
-    <name>about</name>
-    <message>
-        <location filename="about.ui" line="26"/>
-        <source>About Advanced Photo</source>
-        <translation>關於 Advanced Photo</translation>
-    </message>
-    <message>
-        <location filename="about.ui" line="207"/>
-        <source>Version </source>
-        <translation>版本 </translation>
-    </message>
-    <message>
-        <location filename="about.ui" line="287"/>
-        <source>Copyright 2014 - 2016 ARASHz4</source>
-        <translation>原著作權2014至2016年 ARASHz4</translation>
-    </message>
-    <message>
-        <location filename="about.ui" line="332"/>
-        <source>About Qt</source>
-        <translation>關於 Qt</translation>
-    </message>
-    <message>
-        <location filename="about.ui" line="371"/>
-        <source>OK</source>
-        <translation>是</translation>
-    </message>
-    <message>
-        <location filename="about.cpp" line="84"/>
-        <source>Developer :</source>
-        <translation>開發者：</translation>
-    </message>
-    <message>
-        <location filename="about.cpp" line="85"/>
-        <source>Arash Zare</source>
-        <translation>Arash Zare</translation>
-    </message>
-</context>
-<context>
-    <name>option</name>
-    <message>
-        <location filename="option.ui" line="20"/>
-        <source>Option</source>
-        <translation>選項</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="196"/>
-        <source>Automatic (System Language)</source>
-        <translation>自動（系統語言）</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="201"/>
-        <source>English</source>
-        <translation>英語 - English</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="206"/>
-        <source>پارسی</source>
-        <translation>波斯語 - پارسی</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="211"/>
-        <source>Español</source>
-        <translation>西班牙語 - Español</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="216"/>
-        <source>繁體中文</source>
-        <translation>繁體中文</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="319"/>
-        <source>Screenshot delay :</source>
-        <translation>截圖延遲：</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="376"/>
-        <source>Auto Minimize to tray</source>
-        <translation>自動最小化到托盤</translation>
-    </message>
-    <message>
-        <location filename="option.cpp" line="35"/>
-        <location filename="option.cpp" line="383"/>
-        <source>Cancel</source>
-        <translation>取消</translation>
-    </message>
-    <message>
-        <location filename="option.cpp" line="36"/>
-        <location filename="option.cpp" line="384"/>
-        <source>Apply</source>
-        <translation>敷</translation>
-    </message>
-    <message>
-        <location filename="option.cpp" line="37"/>
-        <location filename="option.cpp" line="385"/>
-        <source>Restore Defaults</source>
-        <translation>恢復默認值</translation>
-    </message>
-    <message>
-        <location filename="option.cpp" line="34"/>
-        <location filename="option.cpp" line="382"/>
-        <source>OK</source>
-        <translation>是</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="55"/>
-        <location filename="option.cpp" line="55"/>
-        <source>General</source>
-        <translation>一般</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="97"/>
-        <location filename="option.cpp" line="109"/>
-        <source>Screenshot</source>
-        <translation>截圖</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="148"/>
-        <source>Keep Aspect Ratio</source>
-        <translation>保持長寬比</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="132"/>
-        <source>Load Other Photos in Folder</source>
-        <translation>從資料夾內載入其他照片</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="69"/>
-        <location filename="option.cpp" line="73"/>
-        <source>Language</source>
-        <translation>語言</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="182"/>
-        <source>Language :</source>
-        <translation>語言：</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="83"/>
-        <location filename="option.cpp" line="91"/>
-        <source>Slideshow</source>
-        <translation>幻燈片</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="247"/>
-        <source>Speed :</source>
-        <translation>速度：</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="276"/>
-        <location filename="option.ui" line="348"/>
-        <source>Sec</source>
-        <translation>秒</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="167"/>
-        <source>Go to Full Screen Mode</source>
-        <translation>進入全螢幕模式</translation>
-    </message>
-</context>
-<context>
-    <name>photoinfo</name>
-    <message>
-        <location filename="photoinfo.ui" line="26"/>
-        <source>Photo Info</source>
-        <translation>照片資訊</translation>
-    </message>
-    <message>
-        <location filename="photoinfo.ui" line="61"/>
-        <source>Name :</source>
-        <translation>名稱：</translation>
-    </message>
-    <message>
-        <location filename="photoinfo.ui" line="106"/>
-        <source>Directory :</source>
-        <translation>目錄：</translation>
-    </message>
-    <message>
-        <location filename="photoinfo.ui" line="151"/>
-        <source>Size :</source>
-        <translation>大小：</translation>
-    </message>
-    <message>
-        <location filename="photoinfo.ui" line="196"/>
-        <source>Type :</source>
-        <translation>類型：</translation>
-    </message>
-    <message>
-        <location filename="photoinfo.ui" line="241"/>
-        <source>Width :</source>
-        <translation>寬度：</translation>
-    </message>
-    <message>
-        <location filename="photoinfo.ui" line="286"/>
-        <source>Height :</source>
-        <translation>高度：</translation>
-    </message>
-    <message>
-        <location filename="photoinfo.ui" line="331"/>
-        <source>Data Created :</source>
-        <translation>建立資訊：</translation>
-    </message>
-    <message>
-        <location filename="photoinfo.ui" line="389"/>
-        <source>OK</source>
-        <translation>是</translation>
-    </message>
-</context>
-<context>
-    <name>resizephoto</name>
+    <name>ResizePhoto</name>
     <message>
         <location filename="resizephoto.ui" line="26"/>
         <source>Resize</source>
@@ -564,12 +565,12 @@
         <translation>高度：</translation>
     </message>
     <message>
-        <location filename="resizephoto.cpp" line="36"/>
+        <location filename="resizephoto.cpp" line="97"/>
         <source>OK</source>
         <translation>是</translation>
     </message>
     <message>
-        <location filename="resizephoto.cpp" line="37"/>
+        <location filename="resizephoto.cpp" line="98"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>

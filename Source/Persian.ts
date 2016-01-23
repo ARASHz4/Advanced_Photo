@@ -2,6 +2,44 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="fa">
 <context>
+    <name>About</name>
+    <message>
+        <location filename="about.ui" line="26"/>
+        <source>About Advanced Photo</source>
+        <translation>درباره Advanced Photo</translation>
+    </message>
+    <message>
+        <location filename="about.ui" line="207"/>
+        <source>Version </source>
+        <translation>ویرایش  </translation>
+    </message>
+    <message>
+        <location filename="about.ui" line="287"/>
+        <source>Copyright 2014 - 2016 ARASHz4</source>
+        <translation>درای پخش ۲۰۱۴-۲۰۱۶ ARASHz4 </translation>
+    </message>
+    <message>
+        <location filename="about.ui" line="332"/>
+        <source>About Qt</source>
+        <translation>درباره کیوت</translation>
+    </message>
+    <message>
+        <location filename="about.ui" line="371"/>
+        <source>OK</source>
+        <translation>باشه</translation>
+    </message>
+    <message>
+        <location filename="about.cpp" line="86"/>
+        <source>Developer :</source>
+        <translation>: گسترش دهنده</translation>
+    </message>
+    <message>
+        <location filename="about.cpp" line="87"/>
+        <source>Arash Zare</source>
+        <translation>آرش زارع</translation>
+    </message>
+</context>
+<context>
     <name>GoTo</name>
     <message>
         <location filename="goto.ui" line="26"/>
@@ -14,14 +52,185 @@
         <translation>برو به :</translation>
     </message>
     <message>
-        <location filename="goto.cpp" line="22"/>
+        <location filename="goto.cpp" line="24"/>
         <source>Go</source>
         <translation>برو</translation>
     </message>
     <message>
-        <location filename="goto.cpp" line="23"/>
+        <location filename="goto.cpp" line="25"/>
         <source>Cancel</source>
         <translation>بر هم زدن</translation>
+    </message>
+</context>
+<context>
+    <name>Option</name>
+    <message>
+        <location filename="option.ui" line="20"/>
+        <source>Option</source>
+        <translation>گزینه ها</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="55"/>
+        <location filename="option.cpp" line="56"/>
+        <source>General</source>
+        <translation>بنیادی</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="69"/>
+        <location filename="option.cpp" line="74"/>
+        <location filename="option.cpp" line="388"/>
+        <source>Language</source>
+        <translation> زبان </translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="83"/>
+        <location filename="option.cpp" line="92"/>
+        <source>Slideshow</source>
+        <translation>نمایش اسلاید</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="97"/>
+        <location filename="option.cpp" line="110"/>
+        <source>Screenshot</source>
+        <translation>گرفتن نگاره</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="132"/>
+        <source>Load Other Photos in Folder</source>
+        <translation>بازگزاری دیگر نگاره ها در پوشه</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="148"/>
+        <source>Keep Aspect Ratio</source>
+        <translation>نگه داشتن گوشه</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="167"/>
+        <source>Go to Full Screen Mode</source>
+        <translation>رفتن به همه ی برگه</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="182"/>
+        <source>Language :</source>
+        <translation>زبان : </translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="196"/>
+        <source>Automatic (System Language)</source>
+        <translation>خودکار (زبان سامانه)</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="201"/>
+        <source>English</source>
+        <translation>انگلیسی - English</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="206"/>
+        <source>پارسی</source>
+        <translation>پارسی</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="211"/>
+        <source>Español</source>
+        <translation>اسپانیایی - Español</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="216"/>
+        <source>繁體中文</source>
+        <translation>چینی سنتی - 繁體中文</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="247"/>
+        <source>Speed :</source>
+        <translation>شتاب :</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="276"/>
+        <location filename="option.ui" line="348"/>
+        <source>Sec</source>
+        <translation>دم</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="319"/>
+        <source>Screenshot delay :</source>
+        <translation>درنگ گرفتن نگاره از نمایشگر :</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="376"/>
+        <source>Auto Minimize to tray</source>
+        <translation>کوچک شدن خودکار</translation>
+    </message>
+    <message>
+        <location filename="option.cpp" line="35"/>
+        <location filename="option.cpp" line="384"/>
+        <source>OK</source>
+        <translation>باشه</translation>
+    </message>
+    <message>
+        <location filename="option.cpp" line="36"/>
+        <location filename="option.cpp" line="385"/>
+        <source>Cancel</source>
+        <translation>بر هم زدن</translation>
+    </message>
+    <message>
+        <location filename="option.cpp" line="37"/>
+        <location filename="option.cpp" line="386"/>
+        <source>Apply</source>
+        <translation>بکارگیری</translation>
+    </message>
+    <message>
+        <location filename="option.cpp" line="38"/>
+        <location filename="option.cpp" line="387"/>
+        <source>Restore Defaults</source>
+        <translation>بازگشت به پیش انگاره</translation>
+    </message>
+</context>
+<context>
+    <name>PhotoInfo</name>
+    <message>
+        <location filename="photoinfo.ui" line="26"/>
+        <source>Photo Info</source>
+        <translation>داده های نگاره</translation>
+    </message>
+    <message>
+        <location filename="photoinfo.ui" line="61"/>
+        <source>Name :</source>
+        <translation>نام :</translation>
+    </message>
+    <message>
+        <location filename="photoinfo.ui" line="106"/>
+        <source>Directory :</source>
+        <translation>جای :</translation>
+    </message>
+    <message>
+        <location filename="photoinfo.ui" line="151"/>
+        <source>Size :</source>
+        <translation>اندازه :</translation>
+    </message>
+    <message>
+        <location filename="photoinfo.ui" line="196"/>
+        <source>Type :</source>
+        <translation>گونه :</translation>
+    </message>
+    <message>
+        <location filename="photoinfo.ui" line="241"/>
+        <source>Width :</source>
+        <translation>پهنا :</translation>
+    </message>
+    <message>
+        <location filename="photoinfo.ui" line="286"/>
+        <source>Height :</source>
+        <translation>درازا :</translation>
+    </message>
+    <message>
+        <location filename="photoinfo.ui" line="331"/>
+        <source>Data Created :</source>
+        <translation>هنگامه ساخته شدن :</translation>
+    </message>
+    <message>
+        <location filename="photoinfo.ui" line="389"/>
+        <source>OK</source>
+        <translation>باشه</translation>
     </message>
 </context>
 <context>
@@ -328,215 +537,7 @@
     </message>
 </context>
 <context>
-    <name>about</name>
-    <message>
-        <location filename="about.ui" line="26"/>
-        <source>About Advanced Photo</source>
-        <translation>درباره Advanced Photo</translation>
-    </message>
-    <message>
-        <location filename="about.ui" line="207"/>
-        <source>Version </source>
-        <translation>ویرایش  </translation>
-    </message>
-    <message>
-        <location filename="about.ui" line="287"/>
-        <source>Copyright 2014 - 2016 ARASHz4</source>
-        <translation>درای پخش ۲۰۱۴-۲۰۱۶ ARASHz4 </translation>
-    </message>
-    <message>
-        <location filename="about.ui" line="332"/>
-        <source>About Qt</source>
-        <translation>درباره کیوت</translation>
-    </message>
-    <message>
-        <location filename="about.ui" line="371"/>
-        <source>OK</source>
-        <translation>باشه</translation>
-    </message>
-    <message>
-        <location filename="about.cpp" line="84"/>
-        <source>Developer :</source>
-        <translation>: گسترش دهنده</translation>
-    </message>
-    <message>
-        <location filename="about.cpp" line="85"/>
-        <source>Arash Zare</source>
-        <translation>آرش زارع</translation>
-    </message>
-</context>
-<context>
-    <name>option</name>
-    <message>
-        <location filename="option.ui" line="20"/>
-        <source>Option</source>
-        <translation>گزینه ها</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="196"/>
-        <source>Automatic (System Language)</source>
-        <translation>خودکار (زبان سامانه)</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="201"/>
-        <source>English</source>
-        <translation>انگلیسی - English</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="206"/>
-        <source>پارسی</source>
-        <translation>پارسی</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="211"/>
-        <source>Español</source>
-        <translation>اسپانیایی - Español</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="216"/>
-        <source>繁體中文</source>
-        <translation>چینی سنتی - 繁體中文</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="319"/>
-        <source>Screenshot delay :</source>
-        <translation>درنگ گرفتن نگاره از نمایشگر :</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="376"/>
-        <source>Auto Minimize to tray</source>
-        <translation>کوچک شدن خودکار</translation>
-    </message>
-    <message>
-        <location filename="option.cpp" line="35"/>
-        <location filename="option.cpp" line="383"/>
-        <source>Cancel</source>
-        <translation>بر هم زدن</translation>
-    </message>
-    <message>
-        <location filename="option.cpp" line="36"/>
-        <location filename="option.cpp" line="384"/>
-        <source>Apply</source>
-        <translation>بکارگیری</translation>
-    </message>
-    <message>
-        <location filename="option.cpp" line="37"/>
-        <location filename="option.cpp" line="385"/>
-        <source>Restore Defaults</source>
-        <translation>بازگشت به پیش انگاره</translation>
-    </message>
-    <message>
-        <location filename="option.cpp" line="34"/>
-        <location filename="option.cpp" line="382"/>
-        <source>OK</source>
-        <translation>باشه</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="55"/>
-        <location filename="option.cpp" line="55"/>
-        <source>General</source>
-        <translation>بنیادی</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="97"/>
-        <location filename="option.cpp" line="109"/>
-        <source>Screenshot</source>
-        <translation>گرفتن نگاره</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="148"/>
-        <source>Keep Aspect Ratio</source>
-        <translation>نگه داشتن گوشه</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="132"/>
-        <source>Load Other Photos in Folder</source>
-        <translation>بازگزاری دیگر نگاره ها در پوشه</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="69"/>
-        <location filename="option.cpp" line="73"/>
-        <source>Language</source>
-        <translation> زبان </translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="182"/>
-        <source>Language :</source>
-        <translation>زبان : </translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="83"/>
-        <location filename="option.cpp" line="91"/>
-        <source>Slideshow</source>
-        <translation> نمایش اسلاید </translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="247"/>
-        <source>Speed :</source>
-        <translation>شتاب :</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="276"/>
-        <location filename="option.ui" line="348"/>
-        <source>Sec</source>
-        <translation>دم</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="167"/>
-        <source>Go to Full Screen Mode</source>
-        <translation>رفتن به همه ی برگه</translation>
-    </message>
-</context>
-<context>
-    <name>photoinfo</name>
-    <message>
-        <location filename="photoinfo.ui" line="26"/>
-        <source>Photo Info</source>
-        <translation>داده های نگاره</translation>
-    </message>
-    <message>
-        <location filename="photoinfo.ui" line="61"/>
-        <source>Name :</source>
-        <translation>نام :</translation>
-    </message>
-    <message>
-        <location filename="photoinfo.ui" line="106"/>
-        <source>Directory :</source>
-        <translation>جای :</translation>
-    </message>
-    <message>
-        <location filename="photoinfo.ui" line="151"/>
-        <source>Size :</source>
-        <translation>اندازه :</translation>
-    </message>
-    <message>
-        <location filename="photoinfo.ui" line="196"/>
-        <source>Type :</source>
-        <translation>گونه :</translation>
-    </message>
-    <message>
-        <location filename="photoinfo.ui" line="241"/>
-        <source>Width :</source>
-        <translation>پهنا :</translation>
-    </message>
-    <message>
-        <location filename="photoinfo.ui" line="286"/>
-        <source>Height :</source>
-        <translation>درازا :</translation>
-    </message>
-    <message>
-        <location filename="photoinfo.ui" line="331"/>
-        <source>Data Created :</source>
-        <translation>هنگامه ساخته شدن :</translation>
-    </message>
-    <message>
-        <location filename="photoinfo.ui" line="389"/>
-        <source>OK</source>
-        <translation>باشه</translation>
-    </message>
-</context>
-<context>
-    <name>resizephoto</name>
+    <name>ResizePhoto</name>
     <message>
         <location filename="resizephoto.ui" line="26"/>
         <source>Resize</source>
@@ -564,12 +565,12 @@
         <translation>درازا :</translation>
     </message>
     <message>
-        <location filename="resizephoto.cpp" line="36"/>
+        <location filename="resizephoto.cpp" line="97"/>
         <source>OK</source>
         <translation>باشه</translation>
     </message>
     <message>
-        <location filename="resizephoto.cpp" line="37"/>
+        <location filename="resizephoto.cpp" line="98"/>
         <source>Cancel</source>
         <translation>بر هم زدن</translation>
     </message>

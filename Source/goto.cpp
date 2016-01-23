@@ -8,6 +8,8 @@ GoTo::GoTo(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+
+    Start();
 }
 
 GoTo::~GoTo()
@@ -15,7 +17,7 @@ GoTo::~GoTo()
     delete ui;
 }
 
-void GoTo::showEvent(QShowEvent *)
+void GoTo::Start()
 {
     Go.connect(&Go, SIGNAL(clicked()), this, SLOT(GoButton()));
     Cancel.connect(&Cancel, SIGNAL(clicked()), this, SLOT(CancelButton()));

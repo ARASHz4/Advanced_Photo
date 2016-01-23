@@ -42,11 +42,9 @@ private:
     QString ScreenshotFile, PSize;
     int pw, ph, ww, wh, j, mbh, tbh, pw2, ph2, SaveAnswer, pst, psb, pwz, phz, rd, zoomp, IconTrayNum;
     float zw, zh;
-    bool zoom, sls, pe, sph, ssh, iif, wasMax;
+    bool zoom, sls, pe, sph, ssh, iif, wasMax, samt;
 
 private slots:
-    void showEvent(QShowEvent *);
-
     void Retranslate();
 
     void resizeEvent(QResizeEvent *);
@@ -132,6 +130,8 @@ private slots:
     void on_actionFullscreen_triggered();
 
 public slots:
+    void Start();
+
     void OpenArguments(QStringList Arguments);
 };
 

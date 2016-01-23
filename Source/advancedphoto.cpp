@@ -1,6 +1,7 @@
 #include "advancedphoto.h"
 #include "slsettings.h"
 
+#include <cstdlib>
 #include <QFileOpenEvent>
 #include <QMessageBox>
 
@@ -267,14 +268,13 @@ void AdvancedPhoto::StartApplication()
             msg.setDefaultButton(QMessageBox::Ok);
             msg.exec();
 
-            AdvancedPhoto::quit();
+            std::exit(1);
         }
     }
 
-    SLSettings Lsettings;
-    Lsettings.LoadSettings();
+    SLSettings::LoadSettings();
 
-    photowindow.show();
+    photowindow.Start();
 
     #if !defined(Q_OS_MAC)
     if(args.count() > 0)

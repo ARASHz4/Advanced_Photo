@@ -5,15 +5,76 @@
 #include <QStringList>
 #include <QPixmap>
 
-int resizephoto::rsWidth=0, resizephoto::rsHeight=0;
-bool resizephoto::rekar=false, resizephoto::resz=false;
+int ResizePhoto::rsWidth=0, ResizePhoto::rsHeight=0;
+bool ResizePhoto::rekar=false, ResizePhoto::resz=false;
 
-resizephoto::resizephoto(QWidget *parent) :
+ResizePhoto::ResizePhoto(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::resizephoto)
+    ui(new Ui::ResizePhoto)
 {
     ui->setupUi(this);
     setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+
+    Start();
+}
+
+ResizePhoto::~ResizePhoto()
+{
+    delete ui;
+}
+
+void ResizePhoto::setRsWidth(int value)
+{
+    rsWidth = value;
+}
+
+int ResizePhoto::RsWidth()
+{
+    return rsWidth;
+}
+
+void ResizePhoto::setRsHeight(int value)
+{
+    rsHeight = value;
+}
+
+int ResizePhoto::RsHeight()
+{
+    return rsHeight;
+}
+
+void ResizePhoto::setRekar(bool value)
+{
+    rekar = value;
+}
+
+bool ResizePhoto::Rekar()
+{
+    return rekar;
+}
+
+void ResizePhoto::setResz(bool value)
+{
+    resz = value;
+}
+
+bool ResizePhoto::Resz()
+{
+    return resz;
+}
+
+void ResizePhoto::Start()
+{
+    rsWidth=0;
+    rsHeight=0;
+    w=0;
+    h=0;
+    tw=0;
+    th=0;
+    rekar=false;
+    resz=false;
+    wc=true;
+    hc=true;
 
     //Photo Size
     {
@@ -42,66 +103,7 @@ resizephoto::resizephoto(QWidget *parent) :
     }
 }
 
-resizephoto::~resizephoto()
-{
-    delete ui;
-}
-
-void resizephoto::setRsWidth(int value)
-{
-    rsWidth = value;
-}
-
-int resizephoto::RsWidth()
-{
-    return rsWidth;
-}
-
-void resizephoto::setRsHeight(int value)
-{
-    rsHeight = value;
-}
-
-int resizephoto::RsHeight()
-{
-    return rsHeight;
-}
-
-void resizephoto::setRekar(bool value)
-{
-    rekar = value;
-}
-
-bool resizephoto::Rekar()
-{
-    return rekar;
-}
-
-void resizephoto::setResz(bool value)
-{
-    resz = value;
-}
-
-bool resizephoto::Resz()
-{
-    return resz;
-}
-
-void resizephoto::showEvent(QShowEvent *)
-{
-    rsWidth=0;
-    rsHeight=0;
-    w=0;
-    h=0;
-    tw=0;
-    th=0;
-    rekar=false;
-    resz=false;
-    wc=true;
-    hc=true;
-}
-
-void resizephoto::on_Width_valueChanged()
+void ResizePhoto::on_Width_valueChanged()
 {
     if(ui->KeepAspectRatio->isChecked()==true && wc==true)
     {
@@ -145,7 +147,7 @@ void resizephoto::on_Width_valueChanged()
     }
 }
 
-void resizephoto::on_Height_valueChanged()
+void ResizePhoto::on_Height_valueChanged()
 {
     if(ui->KeepAspectRatio->isChecked()==true && hc==true)
     {
@@ -189,7 +191,7 @@ void resizephoto::on_Height_valueChanged()
     }
 }
 
-void resizephoto::SetValue()
+void ResizePhoto::SetValue()
 {
     wc=false;
     hc=false;
@@ -199,7 +201,7 @@ void resizephoto::SetValue()
     hc=true;
 }
 
-void resizephoto::OKButton()
+void ResizePhoto::OKButton()
 {
     rsWidth=ui->Width->value();
     rsHeight=ui->Height->value();
@@ -218,7 +220,7 @@ void resizephoto::OKButton()
     close();
 }
 
-void resizephoto::CancelButton()
+void ResizePhoto::CancelButton()
 {
     resz=false;
     close();

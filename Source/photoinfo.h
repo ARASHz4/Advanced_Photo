@@ -4,24 +4,24 @@
 #include <QDialog>
 
 namespace Ui {
-class photoinfo;
+class PhotoInfo;
 }
 
-class photoinfo : public QDialog
+class PhotoInfo : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit photoinfo(QWidget *parent = 0);
-    ~photoinfo();
+    explicit PhotoInfo(QWidget *parent = 0);
+    ~PhotoInfo();
 
 private slots:
-    void showEvent(QShowEvent *);
+    void Start();
 
     void on_OkButton_clicked();
 
 private:
-    Ui::photoinfo *ui;
+    Ui::PhotoInfo *ui;
 };
 
 #endif // PHOTOINFO_H

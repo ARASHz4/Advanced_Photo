@@ -22,7 +22,7 @@ private:
     QPushButton Go, Cancel;
 
 private slots:
-    void showEvent(QShowEvent *);
+    void Start();
 
     void GoButton();
 

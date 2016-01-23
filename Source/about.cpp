@@ -6,20 +6,22 @@
 #include <QMouseEvent>
 #include <QPixmap>
 
-about::about(QWidget *parent) :
+About::About(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::about)
+    ui(new Ui::About)
 {
     ui->setupUi(this);
     setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+
+    Start();
 }
 
-about::~about()
+About::~About()
 {
     delete ui;
 }
 
-void about::showEvent(QShowEvent *)
+void About::Start()
 {
     ui->ApplicationNameLabel->setText(AdvancedPhoto::applicationName());
 
@@ -54,7 +56,7 @@ void about::showEvent(QShowEvent *)
     show.start();
 }
 
-void about::WindowShow()
+void About::WindowShow()
 {
     this->setWindowOpacity(windowOpacity()+0.01);
 
@@ -64,19 +66,19 @@ void about::WindowShow()
     }
 }
 
-void about::on_OkButton_clicked()
+void About::on_OkButton_clicked()
 {
     hide.setInterval(2);
     hide.connect(&hide,SIGNAL(timeout()),this,SLOT(WindowHide()));
     hide.start();
 }
 
-void about::on_QtPushButton_clicked()
+void About::on_QtPushButton_clicked()
 {
     AdvancedPhoto::aboutQt();
 }
 
-void about::mouseDoubleClickEvent(QMouseEvent *)
+void About::mouseDoubleClickEvent(QMouseEvent *)
 {
     if(ds == false)
     {
@@ -94,7 +96,7 @@ void about::mouseDoubleClickEvent(QMouseEvent *)
     }
 }
 
-void about::WindowHide()
+void About::WindowHide()
 {
     this->setWindowOpacity(windowOpacity()-0.000001);
 

@@ -2,6 +2,44 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="en">
 <context>
+    <name>About</name>
+    <message>
+        <location filename="about.ui" line="26"/>
+        <source>About Advanced Photo</source>
+        <translation>About Advanced Photo</translation>
+    </message>
+    <message>
+        <location filename="about.ui" line="207"/>
+        <source>Version </source>
+        <translation>Version </translation>
+    </message>
+    <message>
+        <location filename="about.ui" line="287"/>
+        <source>Copyright 2014 - 2016 ARASHz4</source>
+        <translation>Copyright 2014 - 2016 ARASHz4</translation>
+    </message>
+    <message>
+        <location filename="about.ui" line="332"/>
+        <source>About Qt</source>
+        <translation>About Qt</translation>
+    </message>
+    <message>
+        <location filename="about.ui" line="371"/>
+        <source>OK</source>
+        <translation>OK</translation>
+    </message>
+    <message>
+        <location filename="about.cpp" line="86"/>
+        <source>Developer :</source>
+        <translation>Developer :</translation>
+    </message>
+    <message>
+        <location filename="about.cpp" line="87"/>
+        <source>Arash Zare</source>
+        <translation>Arash Zare</translation>
+    </message>
+</context>
+<context>
     <name>GoTo</name>
     <message>
         <location filename="goto.ui" line="26"/>
@@ -14,14 +52,185 @@
         <translation>Go to :</translation>
     </message>
     <message>
-        <location filename="goto.cpp" line="22"/>
+        <location filename="goto.cpp" line="24"/>
         <source>Go</source>
         <translation>Go</translation>
     </message>
     <message>
-        <location filename="goto.cpp" line="23"/>
+        <location filename="goto.cpp" line="25"/>
         <source>Cancel</source>
         <translation>Cancel</translation>
+    </message>
+</context>
+<context>
+    <name>Option</name>
+    <message>
+        <location filename="option.ui" line="20"/>
+        <source>Option</source>
+        <translation>Option</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="55"/>
+        <location filename="option.cpp" line="56"/>
+        <source>General</source>
+        <translation>General</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="69"/>
+        <location filename="option.cpp" line="74"/>
+        <location filename="option.cpp" line="388"/>
+        <source>Language</source>
+        <translation>Language</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="83"/>
+        <location filename="option.cpp" line="92"/>
+        <source>Slideshow</source>
+        <translation>Slideshow</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="97"/>
+        <location filename="option.cpp" line="110"/>
+        <source>Screenshot</source>
+        <translation>Screenshot</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="132"/>
+        <source>Load Other Photos in Folder</source>
+        <translation>Load Other Photos in Folder</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="148"/>
+        <source>Keep Aspect Ratio</source>
+        <translation>Keep Aspect Ratio</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="167"/>
+        <source>Go to Full Screen Mode</source>
+        <translation>Go to Full Screen Mode</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="182"/>
+        <source>Language :</source>
+        <translation>Language :</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="196"/>
+        <source>Automatic (System Language)</source>
+        <translation>Automatic (System Language)</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="201"/>
+        <source>English</source>
+        <translation>English</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="206"/>
+        <source>پارسی</source>
+        <translation>Persian - پارسی</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="211"/>
+        <source>Español</source>
+        <translation>Spanish - Español</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="216"/>
+        <source>繁體中文</source>
+        <translation>Traditional Chinese - 繁體中文</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="247"/>
+        <source>Speed :</source>
+        <translation>Speed :</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="276"/>
+        <location filename="option.ui" line="348"/>
+        <source>Sec</source>
+        <translation>Sec</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="319"/>
+        <source>Screenshot delay :</source>
+        <translation>Screenshot delay :</translation>
+    </message>
+    <message>
+        <location filename="option.ui" line="376"/>
+        <source>Auto Minimize to tray</source>
+        <translation>Auto Minimize to tray</translation>
+    </message>
+    <message>
+        <location filename="option.cpp" line="35"/>
+        <location filename="option.cpp" line="384"/>
+        <source>OK</source>
+        <translation>OK</translation>
+    </message>
+    <message>
+        <location filename="option.cpp" line="36"/>
+        <location filename="option.cpp" line="385"/>
+        <source>Cancel</source>
+        <translation>Cancel</translation>
+    </message>
+    <message>
+        <location filename="option.cpp" line="37"/>
+        <location filename="option.cpp" line="386"/>
+        <source>Apply</source>
+        <translation>Apply</translation>
+    </message>
+    <message>
+        <location filename="option.cpp" line="38"/>
+        <location filename="option.cpp" line="387"/>
+        <source>Restore Defaults</source>
+        <translation>Restore Defaults</translation>
+    </message>
+</context>
+<context>
+    <name>PhotoInfo</name>
+    <message>
+        <location filename="photoinfo.ui" line="26"/>
+        <source>Photo Info</source>
+        <translation>Photo Info</translation>
+    </message>
+    <message>
+        <location filename="photoinfo.ui" line="61"/>
+        <source>Name :</source>
+        <translation>Name :</translation>
+    </message>
+    <message>
+        <location filename="photoinfo.ui" line="106"/>
+        <source>Directory :</source>
+        <translation>Directory :</translation>
+    </message>
+    <message>
+        <location filename="photoinfo.ui" line="151"/>
+        <source>Size :</source>
+        <translation>Size :</translation>
+    </message>
+    <message>
+        <location filename="photoinfo.ui" line="196"/>
+        <source>Type :</source>
+        <translation>Type :</translation>
+    </message>
+    <message>
+        <location filename="photoinfo.ui" line="241"/>
+        <source>Width :</source>
+        <translation>Width :</translation>
+    </message>
+    <message>
+        <location filename="photoinfo.ui" line="286"/>
+        <source>Height :</source>
+        <translation>Height :</translation>
+    </message>
+    <message>
+        <location filename="photoinfo.ui" line="331"/>
+        <source>Data Created :</source>
+        <translation>Data Created :</translation>
+    </message>
+    <message>
+        <location filename="photoinfo.ui" line="389"/>
+        <source>OK</source>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -328,215 +537,7 @@
     </message>
 </context>
 <context>
-    <name>about</name>
-    <message>
-        <location filename="about.ui" line="26"/>
-        <source>About Advanced Photo</source>
-        <translation>About Advanced Photo</translation>
-    </message>
-    <message>
-        <location filename="about.ui" line="207"/>
-        <source>Version </source>
-        <translation>Version </translation>
-    </message>
-    <message>
-        <location filename="about.ui" line="287"/>
-        <source>Copyright 2014 - 2016 ARASHz4</source>
-        <translation>Copyright 2014 - 2016 ARASHz4</translation>
-    </message>
-    <message>
-        <location filename="about.ui" line="332"/>
-        <source>About Qt</source>
-        <translation>About Qt</translation>
-    </message>
-    <message>
-        <location filename="about.ui" line="371"/>
-        <source>OK</source>
-        <translation>OK</translation>
-    </message>
-    <message>
-        <location filename="about.cpp" line="84"/>
-        <source>Developer :</source>
-        <translation>Developer :</translation>
-    </message>
-    <message>
-        <location filename="about.cpp" line="85"/>
-        <source>Arash Zare</source>
-        <translation>Arash Zare</translation>
-    </message>
-</context>
-<context>
-    <name>option</name>
-    <message>
-        <location filename="option.ui" line="20"/>
-        <source>Option</source>
-        <translation>Option</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="196"/>
-        <source>Automatic (System Language)</source>
-        <translation>Automatic (System Language)</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="201"/>
-        <source>English</source>
-        <translation>English</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="206"/>
-        <source>پارسی</source>
-        <translation>Persian - پارسی</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="211"/>
-        <source>Español</source>
-        <translation>Spanish - Español</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="216"/>
-        <source>繁體中文</source>
-        <translation>Traditional Chinese - 繁體中文</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="319"/>
-        <source>Screenshot delay :</source>
-        <translation>Screenshot delay :</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="376"/>
-        <source>Auto Minimize to tray</source>
-        <translation>Auto Minimize to tray</translation>
-    </message>
-    <message>
-        <location filename="option.cpp" line="35"/>
-        <location filename="option.cpp" line="383"/>
-        <source>Cancel</source>
-        <translation>Cancel</translation>
-    </message>
-    <message>
-        <location filename="option.cpp" line="36"/>
-        <location filename="option.cpp" line="384"/>
-        <source>Apply</source>
-        <translation>Apply</translation>
-    </message>
-    <message>
-        <location filename="option.cpp" line="37"/>
-        <location filename="option.cpp" line="385"/>
-        <source>Restore Defaults</source>
-        <translation>Restore Defaults</translation>
-    </message>
-    <message>
-        <location filename="option.cpp" line="34"/>
-        <location filename="option.cpp" line="382"/>
-        <source>OK</source>
-        <translation>OK</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="55"/>
-        <location filename="option.cpp" line="55"/>
-        <source>General</source>
-        <translation>General</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="97"/>
-        <location filename="option.cpp" line="109"/>
-        <source>Screenshot</source>
-        <translation>Screenshot</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="148"/>
-        <source>Keep Aspect Ratio</source>
-        <translation>Keep Aspect Ratio</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="132"/>
-        <source>Load Other Photos in Folder</source>
-        <translation>Load Other Photos in Folder</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="69"/>
-        <location filename="option.cpp" line="73"/>
-        <source>Language</source>
-        <translation>Language</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="182"/>
-        <source>Language :</source>
-        <translation>Language :</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="83"/>
-        <location filename="option.cpp" line="91"/>
-        <source>Slideshow</source>
-        <translation>Slideshow</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="247"/>
-        <source>Speed :</source>
-        <translation>Speed :</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="276"/>
-        <location filename="option.ui" line="348"/>
-        <source>Sec</source>
-        <translation>Sec</translation>
-    </message>
-    <message>
-        <location filename="option.ui" line="167"/>
-        <source>Go to Full Screen Mode</source>
-        <translation>Go to Full Screen Mode</translation>
-    </message>
-</context>
-<context>
-    <name>photoinfo</name>
-    <message>
-        <location filename="photoinfo.ui" line="26"/>
-        <source>Photo Info</source>
-        <translation>Photo Info</translation>
-    </message>
-    <message>
-        <location filename="photoinfo.ui" line="61"/>
-        <source>Name :</source>
-        <translation>Name :</translation>
-    </message>
-    <message>
-        <location filename="photoinfo.ui" line="106"/>
-        <source>Directory :</source>
-        <translation>Directory :</translation>
-    </message>
-    <message>
-        <location filename="photoinfo.ui" line="151"/>
-        <source>Size :</source>
-        <translation>Size :</translation>
-    </message>
-    <message>
-        <location filename="photoinfo.ui" line="196"/>
-        <source>Type :</source>
-        <translation>Type :</translation>
-    </message>
-    <message>
-        <location filename="photoinfo.ui" line="241"/>
-        <source>Width :</source>
-        <translation>Width :</translation>
-    </message>
-    <message>
-        <location filename="photoinfo.ui" line="286"/>
-        <source>Height :</source>
-        <translation>Height :</translation>
-    </message>
-    <message>
-        <location filename="photoinfo.ui" line="331"/>
-        <source>Data Created :</source>
-        <translation>Data Created :</translation>
-    </message>
-    <message>
-        <location filename="photoinfo.ui" line="389"/>
-        <source>OK</source>
-        <translation>OK</translation>
-    </message>
-</context>
-<context>
-    <name>resizephoto</name>
+    <name>ResizePhoto</name>
     <message>
         <location filename="resizephoto.ui" line="26"/>
         <source>Resize</source>
@@ -564,12 +565,12 @@
         <translation>Height :</translation>
     </message>
     <message>
-        <location filename="resizephoto.cpp" line="36"/>
+        <location filename="resizephoto.cpp" line="97"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="resizephoto.cpp" line="37"/>
+        <location filename="resizephoto.cpp" line="98"/>
         <source>Cancel</source>
         <translation>Cancel</translation>
     </message>

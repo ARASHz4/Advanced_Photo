@@ -5,16 +5,16 @@
 #include <QPushButton>
 
 namespace Ui {
-class resizephoto;
+class ResizePhoto;
 }
 
-class resizephoto : public QDialog
+class ResizePhoto : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit resizephoto(QWidget *parent = 0);
-    ~resizephoto();
+    explicit ResizePhoto(QWidget *parent = 0);
+    ~ResizePhoto();
 
     static void setRsWidth(int value);
     static int RsWidth();
@@ -29,7 +29,7 @@ public:
     static bool Resz();
 
 private:
-    Ui::resizephoto *ui;
+    Ui::ResizePhoto *ui;
 
     static int rsWidth, rsHeight;
     static bool rekar, resz;
@@ -40,7 +40,7 @@ private:
     QPushButton OK, Cancel;
 
 private slots:
-    void showEvent(QShowEvent *);
+    void Start();
 
     void on_Width_valueChanged();
 
