@@ -97,6 +97,10 @@
      <property name="title">
       <string>Home Page</string>
      </property>
+     <property name="icon">
+      <iconset resource="Icon.qrc">
+       <normaloff>:/Icons/HomePage.png</normaloff>:/Icons/HomePage.png</iconset>
+     </property>
      <addaction name="actionGitHub"/>
      <addaction name="actionSourceForge"/>
     </widget>

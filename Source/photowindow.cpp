@@ -20,6 +20,8 @@
 #include <QDesktopServices>
 #include <QUuid>
 
+#include <QDebug>
+
 QStringList PhotoWindow::photoAddress;
 int PhotoWindow::ps=0;
 
@@ -1025,11 +1027,11 @@ void PhotoWindow::on_actionOpen_Photo_triggered()
 {
     QFileDialog OpenPhoto(this);
     OpenPhoto.setFileMode(QFileDialog::ExistingFiles);
-    OpenPhoto.setNameFilter("All Supported Files (*.png ; *.jpg ; *.jpeg ; *.bmp ; *.tif ; *.tiff ; *.webp ;"
+    OpenPhoto.setNameFilter(tr("All Supported Files") + " (*.png ; *.jpg ; *.jpeg ; *.bmp ; *.tif ; *.tiff ; *.webp ;"
                                "*.gif ; *.jp2 ; *.dds ; *.xpm ; *.pnm ; *.ppm ; *.pgm ; *.wbmp ; *.xbm ; *.pbm ;"
-                               "*.ico ; *.icns);; Photo (*.png ; *.jpg ; *.jpeg ; *.bmp ; *.tif ; *.tiff ; *.webp ;"
+                               "*.ico ; *.icns);; " + tr("Photo") + " (*.png ; *.jpg ; *.jpeg ; *.bmp ; *.tif ; *.tiff ; *.webp ;"
                                "*.gif ; *.jp2 ; *.dds ; *.xpm ; *.pnm ; *.ppm ; *.pgm ; *.wbmp ; *.xbm ; *.pbm);;"
-                               "Icon (*.ico ; *.icns);; All Files(*)");
+                               + tr("Icon") + " (*.ico ; *.icns);; " + tr("All Files") + " (*)");
 
     OpenPhoto.setWindowTitle(tr("Open Photo"));
 
@@ -1047,7 +1049,7 @@ void PhotoWindow::on_actionOpen_Photo_triggered()
             #if defined(Q_OS_WIN)
             if (!QString(getenv("HOMEPATH")).contains(":"))
             {
-                OpenPhoto.setDirectory("C:" + QString(getenv("HOMEPATH")));
+                OpenPhoto.setDirectory(QString(getenv("HOMEDRIVE")) + QString(getenv("HOMEPATH")));
             }
             else
             {
@@ -2161,4 +2163,3 @@ void PhotoWindow::on_actionFullscreen_triggered()
         ui->actionFullscreen->setToolTip(tr("Full Screen"));
     }
 }
-

@@ -246,140 +246,141 @@
         <translation>یاری</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="108"/>
+        <location filename="photowindow.ui" line="112"/>
+        <location filename="photowindow.cpp" line="1030"/>
         <source>Photo</source>
         <translation>نگاره</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="112"/>
+        <location filename="photowindow.ui" line="116"/>
         <source>Rotate</source>
         <translation>چرخش</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="119"/>
+        <location filename="photowindow.ui" line="123"/>
         <source>Flip</source>
         <translation>وارانه</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="176"/>
+        <location filename="photowindow.ui" line="180"/>
         <source>Quit</source>
         <translation>برون رفت</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="188"/>
+        <location filename="photowindow.ui" line="192"/>
         <source>About</source>
         <translation>درباره نرم افزار</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="200"/>
+        <location filename="photowindow.ui" line="204"/>
         <source>Option</source>
         <translation>گزینه ها</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="212"/>
-        <location filename="photowindow.ui" line="215"/>
+        <location filename="photowindow.ui" line="216"/>
+        <location filename="photowindow.ui" line="219"/>
         <source>Zoom IN</source>
         <translation>بزرگ نمایی</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="227"/>
-        <location filename="photowindow.ui" line="230"/>
+        <location filename="photowindow.ui" line="231"/>
+        <location filename="photowindow.ui" line="234"/>
         <source>Zoom Out</source>
         <translation>کوچک بینی</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="242"/>
-        <location filename="photowindow.ui" line="245"/>
+        <location filename="photowindow.ui" line="246"/>
+        <location filename="photowindow.ui" line="249"/>
         <source>1:1</source>
         <translation>۱:۱</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="260"/>
-        <location filename="photowindow.ui" line="263"/>
+        <location filename="photowindow.ui" line="264"/>
+        <location filename="photowindow.ui" line="267"/>
         <source>Fit Window</source>
         <translation>چسبیده به پنجره</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="275"/>
+        <location filename="photowindow.ui" line="279"/>
         <source>Next Photo</source>
         <translation>نگاره ی پسین</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="290"/>
+        <location filename="photowindow.ui" line="294"/>
         <source>Previous Photo</source>
         <translation>نگاره ی پیشین</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="302"/>
+        <location filename="photowindow.ui" line="306"/>
         <source>Slideshow</source>
         <translation>نمایش اسلاید</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="305"/>
+        <location filename="photowindow.ui" line="309"/>
         <location filename="photowindow.cpp" line="2079"/>
         <source>Start Slideshow</source>
         <translation>آغاز نمایش اسلاید</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="317"/>
-        <location filename="photowindow.ui" line="320"/>
+        <location filename="photowindow.ui" line="321"/>
+        <location filename="photowindow.ui" line="324"/>
         <location filename="photowindow.cpp" line="2097"/>
         <location filename="photowindow.cpp" line="2161"/>
         <source>Full Screen</source>
         <translation>همه ی برگه</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="335"/>
-        <location filename="photowindow.ui" line="338"/>
+        <location filename="photowindow.ui" line="339"/>
+        <location filename="photowindow.ui" line="342"/>
         <source>Rotate Right</source>
         <translation>چرخش به سوی راست</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="350"/>
-        <location filename="photowindow.ui" line="353"/>
+        <location filename="photowindow.ui" line="354"/>
+        <location filename="photowindow.ui" line="357"/>
         <source>Rotate Left</source>
         <translation>چرخش به سوی چپ</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="365"/>
-        <location filename="photowindow.ui" line="368"/>
+        <location filename="photowindow.ui" line="369"/>
+        <location filename="photowindow.ui" line="372"/>
         <location filename="photowindow.cpp" line="777"/>
         <source>Save</source>
         <translation>نوشتن</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="383"/>
-        <location filename="photowindow.ui" line="386"/>
+        <location filename="photowindow.ui" line="387"/>
+        <location filename="photowindow.ui" line="390"/>
         <source>Save As</source>
         <translation>نوشتن به</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="398"/>
+        <location filename="photowindow.ui" line="402"/>
         <source>Resize</source>
         <translation>دگرگون کردن اندازه</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="410"/>
+        <location filename="photowindow.ui" line="414"/>
         <source>Flip Horizontal</source>
         <translation>وارانه کردن ترازی</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="422"/>
+        <location filename="photowindow.ui" line="426"/>
         <source>Flip Vertical</source>
         <translation>وارانه کردن ستونی</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="434"/>
+        <location filename="photowindow.ui" line="438"/>
         <source>Print...</source>
         <translation>چاپ ...</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="523"/>
+        <location filename="photowindow.ui" line="527"/>
         <source>GitHub</source>
         <translation>گیت هاب</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="532"/>
+        <location filename="photowindow.ui" line="536"/>
         <source>SourceForge</source>
         <translation>سورس فورج</translation>
     </message>
@@ -389,33 +390,33 @@
         <translation>تارنمای خانگی</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="460"/>
-        <location filename="photowindow.ui" line="463"/>
+        <location filename="photowindow.ui" line="464"/>
+        <location filename="photowindow.ui" line="467"/>
         <source>Photo Info</source>
         <translation>داده های نگاره</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="475"/>
+        <location filename="photowindow.ui" line="479"/>
         <source>Screenshot</source>
         <translation>گرفتن نگاره از نمایشگر</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="487"/>
+        <location filename="photowindow.ui" line="491"/>
         <source>Close Photo</source>
         <translation>بستن نگاره</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="499"/>
+        <location filename="photowindow.ui" line="503"/>
         <source>Go to</source>
         <translation>برو به</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="511"/>
+        <location filename="photowindow.ui" line="515"/>
         <source>Close All Photos</source>
         <translation>بستن همه نگاره ها</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="164"/>
+        <location filename="photowindow.ui" line="168"/>
         <location filename="photowindow.cpp" line="1034"/>
         <source>Open Photo</source>
         <translation>باز کردن نگاره</translation>
@@ -523,6 +524,21 @@
         <location filename="photowindow.cpp" line="1656"/>
         <source>OK</source>
         <translation>باشه</translation>
+    </message>
+    <message>
+        <location filename="photowindow.cpp" line="1028"/>
+        <source>All Supported Files</source>
+        <translation>همه ی پرونده های پشتیبانی شده</translation>
+    </message>
+    <message>
+        <location filename="photowindow.cpp" line="1032"/>
+        <source>Icon</source>
+        <translation>نماد</translation>
+    </message>
+    <message>
+        <location filename="photowindow.cpp" line="1032"/>
+        <source>All Files</source>
+        <translation>همه ی پرونده ها</translation>
     </message>
     <message>
         <location filename="photowindow.cpp" line="1742"/>

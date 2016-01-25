@@ -246,140 +246,141 @@
         <translation>Ayuda</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="108"/>
+        <location filename="photowindow.ui" line="112"/>
+        <location filename="photowindow.cpp" line="1030"/>
         <source>Photo</source>
         <translation>Foto</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="112"/>
+        <location filename="photowindow.ui" line="116"/>
         <source>Rotate</source>
         <translation>Girar</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="119"/>
+        <location filename="photowindow.ui" line="123"/>
         <source>Flip</source>
         <translation>Voltear</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="176"/>
+        <location filename="photowindow.ui" line="180"/>
         <source>Quit</source>
         <translation>Dejar</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="188"/>
+        <location filename="photowindow.ui" line="192"/>
         <source>About</source>
         <translation>Acerca de</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="200"/>
+        <location filename="photowindow.ui" line="204"/>
         <source>Option</source>
         <translation>Opción</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="212"/>
-        <location filename="photowindow.ui" line="215"/>
+        <location filename="photowindow.ui" line="216"/>
+        <location filename="photowindow.ui" line="219"/>
         <source>Zoom IN</source>
         <translation>Acercar</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="227"/>
-        <location filename="photowindow.ui" line="230"/>
+        <location filename="photowindow.ui" line="231"/>
+        <location filename="photowindow.ui" line="234"/>
         <source>Zoom Out</source>
         <translation>Disminuir el zoom</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="242"/>
-        <location filename="photowindow.ui" line="245"/>
+        <location filename="photowindow.ui" line="246"/>
+        <location filename="photowindow.ui" line="249"/>
         <source>1:1</source>
         <translation>1:1</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="260"/>
-        <location filename="photowindow.ui" line="263"/>
+        <location filename="photowindow.ui" line="264"/>
+        <location filename="photowindow.ui" line="267"/>
         <source>Fit Window</source>
         <translation>Fit ventana</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="275"/>
+        <location filename="photowindow.ui" line="279"/>
         <source>Next Photo</source>
         <translation>Siguiente Foto</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="290"/>
+        <location filename="photowindow.ui" line="294"/>
         <source>Previous Photo</source>
         <translation>Foto Anterior</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="302"/>
+        <location filename="photowindow.ui" line="306"/>
         <source>Slideshow</source>
         <translation>Diapositivas</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="305"/>
+        <location filename="photowindow.ui" line="309"/>
         <location filename="photowindow.cpp" line="2079"/>
         <source>Start Slideshow</source>
         <translation>Empezar la presentación de diapositivas</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="317"/>
-        <location filename="photowindow.ui" line="320"/>
+        <location filename="photowindow.ui" line="321"/>
+        <location filename="photowindow.ui" line="324"/>
         <location filename="photowindow.cpp" line="2097"/>
         <location filename="photowindow.cpp" line="2161"/>
         <source>Full Screen</source>
         <translation>Pantalla completa</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="335"/>
-        <location filename="photowindow.ui" line="338"/>
+        <location filename="photowindow.ui" line="339"/>
+        <location filename="photowindow.ui" line="342"/>
         <source>Rotate Right</source>
         <translation>Gira a la derecha</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="350"/>
-        <location filename="photowindow.ui" line="353"/>
+        <location filename="photowindow.ui" line="354"/>
+        <location filename="photowindow.ui" line="357"/>
         <source>Rotate Left</source>
         <translation>Girar a la izquierda</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="365"/>
-        <location filename="photowindow.ui" line="368"/>
+        <location filename="photowindow.ui" line="369"/>
+        <location filename="photowindow.ui" line="372"/>
         <location filename="photowindow.cpp" line="777"/>
         <source>Save</source>
         <translation>Guardar</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="383"/>
-        <location filename="photowindow.ui" line="386"/>
+        <location filename="photowindow.ui" line="387"/>
+        <location filename="photowindow.ui" line="390"/>
         <source>Save As</source>
         <translation>Guardar como</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="398"/>
+        <location filename="photowindow.ui" line="402"/>
         <source>Resize</source>
         <translation>Redimensionar</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="410"/>
+        <location filename="photowindow.ui" line="414"/>
         <source>Flip Horizontal</source>
         <translation>Voltear Horizontal</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="422"/>
+        <location filename="photowindow.ui" line="426"/>
         <source>Flip Vertical</source>
         <translation>Voltear Vertical</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="434"/>
+        <location filename="photowindow.ui" line="438"/>
         <source>Print...</source>
         <translation>Impresión...</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="523"/>
+        <location filename="photowindow.ui" line="527"/>
         <source>GitHub</source>
         <translation>GitHub</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="532"/>
+        <location filename="photowindow.ui" line="536"/>
         <source>SourceForge</source>
         <translation>SourceForge</translation>
     </message>
@@ -389,33 +390,33 @@
         <translation>Página de inicio</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="460"/>
-        <location filename="photowindow.ui" line="463"/>
+        <location filename="photowindow.ui" line="464"/>
+        <location filename="photowindow.ui" line="467"/>
         <source>Photo Info</source>
         <translation>Información de la fotografía</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="475"/>
+        <location filename="photowindow.ui" line="479"/>
         <source>Screenshot</source>
         <translation>Captura de pantalla</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="487"/>
+        <location filename="photowindow.ui" line="491"/>
         <source>Close Photo</source>
         <translation>Cerrar Photo</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="499"/>
+        <location filename="photowindow.ui" line="503"/>
         <source>Go to</source>
         <translation>Ir a</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="511"/>
+        <location filename="photowindow.ui" line="515"/>
         <source>Close All Photos</source>
         <translation>Cierre todas las fotos</translation>
     </message>
     <message>
-        <location filename="photowindow.ui" line="164"/>
+        <location filename="photowindow.ui" line="168"/>
         <location filename="photowindow.cpp" line="1034"/>
         <source>Open Photo</source>
         <translation>Abrir las fotos</translation>
@@ -523,6 +524,21 @@
         <location filename="photowindow.cpp" line="1656"/>
         <source>OK</source>
         <translation>OK</translation>
+    </message>
+    <message>
+        <location filename="photowindow.cpp" line="1028"/>
+        <source>All Supported Files</source>
+        <translation>Todos los archivos soportados</translation>
+    </message>
+    <message>
+        <location filename="photowindow.cpp" line="1032"/>
+        <source>Icon</source>
+        <translation>Icono</translation>
+    </message>
+    <message>
+        <location filename="photowindow.cpp" line="1032"/>
+        <source>All Files</source>
+        <translation>Todos los archivos</translation>
     </message>
     <message>
         <location filename="photowindow.cpp" line="1742"/>
