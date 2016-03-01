@@ -11,7 +11,7 @@ About::About(QWidget *parent) :
     ui(new Ui::About)
 {
     ui->setupUi(this);
-    setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
 
     Start();
 }
@@ -48,29 +48,11 @@ void About::Start()
     }
 
     ds = false;
-
-    this->setWindowOpacity(0);
-
-    show.setInterval(5);
-    show.connect(&show,SIGNAL(timeout()),this,SLOT(WindowShow()));
-    show.start();
-}
-
-void About::WindowShow()
-{
-    this->setWindowOpacity(windowOpacity()+0.01);
-
-    if(windowOpacity()==1.000000)
-    {
-        show.stop();
-    }
 }
 
 void About::on_OkButton_clicked()
 {
-    hide.setInterval(2);
-    hide.connect(&hide,SIGNAL(timeout()),this,SLOT(WindowHide()));
-    hide.start();
+    close();
 }
 
 void About::on_QtPushButton_clicked()
@@ -93,16 +75,5 @@ void About::mouseDoubleClickEvent(QMouseEvent *)
         ui->aboutIcon->setText(NULL);
         ui->aboutIcon->setPixmap(QPixmap(":/Icons/Big Icon.png"));
         ds=false;
-    }
-}
-
-void About::WindowHide()
-{
-    this->setWindowOpacity(windowOpacity()-0.000001);
-
-    if(windowOpacity()==0)
-    {
-        hide.stop();
-        close();
     }
 }

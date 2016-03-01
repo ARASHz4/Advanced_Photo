@@ -53,8 +53,8 @@ public:
     static void SaveOptionWindow(int x, int y, int w, int h);
 
 private:
-    static bool kar, sgf, oap, sam, automaticLanguage;
-    static int slideshowSpeed, screenshotDelay, language;
+    static bool kar, sgf, oap, automaticLanguage;
+    static int slideshowSpeed, language;
 };
 
 #endif // SLSETTINGS_H

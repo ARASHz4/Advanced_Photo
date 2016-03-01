@@ -20,8 +20,6 @@
 #include <QDesktopServices>
 #include <QUuid>
 
-#include <QDebug>
-
 QStringList PhotoWindow::photoAddress;
 int PhotoWindow::ps=0;
 
@@ -64,7 +62,6 @@ void PhotoWindow::Start()
     sls=false;
     pe=false;
     sph=false;
-    ssh=false;
     iif=false;
     wasMax=false;
     pst=0;
@@ -152,20 +149,6 @@ void PhotoWindow::Start()
         Slideshow.connect(&Slideshow,SIGNAL(timeout()),this,SLOT(on_actionNext_Photo_triggered()));
     }
 
-    //Screenshot Delay
-    {
-        if(SLSettings::ScreenshotDelay() < 0 || SLSettings::ScreenshotDelay() > 60)
-        {
-            SLSettings::setScreenshotDelay(3);
-        }
-
-        ScreenshotTimer.setInterval(SLSettings::ScreenshotDelay()*1000);
-        ScreenshotTimer.connect(&ScreenshotTimer,SIGNAL(timeout()),this,SLOT(Screenshot()));
-
-        ScreenshotIconSec.setInterval(1000);
-        ScreenshotIconSec.connect(&ScreenshotIconSec,SIGNAL(timeout()),this,SLOT(ScreenshotIcon()));
-    }
-
     //Load Other Photos Delay
     {
         #if defined(Q_OS_MAC)
@@ -204,6 +187,8 @@ void PhotoWindow::Retranslate()
 
     ui->toolBar->clear();
     ui->toolBar->addActions(ActionList);
+
+    StatusBar();
 }
 
 void PhotoWindow::resizeEvent(QResizeEvent *)
@@ -365,7 +350,6 @@ void PhotoWindow::ActionEnabler()
         ui->actionClose_All_Photos->setEnabled(true);
         ui->actionPrint->setEnabled(true);
         ui->actionResize->setEnabled(true);
-        ui->actionScreenshot->setEnabled(true);
         ui->actionZoomIN->setEnabled(true);
         ui->actionZoomOut->setEnabled(true);
         ui->actionRotateLeft->setEnabled(true);
@@ -412,8 +396,6 @@ void PhotoWindow::ActionEnabler()
             ui->actionResize->setEnabled(false);
             ui->actionSave->setEnabled(false);
             ui->actionSave_As->setEnabled(false);
-            ui->actionPrint->setEnabled(false);
-            ui->actionScreenshot->setEnabled(false);
         }
     }
     else
@@ -441,7 +423,11 @@ void PhotoWindow::ActionEnabler()
             ui->Photo->setPixmap(QPixmap(":/Icons/Drop EN.png"));
         }
 
-        ui->statusBar->showMessage(NULL);
+        statusBar()->removeWidget(&zoomLS);
+        statusBar()->removeWidget(&photoNameLS);
+        statusBar()->removeWidget(&photoHWLS);
+        statusBar()->removeWidget(&photoSizeLS);
+        statusBar()->removeWidget(&ofLS);
 
         ui->actionSave->setEnabled(false);
         ui->actionSave_As->setEnabled(false);
@@ -481,7 +467,7 @@ void PhotoWindow::ActionEnabler()
         ui->actionPrint->setEnabled(false);
         ui->actionPhotoInfo->setEnabled(false);
 
-        if(ps >= (photoAddress.count()-1) )
+        if(ps >= (photoAddress.count()-1))
         {
             ui->actionNext_Photo->setEnabled(false);
         }
@@ -507,6 +493,30 @@ void PhotoWindow::ActionEnabler()
         {
             ui->actionPrevious_Photo->setEnabled(true);
         }
+
+        ui->Photo->setScaledContents(false);
+
+        if(SLSettings::Language() == QLocale::English)
+        {
+            ui->Photo->setPixmap(QPixmap(":/Icons/Drop EN.png"));
+        }
+        else if (SLSettings::Language() == QLocale::Persian)
+        {
+            ui->Photo->setPixmap(QPixmap(":/Icons/Drop PA.png"));
+        }
+        else if (SLSettings::Language() == QLocale::Spanish)
+        {
+            ui->Photo->setPixmap(QPixmap(":/Icons/Drop SP.png"));
+        }
+        else if (SLSettings::Language() == QLocale::Chinese)
+        {
+            ui->Photo->setPixmap(QPixmap(":/Icons/Drop CH.png"));
+        }
+        else
+        {
+            ui->Photo->setPixmap(QPixmap(":/Icons/Drop EN.png"));
+        }
+
         iif=false;
     }
 }
@@ -540,26 +550,14 @@ void PhotoWindow::ProcessingPhoto()
             psb=ps;
             ps=pst;
 
-            if(ssh==false)
+            int SaveAnswer = SavePhoto();
+
+            if(SaveAnswer == QMessageBox::Save || SaveAnswer == QMessageBox::Discard)
             {
-                SavePhoto();
+                ps=psb;
 
-                if(SaveAnswer == QMessageBox::Save || SaveAnswer == QMessageBox::Discard)
-                {
-                        ps=psb;
-
-                        ui->Photo->setPixmap(photoAddress[ps]);
-                        pi=(photoAddress[ps]);
-
-                }
-            }
-            else
-            {
-                Close_Photo();
-
-                ActionEnabler();
-                QFile::remove(ScreenshotFile);
-                ssh=false;
+                ui->Photo->setPixmap(photoAddress[ps]);
+                pi=(photoAddress[ps]);
             }
         }
     }
@@ -640,10 +638,7 @@ void PhotoWindow::ProcessingPhoto()
                     zoomp = ph2/zh;
                 }
 
-                ui->statusBar->showMessage("| " + QString::number(zoomp) + "%" + tr(" Zoom") + " | "
-                                           + QFileInfo(photoAddress[ps]).fileName() + " | " +  QString::number(pi.width())
-                                           + "x" + QString::number(pi.height()) + " | " + PSize + " | "
-                                           + QString::number(ps+1) + tr(" of ") + QString::number(photoAddress.count()) + " |", 0);
+                StatusBar();
             }
             else
             {
@@ -661,10 +656,7 @@ void PhotoWindow::ProcessingPhoto()
                     zoomp = phz/zh;
                 }
 
-                ui->statusBar->showMessage("| " + QString::number(zoomp) + "%" + tr(" Zoom") + " | "
-                                           + QFileInfo(photoAddress[ps]).fileName() + " | " +  QString::number(pi.width())
-                                           + "x" + QString::number(pi.height()) + " | " + PSize + " | "
-                                           + QString::number(ps+1) + tr(" of ") + QString::number(photoAddress.count()) + " |", 0);
+                StatusBar();
             }
         }
         else
@@ -693,10 +685,7 @@ void PhotoWindow::ProcessingPhoto()
                     zoomp = wh/zh;
                 }
 
-                ui->statusBar->showMessage("| " + QString::number(zoomp) + "%" + tr(" Zoom") + " | "
-                                           + QFileInfo(photoAddress[ps]).fileName() + " | " +  QString::number(pi.width())
-                                           + "x" + QString::number(pi.height()) + " | " + PSize + " | "
-                                           + QString::number(ps+1) + tr(" of ") + QString::number(photoAddress.count()) + " |", 0);
+                StatusBar();
             }
             else
             {
@@ -714,10 +703,7 @@ void PhotoWindow::ProcessingPhoto()
                     zoomp = phz/zh;
                 }
 
-                ui->statusBar->showMessage("| " + QString::number(zoomp) + "%" + tr(" Zoom") + " | "
-                                           + QFileInfo(photoAddress[ps]).fileName() + " | " +  QString::number(pi.width())
-                                           + "x" + QString::number(pi.height()) + " | " + PSize + " | "
-                                           + QString::number(ps+1) + tr(" of ") + QString::number(photoAddress.count()) + " |", 0);
+                StatusBar();
             }
         }
 
@@ -727,11 +713,9 @@ void PhotoWindow::ProcessingPhoto()
     {
         iif=true;
 
-        ui->statusBar->showMessage("| " + photoAddress[ps] + tr(" is Incorrect data !") + " | " + PSize + " | "
-                                   + QString::number(ps+1) + tr(" of ") + QString::number(photoAddress.count()) + " |", 0);
+        StatusBar();
 
         ui->Photo->setScaledContents(false);
-        ui->Photo->setPixmap(QPixmap(":/Icons/Drop.png"));
 
         if(toolBarArea(ui->toolBar) == Qt::TopToolBarArea || toolBarArea(ui->toolBar) == Qt::BottomToolBarArea)
         {
@@ -764,12 +748,57 @@ void PhotoWindow::ProcessingPhoto()
     }
 }
 
-void PhotoWindow::SavePhoto()
+void PhotoWindow::StatusBar()
+{
+    if(pe==true)
+    {
+        if(iif == false)
+        {
+            zoomLS.setText(QString::number(zoomp) + "%" + " " + tr("Zoom"));
+            photoNameLS.setText(QFileInfo(photoAddress[ps]).fileName());
+            photoHWLS.setText(QString::number(pi.width()) + "x" + QString::number(pi.height()));
+            photoSizeLS.setText(PSize);
+            ofLS.setText(QString::number(ps+1) + " " + tr("of") + " " + QString::number(photoAddress.count()));
+
+            statusBar()->addWidget(&photoNameLS);
+
+            statusBar()->addPermanentWidget(&zoomLS);
+            statusBar()->addPermanentWidget(&photoHWLS);
+            statusBar()->addPermanentWidget(&photoSizeLS);
+            statusBar()->addPermanentWidget(&ofLS);
+
+            zoomLS.show();
+            photoNameLS.show();
+            photoHWLS.show();
+            photoSizeLS.show();
+            ofLS.show();
+        }
+        else
+        {
+            zoomLS.setText("");
+            photoNameLS.setText(QFileInfo(photoAddress[ps]).fileName() + " " + tr("is incorrect data !"));
+            photoHWLS.setText("");
+            photoSizeLS.setText(PSize);
+            ofLS.setText(QString::number(ps+1) + " " + tr("of") + " " + QString::number(photoAddress.count()));
+
+            statusBar()->removeWidget(&zoomLS);
+            statusBar()->removeWidget(&photoHWLS);
+
+            statusBar()->addWidget(&photoNameLS);
+            statusBar()->addWidget(&photoSizeLS);
+            statusBar()->addWidget(&ofLS);
+
+            photoNameLS.show();
+            photoSizeLS.show();
+            ofLS.show();
+        }
+    }
+}
+
+int PhotoWindow::SavePhoto()
 {
     if(pe==true && sph==true && iif==false)
     {
-        QFileInfo SaveFile = photoAddress[ps];
-
         QMessageBox SaveMsg(this);
         SaveMsg.setWindowTitle(tr("Save Changes"));
         SaveMsg.setText(tr("The Photo has been edited."));
@@ -779,17 +808,19 @@ void PhotoWindow::SavePhoto()
         SaveMsg.setButtonText(QMessageBox::Save, tr("Save"));
         SaveMsg.setButtonText(QMessageBox::Discard, tr("Discard"));
         SaveMsg.setButtonText(QMessageBox::Cancel, tr("Cancel"));
-        SaveAnswer = SaveMsg.exec();
+        int SaveAnswer = SaveMsg.exec();
 
         if(SaveAnswer == QMessageBox::Save)
         {
+            QFileInfo SaveFile = photoAddress[ps];
+
             if((SaveFile.suffix().toLower() == "png" || SaveFile.suffix().toLower() == "jpg"
                 || SaveFile.suffix().toLower() == "jpeg" || SaveFile.suffix().toLower() == "bmp"
                 || SaveFile.suffix().toLower() == "tif" || SaveFile.suffix().toLower() == "tiff"
                 || SaveFile.suffix().toLower() == "webp" || SaveFile.suffix().toLower() == "jp2"
                 || SaveFile.suffix().toLower() == "dds" || SaveFile.suffix().toLower() == "ppm"
                 || SaveFile.suffix().toLower() == "xpm" || SaveFile.suffix().toLower() == "pgm"
-                || SaveFile.suffix().toLower() == "xbm" || SaveFile.suffix().toLower() == "pbm") && ssh == false)
+                || SaveFile.suffix().toLower() == "xbm" || SaveFile.suffix().toLower() == "pbm"))
             {
                 PhotoSave=PhotoSave.fromImage(ui->Photo->pixmap()->toImage());
 
@@ -828,107 +859,8 @@ void PhotoWindow::SavePhoto()
         {
             ActionEnabler();
         }
-    }
-}
 
-void PhotoWindow::Screenshot()
-{
-    ScreenshotTimer.stop();
-
-    QScreen *Shot = QGuiApplication::primaryScreen();
-
-    #if defined(Q_OS_WIN)
-        ScreenshotFile = QString(QString(getenv("TEMP")) + "/APScreenshot" + QUuid::createUuid().toString() + ".png").replace("//", "/");
-    #else
-        if(!QString(getenv("TMPDIR")).isEmpty())
-        {
-            ScreenshotFile = QString(QString(getenv("TMPDIR")) + "/APScreenshot" + QUuid::createUuid().toString() + ".png").replace("//", "/");
-        }
-        else
-        {
-            ScreenshotFile = "/tmp/APScreenshot" + QUuid::createUuid().toString() + ".png";
-        }
-    #endif
-
-    QPixmap SaveScreenshot = Shot->grabWindow(0);
-
-    if(QFile(ScreenshotFile).open(QIODevice::ReadWrite))
-    {
-        SaveScreenshot.save(ScreenshotFile, "png");
-    }
-    else
-    {
-        QMessageBox msg(this);
-        msg.setIcon(QMessageBox::Critical);
-        msg.setWindowTitle(tr("Error"));
-        msg.setText(tr("Can't Write File"));
-        msg.setStandardButtons(QMessageBox::Ok);
-        msg.setButtonText(QMessageBox::Ok, tr("OK"));
-        msg.exec();
-    }
-
-    photoAddress << ScreenshotFile;
-
-    if(!photoAddress.isEmpty())
-    {
-
-        PhotoSave=PhotoSave.fromImage(SaveScreenshot.toImage());
-
-        ui->Photo->setPixmap(PhotoSave);
-
-        ssh=true;
-        pe=true;
-        ps=photoAddress.count()-1;
-        PhotoSelecter();
-        ActionEnabler();
-        ProcessingPhoto();
-        sph=true;
-    }
-
-    if(SLSettings::Sam() == true)
-    {
-        Restore();
-    }
-}
-
-void PhotoWindow::ScreenshotIcon()
-{
-    if (samt == true)
-    {
-//        if (IconTrayNum == 1)
-//        {
-//            tray->setIcon(QIcon(":/Screenshot/Icons/Screenshot/tray1d.png"));
-//            IconTrayNum--;
-//        }
-        if(IconTrayNum > 0)
-        {
-            tray->setIcon(QIcon(":/Screenshot/Icons/Screenshot/tray" + QString::number(IconTrayNum) + ".png"));
-            IconTrayNum--;
-        }
-        else
-        {
-            ScreenshotIconSec.stop();
-            IconTrayNum=0;
-        }
-    }
-    else
-    {
-//        if (IconTrayNum == 1)
-//        {
-//            ui->Photo->setPixmap(QPixmap(":/Screenshot/Icons/Screenshot/1d.png"));
-//            IconTrayNum--;
-//        }
-        if(IconTrayNum > 0)
-        {
-            ui->Photo->setPixmap(QPixmap(":/Screenshot/Icons/Screenshot/" + QString::number(IconTrayNum) + ".png"));
-            IconTrayNum--;
-        }
-
-        else
-        {
-            ScreenshotIconSec.stop();
-            IconTrayNum=0;
-        }
+        return SaveAnswer;
     }
 }
 
@@ -988,30 +920,11 @@ void PhotoWindow::Close_Photo()
     }
 }
 
-void PhotoWindow::Restore()
-{
-    tray->hide();
-    samt = false;
-    show();
-}
-
-void PhotoWindow::CancelScreenshot()
-{
-    ScreenshotTimer.stop();
-    ScreenshotIconSec.stop();
-    IconTrayNum=0;
-
-    ssh = false;
-
-    tray->hide();
-    show();
-}
-
 void PhotoWindow::closeEvent (QCloseEvent *event)
 {
     if(sph==true)
     {
-        SavePhoto();
+        int SaveAnswer = SavePhoto();
 
         if (SaveAnswer == QMessageBox::Cancel)
         {
@@ -1120,24 +1033,18 @@ void PhotoWindow::on_actionClose_Photo_triggered()
 {
     if(pe == true)
     {
-        if(sph==false && ssh==false)
+        if(sph==false)
         {
             Close_Photo();
         }
         else
         {
-            SavePhoto();
+            int SaveAnswer = SavePhoto();
 
             if(SaveAnswer == QMessageBox::Save || SaveAnswer == QMessageBox::Discard)
             {
                 ActionEnabler();
                 Close_Photo();
-
-                if(ssh==true)
-                {
-                    QFile::remove(ScreenshotFile);
-                    ssh=false;
-                }
             }
             else
             {
@@ -1213,7 +1120,7 @@ void PhotoWindow::on_actionSave_triggered()
          || SaveFile.suffix().toLower() == "webp" || SaveFile.suffix().toLower() == "jp2"
          || SaveFile.suffix().toLower() == "dds" || SaveFile.suffix().toLower() == "ppm"
          || SaveFile.suffix().toLower() == "xpm" || SaveFile.suffix().toLower() == "pgm"
-         || SaveFile.suffix().toLower() == "xbm" || SaveFile.suffix().toLower() == "pbm") && ssh == false)
+         || SaveFile.suffix().toLower() == "xbm" || SaveFile.suffix().toLower() == "pbm"))
         {
             PhotoSave=PhotoSave.fromImage(ui->Photo->pixmap()->toImage());
 
@@ -1661,12 +1568,6 @@ void PhotoWindow::on_actionSave_As_triggered()
             }
         }
     }
-
-    if(ssh == true)
-    {
-        ssh = false;
-        QFile::remove(ScreenshotFile);
-    }
 }
 
 void PhotoWindow::on_actionOption_triggered()
@@ -1731,95 +1632,6 @@ void PhotoWindow::on_actionPrint_triggered()
 void PhotoWindow::on_actionQuit_triggered()
 {
     close();
-}
-
-void PhotoWindow::on_actionScreenshot_triggered()
-{
-    if(ssh==false)
-    {
-        if (SLSettings::Sam() == true)
-        {
-            samt = true;
-
-            QAction *RestoreAction = new QAction(QIcon(":/Icons/Restore.png"), tr("Restore"), this);
-            RestoreAction->connect(RestoreAction, SIGNAL(triggered()), this, SLOT(Restore()));
-
-            QAction *CancelAction = new QAction(QIcon(":/Icons/Cancel Screenshot.png"), tr("Cancel Screenshot"), this);
-            CancelAction->connect(CancelAction, SIGNAL(triggered()), this, SLOT(CancelScreenshot()));
-
-            QMenu *TrayMenu = new QMenu(this);
-            TrayMenu->addAction(RestoreAction);
-            TrayMenu->addAction(CancelAction);
-
-            tray = new QSystemTrayIcon(this);
-            tray->setContextMenu(TrayMenu);
-            tray->show();
-
-            this->hide();
-
-            if(SLSettings::ScreenshotDelay() > 0)
-            {
-                IconTrayNum=SLSettings::ScreenshotDelay();
-                ScreenshotIcon();
-
-                ScreenshotIconSec.start();
-            }
-            else
-            {
-                tray->setIcon(QIcon(":/Icons/Screenshot.png"));
-            }
-        }
-        else
-        {
-            samt = false;
-
-            if(SLSettings::ScreenshotDelay() > 0)
-            {
-                IconTrayNum=SLSettings::ScreenshotDelay();
-                ScreenshotIcon();
-                ScreenshotIconSec.start();
-            }
-            else
-            {
-                ui->Photo->setPixmap(QPixmap(":/Icons/Screenshot.png"));
-            }
-        }
-
-        if(SLSettings::ScreenshotDelay() > 0)
-        {
-            ScreenshotTimer.start();
-        }
-        else
-        {
-            Screenshot();
-        }
-    }
-    else
-    {
-        ScreenshotTimer.stop();
-
-        SavePhoto();
-
-        if(SaveAnswer == QMessageBox::Save || SaveAnswer == QMessageBox::Discard)
-        {
-            if(ssh==true)
-            {
-                Close_Photo();
-
-                QFile::remove(ScreenshotFile);
-                ssh=false;
-                ActionEnabler();
-            }
-
-            ActionEnabler();
-
-            on_actionScreenshot_triggered();
-        }
-        else
-        {
-            ActionEnabler();
-        }
-    }
 }
 
 void PhotoWindow::on_actionGitHub_triggered()

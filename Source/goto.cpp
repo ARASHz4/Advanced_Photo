@@ -7,7 +7,7 @@ GoTo::GoTo(QWidget *parent) :
     ui(new Ui::GoTo)
 {
     ui->setupUi(this);
-    setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
 
     Start();
 }

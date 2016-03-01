@@ -4,8 +4,8 @@
 #include <QSettings>
 #include <QDesktopWidget>
 
-bool SLSettings::kar, SLSettings::sgf, SLSettings::oap, SLSettings::sam;
-int SLSettings::slideshowSpeed, SLSettings::screenshotDelay;
+bool SLSettings::kar, SLSettings::sgf, SLSettings::oap;
+int SLSettings::slideshowSpeed;
 int SLSettings::language;
 bool SLSettings::automaticLanguage;
 
@@ -44,16 +44,6 @@ bool SLSettings::Oap()
     return oap;
 }
 
-void SLSettings::setSam(bool value)
-{
-    sam = value;
-}
-
-bool SLSettings::Sam()
-{
-    return sam;
-}
-
 void SLSettings::setSlideshowSpeed(int value)
 {
     slideshowSpeed = value;
@@ -62,16 +52,6 @@ void SLSettings::setSlideshowSpeed(int value)
 int SLSettings::SlideshowSpeed()
 {
     return slideshowSpeed;
-}
-
-void SLSettings::setScreenshotDelay(int value)
-{
-    screenshotDelay = value;
-}
-
-int SLSettings::ScreenshotDelay()
-{
-    return screenshotDelay;
 }
 
 void SLSettings::setLanguage(int value)
@@ -236,27 +216,6 @@ void SLSettings::LoadSettings()
         SLSettings::setSgf(SettingsAP.value("SlideshowFullscreen").toBool());
     }
 
-    //Screenshot
-    {
-        SLSettings::setScreenshotDelay(SettingsAP.value("screenshotDelay").toInt());
-
-        if(SLSettings::ScreenshotDelay() <= 0 || SLSettings::ScreenshotDelay() > 60)
-        {
-            SLSettings::setScreenshotDelay(3);
-
-            SettingsAP.setValue("screenshotDelay", SLSettings::ScreenshotDelay());
-        }
-
-        if((QString(SettingsAP.value("ScreenshotAtuoMinimize").toString()).isEmpty())
-                || (QString(SettingsAP.value("ScreenshotAtuoMinimize").toString())!="true"
-                    && QString(SettingsAP.value("ScreenshotAtuoMinimize").toString())!="false"))
-        {
-            SettingsAP.setValue("ScreenshotAtuoMinimize", "true");
-        }
-
-        SLSettings::setSam(SettingsAP.value("ScreenshotAtuoMinimize").toBool());
-    }
-
     SettingsAP.endGroup();
 }
 
@@ -281,10 +240,6 @@ void SLSettings::SaveSettings()
     SettingsAP.setValue("slideshowSpeed",SLSettings::SlideshowSpeed());
 
     SettingsAP.setValue("SlideshowFullscreen", SLSettings::Sgf());
-
-    SettingsAP.setValue("screenshotDelay", SLSettings::ScreenshotDelay());
-
-    SettingsAP.setValue("ScreenshotAtuoMinimize", SLSettings::Sam());
 
     SettingsAP.endGroup();
 }

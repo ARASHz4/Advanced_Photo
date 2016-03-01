@@ -13,7 +13,7 @@ ResizePhoto::ResizePhoto(QWidget *parent) :
     ui(new Ui::ResizePhoto)
 {
     ui->setupUi(this);
-    setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
 
     Start();
 }

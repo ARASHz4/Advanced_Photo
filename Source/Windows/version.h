@@ -11,7 +11,7 @@
 #define VER_COMPANYNAME_STR         "ARASHz4"
 #define VER_FILEDESCRIPTION_STR     "Advanced Photo"
 #define VER_INTERNALNAME_STR        "Advanced Photo"
-#define VER_LEGALCOPYRIGHT_STR      "Copyright 2014 - 2015 ARASHz4"
+#define VER_LEGALCOPYRIGHT_STR      "Copyright 2014 - 2016 ARASHz4"
 #define VER_LEGALTRADEMARKS1_STR    "All Rights Reserved"
 #define VER_LEGALTRADEMARKS2_STR    VER_LEGALTRADEMARKS1_STR
 #define VER_ORIGINALFILENAME_STR    "Advanced Photo.exe"

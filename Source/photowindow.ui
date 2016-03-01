@@ -125,8 +125,6 @@
      <addaction name="actionFlip_Horizontal"/>
      <addaction name="actionFlip_Vertical"/>
     </widget>
-    <addaction name="actionScreenshot"/>
-    <addaction name="separator"/>
     <addaction name="actionResize"/>
     <addaction name="menuRotate"/>
     <addaction name="menuFlip"/>
@@ -468,18 +466,6 @@
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+I</string>
-   </property>
-  </action>
-  <action name="actionScreenshot">
-   <property name="icon">
-    <iconset resource="Icon.qrc">
-     <normaloff>:/Icons/Screenshot.png</normaloff>:/Icons/Screenshot.png</iconset>
-   </property>
-   <property name="text">
-    <string>Screenshot</string>
-   </property>
-   <property name="shortcut">
-    <string notr="true">Alt+S</string>
    </property>
   </action>
   <action name="actionClose_Photo">

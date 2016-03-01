@@ -8,7 +8,7 @@ Option::Option(QWidget *parent) :
     ui(new Ui::Option)
 {
     ui->setupUi(this);
-    setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
 
     Start();
 }
@@ -64,10 +64,6 @@ void Option::on_listWidgetOption_currentRowChanged(int currentRow)
         ui->slideshowSpeed->setVisible(false);
         ui->SecLabel->setVisible(false);
         ui->slsFullscreen->setVisible(false);
-        ui->screenshotDelay->setVisible(false);
-        ui->screenshotDelaySpinBox->setVisible(false);
-        ui->SecLabel_2->setVisible(false);
-        ui->ScreenshotAtuoMinimizeCheckBox->setVisible(false);
     }
     else if (currentRow == 1)
     {
@@ -82,10 +78,6 @@ void Option::on_listWidgetOption_currentRowChanged(int currentRow)
         ui->slideshowSpeed->setVisible(false);
         ui->SecLabel->setVisible(false);
         ui->slsFullscreen->setVisible(false);
-        ui->screenshotDelay->setVisible(false);
-        ui->screenshotDelaySpinBox->setVisible(false);
-        ui->SecLabel_2->setVisible(false);
-        ui->ScreenshotAtuoMinimizeCheckBox->setVisible(false);
     }
     else if (currentRow == 2)
     {
@@ -100,28 +92,6 @@ void Option::on_listWidgetOption_currentRowChanged(int currentRow)
         ui->LoadPhotosFolder->setVisible(false);
         ui->LanguageLabel->setVisible(false);
         ui->LanguageComboBox->setVisible(false);
-        ui->screenshotDelay->setVisible(false);
-        ui->screenshotDelaySpinBox->setVisible(false);
-        ui->SecLabel_2->setVisible(false);
-        ui->ScreenshotAtuoMinimizeCheckBox->setVisible(false);
-    }
-    else if (currentRow == 3)
-    {
-        ui->OptionGroupBox->setTitle(tr("Screenshot"));
-
-        ui->screenshotDelay->setVisible(true);
-        ui->screenshotDelaySpinBox->setVisible(true);
-        ui->SecLabel_2->setVisible(true);
-        ui->ScreenshotAtuoMinimizeCheckBox->setVisible(true);
-
-        ui->KeepAspectRatioCheckBox->setVisible(false);
-        ui->LoadPhotosFolder->setVisible(false);
-        ui->LanguageLabel->setVisible(false);
-        ui->LanguageComboBox->setVisible(false);
-        ui->SppedLabel->setVisible(false);
-        ui->slideshowSpeed->setVisible(false);
-        ui->SecLabel->setVisible(false);
-        ui->slsFullscreen->setVisible(false);
     }
 }
 
@@ -186,20 +156,6 @@ void Option::Load()
         else
         {
             ui->slsFullscreen->setChecked(false);
-        }
-    }
-
-    //Screenshot
-    {
-        ui->screenshotDelaySpinBox->setValue(SLSettings::ScreenshotDelay());
-
-        if(SLSettings::Sam()==true)
-        {
-            ui->ScreenshotAtuoMinimizeCheckBox->setChecked(true);
-        }
-        else
-        {
-            ui->ScreenshotAtuoMinimizeCheckBox->setChecked(false);
         }
     }
 }
@@ -345,21 +301,6 @@ void Option::Save()
         }
     }
 
-    //Screenshot
-    {
-        SLSettings::setScreenshotDelay(ui->screenshotDelaySpinBox->value());
-
-        if(ui->ScreenshotAtuoMinimizeCheckBox->isChecked() == true)
-        {
-            SLSettings::setSam(true);
-        }
-
-        if(ui->ScreenshotAtuoMinimizeCheckBox->isChecked() == false)
-        {
-            SLSettings::setSam(false);
-        }
-    }
-
     SLSettings::SaveSettings();
 }
 
@@ -399,8 +340,6 @@ void Option::RestoreDefaultsButton()
     SLSettings::setLanguage(0);
     SLSettings::setSlideshowSpeed(2);
     SLSettings::setSgf(false);
-    SLSettings::setScreenshotDelay(3);
-    SLSettings::setSam(true);
 
     Load();
 }

@@ -92,20 +92,6 @@
         <normaloff>:/Icons/Slideshow Start.png</normaloff>:/Icons/Slideshow Start.png</iconset>
       </property>
      </item>
-     <item>
-      <property name="text">
-       <string>Screenshot</string>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="icon">
-       <iconset resource="Icon.qrc">
-        <normaloff>:/Icons/Screenshot.png</normaloff>:/Icons/Screenshot.png</iconset>
-      </property>
-     </item>
     </widget>
    </item>
    <item row="0" column="1">
@@ -120,22 +106,6 @@
       <string notr="true">GroupBox</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="1" column="0">
-       <widget class="QCheckBox" name="LoadPhotosFolder">
-        <property name="font">
-         <font>
-          <weight>50</weight>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Load Other Photos in Folder</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="0">
        <widget class="QCheckBox" name="KeepAspectRatioCheckBox">
         <property name="font">
@@ -165,6 +135,22 @@
         </property>
         <property name="text">
          <string>Go to Full Screen Mode</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QCheckBox" name="LoadPhotosFolder">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Load Other Photos in Folder</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -203,17 +189,17 @@
           </item>
           <item>
            <property name="text">
-            <string>پارسی</string>
+            <string>Persian</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>Español</string>
+            <string>Spanish</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>繁體中文</string>
+            <string>Traditional Chinese</string>
            </property>
           </item>
          </widget>
@@ -292,7 +278,7 @@
         </item>
        </layout>
       </item>
-      <item row="7" column="0">
+      <item row="5" column="0">
        <spacer name="verticalSpacer">
         <property name="orientation">
          <enum>Qt::Vertical</enum>
@@ -304,78 +290,6 @@
          </size>
         </property>
        </spacer>
-      </item>
-      <item row="5" column="0">
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
-        <item>
-         <widget class="QLabel" name="screenshotDelay">
-          <property name="font">
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Screenshot delay :</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="screenshotDelaySpinBox">
-          <property name="font">
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="minimum">
-           <number>1</number>
-          </property>
-          <property name="maximum">
-           <number>60</number>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="SecLabel_2">
-          <property name="font">
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Sec</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer_2">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>0</width>
-            <height>0</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </item>
-      <item row="6" column="0">
-       <widget class="QCheckBox" name="ScreenshotAtuoMinimizeCheckBox">
-        <property name="font">
-         <font>
-          <weight>50</weight>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Auto Minimize to tray</string>
-        </property>
-       </widget>
       </item>
      </layout>
     </widget>
@@ -395,8 +309,6 @@
   <tabstop>LanguageComboBox</tabstop>
   <tabstop>slideshowSpeed</tabstop>
   <tabstop>slsFullscreen</tabstop>
-  <tabstop>screenshotDelaySpinBox</tabstop>
-  <tabstop>ScreenshotAtuoMinimizeCheckBox</tabstop>
  </tabstops>
  <resources>
   <include location="Icon.qrc"/>

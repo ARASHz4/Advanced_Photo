@@ -2,7 +2,6 @@
 #define ABOUT_H
 
 #include <QDialog>
-#include <QTimer>
 
 namespace Ui {
 class About;
@@ -25,17 +24,10 @@ private slots:
 
     void mouseDoubleClickEvent(QMouseEvent *);
 
-    void WindowShow();
-
-    void WindowHide();
-
 private:
     Ui::About *ui;
 
     bool ds;
-
-    QTimer hide;
-    QTimer show;
 };
 
 #endif // ABOUT_H

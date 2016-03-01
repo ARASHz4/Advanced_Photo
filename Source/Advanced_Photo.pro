@@ -47,8 +47,8 @@ FORMS    += \
     goto.ui
 
 RESOURCES += \
-    Icon.qrc \
-    Language.qrc
+    Language.qrc \
+    Icon.qrc
 
 OTHER_FILES += \
     Windows/APWinRes.rc \

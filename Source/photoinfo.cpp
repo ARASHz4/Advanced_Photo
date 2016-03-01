@@ -11,7 +11,7 @@ PhotoInfo::PhotoInfo(QWidget *parent) :
     ui(new Ui::PhotoInfo)
 {
     ui->setupUi(this);
-    setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
 
     Start();
 }

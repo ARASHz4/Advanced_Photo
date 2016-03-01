@@ -5,6 +5,7 @@
 #include <QTimer>
 #include <QFileInfo>
 #include <QSystemTrayIcon>
+#include <QLabel>
 
 namespace Ui {
 class PhotoWindow;
@@ -39,10 +40,12 @@ private:
     QFileInfo fi;
     QSystemTrayIcon *tray;
 
+    QLabel zoomLS, photoNameLS, photoHWLS, photoSizeLS, ofLS;
+
     QString ScreenshotFile, PSize;
-    int pw, ph, ww, wh, j, mbh, tbh, pw2, ph2, SaveAnswer, pst, psb, pwz, phz, rd, zoomp, IconTrayNum;
+    int pw, ph, ww, wh, j, mbh, tbh, pw2, ph2, pst, psb, pwz, phz, rd, zoomp, IconTrayNum;
     float zw, zh;
-    bool zoom, sls, pe, sph, ssh, iif, wasMax, samt;
+    bool zoom, sls, pe, sph, iif, wasMax;
 
 private slots:
     void Retranslate();
@@ -63,17 +66,11 @@ private slots:
 
     void ProcessingPhoto();
 
-    void SavePhoto();
+    void StatusBar();
 
-    void Screenshot();
-
-    void ScreenshotIcon();
+    int SavePhoto();
 
     void Close_Photo();
-
-    void Restore();
-
-    void CancelScreenshot();
 
     void closeEvent (QCloseEvent *event);
 
@@ -94,8 +91,6 @@ private slots:
     void on_actionPrint_triggered();
 
     void on_actionQuit_triggered();
-
-    void on_actionScreenshot_triggered();
 
     void on_actionResize_triggered();
 
