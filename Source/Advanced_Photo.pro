@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT += core gui printsupport
+QT += core gui printsupport svg
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -19,42 +19,43 @@ mac: QMAKE_INFO_PLIST = Mac/APInfo.plist
 mac: ICON = Mac/APIcon.icns
 
 SOURCES += main.cpp\
-    option.cpp \
     about.cpp \
     photowindow.cpp \
     resizephoto.cpp \
     photoinfo.cpp \
     advancedphoto.cpp \
     goto.cpp \
-    slsettings.cpp
+    slsettings.cpp \
+    options.cpp
 
 HEADERS  += \
-    option.h \
     about.h \
     photowindow.h \
     resizephoto.h \
     photoinfo.h \
     advancedphoto.h \
     goto.h \
-    slsettings.h
+    slsettings.h \
+    options.h
 
 FORMS    += \
-    option.ui \
     about.ui \
     photowindow.ui \
     resizephoto.ui \
     photoinfo.ui \
-    goto.ui
+    goto.ui \
+    options.ui
 
 RESOURCES += \
-    Language.qrc \
-    Icon.qrc
+    apresource.qrc
 
-OTHER_FILES += \
+DISTFILES += \
     Windows/APWinRes.rc \
     Windows/version.h \
     Windows/APIcon.ico \
     Windows/APIFile.ico \
     Mac/APInfo.plist \
     Mac/APIcon.icns \
-    Mac/APIFile.icns
+    Mac/APIFile.icns \
+    Linux/AdvancedPhoto.desktop \
+    Linux/APIcon.png

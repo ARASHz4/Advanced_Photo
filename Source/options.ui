@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Option</class>
- <widget class="QDialog" name="Option">
+ <class>Options</class>
+ <widget class="QDialog" name="Options">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -17,11 +17,11 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Option</string>
+   <string>Options</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="Icon.qrc">
-    <normaloff>:/Icons/Option.png</normaloff>:/Icons/Option.png</iconset>
+   <iconset resource="apresource.qrc">
+    <normaloff>:/Icons/Icons/Options.png</normaloff>:/Icons/Icons/Options.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
@@ -60,8 +60,8 @@
        </font>
       </property>
       <property name="icon">
-       <iconset resource="Icon.qrc">
-        <normaloff>:/Icons/Option.png</normaloff>:/Icons/Option.png</iconset>
+       <iconset resource="apresource.qrc">
+        <normaloff>:/Icons/Icons/Options.png</normaloff>:/Icons/Icons/Options.png</iconset>
       </property>
      </item>
      <item>
@@ -74,8 +74,8 @@
        </font>
       </property>
       <property name="icon">
-       <iconset resource="Icon.qrc">
-        <normaloff>:/Icons/language.png</normaloff>:/Icons/language.png</iconset>
+       <iconset resource="apresource.qrc">
+        <normaloff>:/Icons/Icons/language.png</normaloff>:/Icons/Icons/language.png</iconset>
       </property>
      </item>
      <item>
@@ -88,8 +88,8 @@
        </font>
       </property>
       <property name="icon">
-       <iconset resource="Icon.qrc">
-        <normaloff>:/Icons/Slideshow Start.png</normaloff>:/Icons/Slideshow Start.png</iconset>
+       <iconset resource="apresource.qrc">
+        <normaloff>:/Icons/Icons/Slideshow Start.png</normaloff>:/Icons/Icons/Slideshow Start.png</iconset>
       </property>
      </item>
     </widget>
@@ -311,7 +311,7 @@
   <tabstop>slsFullscreen</tabstop>
  </tabstops>
  <resources>
-  <include location="Icon.qrc"/>
+  <include location="apresource.qrc"/>
  </resources>
  <connections/>
 </ui>

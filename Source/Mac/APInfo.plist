@@ -5,7 +5,7 @@
 	<key>CFBundleName</key>
 	<string>Advanced Photo</string>
 	<key>CFBundleVersion</key>
-        <string>1.5.0</string>
+        <string>1.5.5</string>
 	<key>CFBundleShortVersionString</key>
         <string>1.5</string>
 	<key>CFBundleIdentifier</key>
@@ -166,23 +166,42 @@
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 		</dict>
-		<dict>
-			<key>CFBundleTypeName</key>
-			<string>JPEG 2000</string>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>image/jp2</string>
-			</array>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>JP2</string>
-				<string>jp2</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>APIFile.icns</string>
-			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
-		</dict>
+                <dict>
+                        <key>CFBundleTypeName</key>
+                        <string>Scalable Vector Graphics</string>
+                        <key>CFBundleTypeMIMETypes</key>
+                        <array>
+                                <string>image/svg</string>
+                        </array>
+                        <key>CFBundleTypeExtensions</key>
+                        <array>
+                                <string>SVG</string>
+                                <string>svg</string>
+                                <string>SVGZ</string>
+                                <string>svgz</string>
+                        </array>
+                        <key>CFBundleTypeIconFile</key>
+                        <string>APIFile.icns</string>
+                        <key>CFBundleTypeRole</key>
+                        <string>Viewer</string>
+                </dict>
+                <dict>
+                        <key>CFBundleTypeName</key>
+                        <string>Cursors file</string>
+                        <key>CFBundleTypeMIMETypes</key>
+                        <array>
+                                <string>image/cur</string>
+                        </array>
+                        <key>CFBundleTypeExtensions</key>
+                        <array>
+                                <string>CUR</string>
+                                <string>cur</string>
+                        </array>
+                        <key>CFBundleTypeIconFile</key>
+                        <string>APIFile.icns</string>
+                        <key>CFBundleTypeRole</key>
+                        <string>Viewer</string>
+                </dict>
 		<dict>
 			<key>CFBundleTypeName</key>
 			<string>DirectDraw Surface</string>

@@ -26,8 +26,8 @@
    <string>Go to</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="Icon.qrc">
-    <normaloff>:/Icons/Go to.png</normaloff>:/Icons/Go to.png</iconset>
+   <iconset resource="apresource.qrc">
+    <normaloff>:/Icons/Icons/Go to.png</normaloff>:/Icons/Icons/Go to.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
@@ -80,7 +80,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="Icon.qrc"/>
+  <include location="apresource.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -1,7 +1,8 @@
 #ifndef SLSETTINGS_H
 #define SLSETTINGS_H
 
-#include "advancedphoto.h"
+#include <QSettings>
+#include <QDesktopWidget>
 
 class SLSettings
 {
