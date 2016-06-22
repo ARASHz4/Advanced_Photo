@@ -3,6 +3,9 @@
 #include "advancedphoto.h"
 #include "photowindow.h"
 
+#include <QFileInfo>
+#include <QDateTime>
+
 PhotoInfo::PhotoInfo(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::PhotoInfo)
@@ -20,9 +23,6 @@ PhotoInfo::~PhotoInfo()
 
 void PhotoInfo::Start()
 {
-    QFileIconProvider iconf;
-
-    ui->IconLabel->setPixmap(iconf.icon(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()])).pixmap(QSize(16, 16)));
     ui->NamePI->setText(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).fileName());
     ui->DirectoryPI->setText(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).path());
 
@@ -57,14 +57,13 @@ void PhotoInfo::Start()
     {
         ui->TypePI->setText("WebP");
     }
-    else if(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix().toLower() == "svg"
-            || QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix().toLower() == "svgz")
-    {
-        ui->TypePI->setText("Scalable Vector Graphics");
-    }
     else if(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix().toLower() == "gif")
     {
         ui->TypePI->setText("GIF Image");
+    }
+    else if(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix().toLower() == "jp2")
+    {
+        ui->TypePI->setText("JPEG 2000");
     }
     else if(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix().toLower() == "dds")
     {
@@ -106,10 +105,6 @@ void PhotoInfo::Start()
     {
         ui->TypePI->setText("Apple Icon Image format");
     }
-    else if(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix().toLower() == "cur")
-    {
-        ui->TypePI->setText("Cursors file");
-    }
     else
     {
         if(!QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).suffix().isEmpty())
@@ -125,26 +120,6 @@ void PhotoInfo::Start()
     ui->WidthPI->setNum(QPixmap(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).width());
     ui->HeightPI->setNum(QPixmap(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).height());
     ui->DataCreatedPI->setText(QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).created().date().toString());
-
-    if (AdvancedPhoto::layoutDirection() == Qt::RightToLeft)
-    {
-        QString nm = QFileInfo(PhotoWindow::PhotoAddress()[PhotoWindow::Ps()]).fileName().mid(0,1);
-        if(nm.contains(QRegExp("([0-9]|[A-z]){1}")))
-        {
-            ui->NamePI->setAlignment(Qt::AlignRight);
-        }
-        ui->DirectoryPI->setAlignment(Qt::AlignRight);
-        ui->SizePI->setAlignment(Qt::AlignRight);
-        ui->TypePI->setAlignment(Qt::AlignRight);
-        ui->WidthPI->setAlignment(Qt::AlignRight);
-        ui->HeightPI->setAlignment(Qt::AlignRight);
-
-        QString dm = ui->DataCreatedPI->text().mid(0,1);
-        if(dm.contains(QRegExp("([0-9]|[A-z]){1}")))
-        {
-            ui->DataCreatedPI->setAlignment(Qt::AlignRight);
-        }
-    }
 }
 
 void PhotoInfo::on_OkButton_clicked()

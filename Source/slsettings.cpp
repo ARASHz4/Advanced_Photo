@@ -1,6 +1,9 @@
 #include "slsettings.h"
 #include "advancedphoto.h"
 
+#include <QSettings>
+#include <QDesktopWidget>
+
 bool SLSettings::kar, SLSettings::sgf, SLSettings::oap;
 int SLSettings::slideshowSpeed;
 int SLSettings::language;
@@ -120,35 +123,35 @@ void SLSettings::LoadSettings()
         {
             if(QLocale::system().language() == QLocale::English)
             {
-                Translator->load(":/Language/Language/English.qm");
+                Translator->load(":/Language/English.qm");
                 AdvancedPhoto::installTranslator(Translator);
 
                 SLSettings::setLanguage(QLocale::English);
             }
             else if(QLocale::system().language() == QLocale::Persian)
             {
-                Translator->load(":/Language/Language/Persian.qm");
+                Translator->load(":/Language/Persian.qm");
                 AdvancedPhoto::installTranslator(Translator);
 
                 SLSettings::setLanguage(QLocale::Persian);
             }
             else if(QLocale::system().language() == QLocale::Spanish)
             {
-                Translator->load(":/Language/Language/Spanish.qm");
+                Translator->load(":/Language/Spanish.qm");
                 AdvancedPhoto::installTranslator(Translator);
 
                 SLSettings::setLanguage(QLocale::Spanish);
             }
             else if(QLocale::system().language() == QLocale::Chinese)
             {
-                Translator->load(":/Language/Language/Traditional Chinese.qm");
+                Translator->load(":/Language/Traditional Chinese.qm");
                 AdvancedPhoto::installTranslator(Translator);
 
                 SLSettings::setLanguage(QLocale::Chinese);
             }
             else
             {
-                Translator->load(":/Language/Language/English.qm");
+                Translator->load(":/Language/English.qm");
                 AdvancedPhoto::installTranslator(Translator);
 
                 SLSettings::setLanguage(QLocale::English);
@@ -160,22 +163,22 @@ void SLSettings::LoadSettings()
         {
             if(SLSettings::Language() == QLocale::English)
             {
-                Translator->load(":/Language/Language/English.qm");
+                Translator->load(":/Language/English.qm");
                 AdvancedPhoto::installTranslator(Translator);
             }
             else if(SLSettings::Language() == QLocale::Persian)
             {
-                Translator->load(":/Language/Language/Persian.qm");
+                Translator->load(":/Language/Persian.qm");
                 AdvancedPhoto::installTranslator(Translator);
             }
             else if(SLSettings::Language() == QLocale::Spanish)
             {
-                Translator->load(":/Language/Language/Spanish.qm");
+                Translator->load(":/Language/Spanish.qm");
                 AdvancedPhoto::installTranslator(Translator);
             }
             else if(SLSettings::Language() == QLocale::Chinese)
             {
-                Translator->load(":/Language/Language/Traditional Chinese.qm");
+                Translator->load(":/Language/Traditional Chinese.qm");
                 AdvancedPhoto::installTranslator(Translator);
             }
 

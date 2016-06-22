@@ -2,9 +2,6 @@
 #define PHOTOINFO_H
 
 #include <QDialog>
-#include <QFileIconProvider>
-#include <QFileInfo>
-#include <QDateTime>
 
 namespace Ui {
 class PhotoInfo;

@@ -1,13 +1,11 @@
 #ifndef ADVANCEDPHOTO_H
 #define ADVANCEDPHOTO_H
 
-#include <QApplication>
-#include <cstdlib>
-#include <QTranslator>
-#include <QFileOpenEvent>
-#include <QMessageBox>
-
 #include "photowindow.h"
+#include "ui_photowindow.h"
+
+#include <QApplication>
+#include <QTranslator>
 
 class AdvancedPhoto : public QApplication
 {

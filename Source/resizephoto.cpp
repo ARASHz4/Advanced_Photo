@@ -2,6 +2,9 @@
 #include "ui_resizephoto.h"
 #include "photowindow.h"
 
+#include <QStringList>
+#include <QPixmap>
+
 int ResizePhoto::rsWidth=0, ResizePhoto::rsHeight=0;
 bool ResizePhoto::rekar=false, ResizePhoto::resz=false;
 

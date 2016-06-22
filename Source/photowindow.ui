@@ -23,8 +23,8 @@
    <string notr="true">Advanced Photo</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="apresource.qrc">
-    <normaloff>:/Icons/Icons/Small Icon.png</normaloff>:/Icons/Icons/Small Icon.png</iconset>
+   <iconset resource="Icon.qrc">
+    <normaloff>:/Icons/Small Icon.png</normaloff>:/Icons/Small Icon.png</iconset>
   </property>
   <property name="iconSize">
    <size>
@@ -49,7 +49,7 @@
      <bool>true</bool>
     </property>
     <property name="pixmap">
-     <pixmap>:/Icons/Drop EN.png</pixmap>
+     <pixmap resource="Icon.qrc">:/Icons/Drop EN.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>false</bool>
@@ -83,7 +83,7 @@
     <addaction name="actionSave"/>
     <addaction name="actionSave_As"/>
     <addaction name="separator"/>
-    <addaction name="actionOptions"/>
+    <addaction name="actionOption"/>
     <addaction name="separator"/>
     <addaction name="actionPrint"/>
     <addaction name="separator"/>
@@ -98,7 +98,7 @@
       <string>Home Page</string>
      </property>
      <property name="icon">
-      <iconset>
+      <iconset resource="Icon.qrc">
        <normaloff>:/Icons/HomePage.png</normaloff>:/Icons/HomePage.png</iconset>
      </property>
      <addaction name="actionGitHub"/>
@@ -159,8 +159,8 @@
   </widget>
   <action name="actionOpen_Photo">
    <property name="icon">
-    <iconset resource="apresource.qrc">
-     <normaloff>:/Icons/Icons/Open Photo.png</normaloff>:/Icons/Icons/Open Photo.png</iconset>
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/Open Photo.png</normaloff>:/Icons/Open Photo.png</iconset>
    </property>
    <property name="text">
     <string>Open Photo</string>
@@ -171,8 +171,8 @@
   </action>
   <action name="actionQuit">
    <property name="icon">
-    <iconset resource="apresource.qrc">
-     <normaloff>:/Icons/Icons/Quit.png</normaloff>:/Icons/Icons/Quit.png</iconset>
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/Quit.png</normaloff>:/Icons/Quit.png</iconset>
    </property>
    <property name="text">
     <string>Quit</string>
@@ -183,8 +183,8 @@
   </action>
   <action name="actionAbout">
    <property name="icon">
-    <iconset resource="apresource.qrc">
-     <normaloff>:/Icons/Icons/About.png</normaloff>:/Icons/Icons/About.png</iconset>
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/About.png</normaloff>:/Icons/About.png</iconset>
    </property>
    <property name="text">
     <string>About</string>
@@ -193,16 +193,13 @@
     <string notr="true">F1</string>
    </property>
   </action>
-  <action name="actionOptions">
+  <action name="actionOption">
    <property name="icon">
-    <iconset resource="apresource.qrc">
-     <normaloff>:/Icons/Icons/Options.png</normaloff>:/Icons/Icons/Options.png</iconset>
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/Option.png</normaloff>:/Icons/Option.png</iconset>
    </property>
    <property name="text">
-    <string>Options</string>
-   </property>
-   <property name="toolTip">
-    <string>Options</string>
+    <string>Option</string>
    </property>
    <property name="shortcut">
     <string notr="true">Alt+O</string>
@@ -210,8 +207,8 @@
   </action>
   <action name="actionZoomIN">
    <property name="icon">
-    <iconset resource="apresource.qrc">
-     <normaloff>:/Icons/Icons/Zoom In.png</normaloff>:/Icons/Icons/Zoom In.png</iconset>
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/Zoom In.png</normaloff>:/Icons/Zoom In.png</iconset>
    </property>
    <property name="text">
     <string>Zoom IN</string>
@@ -225,8 +222,8 @@
   </action>
   <action name="actionZoomOut">
    <property name="icon">
-    <iconset resource="apresource.qrc">
-     <normaloff>:/Icons/Icons/Zoom Out.png</normaloff>:/Icons/Icons/Zoom Out.png</iconset>
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/Zoom Out.png</normaloff>:/Icons/Zoom Out.png</iconset>
    </property>
    <property name="text">
     <string>Zoom Out</string>
@@ -240,8 +237,8 @@
   </action>
   <action name="actionZoom1_1">
    <property name="icon">
-    <iconset resource="apresource.qrc">
-     <normaloff>:/Icons/Icons/Zoom 1_1.png</normaloff>:/Icons/Icons/Zoom 1_1.png</iconset>
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/Zoom 1_1.png</normaloff>:/Icons/Zoom 1_1.png</iconset>
    </property>
    <property name="text">
     <string>1:1</string>
@@ -258,8 +255,8 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="apresource.qrc">
-     <normaloff>:/Icons/Icons/Zoom Fit Window.png</normaloff>:/Icons/Icons/Zoom Fit Window.png</iconset>
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/Zoom Fit Window.png</normaloff>:/Icons/Zoom Fit Window.png</iconset>
    </property>
    <property name="text">
     <string>Fit Window</string>
@@ -273,8 +270,8 @@
   </action>
   <action name="actionNext_Photo">
    <property name="icon">
-    <iconset resource="apresource.qrc">
-     <normaloff>:/Icons/Icons/Next Photo.png</normaloff>:/Icons/Icons/Next Photo.png</iconset>
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/Next Photo.png</normaloff>:/Icons/Next Photo.png</iconset>
    </property>
    <property name="text">
     <string>Next Photo</string>
@@ -288,8 +285,8 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="apresource.qrc">
-     <normaloff>:/Icons/Icons/Previous Photo.png</normaloff>:/Icons/Icons/Previous Photo.png</iconset>
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/Previous Photo.png</normaloff>:/Icons/Previous Photo.png</iconset>
    </property>
    <property name="text">
     <string>Previous Photo</string>
@@ -300,8 +297,8 @@
   </action>
   <action name="actionSlideshow">
    <property name="icon">
-    <iconset resource="apresource.qrc">
-     <normaloff>:/Icons/Icons/Slideshow Start.png</normaloff>:/Icons/Icons/Slideshow Start.png</iconset>
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/Slideshow Start.png</normaloff>:/Icons/Slideshow Start.png</iconset>
    </property>
    <property name="text">
     <string>Slideshow</string>
@@ -315,8 +312,8 @@
   </action>
   <action name="actionFullscreen">
    <property name="icon">
-    <iconset resource="apresource.qrc">
-     <normaloff>:/Icons/Icons/Full Screen.png</normaloff>:/Icons/Icons/Full Screen.png</iconset>
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/Full Screen.png</normaloff>:/Icons/Full Screen.png</iconset>
    </property>
    <property name="text">
     <string>Full Screen</string>
@@ -333,8 +330,8 @@
   </action>
   <action name="actionRotateRight">
    <property name="icon">
-    <iconset resource="apresource.qrc">
-     <normaloff>:/Icons/Icons/Rotate Right.png</normaloff>:/Icons/Icons/Rotate Right.png</iconset>
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/Rotate Right.png</normaloff>:/Icons/Rotate Right.png</iconset>
    </property>
    <property name="text">
     <string>Rotate Right</string>
@@ -348,8 +345,8 @@
   </action>
   <action name="actionRotateLeft">
    <property name="icon">
-    <iconset resource="apresource.qrc">
-     <normaloff>:/Icons/Icons/Rotate Left.png</normaloff>:/Icons/Icons/Rotate Left.png</iconset>
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/Rotate Left.png</normaloff>:/Icons/Rotate Left.png</iconset>
    </property>
    <property name="text">
     <string>Rotate Left</string>
@@ -363,8 +360,8 @@
   </action>
   <action name="actionSave">
    <property name="icon">
-    <iconset resource="apresource.qrc">
-     <normaloff>:/Icons/Icons/Save.png</normaloff>:/Icons/Icons/Save.png</iconset>
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/Save.png</normaloff>:/Icons/Save.png</iconset>
    </property>
    <property name="text">
     <string>Save</string>
@@ -381,8 +378,8 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="apresource.qrc">
-     <normaloff>:/Icons/Icons/Save As.png</normaloff>:/Icons/Icons/Save As.png</iconset>
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/Save As.png</normaloff>:/Icons/Save As.png</iconset>
    </property>
    <property name="text">
     <string>Save As</string>
@@ -396,8 +393,8 @@
   </action>
   <action name="actionResize">
    <property name="icon">
-    <iconset resource="apresource.qrc">
-     <normaloff>:/Icons/Icons/Resize.png</normaloff>:/Icons/Icons/Resize.png</iconset>
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/Resize.png</normaloff>:/Icons/Resize.png</iconset>
    </property>
    <property name="text">
     <string>Resize</string>
@@ -408,8 +405,8 @@
   </action>
   <action name="actionFlip_Horizontal">
    <property name="icon">
-    <iconset resource="apresource.qrc">
-     <normaloff>:/Icons/Icons/Flip Horizontal.png</normaloff>:/Icons/Icons/Flip Horizontal.png</iconset>
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/Flip Horizontal.png</normaloff>:/Icons/Flip Horizontal.png</iconset>
    </property>
    <property name="text">
     <string>Flip Horizontal</string>
@@ -420,8 +417,8 @@
   </action>
   <action name="actionFlip_Vertical">
    <property name="icon">
-    <iconset resource="apresource.qrc">
-     <normaloff>:/Icons/Icons/Flip Vertical.png</normaloff>:/Icons/Icons/Flip Vertical.png</iconset>
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/Flip Vertical.png</normaloff>:/Icons/Flip Vertical.png</iconset>
    </property>
    <property name="text">
     <string>Flip Vertical</string>
@@ -432,8 +429,8 @@
   </action>
   <action name="actionPrint">
    <property name="icon">
-    <iconset resource="apresource.qrc">
-     <normaloff>:/Icons/Icons/Print.png</normaloff>:/Icons/Icons/Print.png</iconset>
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/Print.png</normaloff>:/Icons/Print.png</iconset>
    </property>
    <property name="text">
     <string>Print...</string>
@@ -458,8 +455,8 @@
   </action>
   <action name="actionPhotoInfo">
    <property name="icon">
-    <iconset resource="apresource.qrc">
-     <normaloff>:/Icons/Icons/Photo Info.png</normaloff>:/Icons/Icons/Photo Info.png</iconset>
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/Photo Info.png</normaloff>:/Icons/Photo Info.png</iconset>
    </property>
    <property name="text">
     <string>Photo Info</string>
@@ -473,8 +470,8 @@
   </action>
   <action name="actionClose_Photo">
    <property name="icon">
-    <iconset resource="apresource.qrc">
-     <normaloff>:/Icons/Icons/Close Photo.png</normaloff>:/Icons/Icons/Close Photo.png</iconset>
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/Close Photo.png</normaloff>:/Icons/Close Photo.png</iconset>
    </property>
    <property name="text">
     <string>Close Photo</string>
@@ -485,8 +482,8 @@
   </action>
   <action name="actionGo_to">
    <property name="icon">
-    <iconset resource="apresource.qrc">
-     <normaloff>:/Icons/Icons/Go to.png</normaloff>:/Icons/Icons/Go to.png</iconset>
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/Go to.png</normaloff>:/Icons/Go to.png</iconset>
    </property>
    <property name="text">
     <string>Go to</string>
@@ -497,8 +494,8 @@
   </action>
   <action name="actionClose_All_Photos">
    <property name="icon">
-    <iconset resource="apresource.qrc">
-     <normaloff>:/Icons/Icons/Close All Photos.png</normaloff>:/Icons/Icons/Close All Photos.png</iconset>
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/Close All Photos.png</normaloff>:/Icons/Close All Photos.png</iconset>
    </property>
    <property name="text">
     <string>Close All Photos</string>
@@ -509,32 +506,26 @@
   </action>
   <action name="actionGitHub">
    <property name="icon">
-    <iconset resource="apresource.qrc">
-     <normaloff>:/Icons/Icons/GitHub.png</normaloff>:/Icons/Icons/GitHub.png</iconset>
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/GitHub.png</normaloff>:/Icons/GitHub.png</iconset>
    </property>
    <property name="text">
     <string>GitHub</string>
    </property>
-   <property name="shortcut">
-    <string notr="true"/>
-   </property>
   </action>
   <action name="actionSourceForge">
    <property name="icon">
-    <iconset resource="apresource.qrc">
-     <normaloff>:/Icons/Icons/SourceForge.png</normaloff>:/Icons/Icons/SourceForge.png</iconset>
+    <iconset resource="Icon.qrc">
+     <normaloff>:/Icons/SourceForge.png</normaloff>:/Icons/SourceForge.png</iconset>
    </property>
    <property name="text">
     <string>SourceForge</string>
-   </property>
-   <property name="shortcut">
-    <string notr="true"/>
    </property>
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="apresource.qrc"/>
+  <include location="Icon.qrc"/>
  </resources>
  <connections>
   <connection>

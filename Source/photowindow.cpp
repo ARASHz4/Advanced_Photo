@@ -1,12 +1,24 @@
 #include "photowindow.h"
 #include "ui_photowindow.h"
 #include "advancedphoto.h"
-#include "options.h"
+#include "option.h"
 #include "resizephoto.h"
 #include "photoinfo.h"
 #include "goto.h"
 #include "about.h"
 #include "slsettings.h"
+
+#include <QScreen>
+#include <QFileDialog>
+#include <QPrinter>
+#include <QPrintDialog>
+#include <QPainter>
+#include <QSettings>
+#include <QMouseEvent>
+#include <QMimeData>
+#include <QMessageBox>
+#include <QDesktopServices>
+#include <QUuid>
 
 QStringList PhotoWindow::photoAddress;
 int PhotoWindow::ps=0;
@@ -17,8 +29,6 @@ PhotoWindow::PhotoWindow(QWidget *parent) :
     ui(new Ui::PhotoWindow)
 {
     ui->setupUi(this);
-
-    connect(&APPrintPreviewDialog, &QPrintPreviewDialog::paintRequested, this, &PhotoWindow::PaintPreview);
 }
 
 PhotoWindow::~PhotoWindow()
@@ -44,12 +54,6 @@ void PhotoWindow::setPs(int value)
 int PhotoWindow::Ps()
 {
     return ps;
-}
-
-void PhotoWindow::PaintPreview(QPrinter *printer)
-{
-    QPainter painter(printer);
-    painter.drawPixmap(QPoint(0,0), QPixmap::fromImage(ui->Photo->pixmap()->toImage()));
 }
 
 void PhotoWindow::Start()
@@ -247,8 +251,8 @@ void PhotoWindow::LoadOtherPhotos()
         QDir PhotoDir(QFileInfo(photoAddress[0]).path());
         QStringList PhotoFilter;
         PhotoFilter<<"*.png" << "*.jpg" << "*.bmp" << "*.tif" << "*.webp" << "*.gif"
-                   << "*.dds" << "*.xpm" << "*.pnm" << "*.ppm" << "*.pgm"
-                   << "*.wbmp" << "*.xbm" << "*.pbm" << "*.svg" << "*.ico" << "*.icns";
+                   << "*.jp2" << "*.dds" << "*.xpm" << "*.pnm" << "*.ppm" << "*.pgm"
+                   << "*.wbmp" << "*.xbm" << "*.pbm" << "*.ico" << "*.icns";
 
         QFileInfoList Photos;
 
@@ -400,23 +404,23 @@ void PhotoWindow::ActionEnabler()
 
         if(SLSettings::Language() == QLocale::English)
         {
-            ui->Photo->setPixmap(QPixmap(":/Icons/Icons/Drop EN.png"));
+            ui->Photo->setPixmap(QPixmap(":/Icons/Drop EN.png"));
         }
         else if (SLSettings::Language() == QLocale::Persian)
         {
-            ui->Photo->setPixmap(QPixmap(":/Icons/Icons/Drop PA.png"));
+            ui->Photo->setPixmap(QPixmap(":/Icons/Drop PA.png"));
         }
         else if (SLSettings::Language() == QLocale::Spanish)
         {
-            ui->Photo->setPixmap(QPixmap(":/Icons/Icons/Drop SP.png"));
+            ui->Photo->setPixmap(QPixmap(":/Icons/Drop SP.png"));
         }
         else if (SLSettings::Language() == QLocale::Chinese)
         {
-            ui->Photo->setPixmap(QPixmap(":/Icons/Icons/Drop CH.png"));
+            ui->Photo->setPixmap(QPixmap(":/Icons/Drop CH.png"));
         }
         else
         {
-            ui->Photo->setPixmap(QPixmap(":/Icons/Icons/Drop EN.png"));
+            ui->Photo->setPixmap(QPixmap(":/Icons/Drop EN.png"));
         }
 
         statusBar()->removeWidget(&zoomLS);
@@ -494,23 +498,23 @@ void PhotoWindow::ActionEnabler()
 
         if(SLSettings::Language() == QLocale::English)
         {
-            ui->Photo->setPixmap(QPixmap(":/Icons/Icons/Drop EN.png"));
+            ui->Photo->setPixmap(QPixmap(":/Icons/Drop EN.png"));
         }
         else if (SLSettings::Language() == QLocale::Persian)
         {
-            ui->Photo->setPixmap(QPixmap(":/Icons/Icons/Drop PA.png"));
+            ui->Photo->setPixmap(QPixmap(":/Icons/Drop PA.png"));
         }
         else if (SLSettings::Language() == QLocale::Spanish)
         {
-            ui->Photo->setPixmap(QPixmap(":/Icons/Icons/Drop SP.png"));
+            ui->Photo->setPixmap(QPixmap(":/Icons/Drop SP.png"));
         }
         else if (SLSettings::Language() == QLocale::Chinese)
         {
-            ui->Photo->setPixmap(QPixmap(":/Icons/Icons/Drop CH.png"));
+            ui->Photo->setPixmap(QPixmap(":/Icons/Drop CH.png"));
         }
         else
         {
-            ui->Photo->setPixmap(QPixmap(":/Icons/Icons/Drop EN.png"));
+            ui->Photo->setPixmap(QPixmap(":/Icons/Drop EN.png"));
         }
 
         iif=false;
@@ -748,18 +752,14 @@ void PhotoWindow::StatusBar()
 {
     if(pe==true)
     {
-        QFileIconProvider iconf;
-
         if(iif == false)
         {
             zoomLS.setText(QString::number(zoomp) + "%" + " " + tr("Zoom"));
-            photoIconLS.setPixmap(iconf.icon(QFileInfo(photoAddress[ps])).pixmap(QSize(16, 16)));
             photoNameLS.setText(QFileInfo(photoAddress[ps]).fileName());
             photoHWLS.setText(QString::number(pi.width()) + "x" + QString::number(pi.height()));
             photoSizeLS.setText(PSize);
             ofLS.setText(QString::number(ps+1) + " " + tr("of") + " " + QString::number(photoAddress.count()));
 
-            statusBar()->addWidget(&photoIconLS);
             statusBar()->addWidget(&photoNameLS);
 
             statusBar()->addPermanentWidget(&zoomLS);
@@ -767,9 +767,8 @@ void PhotoWindow::StatusBar()
             statusBar()->addPermanentWidget(&photoSizeLS);
             statusBar()->addPermanentWidget(&ofLS);
 
-            photoIconLS.show();
-            photoNameLS.show();
             zoomLS.show();
+            photoNameLS.show();
             photoHWLS.show();
             photoSizeLS.show();
             ofLS.show();
@@ -777,7 +776,6 @@ void PhotoWindow::StatusBar()
         else
         {
             zoomLS.setText("");
-            photoIconLS.setPixmap(iconf.icon(QFileInfo(photoAddress[ps])).pixmap(QSize(16, 16)));
             photoNameLS.setText(QFileInfo(photoAddress[ps]).fileName() + " " + tr("is incorrect data !"));
             photoHWLS.setText("");
             photoSizeLS.setText(PSize);
@@ -786,12 +784,10 @@ void PhotoWindow::StatusBar()
             statusBar()->removeWidget(&zoomLS);
             statusBar()->removeWidget(&photoHWLS);
 
-            statusBar()->addWidget(&photoIconLS);
             statusBar()->addWidget(&photoNameLS);
-            statusBar()->addPermanentWidget(&photoSizeLS);
-            statusBar()->addPermanentWidget(&ofLS);
+            statusBar()->addWidget(&photoSizeLS);
+            statusBar()->addWidget(&ofLS);
 
-            photoIconLS.show();
             photoNameLS.show();
             photoSizeLS.show();
             ofLS.show();
@@ -821,10 +817,10 @@ int PhotoWindow::SavePhoto()
             if((SaveFile.suffix().toLower() == "png" || SaveFile.suffix().toLower() == "jpg"
                 || SaveFile.suffix().toLower() == "jpeg" || SaveFile.suffix().toLower() == "bmp"
                 || SaveFile.suffix().toLower() == "tif" || SaveFile.suffix().toLower() == "tiff"
-                || SaveFile.suffix().toLower() == "webp" || SaveFile.suffix().toLower() == "dds"
-                || SaveFile.suffix().toLower() == "ppm" || SaveFile.suffix().toLower() == "xpm"
-                || SaveFile.suffix().toLower() == "pgm" || SaveFile.suffix().toLower() == "xbm"
-                || SaveFile.suffix().toLower() == "pbm"))
+                || SaveFile.suffix().toLower() == "webp" || SaveFile.suffix().toLower() == "jp2"
+                || SaveFile.suffix().toLower() == "dds" || SaveFile.suffix().toLower() == "ppm"
+                || SaveFile.suffix().toLower() == "xpm" || SaveFile.suffix().toLower() == "pgm"
+                || SaveFile.suffix().toLower() == "xbm" || SaveFile.suffix().toLower() == "pbm"))
             {
                 PhotoSave=PhotoSave.fromImage(ui->Photo->pixmap()->toImage());
 
@@ -912,7 +908,7 @@ void PhotoWindow::Close_Photo()
                     Slideshow.stop();
                     sls=false;
 
-                    ui->actionSlideshow->setIcon(QIcon(":/Icons/Icons/Slideshow Start.png"));
+                    ui->actionSlideshow->setIcon(QIcon(":/Icons/Slideshow Start.png"));
                     ui->actionFlip_Horizontal->setEnabled(true);
                     ui->actionFlip_Vertical->setEnabled(true);
                     ui->actionResize->setEnabled(true);
@@ -945,10 +941,10 @@ void PhotoWindow::on_actionOpen_Photo_triggered()
     QFileDialog OpenPhoto(this);
     OpenPhoto.setFileMode(QFileDialog::ExistingFiles);
     OpenPhoto.setNameFilter(tr("All Supported Files") + " (*.png ; *.jpg ; *.jpeg ; *.bmp ; *.tif ; *.tiff ; *.webp ;"
-                               " *.svg ; *.svgz ; *.gif ; *.dds ; *.xpm ; *.pnm ; *.ppm ; *.pgm ; *.wbmp ; *.xbm ; *.pbm ;"
-                               " *.ico ; *.icns ; *.cur);; " + tr("Photo") + " (*.png ; *.jpg ; *.jpeg ; *.bmp ; *.tif ; *.tiff ;"
-                               " *.webp ; *.svg ; *.svgz ; *.gif ; *.dds ; *.xpm ; *.pnm ; *.ppm ; *.pgm ; *.wbmp ; *.xbm ; *.pbm);; "
-                               + tr("Icon") + " (*.ico ; *.icns);; " + tr("Cursor") + " (*.cur);; " + tr("All Files") + " (*)");
+                               "*.gif ; *.jp2 ; *.dds ; *.xpm ; *.pnm ; *.ppm ; *.pgm ; *.wbmp ; *.xbm ; *.pbm ;"
+                               "*.ico ; *.icns);; " + tr("Photo") + " (*.png ; *.jpg ; *.jpeg ; *.bmp ; *.tif ; *.tiff ; *.webp ;"
+                               "*.gif ; *.jp2 ; *.dds ; *.xpm ; *.pnm ; *.ppm ; *.pgm ; *.wbmp ; *.xbm ; *.pbm);;"
+                               + tr("Icon") + " (*.ico ; *.icns);; " + tr("All Files") + " (*)");
 
     OpenPhoto.setWindowTitle(tr("Open Photo"));
 
@@ -963,7 +959,18 @@ void PhotoWindow::on_actionOpen_Photo_triggered()
         }
         else
         {
-            OpenPhoto.setDirectory(QStandardPaths::writableLocation(QStandardPaths::HomeLocation));
+            #if defined(Q_OS_WIN)
+            if (!QString(getenv("HOMEPATH")).contains(":"))
+            {
+                OpenPhoto.setDirectory(QString(getenv("HOMEDRIVE")) + QString(getenv("HOMEPATH")));
+            }
+            else
+            {
+                OpenPhoto.setDirectory(getenv("HOMEPATH"));
+            }
+            #else
+            OpenPhoto.setDirectory(getenv("HOME"));
+            #endif
         }
 
         SettingsAP.endGroup();
@@ -1004,7 +1011,7 @@ void PhotoWindow::on_actionOpen_Photo_triggered()
                     Slideshow.stop();
                     sls=false;
 
-                    ui->actionSlideshow->setIcon(QIcon(":/Icons/Icons/Slideshow Start.png"));
+                    ui->actionSlideshow->setIcon(QIcon(":/Icons/Slideshow Start.png"));
                     ui->actionFlip_Horizontal->setEnabled(true);
                     ui->actionFlip_Vertical->setEnabled(true);
                     ui->actionResize->setEnabled(true);
@@ -1077,7 +1084,7 @@ void PhotoWindow::on_actionClose_All_Photos_triggered()
                 Slideshow.stop();
                 sls=false;
 
-                ui->actionSlideshow->setIcon(QIcon(":/Icons/Icons/Slideshow Start.png"));
+                ui->actionSlideshow->setIcon(QIcon(":/Icons/Slideshow Start.png"));
                 ui->actionFlip_Horizontal->setEnabled(true);
                 ui->actionFlip_Vertical->setEnabled(true);
                 ui->actionResize->setEnabled(true);
@@ -1110,10 +1117,10 @@ void PhotoWindow::on_actionSave_triggered()
         if((SaveFile.suffix().toLower() == "png" || SaveFile.suffix().toLower() == "jpg"
          || SaveFile.suffix().toLower() == "jpeg" || SaveFile.suffix().toLower() == "bmp"
          || SaveFile.suffix().toLower() == "tif" || SaveFile.suffix().toLower() == "tiff"
-         || SaveFile.suffix().toLower() == "webp" || SaveFile.suffix().toLower() == "dds"
-         || SaveFile.suffix().toLower() == "ppm" || SaveFile.suffix().toLower() == "xpm"
-         || SaveFile.suffix().toLower() == "pgm"  || SaveFile.suffix().toLower() == "xbm"
-         || SaveFile.suffix().toLower() == "pbm"))
+         || SaveFile.suffix().toLower() == "webp" || SaveFile.suffix().toLower() == "jp2"
+         || SaveFile.suffix().toLower() == "dds" || SaveFile.suffix().toLower() == "ppm"
+         || SaveFile.suffix().toLower() == "xpm" || SaveFile.suffix().toLower() == "pgm"
+         || SaveFile.suffix().toLower() == "xbm" || SaveFile.suffix().toLower() == "pbm"))
         {
             PhotoSave=PhotoSave.fromImage(ui->Photo->pixmap()->toImage());
 
@@ -1161,7 +1168,18 @@ void PhotoWindow::on_actionSave_As_triggered()
             }
             else
             {
-                Directory = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
+                #if defined(Q_OS_WIN)
+                if (!QString(getenv("HOMEPATH")).contains(":"))
+                {
+                    Directory = "C:" + QString(getenv("HOMEPATH"));
+                }
+                else
+                {
+                    Directory = getenv("HOMEPATH");
+                }
+                #else
+                Directory = getenv("HOME");
+                #endif
             }
 
             SettingsAP.endGroup();
@@ -1171,8 +1189,8 @@ void PhotoWindow::on_actionSave_As_triggered()
         QString SaveAddress = QFileDialog::getSaveFileName(this, tr("Save As Photo"),
                                                            Directory+"/"+PhotoName.baseName(),"Portable Network Graphics (*.png) ;;"
                                                                                         "JPEG Image (*.jpg) ;; BMP file format (*.bmp) ;;"
-                                                                                        "Tagged Image File Format (*.tiff) ;;"
-                                                                                        "WebP (*.webp) ;; DirectDraw Surface (*.dds) ;;"
+                                                                                        "Tagged Image File Format (*.tiff) ;; WebP (*.webp) ;;"
+                                                                                        "JPEG 2000 (*.jp2) ;; DirectDraw Surface (*.dds) ;;"
                                                                                         "Portable Pixmap (*.ppm) ;; X11 Pixmap (*.xpm) ;;"
                                                                                         "Pgm (*.pgm) ;; X11 Bitmap (*.xbm) ;;"
                                                                                         "Netpbm format (*.pbm)", &SavePhotoFilter);
@@ -1321,6 +1339,36 @@ void PhotoWindow::on_actionSave_As_triggered()
                 if(QFile(SaveAddress).open(QIODevice::ReadWrite))
                 {
                     SaveWEBP.save(SaveAddress,"webp");
+
+                    sph=false;
+                    photoAddress[ps]=SaveAddress;
+                    PhotoSelecter();
+                    ProcessingPhoto();
+                }
+                else
+                {
+                    QMessageBox msg(this);
+                    msg.setIcon(QMessageBox::Critical);
+                    msg.setWindowTitle(tr("Error"));
+                    msg.setText(tr("Can't Write File"));
+                    msg.setStandardButtons(QMessageBox::Ok);
+                    msg.setButtonText(QMessageBox::Ok, tr("OK"));
+                    msg.exec();
+                }
+            }
+
+            else if(SavePhotoFilter == "JPEG 2000 (*.jp2)")
+            {
+                if(SaveFile.suffix().isEmpty())
+                {
+                    SaveAddress=SaveAddress+".jp2";
+                }
+
+                QPixmap SaveJP2 = SaveJP2.fromImage(ui->Photo->pixmap()->toImage());
+
+                if(QFile(SaveAddress).open(QIODevice::ReadWrite))
+                {
+                    SaveJP2.save(SaveAddress,"jp2");
 
                     sph=false;
                     photoAddress[ps]=SaveAddress;
@@ -1522,12 +1570,12 @@ void PhotoWindow::on_actionSave_As_triggered()
     }
 }
 
-void PhotoWindow::on_actionOptions_triggered()
+void PhotoWindow::on_actionOption_triggered()
 {
     bool kart=SLSettings::Kar();
     int slideshowSpeedt=SLSettings::SlideshowSpeed();
 
-    Options OD(this);
+    Option OD(this);
     OD.exec();
 
     if(pe==true && (kart != SLSettings::Kar() || slideshowSpeedt != SLSettings::SlideshowSpeed()))
@@ -1568,7 +1616,17 @@ void PhotoWindow::on_actionOptions_triggered()
 
 void PhotoWindow::on_actionPrint_triggered()
 {
-    APPrintPreviewDialog.exec();
+    QPrinter PhotoPrint;
+
+    QPrintDialog *PhotoPrintDialog = new QPrintDialog(&PhotoPrint,0);
+
+    if(PhotoPrintDialog->exec() == QDialog::Accepted)
+    {
+        QImage Photo(ui->Photo->pixmap()->toImage());
+        QPainter painter(&PhotoPrint);
+        painter.drawImage(QPoint(0,0),Photo);
+        painter.end();
+    }
 }
 
 void PhotoWindow::on_actionQuit_triggered()
@@ -1801,7 +1859,7 @@ void PhotoWindow::on_actionSlideshow_triggered()
         Slideshow.start();
         sls=true;
 
-        ui->actionSlideshow->setIcon(QIcon(":/Icons/Icons/Slideshow Stop.png"));
+        ui->actionSlideshow->setIcon(QIcon(":/Icons/Slideshow Stop.png"));
         ui->actionSlideshow->setToolTip("Stop Slideshow");
 
         ActionEnabler();
@@ -1821,7 +1879,7 @@ void PhotoWindow::on_actionSlideshow_triggered()
 
                 showFullScreen();
 
-                ui->actionFullscreen->setIcon(QIcon(":/Icons/Icons/Normal Screen.png"));
+                ui->actionFullscreen->setIcon(QIcon(":/Icons/Normal Screen.png"));
                 ui->actionFullscreen->setToolTip("Exit Full Screen");
             }
         }
@@ -1831,7 +1889,7 @@ void PhotoWindow::on_actionSlideshow_triggered()
         Slideshow.stop();
         sls=false;
 
-        ui->actionSlideshow->setIcon(QIcon(":/Icons/Icons/Slideshow Start.png"));
+        ui->actionSlideshow->setIcon(QIcon(":/Icons/Slideshow Start.png"));
         ui->actionSlideshow->setToolTip(tr("Start Slideshow"));
 
         ActionEnabler();
@@ -1849,7 +1907,7 @@ void PhotoWindow::on_actionSlideshow_triggered()
                     showNormal();
                 }
 
-                ui->actionFullscreen->setIcon(QIcon(":/Icons/Icons/Full Screen.png"));
+                ui->actionFullscreen->setIcon(QIcon(":/Icons/Full Screen.png"));
                 ui->actionFullscreen->setToolTip(tr("Full Screen"));
             }
         }
@@ -1899,7 +1957,7 @@ void PhotoWindow::on_actionFullscreen_triggered()
 
         showFullScreen();
 
-        ui->actionFullscreen->setIcon(QIcon(":/Icons/Icons/Normal Screen.png"));
+        ui->actionFullscreen->setIcon(QIcon(":/Icons/Normal Screen.png"));
         ui->actionFullscreen->setToolTip(tr("Exit Full Screen"));
     }
     else
@@ -1913,7 +1971,7 @@ void PhotoWindow::on_actionFullscreen_triggered()
             showNormal();
         }
 
-        ui->actionFullscreen->setIcon(QIcon(":/Icons/Icons/Full Screen.png"));
+        ui->actionFullscreen->setIcon(QIcon(":/Icons/Full Screen.png"));
         ui->actionFullscreen->setToolTip(tr("Full Screen"));
     }
 }

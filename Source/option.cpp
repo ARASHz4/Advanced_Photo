@@ -1,11 +1,11 @@
-#include "options.h"
-#include "ui_options.h"
+#include "option.h"
+#include "ui_option.h"
 #include "advancedphoto.h"
 #include "slsettings.h"
 
-Options::Options(QWidget *parent) :
+Option::Option(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::Options)
+    ui(new Ui::Option)
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
@@ -13,12 +13,12 @@ Options::Options(QWidget *parent) :
     Start();
 }
 
-Options::~Options()
+Option::~Option()
 {
     delete ui; 
 }
 
-void Options::Start()
+void Option::Start()
 {
     int x, y, w, h;
     std::tie(x, y, w, h) = SLSettings::LoadOptionWindow();
@@ -49,7 +49,7 @@ void Options::Start()
     Load();
 }
 
-void Options::on_listWidgetOption_currentRowChanged(int currentRow)
+void Option::on_listWidgetOption_currentRowChanged(int currentRow)
 {
     if(currentRow == 0)
     {
@@ -95,7 +95,7 @@ void Options::on_listWidgetOption_currentRowChanged(int currentRow)
     }
 }
 
-void Options::Load()
+void Option::Load()
 {
     //General
     {
@@ -160,7 +160,7 @@ void Options::Load()
     }
 }
 
-void Options::Save()
+void Option::Save()
 {
     //General
     {
@@ -214,35 +214,35 @@ void Options::Save()
         {
             if(QLocale::system().language() == QLocale::English)
             {
-                Translator->load(":/Language/Language/English.qm");
+                Translator->load(":/Language/English.qm");
                 AdvancedPhoto::installTranslator(Translator);
 
                 SLSettings::setLanguage(QLocale::English);
             }
             else if(QLocale::system().language() == QLocale::Persian)
             {
-                Translator->load(":/Language/Language/Persian.qm");
+                Translator->load(":/Language/Persian.qm");
                 AdvancedPhoto::installTranslator(Translator);
 
                 SLSettings::setLanguage(QLocale::Persian);
             }
             else if(QLocale::system().language() == QLocale::Spanish)
             {
-                Translator->load(":/Language/Language/Spanish.qm");
+                Translator->load(":/Language/Spanish.qm");
                 AdvancedPhoto::installTranslator(Translator);
 
                 SLSettings::setLanguage(QLocale::Spanish);
             }
             else if(QLocale::system().language() == QLocale::Chinese)
             {
-                Translator->load(":/Language/Language/Traditional Chinese.qm");
+                Translator->load(":/Language/Traditional Chinese.qm");
                 AdvancedPhoto::installTranslator(Translator);
 
                 SLSettings::setLanguage(QLocale::Chinese);
             }
             else
             {
-                Translator->load(":/Language/Language/English.qm");
+                Translator->load(":/Language/English.qm");
                 AdvancedPhoto::installTranslator(Translator);
 
                 SLSettings::setLanguage(QLocale::English);
@@ -254,22 +254,22 @@ void Options::Save()
         {
             if(SLSettings::Language() == QLocale::English)
             {
-                Translator->load(":/Language/Language/English.qm");
+                Translator->load(":/Language/English.qm");
                 AdvancedPhoto::installTranslator(Translator);
             }
             else if(SLSettings::Language() == QLocale::Persian)
             {
-                Translator->load(":/Language/Language/Persian.qm");
+                Translator->load(":/Language/Persian.qm");
                 AdvancedPhoto::installTranslator(Translator);
             }
             else if(SLSettings::Language() == QLocale::Spanish)
             {
-                Translator->load(":/Language/Language/Spanish.qm");
+                Translator->load(":/Language/Spanish.qm");
                 AdvancedPhoto::installTranslator(Translator);
             }
             else if(SLSettings::Language() == QLocale::Chinese)
             {
-                Translator->load(":/Language/Language/Traditional Chinese.qm");
+                Translator->load(":/Language/Traditional Chinese.qm");
                 AdvancedPhoto::installTranslator(Translator);
             }
 
@@ -304,18 +304,18 @@ void Options::Save()
     SLSettings::SaveSettings();
 }
 
-void Options::OKButton()
+void Option::OKButton()
 {
     Save();
     close();
 }
 
-void Options::CancelButton()
+void Option::CancelButton()
 {
     close();
 }
 
-void Options::ApplyButton()
+void Option::ApplyButton()
 {
     Save();
 
@@ -332,7 +332,7 @@ void Options::ApplyButton()
     ui->LanguageComboBox->setCurrentIndex(cl);
 }
 
-void Options::RestoreDefaultsButton()
+void Option::RestoreDefaultsButton()
 {
     SLSettings::setKar(true);
     SLSettings::setOap(true);
@@ -344,7 +344,7 @@ void Options::RestoreDefaultsButton()
     Load();
 }
 
-void Options::closeEvent (QCloseEvent *)
+void Option::closeEvent (QCloseEvent *)
 {
     SLSettings::SaveOptionWindow(this->geometry().x(), this->geometry().y(), this->geometry().width(), this->geometry().height());
 }

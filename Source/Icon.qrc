@@ -1,8 +1,7 @@
 <RCC>
-    <qresource prefix="/Icons">
+    <qresource prefix="/">
         <file>Icons/About.png</file>
         <file>Icons/Big Icon.png</file>
-        <file>Icons/Close All Photos.png</file>
         <file>Icons/Close Photo.png</file>
         <file>Icons/Drop CH.png</file>
         <file>Icons/Drop EN.png</file>
@@ -11,14 +10,12 @@
         <file>Icons/Flip Horizontal.png</file>
         <file>Icons/Flip Vertical.png</file>
         <file>Icons/Full Screen.png</file>
-        <file>Icons/GitHub.png</file>
-        <file>Icons/Go to.png</file>
         <file>Icons/HomePage.png</file>
         <file>Icons/language.png</file>
         <file>Icons/Next Photo.png</file>
         <file>Icons/Normal Screen.png</file>
         <file>Icons/Open Photo.png</file>
-        <file>Icons/Options.png</file>
+        <file>Icons/Option.png</file>
         <file>Icons/Photo Info.png</file>
         <file>Icons/Previous Photo.png</file>
         <file>Icons/Print.png</file>
@@ -32,16 +29,13 @@
         <file>Icons/Slideshow Start.png</file>
         <file>Icons/Slideshow Stop.png</file>
         <file>Icons/Small Icon.png</file>
-        <file>Icons/SourceForge.png</file>
         <file>Icons/Zoom 1_1.png</file>
         <file>Icons/Zoom Fit Window.png</file>
         <file>Icons/Zoom In.png</file>
         <file>Icons/Zoom Out.png</file>
-    </qresource>
-    <qresource prefix="/Language">
-        <file>Language/English.qm</file>
-        <file>Language/Persian.qm</file>
-        <file>Language/Spanish.qm</file>
-        <file>Language/Traditional Chinese.qm</file>
+        <file>Icons/Go to.png</file>
+        <file>Icons/Close All Photos.png</file>
+        <file>Icons/GitHub.png</file>
+        <file>Icons/SourceForge.png</file>
     </qresource>
 </RCC>

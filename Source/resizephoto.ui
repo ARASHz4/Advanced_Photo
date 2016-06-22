@@ -26,8 +26,8 @@
    <string>Resize</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="apresource.qrc">
-    <normaloff>:/Icons/Icons/Resize.png</normaloff>:/Icons/Icons/Resize.png</iconset>
+   <iconset resource="Icon.qrc">
+    <normaloff>:/Icons/Resize.png</normaloff>:/Icons/Resize.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
@@ -186,7 +186,7 @@
   <tabstop>Height</tabstop>
  </tabstops>
  <resources>
-  <include location="apresource.qrc"/>
+  <include location="Icon.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -3,6 +3,9 @@
 #include "advancedphoto.h"
 #include "slsettings.h"
 
+#include <QMouseEvent>
+#include <QPixmap>
+
 About::About(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::About)
@@ -70,7 +73,7 @@ void About::mouseDoubleClickEvent(QMouseEvent *)
     else if (ds == true)
     {
         ui->aboutIcon->setText(NULL);
-        ui->aboutIcon->setPixmap(QPixmap(":/Icons/Icons/Big Icon.png"));
+        ui->aboutIcon->setPixmap(QPixmap(":/Icons/Big Icon.png"));
         ds=false;
     }
 }

@@ -26,8 +26,8 @@
    <string>Photo Info</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="apresource.qrc">
-    <normaloff>:/Icons/Icons/Photo Info.png</normaloff>:/Icons/Icons/Photo Info.png</iconset>
+   <iconset resource="Icon.qrc">
+    <normaloff>:/Icons/Photo Info.png</normaloff>:/Icons/Photo Info.png</iconset>
   </property>
   <property name="windowOpacity">
    <double>0.900000000000000</double>
@@ -61,35 +61,6 @@
           <string>Name :</string>
          </property>
         </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="IconLabel">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer name="horizontalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Fixed</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>4</width>
-           <height>0</height>
-          </size>
-         </property>
-        </spacer>
        </item>
        <item>
         <widget class="QLabel" name="NamePI">
@@ -424,7 +395,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="apresource.qrc"/>
+  <include location="Icon.qrc"/>
  </resources>
  <connections/>
 </ui>

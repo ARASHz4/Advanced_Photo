@@ -6,19 +6,6 @@
 #include <QFileInfo>
 #include <QSystemTrayIcon>
 #include <QLabel>
-#include <QScreen>
-#include <QFileDialog>
-#include <QPrinter>
-#include <QPrintDialog>
-#include <QPainter>
-#include <QSettings>
-#include <QMouseEvent>
-#include <QMimeData>
-#include <QMessageBox>
-#include <QDesktopServices>
-#include <QUuid>
-#include <QFileIconProvider>
-#include <QPrintPreviewDialog>
 
 namespace Ui {
 class PhotoWindow;
@@ -53,15 +40,12 @@ private:
     QFileInfo fi;
     QSystemTrayIcon *tray;
 
-    QLabel zoomLS, photoNameLS, photoIconLS, photoHWLS, photoSizeLS, ofLS;
+    QLabel zoomLS, photoNameLS, photoHWLS, photoSizeLS, ofLS;
 
     QString ScreenshotFile, PSize;
     int pw, ph, ww, wh, j, mbh, tbh, pw2, ph2, pst, psb, pwz, phz, rd, zoomp, IconTrayNum;
     float zw, zh;
     bool zoom, sls, pe, sph, iif, wasMax;
-
-    QPrinter APPrinter;
-    QPrintPreviewDialog APPrintPreviewDialog{&APPrinter};
 
 private slots:
     void Retranslate();
@@ -102,7 +86,7 @@ private slots:
 
     void on_actionSave_As_triggered();
 
-    void on_actionOptions_triggered();
+    void on_actionOption_triggered();
 
     void on_actionPrint_triggered();
 
@@ -143,8 +127,6 @@ private slots:
     void on_actionFullscreen_triggered();
 
 public slots:
-    void PaintPreview(QPrinter *printer);
-
     void Start();
 
     void OpenArguments(QStringList Arguments);

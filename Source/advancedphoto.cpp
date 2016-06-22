@@ -1,6 +1,10 @@
 #include "advancedphoto.h"
 #include "slsettings.h"
 
+#include <cstdlib>
+#include <QFileOpenEvent>
+#include <QMessageBox>
+
 AdvancedPhoto::AdvancedPhoto(int &argc, char *argv[]) : QApplication(argc, argv)
 {
     args = AdvancedPhoto::arguments();
@@ -35,12 +39,6 @@ void AdvancedPhoto::StartApplication()
         QString Message;
 
     #if defined(Q_OS_WIN)
-
-        if(!QFileInfo(QFileInfo(AdvancedPhoto::arguments()[0]).absolutePath() + "/Qt5Svg.dll").isFile())
-        {
-            Message = Message + "\n" + "Qt5Svg.dll";
-        }
-
         if(!QFileInfo(QFileInfo(AdvancedPhoto::arguments()[0]).absolutePath() + "/printsupport/windowsprintersupport.dll").isFile())
         {
             Message = Message + "\n" + "windowsprintersupport.dll";
@@ -66,9 +64,19 @@ void AdvancedPhoto::StartApplication()
             Message = Message + "\n" + "qico.dll";
         }
 
+        if(!QFileInfo(QFileInfo(AdvancedPhoto::arguments()[0]).absolutePath() + "/imageformats/qjp2.dll").isFile())
+        {
+            Message = Message + "\n" + "qjp2.dll";
+        }
+
         if(!QFileInfo(QFileInfo(AdvancedPhoto::arguments()[0]).absolutePath() + "/imageformats/qjpeg.dll").isFile())
         {
             Message = Message + "\n" + "qjpeg.dll";
+        }
+
+        if(!QFileInfo(QFileInfo(AdvancedPhoto::arguments()[0]).absolutePath() + "/imageformats/qmng.dll").isFile())
+        {
+            Message = Message + "\n" + "qmng.dll";
         }
 
         if(!QFileInfo(QFileInfo(AdvancedPhoto::arguments()[0]).absolutePath() + "/imageformats/qsvg.dll").isFile())
@@ -136,14 +144,19 @@ void AdvancedPhoto::StartApplication()
             Message = Message + "\n" + "libqico.dylib";
         }
 
+        if(!QFileInfo(PlugIns + "/imageformats/libqjp2.dylib").isFile())
+        {
+            Message = Message + "\n" + "libqjp2.dylib";
+        }
+
         if(!QFileInfo(PlugIns + "/imageformats/libqjpeg.dylib").isFile())
         {
             Message = Message + "\n" + "libqjpeg.dylib";
         }
 
-        if(!QFileInfo(PlugIns + "/imageformats/libqsvg.dylib").isFile())
+        if(!QFileInfo(PlugIns + "/imageformats/libqmng.dylib").isFile())
         {
-            Message = Message + "\n" + "libqsvg.dylib";
+            Message = Message + "\n" + "libqmng.dylib";
         }
 
         if(!QFileInfo(PlugIns + "/imageformats/libqtga.dylib").isFile())
@@ -171,6 +184,11 @@ void AdvancedPhoto::StartApplication()
             Message = Message + "\n" + "libqxcb.so";
         }
 
+        if(!QFileInfo(QFileInfo(AdvancedPhoto::arguments()[0]).absolutePath() + "/plugins/platformthemes/libqgtk2.so").isFile())
+        {
+            Message = Message + "\n" + "libqgtk2.so";
+        }
+
         if(!QFileInfo(QFileInfo(AdvancedPhoto::arguments()[0]).absolutePath() + "/plugins/printsupport/libcupsprintersupport.so").isFile())
         {
             Message = Message + "\n" + "libcupsprintersupport.so";
@@ -196,9 +214,19 @@ void AdvancedPhoto::StartApplication()
             Message = Message + "\n" + "libqico.so";
         }
 
+        if(!QFileInfo(QFileInfo(AdvancedPhoto::arguments()[0]).absolutePath() + "/plugins/imageformats/libqjp2.so").isFile())
+        {
+            Message = Message + "\n" + "libqjp2.so";
+        }
+
         if(!QFileInfo(QFileInfo(AdvancedPhoto::arguments()[0]).absolutePath() + "/plugins/imageformats/libqjpeg.so").isFile())
         {
             Message = Message + "\n" + "libqjpeg.so";
+        }
+
+        if(!QFileInfo(QFileInfo(AdvancedPhoto::arguments()[0]).absolutePath() + "/plugins/imageformats/libqmng.so").isFile())
+        {
+            Message = Message + "\n" + "libqmng.so";
         }
 
         if(!QFileInfo(QFileInfo(AdvancedPhoto::arguments()[0]).absolutePath() + "/plugins/imageformats/libqsvg.so").isFile())
@@ -233,8 +261,8 @@ void AdvancedPhoto::StartApplication()
             msg.setIcon(QMessageBox::Critical);
             msg.setWindowTitle(AdvancedPhoto::applicationName() + " Error");
             msg.setWindowIcon(QIcon(":/Icons/Small Icon.png"));
-            msg.setText(AdvancedPhoto::applicationName() + " cannot be opened because of a problem.");
-            msg.setInformativeText("Some files is missing from your computer.\nTry reinstalling the application to fix this problem.");
+            msg.setText("The application can't start because some files is missing from your computer.");
+            msg.setInformativeText("Try reinstalling the application to fix this problem.");
             msg.setDetailedText("This files is missing :" + Message);
             msg.setStandardButtons(QMessageBox::Ok);
             msg.setDefaultButton(QMessageBox::Ok);

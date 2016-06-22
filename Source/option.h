@@ -5,19 +5,19 @@
 #include <QPushButton>
 
 namespace Ui {
-class Options;
+class Option;
 }
 
-class Options : public QDialog
+class Option : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit Options(QWidget *parent = 0);
-    ~Options();
+    explicit Option(QWidget *parent = 0);
+    ~Option();
 
 private:
-    Ui::Options *ui;
+    Ui::Option *ui;
 
     QPushButton OK, Cancel, Apply, RestoreDefaults;
 

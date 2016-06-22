@@ -8,6 +8,6 @@ Exec=AdvancedPhoto %f
 Icon=AdvancedPhoto.png
 NoDisplay=false
 Categories=Graphics;Viewer;
-MimeType=image/png;image/jpeg;image/bmp;image/tiff;image/webp;image/gif;image/svg;image/dds;image/xpm;image/pnm;image/ppm;image/pgm;image/wbmp;image/xbm;image/pbm;image/ico;image/icns;image/cur;
+MimeType=image/png;image/jpeg;image/bmp;image/tiff;image/webp;image/gif;image/jp2;image/dds;image/xpm;image/pnm;image/ppm;image/pgm;image/wbmp;image/xbm;image/pbm;image/ico;image/icns;
 StartupNotify=true
 Terminal=false
