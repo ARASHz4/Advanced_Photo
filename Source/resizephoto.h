@@ -3,6 +3,8 @@
 
 #include <QDialog>
 #include <QPushButton>
+#include <QStringList>
+#include <QPixmap>
 
 namespace Ui {
 class ResizePhoto;

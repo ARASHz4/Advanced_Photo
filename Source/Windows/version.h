@@ -2,11 +2,11 @@
 #ifndef VERSION_H
 #define VERSION_H
 
-#define VER_FILEVERSION             1,5,0
-#define VER_FILEVERSION_STR         "1.5.0"
+#define VER_FILEVERSION             1,5,5
+#define VER_FILEVERSION_STR         "1.5.5"
 
-#define VER_PRODUCTVERSION          1,5,0
-#define VER_PRODUCTVERSION_STR      "1,5,0"
+#define VER_PRODUCTVERSION          1,5,5
+#define VER_PRODUCTVERSION_STR      "1,5,5"
 
 #define VER_COMPANYNAME_STR         "ARASHz4"
 #define VER_FILEDESCRIPTION_STR     "Advanced Photo"

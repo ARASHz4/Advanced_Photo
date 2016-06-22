@@ -2,6 +2,8 @@
 #define ABOUT_H
 
 #include <QDialog>
+#include <QMouseEvent>
+#include <QPixmap>
 
 namespace Ui {
 class About;
