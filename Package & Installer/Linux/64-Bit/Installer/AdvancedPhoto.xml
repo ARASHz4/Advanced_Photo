@@ -1,0 +1,136 @@
+<project>
+    <shortName>AdvancedPhoto</shortName>
+    <fullName>Advanced Photo</fullName>
+    <version>1.5.5</version>
+    <htmlLicenseFile>Installer/License Agreement.html</htmlLicenseFile>
+    <wrapLicenseFileText>0</wrapLicenseFileText>
+    <leftImage>Installer/leftImage.png</leftImage>
+    <logoImage>Installer/logoImage.png</logoImage>
+    <splashImage>Installer/splashImage.png</splashImage>
+    <componentList>
+        <component>
+            <name>default</name>
+            <description>Default Component</description>
+            <canBeEdited>1</canBeEdited>
+            <selected>1</selected>
+            <show>1</show>
+            <folderList>
+                <folder>
+                    <description>Program Files</description>
+                    <destination>${installdir}</destination>
+                    <name>programfiles</name>
+                    <platforms>linux-x64</platforms>
+                    <shortcutList>
+                        <shortcut>
+                            <comment>Uninstall</comment>
+                            <exec>${installdir}/${uninstallerName}</exec>
+                            <icon>${installdir}/Icons/Uninstall.png</icon>
+                            <name>Uninstall</name>
+                            <path>${installdir}</path>
+                            <platforms>all</platforms>
+                            <runAsAdmin>0</runAsAdmin>
+                            <runInTerminal>0</runInTerminal>
+                            <windowsExec>${installdir}/${uninstallerName}.exe</windowsExec>
+                            <windowsExecArgs></windowsExecArgs>
+                            <windowsIcon></windowsIcon>
+                            <windowsPath>${installdir}</windowsPath>
+                        </shortcut>
+                    </shortcutList>
+                </folder>
+                <folder>
+                    <description>Program Files</description>
+                    <destination>${installdir}</destination>
+                    <name>programfileslinux</name>
+                    <platforms>linux-x64</platforms>
+                    <distributionFileList>
+                        <distributionFile>
+                            <origin>/home/arash/Advanced_Photo/Advanced Photo</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>/home/arash/Advanced_Photo/AdvancedPhoto.sh</origin>
+                        </distributionFile>
+                        <distributionDirectory>
+                            <origin>/home/arash/Advanced_Photo/lib</origin>
+                        </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>/home/arash/Advanced_Photo/plugins</origin>
+                        </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>/home/arash/Advanced_Photo/Icons</origin>
+                        </distributionDirectory>
+                    </distributionFileList>
+                    <shortcutList>
+                        <shortcut>
+                            <comment>Advanced Photo</comment>
+                            <exec>${installdir}/AdvancedPhoto.sh</exec>
+                            <icon>${installdir}/Icons/Advanced Photo.png</icon>
+                            <name>Advanced Photo</name>
+                            <path>${installdir}</path>
+                            <platforms>linux-x64</platforms>
+                            <runAsAdmin>0</runAsAdmin>
+                            <runInTerminal>0</runInTerminal>
+                            <windowsExec></windowsExec>
+                            <windowsExecArgs></windowsExecArgs>
+                            <windowsIcon></windowsIcon>
+                            <windowsPath></windowsPath>
+                        </shortcut>
+                    </shortcutList>
+                </folder>
+                <folder>
+                    <description>Icons</description>
+                    <destination>${user_home_directory}/.local/share</destination>
+                    <name>Icons</name>
+                    <platforms>linux-x64</platforms>
+                    <distributionFileList>
+                        <distributionDirectory>
+                            <origin>icons</origin>
+                        </distributionDirectory>
+                    </distributionFileList>
+                </folder>
+                <folder>
+                    <description>Application</description>
+                    <destination>${user_home_directory}/.local/share/applications</destination>
+                    <name>Application</name>
+                    <platforms>linux-x64</platforms>
+                    <shortcutList>
+                        <shortcut>
+                            <comment>Advanced Photo</comment>
+                            <exec>${installdir}/AdvancedPhoto.sh</exec>
+                            <icon>AdvancedPhoto.png</icon>
+                            <name>Advanced Photo</name>
+                            <path>${installdir}</path>
+                            <platforms>linux-x64</platforms>
+                            <runAsAdmin>0</runAsAdmin>
+                            <runInTerminal>0</runInTerminal>
+                            <windowsExec></windowsExec>
+                            <windowsExecArgs></windowsExecArgs>
+                            <windowsIcon></windowsIcon>
+                            <windowsPath></windowsPath>
+                        </shortcut>
+                    </shortcutList>
+                </folder>
+            </folderList>
+        </component>
+    </componentList>
+    <compressionAlgorithm>lzma-ultra</compressionAlgorithm>
+    <enableRollback>1</enableRollback>
+    <enableTimestamp>1</enableTimestamp>
+    <height>400</height>
+    <vendor>ARASHz4</vendor>
+    <width>600</width>
+    <parameterList>
+        <directoryParameter>
+            <name>installdir</name>
+            <description>Installer.Parameter.installdir.description</description>
+            <explanation>Installer.Parameter.installdir.explanation</explanation>
+            <value></value>
+            <default>${platform_install_prefix}/Advanced_Photo</default>
+            <allowEmptyValue>0</allowEmptyValue>
+            <cliOptionName>prefix</cliOptionName>
+            <mustBeWritable>1</mustBeWritable>
+            <mustExist>0</mustExist>
+            <width>30</width>
+        </directoryParameter>
+    </parameterList>
+</project>
+

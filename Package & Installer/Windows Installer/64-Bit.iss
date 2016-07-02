@@ -19,16 +19,80 @@ MinVersion=6.1.7600
 DefaultGroupName=Advanced Photo
 DisableProgramGroupPage=yes
 DisableWelcomePage=no
+;DisableDirPage=no
 OutputDir=K:\Qt\Advanced_Photo\Binary\1.5.5\Windows\Windows Installer
 OutputBaseFilename=64-Bit
-LicenseFile=K:\Qt\Advanced_Photo\Document\License Agreement.rtf
-WizardImageFile=K:\Qt\Advanced_Photo\Package & Installer\Windows Installer\WizImage.bmp
-WizardSmallImageFile=K:\Qt\Advanced_Photo\Package & Installer\Windows Installer\WizSmallImage.bmp
-SetupIconFile=K:\Qt\Advanced_Photo\Package & Installer\Windows Installer\Icon Setup.ico
+LicenseFile=License Agreement.rtf
+WizardImageFile=WizImage.bmp
+WizardSmallImageFile=WizSmallImage.bmp
+SetupIconFile=Icon Setup.ico
 UninstallDisplayIcon={app}\Advanced Photo.exe
 UninstallDisplayName={#MyAppName}
 Compression=lzma
 SolidCompression=yes
+
+[Code]
+procedure InitializeWizard();
+begin
+  WizardForm.Left := WizardForm.Left -50;
+  WizardForm.Height := WizardForm.Height + 40;
+  WizardForm.Width := WizardForm.Width + 100;
+
+  WizardForm.OuterNotebook.Height := WizardForm.OuterNotebook.Height +46;
+  WizardForm.OuterNotebook.Width := WizardForm.OuterNotebook.Width +100;
+  WizardForm.MainPanel.Width := WizardForm.MainPanel.Width+100;
+  WizardForm.Bevel1.Width := WizardForm.Bevel1.Width +100;
+  WizardForm.CancelButton.Top := WizardForm.CancelButton.Top +41;
+  WizardForm.CancelButton.Left := WizardForm.CancelButton.Left +100;
+  WizardForm.CancelButton.Height := WizardForm.CancelButton.Height +2;
+  WizardForm.NextButton.Top := WizardForm.NextButton.Top +41;
+  WizardForm.NextButton.Left := WizardForm.NextButton.Left +100;
+  WizardForm.NextButton.Height := WizardForm.NextButton.Height +2;
+  WizardForm.BackButton.Top := WizardForm.BackButton.Top +41;
+  WizardForm.BackButton.Left := WizardForm.BackButton.Left +100;
+  WizardForm.BackButton.Height := WizardForm.BackButton.Height +2;
+  WizardForm.InnerPage.Width := WizardForm.InnerPage.Width + 100;
+  WizardForm.Bevel.Top := WizardForm.Bevel.Top +46;
+  WizardForm.Bevel.Width := WizardForm.Bevel.Width +100;
+  WizardForm.WizardBitmapImage.Height := WizardForm.WizardBitmapImage.Height + 46;
+  WizardForm.WizardBitmapImage2.Height := WizardForm.WizardBitmapImage2.Height + 46;
+  WizardForm.WizardSmallBitmapImage.Left := WizardForm.WizardSmallBitmapImage.Left +100;
+
+  WizardForm.InnerNotebook.Width :=  WizardForm.InnerNotebook.Width + 100;
+  WizardForm.LicensePage.Width := WizardForm.LicensePage.Width + 100;
+  WizardForm.LicenseMemo.Width := WizardForm.LicenseMemo.Width + 100;
+  WizardForm.InnerPage.Height := WizardForm.InnerPage.Height + 40;
+  WizardForm.InnerNotebook.Height :=  WizardForm.InnerNotebook.Height + 40;
+  WizardForm.LicenseMemo.Height := WizardForm.LicenseMemo.Height + 40;
+  WizardForm.LicenseNotAcceptedRadio.Top := WizardForm.LicenseNotAcceptedRadio.Top + 40;
+  WizardForm.LicenseAcceptedRadio.Top := WizardForm.LicenseAcceptedRadio.Top + 40;
+  WizardForm.ProgressGauge.Width := WizardForm.ProgressGauge.Width + 100;
+  WizardForm.ReadyMemo.Width := WizardForm.ReadyMemo.Width +100;
+  WizardForm.ReadyMemo.Height := WizardForm.ReadyMemo.Height +40;
+  WizardForm.DirEdit.Width :=  WizardForm.DirEdit.Width +100;
+  WizardForm.DiskSpaceLabel.Top := WizardForm.DiskSpaceLabel.Top+40;
+  WizardForm.DirBrowseButton.Left := WizardForm.DirBrowseButton.Left +100;
+
+  WizardForm.WelcomeLabel1.Width := WizardForm.WelcomeLabel1.Width +90;
+  WizardForm.WelcomeLabel2.Width := WizardForm.WelcomeLabel1.Width +20;
+  WizardForm.FinishedHeadingLabel.Width := WizardForm.FinishedHeadingLabel.Width +90;
+  WizardForm.FinishedLabel.Width := WizardForm.FinishedLabel.Width +20; 
+  WizardForm.LicenseLabel1.Width := WizardForm.LicenseLabel1.Width +100;
+
+  WizardForm.PageDescriptionLabel.Width :=0;
+  WizardForm.PageNameLabel.Top := WizardForm.PageNameLabel.Top +12;
+end;
+  
+  procedure CurPageChanged(CurPageID: Integer);
+begin
+  if CurpageID = wpFinished then
+  begin
+    WizardForm.NextButton.Left := WizardForm.CancelButton.Left;
+  end
+end;
+
+[LangOptions]
+WelcomeFontSize=9
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"

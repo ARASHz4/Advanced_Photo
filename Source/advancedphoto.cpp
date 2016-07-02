@@ -166,6 +166,11 @@ void AdvancedPhoto::StartApplication()
             Message = Message + "\n" + "libqwebp.dylib";
         }
     #elif defined(Q_OS_LINUX)
+        if(!QFileInfo(QFileInfo(AdvancedPhoto::arguments()[0]).absolutePath() + "/lib/libQt5Svg.so.5").isFile())
+        {
+            Message = Message + "\n" + "libQt5Svg.so.5";
+        }
+
         if(!QFileInfo(QFileInfo(AdvancedPhoto::arguments()[0]).absolutePath() + "/plugins/platforms/libqxcb.so").isFile())
         {
             Message = Message + "\n" + "libqxcb.so";

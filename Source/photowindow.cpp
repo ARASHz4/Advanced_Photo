@@ -1150,22 +1150,7 @@ void PhotoWindow::on_actionSave_As_triggered()
         QFileInfo PhotoName = photoAddress[ps];
         QString Directory;
 
-        //Load Directory
-        {
-            QSettings SettingsAP (AdvancedPhoto::organizationName(), AdvancedPhoto::applicationName());
-            SettingsAP.beginGroup("Directory");
-
-            if (!SettingsAP.value("Directory").toString().isEmpty())
-            {
-                Directory = SettingsAP.value("Directory").toString();
-            }
-            else
-            {
-                Directory = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
-            }
-
-            SettingsAP.endGroup();
-        }
+        Directory = PhotoName.path();
 
         QString SavePhotoFilter;
         QString SaveAddress = QFileDialog::getSaveFileName(this, tr("Save As Photo"),

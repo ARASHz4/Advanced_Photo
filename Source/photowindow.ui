@@ -68,7 +68,7 @@
      <x>0</x>
      <y>0</y>
      <width>615</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -125,7 +125,23 @@
      <addaction name="actionFlip_Horizontal"/>
      <addaction name="actionFlip_Vertical"/>
     </widget>
+    <widget class="QMenu" name="menuZoom">
+     <property name="title">
+      <string>Zoom</string>
+     </property>
+     <addaction name="actionZoomIN"/>
+     <addaction name="actionZoomOut"/>
+     <addaction name="actionZoom1_1"/>
+     <addaction name="actionFitWindow"/>
+    </widget>
+    <addaction name="menuZoom"/>
+    <addaction name="separator"/>
+    <addaction name="actionNext_Photo"/>
+    <addaction name="actionPrevious_Photo"/>
+    <addaction name="actionSlideshow"/>
+    <addaction name="separator"/>
     <addaction name="actionResize"/>
+    <addaction name="separator"/>
     <addaction name="menuRotate"/>
     <addaction name="menuFlip"/>
     <addaction name="separator"/>
@@ -190,7 +206,7 @@
     <string>About</string>
    </property>
    <property name="shortcut">
-    <string notr="true">F1</string>
+    <string notr="true"/>
    </property>
   </action>
   <action name="actionOptions">

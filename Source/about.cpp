@@ -20,7 +20,16 @@ About::~About()
 
 void About::Start()
 {
+    ds = false;
+
     ui->ApplicationNameLabel->setText(AdvancedPhoto::applicationName());
+
+    QFont font;
+    font.setPointSize(ui->ApplicationNameLabel->font().pointSize() + 2);
+    font.setBold(true);
+    font.setKerning(true);
+
+    ui->ApplicationNameLabel->setFont(font);
 
     if(SLSettings::Language() == QLocale::Persian)
     {
@@ -37,22 +46,22 @@ void About::Start()
         Version.replace("9", "۹");
         Version.replace(".", "٫");
 
-        ui->ApplicationVersionLabel->setText(Version);
+        ui->ApplicationVersionLabel->setText(tr("Version") + " " + Version);
     }
     else
     {
-        ui->ApplicationVersionLabel->setText(AdvancedPhoto::applicationVersion());
+        ui->ApplicationVersionLabel->setText(tr("Version") + " " + AdvancedPhoto::applicationVersion());
     }
 
-    ds = false;
+    ui->ApplicationBuiltOnDateLabel->setText(QString(tr("Built on") + " " __DATE__ " " __TIME__).replace("  "," "));
 }
 
-void About::on_OkButton_clicked()
+void About::on_CloseButton_clicked()
 {
     close();
 }
 
-void About::on_QtPushButton_clicked()
+void About::on_AboutQtButton_clicked()
 {
     AdvancedPhoto::aboutQt();
 }
@@ -61,7 +70,7 @@ void About::mouseDoubleClickEvent(QMouseEvent *)
 {
     if(ds == false)
     {
-        ui->aboutIcon->setText("<html><head/><body><p><br/></p><p><span style="""
+        ui->ApplicationIcon->setText("<html><head/><body><p><br/></p><p><span style="""
                                " font-size:12pt;"">" + tr("Developer :") + "</span></p><p align="""
                                "center""><span style="" font-size:12pt;"">" + tr("Arash Zare") + " ("
                                + AdvancedPhoto::organizationName() + ")</span></p></body></html>");
@@ -69,8 +78,8 @@ void About::mouseDoubleClickEvent(QMouseEvent *)
     }
     else if (ds == true)
     {
-        ui->aboutIcon->setText(NULL);
-        ui->aboutIcon->setPixmap(QPixmap(":/Icons/Icons/Big Icon.png"));
+        ui->ApplicationIcon->setText(NULL);
+        ui->ApplicationIcon->setPixmap(QPixmap(":/Icons/Icons/Big Icon.png"));
         ds=false;
     }
 }

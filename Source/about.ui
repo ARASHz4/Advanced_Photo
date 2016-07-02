@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>490</width>
-    <height>230</height>
+    <width>480</width>
+    <height>220</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>490</width>
-    <height>230</height>
+    <width>480</width>
+    <height>220</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>490</width>
-    <height>230</height>
+    <width>480</width>
+    <height>220</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -36,7 +36,7 @@
       <number>0</number>
      </property>
      <item>
-      <widget class="QLabel" name="aboutIcon">
+      <widget class="QLabel" name="ApplicationIcon">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -98,21 +98,47 @@
      <property name="spacing">
       <number>0</number>
      </property>
-     <item row="0" column="0">
-      <spacer name="verticalSpacer_5">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
+     <item row="2" column="0">
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <property name="spacing">
+        <number>0</number>
        </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>13</height>
-        </size>
-       </property>
-      </spacer>
+       <item>
+        <widget class="QLabel" name="ApplicationVersionLabel">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="text">
+          <string notr="true">Version</string>
+         </property>
+         <property name="textInteractionFlags">
+          <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
      </item>
      <item row="1" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -132,16 +158,6 @@
            <width>0</width>
            <height>19</height>
           </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>14</pointsize>
-           <weight>75</weight>
-           <italic>false</italic>
-           <bold>true</bold>
-           <strikeout>false</strikeout>
-           <kerning>true</kerning>
-          </font>
          </property>
          <property name="text">
           <string notr="true">Application Name</string>
@@ -166,13 +182,13 @@
        </item>
       </layout>
      </item>
-     <item row="2" column="0">
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item row="3" column="0">
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
        <property name="spacing">
         <number>0</number>
        </property>
        <item>
-        <widget class="QLabel" name="VersionLabel">
+        <widget class="QLabel" name="ApplicationBuiltOnDateLabel">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -186,29 +202,7 @@
           </size>
          </property>
          <property name="text">
-          <string>Version </string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="ApplicationVersionLabel">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>16</height>
-          </size>
-         </property>
-         <property name="accessibleName">
-          <string notr="true"/>
-         </property>
-         <property name="text">
-          <string notr="true"/>
+          <string notr="true">Built on</string>
          </property>
          <property name="textInteractionFlags">
           <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
@@ -216,7 +210,7 @@
         </widget>
        </item>
        <item>
-        <spacer name="horizontalSpacer_2">
+        <spacer name="horizontalSpacer_5">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
@@ -230,23 +224,7 @@
        </item>
       </layout>
      </item>
-     <item row="3" column="0">
-      <spacer name="verticalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>13</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="4" column="0">
+     <item row="5" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout_4">
        <property name="spacing">
         <number>0</number>
@@ -266,7 +244,7 @@
           </size>
          </property>
          <property name="text">
-          <string>Copyright© 2014 - 2016 ARASHz4</string>
+          <string>Copyright 2014 - 2016 ARASHz4</string>
          </property>
         </widget>
        </item>
@@ -285,15 +263,47 @@
        </item>
       </layout>
      </item>
-     <item row="5" column="0">
+     <item row="0" column="0">
+      <spacer name="verticalSpacer_5">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Fixed</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>8</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="4" column="0">
       <spacer name="verticalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Fixed</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>14</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="6" column="0">
+      <spacer name="verticalSpacer_2">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
          <width>20</width>
-         <height>38</height>
+         <height>18</height>
         </size>
        </property>
       </spacer>
@@ -306,7 +316,7 @@
       <number>0</number>
      </property>
      <item>
-      <widget class="QToolButton" name="QtPushButton">
+      <widget class="QToolButton" name="AboutQtButton">
        <property name="cursor">
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
@@ -342,7 +352,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="OkButton">
+      <widget class="QPushButton" name="CloseButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -350,7 +360,7 @@
         </sizepolicy>
        </property>
        <property name="text">
-        <string>OK</string>
+        <string>Close</string>
        </property>
       </widget>
      </item>
@@ -359,8 +369,8 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>OkButton</tabstop>
-  <tabstop>QtPushButton</tabstop>
+  <tabstop>CloseButton</tabstop>
+  <tabstop>AboutQtButton</tabstop>
  </tabstops>
  <resources>
   <include location="apresource.qrc"/>

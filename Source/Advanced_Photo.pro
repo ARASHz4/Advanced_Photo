@@ -14,6 +14,7 @@ TEMPLATE = app
 CONFIG += c++11
 
 win32: RC_FILE = Windows/APWinRes.rc
+win32: CONFIG -= embed_manifest_exe
 
 mac: QMAKE_INFO_PLIST = Mac/APInfo.plist
 mac: ICON = Mac/APIcon.icns
@@ -54,8 +55,9 @@ DISTFILES += \
     Windows/version.h \
     Windows/APIcon.ico \
     Windows/APIFile.ico \
+    "Windows/Advanced Photo.exe.manifest" \
     Mac/APInfo.plist \
     Mac/APIcon.icns \
     Mac/APIFile.icns \
     Linux/AdvancedPhoto.desktop \
-    Linux/APIcon.png
+    Linux/APIcon.png \
