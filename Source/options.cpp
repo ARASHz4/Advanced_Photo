@@ -326,7 +326,19 @@ void Options::ApplyButton()
     Cancel.setText(tr("Cancel"));
     Apply.setText(tr("Apply"));
     RestoreDefaults.setText(tr("Restore Defaults"));
-    ui->OptionGroupBox->setTitle(tr("Language"));
+
+    if(ui->listWidgetOption->currentRow() == 0)
+    {
+        ui->OptionGroupBox->setTitle(tr("General"));
+    }
+    else if (ui->listWidgetOption->currentRow() == 1)
+    {
+        ui->OptionGroupBox->setTitle(tr("Language"));
+    }
+    else if (ui->listWidgetOption->currentRow() == 2)
+    {
+        ui->OptionGroupBox->setTitle(tr("Slideshow"));
+    }
 
     ui->LanguageComboBox->insertSeparator(1);
     ui->LanguageComboBox->setCurrentIndex(cl);

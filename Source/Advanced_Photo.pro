@@ -5,7 +5,6 @@
 #-------------------------------------------------
 
 QT += core gui printsupport svg
-
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = "Advanced Photo"
@@ -13,11 +12,17 @@ TEMPLATE = app
 
 CONFIG += c++11
 
-win32: RC_FILE = Windows/APWinRes.rc
-win32: CONFIG -= embed_manifest_exe
+win32
+{
+    RC_FILE = Windows/APWinRes.rc
+    CONFIG -= embed_manifest_exe
+}
 
-mac: QMAKE_INFO_PLIST = Mac/APInfo.plist
-mac: ICON = Mac/APIcon.icns
+mac
+{
+    QMAKE_INFO_PLIST = Mac/APInfo.plist
+    ICON = Mac/APIcon.icns
+}
 
 SOURCES += main.cpp\
     about.cpp \

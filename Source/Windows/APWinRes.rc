@@ -29,6 +29,6 @@ BEGIN
 
     BLOCK "VarFileInfo"
     BEGIN
-        VALUE "Translation", 0x0000 0x04B0
+        VALUE "Translation", 0x409, 1252
     END
 END

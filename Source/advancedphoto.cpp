@@ -28,7 +28,7 @@ bool AdvancedPhoto::event(QEvent *event)
 
 void AdvancedPhoto::StartApplication()
 {
-    bool debug = false/*true false*/;
+    bool debug = true/*true false*/;
 
     if(debug == false)
     {
